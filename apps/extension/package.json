@@ -1,12 +1,24 @@
 {
-  "name": "@verilens/extension",
+  "name": "verilens-extension",
   "version": "1.0.0",
-  "description": "VeriLens Manifest V3 Chrome Extension",
+  "description": "AI-Powered Cognitive Companion for Media Literacy (UNESCO Global MIL Youth Hackathon)",
   "scripts": {
     "dev": "node scripts/watch.js",
-    "test": "node --test tests/unit.test.js"
+    "watch": "node scripts/watch.js",
+    "test": "node --test tests/unit.test.js",
+    "test:e2e": "playwright test"
   },
-  "dependencies": {
-    "@verilens/shared": "*"
-  }
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "keywords": [
+    "unesco",
+    "media-literacy",
+    "sift",
+    "chrome-extension",
+    "manifest-v3",
+    "critical-thinking"
+  ],
+  "author": "VeriLens Team",
+  "license": "MIT"
 }

@@ -84,7 +84,7 @@ export default function ExtensionPage() {
             Toggle <strong>Developer mode</strong> in the top-right corner.
           </li>
           <li>
-            Click <strong>Load unpacked</strong> and select the unzipped folder.
+            Click <strong>Load unpacked</strong> and select the unzipped <code style={{ background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px', color: '#60A5FA' }}>apps/extension/</code> folder.
           </li>
           <li>
             Open any webpage, press <strong style={{ color: 'var(--accent-amber)' }}>Alt + V</strong> or right-click any highlighted claim to verify with Gemini AI!
