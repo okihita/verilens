@@ -3,6 +3,8 @@
 import Link from 'next/link';
 
 export default function ExtensionPage() {
+  const downloadUrl = 'https://github.com/okihita/verilens/releases/download/v1.0.0/verilens-extension-v1.0.0.zip';
+
   return (
     <div className="container" style={{ maxWidth: '900px', padding: '40px 20px' }}>
       {/* Header */}
@@ -20,9 +22,7 @@ export default function ExtensionPage() {
         {/* 1-Click Fast Download Buttons */}
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={downloadUrl}
             className="btn btn-amber"
             style={{ padding: '12px 24px', fontSize: '15px' }}
           >
@@ -67,7 +67,7 @@ export default function ExtensionPage() {
         </div>
       </div>
 
-      {/* 30-Second Quickstart Installation Guide */}
+      {/* 30-Second Installation Guide */}
       <div className="card" style={{ marginBottom: '36px' }}>
         <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '16px' }}>
           🛠️ 30-Second Quickstart Installation (Evaluator Guide)
@@ -75,7 +75,7 @@ export default function ExtensionPage() {
 
         <ol style={{ paddingLeft: '22px', color: 'var(--text-main)', fontSize: '14px', lineHeight: '1.9' }}>
           <li>
-            <strong>Download & Unzip:</strong> Download the <code style={{ background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px', color: 'var(--accent-amber)' }}>verilens-extension.zip</code> file (or clone the GitHub repo).
+            <strong>Download & Unzip:</strong> Download the <a href={downloadUrl} style={{ color: 'var(--accent-amber)', fontWeight: '700' }}>verilens-extension-v1.0.0.zip</a> release.
           </li>
           <li>
             Open Google Chrome and navigate to <code style={{ background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px', color: 'var(--accent-amber)' }}>chrome://extensions</code>.
@@ -84,7 +84,7 @@ export default function ExtensionPage() {
             Toggle <strong>Developer mode</strong> in the top-right corner.
           </li>
           <li>
-            Click <strong>Load unpacked</strong> and select the unzipped <code style={{ background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px', color: '#60A5FA' }}>verilens-extension/</code> folder.
+            Click <strong>Load unpacked</strong> and select the unzipped folder.
           </li>
           <li>
             Open any webpage, press <strong style={{ color: 'var(--accent-amber)' }}>Alt + V</strong> or right-click any highlighted claim to verify with Gemini AI!
