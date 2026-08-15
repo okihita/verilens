@@ -36,21 +36,22 @@ export default function Navbar() {
           <Link href="/" className="nav-link">🃏 Codex</Link>
           <Link href="/arena" className="nav-link">🎮 Arena</Link>
           <Link href="/gauntlet" className="nav-link" style={{ color: 'var(--accent-amber)' }}>⚔️ Gauntlet</Link>
-          <Link href="/sandbox" className="nav-link">🧪 Sandbox</Link>
-          <Link href="/classroom" className="nav-link">🏫 Classroom</Link>
-          <Link href="/profile" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>🏆 Ranks</span>
-          </Link>
+          <Link href="/skills" className="nav-link">🌳 Skills</Link>
+          <Link href="/forge" className="nav-link">🧪 Forge</Link>
+          <Link href="/feed" className="nav-link">📱 Feed</Link>
+          <Link href="/duel" className="nav-link">⚔️ Duel</Link>
+          <Link href="/leaderboard" className="nav-link">🏆 League</Link>
+          <Link href="/classroom" className="nav-link">🏫 Class</Link>
 
           {/* Live Player Rank & XP Pill */}
           <Link href="/profile" style={{ textDecoration: 'none' }}>
             <div style={{ background: 'var(--bg-surface-elevated)', border: `1px solid ${rank.color}`, padding: '4px 10px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '13px' }}>{rank.icon}</span>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: '10.5px', fontWeight: '800', color: rank.color, textTransform: 'uppercase', lineHeight: '1.1' }}>
+                <span style={{ fontSize: '10px', fontWeight: '800', color: rank.color, textTransform: 'uppercase', lineHeight: '1.1' }}>
                   Lv.{rank.level} {rank.name}
                 </span>
-                <div style={{ width: '60px', height: '3px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '2px' }}>
+                <div style={{ width: '55px', height: '3px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '2px' }}>
                   <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color }}></div>
                 </div>
               </div>
@@ -58,7 +59,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <Link href="/extension" className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '13px' }}>
+          <Link href="/extension" className="btn btn-primary" style={{ padding: '6px 10px', fontSize: '12.5px' }}>
             🧩 Armor
           </Link>
         </div>

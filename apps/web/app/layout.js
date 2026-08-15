@@ -7,7 +7,7 @@ export const metadata = {
   description: 'Master critical thinking, identify cognitive biases, and dissect misinformation in real-time. Built for the UNESCO Global MIL Youth Hackathon 2026.',
   openGraph: {
     title: 'VeriLens — The AI Cognitive Shield for Media Literacy',
-    description: '12 Interactive Fallacy Cards, Gamified Bias Spotter Arena, and Real-Time Article Dissector.',
+    description: '12 Interactive Fallacy Cards, Gamified Bias Spotter Arena, Skill Tree, and Real-Time Article Dissector.',
     type: 'website'
   }
 };
@@ -34,24 +34,25 @@ export default function RootLayout({ children }) {
               </div>
 
               <div className="footer-col">
-                <h4>Learning Tools</h4>
+                <h4>Training Games</h4>
                 <ul>
                   <li><Link href="/">Cognitive Bias Codex</Link></li>
                   <li><Link href="/arena">Bias Spotter Arena</Link></li>
-                  <li><Link href="/gauntlet">Daily Bias Gauntlet</Link></li>
-                  <li><Link href="/sandbox">Live Article Sandbox</Link></li>
-                  <li><Link href="/classroom">Classroom Showdown</Link></li>
-                  <li><Link href="/profile">Trophy Room</Link></li>
+                  <li><Link href="/gauntlet">Daily 60s Gauntlet</Link></li>
+                  <li><Link href="/forge">The Fallacy Forge</Link></li>
+                  <li><Link href="/feed">Feed Simulator</Link></li>
+                  <li><Link href="/duel">1v1 Cognitive Duel</Link></li>
                 </ul>
               </div>
 
               <div className="footer-col">
-                <h4>UNESCO Standards</h4>
+                <h4>Progression & Ranks</h4>
                 <ul>
-                  <li><a href="https://www.unesco.org/en/global-mil-week" target="_blank" rel="noopener noreferrer">Global MIL Week</a></li>
-                  <li><a href="https://unesdoc.unesco.org/ark:/48223/pf0000377068" target="_blank" rel="noopener noreferrer">MIL Curriculum PDF</a></li>
-                  <li><a href="https://hapgood.com/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener noreferrer">SIFT Framework</a></li>
-                  <li><a href="https://sheg.stanford.edu/civic-online-reasoning" target="_blank" rel="noopener noreferrer">Stanford SHEG</a></li>
+                  <li><Link href="/skills">Metacognition Skill Tree</Link></li>
+                  <li><Link href="/leaderboard">Global League Ladder</Link></li>
+                  <li><Link href="/profile">Cognitive Trophy Room</Link></li>
+                  <li><Link href="/classroom">Classroom Showdown</Link></li>
+                  <li><Link href="/sandbox">Live Article Sandbox</Link></li>
                 </ul>
               </div>
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
                   <li><Link href="/extension">Chrome Extension (MV3)</Link></li>
                   <li><a href="https://github.com/okihita/verilens" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
                   <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">Gemini 2.0 Flash-Lite</a></li>
+                  <li><Link href="/privacy">Privacy Policy</Link></li>
                 </ul>
               </div>
             </div>
