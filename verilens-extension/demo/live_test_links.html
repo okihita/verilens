@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriLens Live Web Verification Matrix</title>
+  <link rel="stylesheet" href="../src/content/content.css">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card: #151C2C;
+      --card-hover: #1E293B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --border: #273549;
+      --accent-amber: #F59E0B;
+      --accent-blue: #3B82F6;
+      --accent-green: #10B981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 920px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60A5FA;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .category-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cat-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .link-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .link-card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+
+    .link-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .link-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .link-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-amber {
+      background: rgba(245, 158, 11, 0.2);
+      color: #FBBF24;
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+    }
+
+    .badge-blue {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60A5FA;
+    }
+
+    .link-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .link-url {
+      font-size: 11px;
+      color: #38BDF8;
+      font-family: monospace;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="tag">Live Performance Testbed</span>
+      <h1>🌐 VeriLens Live Web Verification Matrix</h1>
+      <p class="subtitle">
+        Click any of the curated real-world links below to test VeriLens on live, heavy-JavaScript web pages. Verify instant page load speeds and press <strong>Alt + V</strong> to test the sidebar on each!
+      </p>
+    </header>
+
+    <!-- Category 1: Fact-Checking & Rumor Archives -->
+    <section class="category-section">
+      <h2 class="cat-title">🔍 1. Fact-Checking Networks (Debunks & Rumor Dissections)</h2>
+      <div class="links-grid">
+        <a href="https://www.snopes.com/fact-check/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">Snopes Fact-Check Archive</span>
+            <span class="link-badge badge-amber">Viral Rumors</span>
+          </div>
+          <p class="link-desc">Test on real viral claims. VeriLens will recognize Snopes as an IFCN signatory in the Publisher Dossier.</p>
+          <span class="link-url">https://www.snopes.com/fact-check/ ↗</span>
+        </a>
+
+        <a href="https://www.politifact.com/factchecks/list/?ruling=pants-fire" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">PolitiFact "Pants on Fire"</span>
+            <span class="link-badge badge-amber">High Rhetoric</span>
+          </div>
+          <p class="link-desc">Archive of extreme political claims, conspiracy theories, and fabricated statements.</p>
+          <span class="link-url">https://www.politifact.com ↗</span>
+        </a>
+
+        <a href="https://factcheck.afp.com/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">AFP Fact Check (Global)</span>
+            <span class="link-badge badge-amber">WhatsApp/Video</span>
+          </div>
+          <p class="link-desc">International fact-checking unit documenting viral video hoaxes and out-of-context audio clips.</p>
+          <span class="link-url">https://factcheck.afp.com ↗</span>
+        </a>
+
+        <a href="https://www.factcheck.org/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">FactCheck.org</span>
+            <span class="link-badge badge-blue">Non-Profit</span>
+          </div>
+          <p class="link-desc">Annenberg Public Policy Center fact checks on health, science, and public policy.</p>
+          <span class="link-url">https://www.factcheck.org ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Category 2: Neutral Wire Reporting (Control Group) -->
+    <section class="category-section">
+      <h2 class="cat-title">📰 2. Neutral Wire Services (Control Group - Low Sensationalism)</h2>
+      <div class="links-grid">
+        <a href="https://www.reuters.com/world/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">Reuters World News</span>
+            <span class="link-badge badge-green">Reflective (1/10)</span>
+          </div>
+          <p class="link-desc">Primary wire service reporting. VeriLens will register minimal sensationalism (green gauge).</p>
+          <span class="link-url">https://www.reuters.com/world/ ↗</span>
+        </a>
+
+        <a href="https://apnews.com/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">Associated Press (AP News)</span>
+            <span class="link-badge badge-green">Reflective (1/10)</span>
+          </div>
+          <p class="link-desc">Cooperative wire reporting. Test publisher dossier recognition and citation analysis.</p>
+          <span class="link-url">https://apnews.com ↗</span>
+        </a>
+
+        <a href="https://www.bbc.com/news" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">BBC News Global</span>
+            <span class="link-badge badge-green">Neutral/Nuanced</span>
+          </div>
+          <p class="link-desc">Public broadcaster reporting with strict editorial royal charter standards.</p>
+          <span class="link-url">https://www.bbc.com/news ↗</span>
+        </a>
+
+        <a href="https://en.wikipedia.org/wiki/Media_and_information_literacy" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">Wikipedia: Media Literacy</span>
+            <span class="link-badge badge-green">Encyclopedia</span>
+          </div>
+          <p class="link-desc">Dense encyclopedia article. Tests high-speed TreeWalker performance across 5,000+ words.</p>
+          <span class="link-url">https://en.wikipedia.org/... ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Category 3: Public Scam Registries & Discussion -->
+    <section class="category-section">
+      <h2 class="cat-title">🛡️ 3. Scam Warnings & Public Social Communities</h2>
+      <div class="links-grid">
+        <a href="https://consumer.ftc.gov/scams" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">FTC Consumer Scam Alerts</span>
+            <span class="link-badge badge-amber">Official Warnings</span>
+          </div>
+          <p class="link-desc">Official U.S. Federal Trade Commission repository of real phishing & impersonation scripts.</p>
+          <span class="link-url">https://consumer.ftc.gov/scams ↗</span>
+        </a>
+
+        <a href="https://www.reddit.com/r/Scams/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-header">
+            <span class="link-name">Reddit r/Scams Community</span>
+            <span class="link-badge badge-blue">Social Feed</span>
+          </div>
+          <p class="link-desc">Live community feed of real scam text transcripts. Tests social feed inspection & badges.</p>
+          <span class="link-url">https://www.reddit.com/r/Scams/ ↗</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script src="../src/shared/heuristics.js"></script>
+  <script src="../src/shared/sifter.js"></script>
+  <script src="../src/content/content.js"></script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+/**
+ * VeriLens Content Styles
+ * Isolated, non-intrusive annotations, cognitive hovercards, and in-page collapsible sidebar.
+ */
+
+/* Subtle dotted text highlight on flagged phrases */
+.verilens-flagged-text {
+  border-bottom: 2px dashed #D97706 !important;
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  position: relative !important;
+  display: inline !important;
+  padding: 1px 2px !important;
+  border-radius: 3px !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.verilens-flagged-text:hover {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  border-bottom-style: solid !important;
+}
+
+.verilens-flagged-text.verilens-severity-high {
+  border-bottom-color: #E11D48 !important;
+  background-color: rgba(225, 29, 72, 0.14) !important;
+}
+
+.verilens-flagged-text.verilens-severity-high:hover {
+  background-color: rgba(225, 29, 72, 0.28) !important;
+}
+
+/* Floating Cognitive Hovercard Container */
+#verilens-hovercard-portal {
+  position: absolute;
+  z-index: 2147483645;
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  color: #1E293B !important;
+  text-align: left !important;
+  pointer-events: auto !important;
+}
+
+.verilens-card-body {
+  width: 320px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.18), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+  border: 1px solid #E2E8F0;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  animation: verilensFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes verilensFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verilens-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.verilens-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+.verilens-badge.verilens-badge-high {
+  background-color: #FFE4E6;
+  color: #9F1239;
+}
+
+.verilens-badge.verilens-badge-medium {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+.verilens-card-source {
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748B;
+  background: #F8FAFC;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.verilens-fallacy-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+}
+
+.verilens-explanation-text {
+  font-size: 12.5px;
+  color: #475569;
+  margin: 0 0 10px 0;
+  line-height: 1.45;
+}
+
+.verilens-reflection-box {
+  background: #F0FDF4;
+  border-left: 3px solid #16A34A;
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 12px;
+}
+
+.verilens-reflection-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #15803D;
+  margin-bottom: 2px;
+}
+
+.verilens-reflection-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #166534;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.verilens-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.verilens-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.verilens-btn-primary {
+  background: #1E293B;
+  color: #FFFFFF !important;
+}
+
+.verilens-btn-primary:hover {
+  background: #0F172A;
+}
+
+.verilens-btn-outline {
+  background: transparent;
+  color: #475569 !important;
+  border: 1px solid #CBD5E1;
+}
+
+.verilens-btn-outline:hover {
+  background: #F1F5F9;
+  color: #0F172A !important;
+}
+
+/* ==========================================================================
+   IN-PAGE FLOATING TOGGLE PILL & COLLAPSIBLE SIDEBAR
+   ========================================================================== */
+
+/* Floating Sidebar Launcher Pill (Right Edge of Screen) */
+#verilens-sidebar-toggle {
+  position: fixed !important;
+  top: 45% !important;
+  right: 0 !important;
+  z-index: 2147483646 !important;
+  background: #0F172A !important;
+  color: #F8FAFC !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 8px 14px 8px 12px !important;
+  border-radius: 24px 0 0 24px !important;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid #334155 !important;
+  border-right: none !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease !important;
+}
+
+#verilens-sidebar-toggle:hover {
+  transform: translateX(-4px) !important;
+  background: #1E293B !important;
+}
+
+.vl-toggle-spark {
+  color: #F59E0B !important;
+  font-size: 14px !important;
+}
+
+/* In-Page Sidebar Panel */
+#verilens-sidebar-panel {
+  position: fixed !important;
+  top: 0 !important;
+  right: -390px !important; /* Hidden offscreen by default */
+  width: 380px !important;
+  height: 100vh !important;
+  z-index: 2147483647 !important;
+  background: #0F172A !important;
+  color: #F8FAFC !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.4) !important;
+  border-left: 1px solid #334155 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-sizing: border-box !important;
+}
+
+#verilens-sidebar-panel.vl-open {
+  right: 0 !important;
+}
+
+/* Sidebar Header */
+.vl-sb-header {
+  padding: 16px 18px !important;
+  border-bottom: 1px solid #334155 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: #1E293B !important;
+}
+
+.vl-sb-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.vl-sb-brand h3 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  color: #F8FAFC !important;
+}
+
+.vl-sb-close {
+  background: transparent !important;
+  border: none !important;
+  color: #94A3B8 !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  transition: color 0.15s ease !important;
+}
+
+.vl-sb-close:hover {
+  color: #FFFFFF !important;
+  background: #334155 !important;
+}
+
+/* Sidebar Scrollable Body */
+.vl-sb-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 16px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+/* DOM Inspector Section */
+.vl-sb-card {
+  background: #1E293B !important;
+  border: 1px solid #334155 !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+}
+
+.vl-card-tag {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #94A3B8 !important;
+  margin-bottom: 6px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.vl-dom-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #F8FAFC !important;
+  margin-bottom: 6px !important;
+  line-height: 1.35 !important;
+}
+
+.vl-dom-stat-chips {
+  display: flex !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin-top: 8px !important;
+}
+
+.vl-chip {
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  background: #334155 !important;
+  color: #CBD5E1 !important;
+}
+
+.vl-chip.vl-chip-highlight {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #FBBF24 !important;
+}
+
+/* Deep AI Scan Button */
+.vl-ai-btn {
+  width: 100% !important;
+  background: linear-gradient(135deg, #2563EB, #4F46E5) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+  transition: opacity 0.2s ease, transform 0.15s ease !important;
+}
+
+.vl-ai-btn:hover {
+  opacity: 0.95 !important;
+  transform: translateY(-1px) !important;
+}
+
+.vl-ai-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Detected Fallacies Feed */
+.vl-fallacy-item {
+  background: #273549 !important;
+  border-left: 3px solid #F59E0B !important;
+  border-radius: 0 6px 6px 0 !important;
+  padding: 8px 10px !important;
+  margin-bottom: 8px !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.vl-fallacy-item:hover {
+  background: #334155 !important;
+}
+
+.vl-fallacy-item-title {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #F8FAFC !important;
+  margin-bottom: 2px !important;
+}
+
+.vl-fallacy-item-quote {
+  font-size: 11px !important;
+  color: #94A3B8 !important;
+  font-style: italic !important;
+}

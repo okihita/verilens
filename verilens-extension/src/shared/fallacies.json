@@ -1,0 +1,114 @@
+{
+  "taxonomy_version": "1.0.0",
+  "framework": "UNESCO MIL & SIFT Cognitive Model",
+  "fallacies": [
+    {
+      "id": "false_dilemma",
+      "name": "False Dilemma (Black-and-White Thinking)",
+      "category": "Structural Logic",
+      "severity": "high",
+      "tag": "Polarization",
+      "color": "#D97706",
+      "short_description": "Presents only two extreme options while concealing nuanced alternatives or middle grounds.",
+      "educational_explanation": "This rhetorical device attempts to force the reader into choosing between two extremes ('Either you agree with us or you want disaster'), ignoring complex realities.",
+      "reflection_prompt": "What middle-ground solutions or alternative viewpoints are being omitted from this comparison?",
+      "mil_competency": "Evaluate Nuance & Alternative Framings"
+    },
+    {
+      "id": "ad_metum",
+      "name": "Appeal to Fear / Catastrophizing",
+      "category": "Emotional Exploitation",
+      "severity": "high",
+      "tag": "Fear-Bait",
+      "color": "#DC2626",
+      "short_description": "Uses alarming, doomsday rhetoric to provoke anxiety and bypass critical analysis.",
+      "educational_explanation": "By exaggerating worst-case scenarios with emotional intensity ('inevitable doom', 'total annihilation'), the author aims to trigger an immediate fight-or-flight reaction.",
+      "reflection_prompt": "Does the evidence presented actually justify the extreme level of alarm, or is fear being used as persuasion?",
+      "mil_competency": "Identify Emotional Manipulation"
+    },
+    {
+      "id": "ad_hominem",
+      "name": "Ad Hominem (Personal Attack)",
+      "category": "Dialectical",
+      "severity": "medium",
+      "tag": "Distraction",
+      "color": "#EA580C",
+      "short_description": "Attacks an individual's character or motives rather than addressing their actual argument or evidence.",
+      "educational_explanation": "Instead of disproving the underlying facts, the author insults or discredits the person presenting the claim.",
+      "reflection_prompt": "If you remove the personal insults, what verifiable evidence or argument remains?",
+      "mil_competency": "Separate Character from Claim"
+    },
+    {
+      "id": "weasel_words",
+      "name": "Weasel Words / Vague Authority",
+      "category": "Attribution",
+      "severity": "medium",
+      "tag": "Unsubstantiated",
+      "color": "#F59E0B",
+      "short_description": "Uses vague, unattributed authority claims like 'experts say' or 'studies prove' without citing names.",
+      "educational_explanation": "Words like 'scientists all agree' or 'many believe' sound authoritative but conceal the lack of verifiable primary sources.",
+      "reflection_prompt": "Which specific researchers, peer-reviewed journals, or data sets are actually being cited?",
+      "mil_competency": "Trace Claims to Primary Sources"
+    },
+    {
+      "id": "urgency_scarcity",
+      "name": "Artificial Urgency & Scarcity Trap",
+      "category": "Engagement Hacking",
+      "severity": "high",
+      "tag": "Click-Bait",
+      "color": "#E11D48",
+      "short_description": "Demands immediate action or sharing ('before it gets deleted!') to short-circuit reflection.",
+      "educational_explanation": "Viral disinformation often exploits FOMO or censorship paranoia to make users repost without checking facts.",
+      "reflection_prompt": "Why is this post demanding urgent sharing before independent verification can take place?",
+      "mil_competency": "Stop (SIFT Move 1): Check Emotional Temperature"
+    },
+    {
+      "id": "strawman",
+      "name": "Strawman Argument",
+      "category": "Structural Logic",
+      "severity": "medium",
+      "tag": "Misrepresentation",
+      "color": "#D97706",
+      "short_description": "Oversimplifies or caricatures an opposing view to make it easier to attack.",
+      "educational_explanation": "The author creates a distorted, ridiculous version of an opposing stance that no serious person actually holds.",
+      "reflection_prompt": "How would the people who actually hold this viewpoint describe their own position?",
+      "mil_competency": "Seek Diverse Perspectives"
+    },
+    {
+      "id": "slippery_slope",
+      "name": "Slippery Slope",
+      "category": "Causal Reasoning",
+      "severity": "medium",
+      "tag": "Exaggeration",
+      "color": "#F59E0B",
+      "short_description": "Claims a small initial action will inevitably trigger a chain of catastrophic events without proof.",
+      "educational_explanation": "Asserts that Step A will automatically cause disaster Z, ignoring all intervening checks and safeguards.",
+      "reflection_prompt": "Is there a realistic chain of cause-and-effect demonstrated between the first event and the extreme outcome?",
+      "mil_competency": "Evaluate Causal Evidence"
+    },
+    {
+      "id": "anecdotal_generalization",
+      "name": "Hasty Generalization / Anecdotal Evidence",
+      "category": "Empirical",
+      "severity": "medium",
+      "tag": "Sample Bias",
+      "color": "#D97706",
+      "short_description": "Draws a universal conclusion from an isolated story or single unverified viral video.",
+      "educational_explanation": "One dramatic personal story does not constitute statistical or systemic evidence of a widespread trend.",
+      "reflection_prompt": "Does this single anecdote reflect a broader verified pattern, or is it an isolated outlier?",
+      "mil_competency": "Differentiate Anecdote from Data"
+    },
+    {
+      "id": "false_balance",
+      "name": "False Balance / Both-Sidesing",
+      "category": "Epistemic",
+      "severity": "low",
+      "tag": "False Equivalence",
+      "color": "#3B82F6",
+      "short_description": "Treats fringe speculation as equally valid to overwhelming scientific or empirical consensus.",
+      "educational_explanation": "Giving equal weight to ungrounded conspiracy claims alongside established peer-reviewed consensus misleads the audience.",
+      "reflection_prompt": "What does the broader international scientific and investigative consensus say on this topic?",
+      "mil_competency": "Find Consensus Coverage"
+    }
+  ]
+}

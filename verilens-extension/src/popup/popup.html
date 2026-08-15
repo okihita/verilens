@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriLens - SIFT Cognitive Companion</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">VL</div>
+        <div>
+          <h1 class="brand-name">VeriLens</h1>
+          <span class="brand-tag">UNESCO MIL Companion</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../options/options.html" target="_blank" class="icon-btn" title="Settings & Gemini API Key">
+          Settings
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="app-content">
+      <!-- Active Domain & Page Inspection -->
+      <section class="section-card page-context-card">
+        <div class="card-header-row">
+          <span class="label-muted">Active Page</span>
+          <span class="domain-chip" id="domain-label">Loading domain...</span>
+        </div>
+        <div class="page-title" id="page-title">Inspecting active document...</div>
+        <div class="metrics-row">
+          <span class="stat-pill" id="stat-words">0 words</span>
+          <span class="stat-pill" id="stat-paragraphs">0 paragraphs</span>
+          <span class="stat-pill stat-flags" id="stat-flags">0 flags</span>
+        </div>
+      </section>
+
+      <!-- Sensationalism & Tone Meter -->
+      <section class="section-card">
+        <div class="card-header-row">
+          <span class="label-muted">Rhetorical Assessment</span>
+          <span class="score-indicator" id="score-indicator">--</span>
+        </div>
+
+        <!-- Clean Linear Meter Bar -->
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill" style="width: 12%;"></div>
+        </div>
+        <div class="meter-labels">
+          <span>Reflective (0-30)</span>
+          <span>Nuanced (31-60)</span>
+          <span>Sensational (61-100)</span>
+        </div>
+
+        <p class="assessment-text" id="score-description">
+          Scanning rhetorical phrasing and attribution standards on this page.
+        </p>
+      </section>
+
+      <!-- Publisher Trust Dossier -->
+      <section class="section-card">
+        <div class="card-header-row">
+          <span class="label-muted">Publisher Verification</span>
+        </div>
+        <h3 class="publisher-name" id="publisher-name">Independent Web Source</h3>
+        <div class="dossier-table">
+          <div class="dossier-row">
+            <span class="dossier-key">Classification</span>
+            <span class="dossier-val" id="publisher-type">News / Commentary</span>
+          </div>
+          <div class="dossier-row">
+            <span class="dossier-key">Funding Model</span>
+            <span class="dossier-val" id="publisher-funding">Commercial / Independent</span>
+          </div>
+          <div class="dossier-row">
+            <span class="dossier-key">Verification Grade</span>
+            <span class="dossier-val" id="publisher-cred">Check Lateral Sources</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIFT Lateral Reading Actions -->
+      <section class="section-card">
+        <div class="card-header-row">
+          <span class="label-muted">SIFT Lateral Verification</span>
+        </div>
+        <div class="action-list">
+          <a id="sift-factcheck-btn" href="#" target="_blank" class="action-btn action-primary">
+            <span class="action-btn-text">Fact-Check Claim</span>
+            <span class="action-btn-sub">Google Fact Check Explorer</span>
+          </a>
+          <a id="sift-consensus-btn" href="#" target="_blank" class="action-btn action-secondary">
+            <span class="action-btn-text">Consensus Coverage</span>
+            <span class="action-btn-sub">Search Independent Reporting</span>
+          </a>
+          <a id="sift-source-btn" href="#" target="_blank" class="action-btn action-secondary">
+            <span class="action-btn-text">Investigate Publisher</span>
+            <span class="action-btn-sub">Wikipedia Entity Profile</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Status Bar -->
+    <footer class="app-footer">
+      <div class="shortcut-hint">
+        Tip: Press <strong>Alt + V</strong> (Option + V) on page for In-DOM Sidebar
+      </div>
+    </footer>
+  </div>
+
+  <script src="../shared/heuristics.js"></script>
+  <script src="../shared/sifter.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

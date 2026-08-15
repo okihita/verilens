@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "q1",
+      "headline": "🚨 URGENT: Your student loan forgiveness grant has been approved! Claim within 15 minutes before the federal window closes forever.",
+      "platform": "SMS Alert / Telegram Forward",
+      "context": "A student receives an unexpected text message containing a shortened Bitly link.",
+      "correct_fallacy_id": "scam_urgency",
+      "correct_fallacy_name": "Artificial Urgency (Scam Pressure)",
+      "explanation": "Scammers impose tight artificial deadlines (15 minutes) to induce panic and prevent the recipient from checking official government portals independently.",
+      "options": [
+        { "id": "scam_urgency", "name": "Artificial Urgency (Scam Pressure)" },
+        { "id": "ad_hominem", "name": "Ad Hominem" },
+        { "id": "strawman", "name": "Strawman Argument" },
+        { "id": "halo_effect", "name": "Halo Effect" }
+      ],
+      "sift_recommendation": "Stop! Never click unsolicited SMS links. Open StudentAid.gov directly in a new tab."
+    },
+    {
+      "id": "q2",
+      "headline": "“Either you stand with our complete digital surveillance bill, or you want terrorists to walk into our airports freely!”",
+      "platform": "Cable News Interview / X Viral Clip",
+      "context": "A politician defends a controversial metadata logging bill during a heated broadcast interview.",
+      "correct_fallacy_id": "false_dilemma",
+      "correct_fallacy_name": "False Dilemma",
+      "explanation": "The speaker erases dozens of nuanced privacy-preserving security alternatives and frames the issue as a manipulative either/or ultimatum.",
+      "options": [
+        { "id": "false_dilemma", "name": "False Dilemma" },
+        { "id": "bandwagon", "name": "Bandwagon Effect" },
+        { "id": "sunk_cost", "name": "Sunk Cost Bias" },
+        { "id": "cherry_picking", "name": "Cherry Picking" }
+      ],
+      "sift_recommendation": "Find Better Coverage: Read independent legal analyses from non-profit civil liberty institutes."
+    },
+    {
+      "id": "q3",
+      "headline": "“Leading scientists all secretly agree that 5G frequencies alter human brainwaves. Mainstream media refuses to report this cover-up!”",
+      "platform": "TikTok Video / WhatsApp Chain",
+      "context": "A video with dramatic ominous background music racking up 2.4 million views.",
+      "correct_fallacy_id": "conspiracy_framing",
+      "correct_fallacy_name": "Conspiracy Framing",
+      "explanation": "Uses the absence of mainstream coverage as supposed 'proof' of a cover-up, while relying on vague weasel words ('leading scientists') without naming a single institution.",
+      "options": [
+        { "id": "conspiracy_framing", "name": "Conspiracy Framing" },
+        { "id": "strawman", "name": "Strawman Argument" },
+        { "id": "ad_hominem", "name": "Ad Hominem" },
+        { "id": "sunk_cost", "name": "Sunk Cost Bias" }
+      ],
+      "sift_recommendation": "Trace Claim: Check WHO and IEEE telecommunications radiation consensus reports."
+    },
+    {
+      "id": "q4",
+      "headline": "“Don't bother reading Dr. Sarah Lin's economic study on inflation—she drives a luxury sports car and is clearly an out-of-touch elitist!”",
+      "platform": "Reddit Political Thread",
+      "context": "A commenter dismisses a 60-page peer-reviewed economic paper by attacking the author's vehicle.",
+      "correct_fallacy_id": "ad_hominem",
+      "correct_fallacy_name": "Ad Hominem",
+      "explanation": "Attacks the researcher's personal lifestyle rather than examining the statistical methodology or data presented in the paper.",
+      "options": [
+        { "id": "ad_hominem", "name": "Ad Hominem" },
+        { "id": "false_dilemma", "name": "False Dilemma" },
+        { "id": "scam_urgency", "name": "Artificial Urgency" },
+        { "id": "bandwagon", "name": "Bandwagon Effect" }
+      ],
+      "sift_recommendation": "Investigate Source: Read peer economists' reviews of her methodology, not personal insults."
+    },
+    {
+      "id": "q5",
+      "headline": "“Our city had 10 inches of snow last night! Global climate change is officially a total hoax invented by bureaucrats!”",
+      "platform": "Viral Social Media Post",
+      "context": "A photo of a snowed-in driveway posted during a severe winter storm.",
+      "correct_fallacy_id": "cherry_picking",
+      "correct_fallacy_name": "Cherry Picking",
+      "explanation": "Confuses short-term localized weather with multi-decade global climate trends, cherry-picking one freezing day while ignoring 50 years of planetary heat data.",
+      "options": [
+        { "id": "cherry_picking", "name": "Cherry Picking" },
+        { "id": "halo_effect", "name": "Halo Effect" },
+        { "id": "ad_metum", "name": "Appeal to Fear" },
+        { "id": "scam_urgency", "name": "Artificial Urgency" }
+      ],
+      "sift_recommendation": "Find Better Coverage: Consult NASA and NOAA aggregate climate anomaly maps."
+    },
+    {
+      "id": "q6",
+      "headline": "“World-famous football superstar Cristiano endorses this herbal detox tea. He has 600M followers, so it must cure metabolic diseases!”",
+      "platform": "Instagram Sponsored Reel",
+      "context": "An athlete with immense global sports fame promotes an unregulated dietary supplement.",
+      "correct_fallacy_id": "halo_effect",
+      "correct_fallacy_name": "Halo Effect",
+      "explanation": "Assumes athletic talent and celebrity charisma equate to biochemical and pharmacological expertise.",
+      "options": [
+        { "id": "halo_effect", "name": "Halo Effect" },
+        { "id": "strawman", "name": "Strawman Argument" },
+        { "id": "false_dilemma", "name": "False Dilemma" },
+        { "id": "ad_metum", "name": "Appeal to Fear" }
+      ],
+      "sift_recommendation": "Investigate the Source: Verify if the supplement has FDA/EMA clinical safety approval."
+    },
+    {
+      "id": "q7",
+      "headline": "“If we do not ban this book immediately, civilization will collapse into total anarchy, blood will be on our hands, and society will be ruined forever!”",
+      "platform": "School Board Public Hearing",
+      "context": "An impassioned speaker argues against a library curriculum item.",
+      "correct_fallacy_id": "ad_metum",
+      "correct_fallacy_name": "Appeal to Fear (Ad Metum)",
+      "explanation": "Uses catastrophic, hyper-apocalyptic doom language to incite acute panic rather than discussing the book's specific age appropriateness.",
+      "options": [
+        { "id": "ad_metum", "name": "Appeal to Fear (Ad Metum)" },
+        { "id": "cherry_picking", "name": "Cherry Picking" },
+        { "id": "halo_effect", "name": "Halo Effect" },
+        { "id": "sunk_cost", "name": "Sunk Cost Bias" }
+      ],
+      "sift_recommendation": "Stop: Recognize emotional alarmism and ask for balanced pedagogical reviews."
+    },
+    {
+      "id": "q8",
+      "headline": "“Over 10 million young investors have already deposited money into Quantum-Yield Token this month. Don't be left behind!”",
+      "platform": "Discord Trading Server / YouTube Ad",
+      "context": "A sponsored banner urging viewers to join an unregulated crypto liquidity pool.",
+      "correct_fallacy_id": "bandwagon",
+      "correct_fallacy_name": "Bandwagon Effect",
+      "explanation": "Uses sheer numbers and FOMO (fear of missing out) to convince victims that a scheme must be legitimate because millions allegedly joined.",
+      "options": [
+        { "id": "bandwagon", "name": "Bandwagon Effect" },
+        { "id": "ad_hominem", "name": "Ad Hominem" },
+        { "id": "conspiracy_framing", "name": "Conspiracy Framing" },
+        { "id": "strawman", "name": "Strawman Argument" }
+      ],
+      "sift_recommendation": "Investigate Source: Search SEC and FTC registries for registered investment licenses."
+    }
+  ]
+}

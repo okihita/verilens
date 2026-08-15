@@ -1,0 +1,12 @@
+{
+  "name": "@verilens/extension",
+  "version": "1.0.0",
+  "description": "VeriLens Manifest V3 Chrome Extension",
+  "scripts": {
+    "dev": "node scripts/watch.js",
+    "test": "node --test tests/unit.test.js"
+  },
+  "dependencies": {
+    "@verilens/shared": "*"
+  }
+}
