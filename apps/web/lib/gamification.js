@@ -1,132 +1,126 @@
 /**
- * VeriLens RPG Gamification & Level Progression Engine
- * Manages player XP, streak milestones, achievement badges, and stats persistence.
+ * VeriLens Gamification & RPG Progression Engine
+ * UNESCO MIL Hackathon 2026
  */
 
 export const RANKS = [
-  { level: 1, name: 'Novice Skeptic', minXP: 0, nextXP: 150, color: '#94A3B8', icon: '🌱' },
-  { level: 2, name: 'Heuristic Apprentice', minXP: 150, nextXP: 350, color: '#38BDF8', icon: '🔍' },
-  { level: 3, name: 'Logical Analyst', minXP: 350, nextXP: 700, color: '#60A5FA', icon: '⚖️' },
-  { level: 4, name: 'SIFT Investigator', minXP: 700, nextXP: 1200, color: '#34D399', icon: '🧭' },
-  { level: 5, name: 'Bias Spotter Pro', minXP: 1200, nextXP: 1900, color: '#FBBF24', icon: '⭐' },
-  { level: 6, name: 'Rhetoric Master', minXP: 1900, nextXP: 2800, color: '#F97316', icon: '⚔️' },
-  { level: 7, name: 'Cognitive Guardian', minXP: 2800, nextXP: 4000, color: '#A855F7', icon: '🛡️' },
-  { level: 8, name: 'Stanford SHEG Scholar', minXP: 4000, nextXP: 5500, color: '#EC4899', icon: '🎓' },
-  { level: 9, name: 'UNESCO MIL Champion', minXP: 5500, nextXP: 7500, color: '#10B981', icon: '🏛️' },
-  { level: 10, name: 'Grand Inquisitor of Truth', minXP: 7500, nextXP: 10000, color: '#E11D48', icon: '👑' }
+  { level: 1, name: 'Novice Skeptic', minXP: 0, color: '#94A3B8' },
+  { level: 2, name: 'Heuristic Apprentice', minXP: 150, color: '#38BDF8' },
+  { level: 3, name: 'Logical Analyst', minXP: 350, color: '#60A5FA' },
+  { level: 4, name: 'SIFT Investigator', minXP: 700, color: '#34D399' },
+  { level: 5, name: 'Bias Spotter Pro', minXP: 1200, color: '#FBBF24' },
+  { level: 6, name: 'Rhetoric Master', minXP: 1900, color: '#F87171' },
+  { level: 7, name: 'Cognitive Guardian', minXP: 2800, color: '#A78BFA' },
+  { level: 8, name: 'SHEG Scholar', minXP: 4000, color: '#F472B6' },
+  { level: 9, name: 'UNESCO MIL Champion', minXP: 5500, color: '#F59E0B' },
+  { level: 10, name: 'Grand Inquisitor of Truth', minXP: 7500, color: '#EC4899' }
 ];
 
 export const BADGES = [
   {
     id: 'first_shield',
-    name: 'First Cognitive Shield',
-    desc: 'Complete your first Arena quiz or Gauntlet round.',
-    icon: '🛡️',
+    name: 'First Shield',
+    desc: 'Completed your first scenario analysis challenge.',
     xpReward: 50
   },
   {
     id: 'streak_five',
     name: 'Unshakable Focus',
-    desc: 'Achieve a 5x answer streak without a single mistake.',
-    icon: '🔥',
+    desc: 'Achieved a 5x correct answer streak in Arena or Gauntlet.',
     xpReward: 100
   },
   {
     id: 'codex_scholar',
     name: 'Codex Scholar',
-    desc: 'Inspect and flip all 12 UNESCO fallacy cards.',
-    icon: '🃏',
+    desc: 'Flipped and inspected all 12 illustrated fallacy archetypes.',
     xpReward: 150
   },
   {
     id: 'speed_sifter',
     name: 'Lightning Sifter',
-    desc: 'Finish a 60-second Daily Gauntlet with 80%+ accuracy.',
-    icon: '⚡',
+    desc: 'Scored 80%+ accuracy in the 60-second Daily Gauntlet.',
     xpReward: 200
   },
   {
     id: 'scam_shield',
     name: 'Scam Immunizer',
-    desc: 'Correctly identify 5 artificial urgency financial scams.',
-    icon: '💰',
+    desc: 'Accurately identified 5 artificial urgency financial lures.',
     xpReward: 120
   },
   {
-    id: 'nuance_champion',
+    id: 'nuance_master',
     name: 'Nuance Champion',
-    desc: 'Expose 5 subtle passive weasel word attributions.',
-    icon: '💨',
-    xpReward: 120
+    desc: 'Defeated a complex False Dilemma with lateral source verification.',
+    xpReward: 130
   },
   {
     id: 'sandbox_scientist',
     name: 'Sandbox Scientist',
-    desc: 'Dissect 3 custom articles in the live sandbox.',
-    icon: '🧪',
-    xpReward: 100
+    desc: 'Analyzed 3 live online articles in the Real-Time Sandbox.',
+    xpReward: 140
   },
   {
-    id: 'flawless_thinker',
+    id: 'grand_immunity',
     name: 'Flawless Thinker',
-    desc: 'Score 100% accuracy in a 5-round Arena challenge.',
-    icon: '👑',
-    xpReward: 250
+    desc: 'Reached Level 5 Rank and claimed your UNESCO MIL Certificate.',
+    xpReward: 300
   }
 ];
 
-const STORAGE_KEY = 'verilens_player_profile';
-
-const DEFAULT_PROFILE = {
-  xp: 120,
-  streak: 0,
-  maxStreak: 3,
-  quizzesCompleted: 1,
-  articlesAnalyzed: 0,
-  cardsFlipped: [],
-  unlockedBadgeIds: ['first_shield'],
-  lastPlayedDate: null
-};
-
 export function getPlayerProfile() {
-  if (typeof window === 'undefined') return DEFAULT_PROFILE;
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (!data) return DEFAULT_PROFILE;
-    return { ...DEFAULT_PROFILE, ...JSON.parse(data) };
-  } catch (e) {
-    return DEFAULT_PROFILE;
+  if (typeof window === 'undefined') {
+    return {
+      xp: 120,
+      streak: 0,
+      maxStreak: 3,
+      quizzesCompleted: 1,
+      cardsFlipped: [],
+      unlockedBadgeIds: ['first_shield'],
+      unlockedSkillIds: ['ad_hom_shield', 'fear_dampener'],
+      lastPlayedDate: new Date().toISOString()
+    };
   }
+
+  const stored = localStorage.getItem('verilens_player_profile');
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch {
+      // Fallback
+    }
+  }
+
+  const initialProfile = {
+    xp: 120,
+    streak: 0,
+    maxStreak: 3,
+    quizzesCompleted: 1,
+    cardsFlipped: [],
+    unlockedBadgeIds: ['first_shield'],
+    unlockedSkillIds: ['ad_hom_shield', 'fear_dampener'],
+    lastPlayedDate: new Date().toISOString()
+  };
+
+  localStorage.setItem('verilens_player_profile', JSON.stringify(initialProfile));
+  return initialProfile;
 }
 
 export function savePlayerProfile(profile) {
   if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
-    window.dispatchEvent(new Event('verilens_profile_updated'));
-  } catch (e) {
-    console.error('Failed to save profile', e);
-  }
+  localStorage.setItem('verilens_player_profile', JSON.stringify(profile));
+  window.dispatchEvent(new Event('verilens_profile_updated'));
 }
 
-export function getRankFromXP(xp) {
-  for (let i = RANKS.length - 1; i >= 0; i--) {
-    if (xp >= RANKS[i].minXP) {
-      return RANKS[i];
-    }
-  }
-  return RANKS[0];
-}
-
-export function addPlayerXP(amount) {
+export function addPlayerXP(points) {
   const profile = getPlayerProfile();
   const oldRank = getRankFromXP(profile.xp);
-  profile.xp += amount;
+  profile.xp += points;
   const newRank = getRankFromXP(profile.xp);
+
   savePlayerProfile(profile);
 
   return {
-    profile,
+    newXP: profile.xp,
     leveledUp: newRank.level > oldRank.level,
     newRank
   };
@@ -136,12 +130,14 @@ export function unlockBadge(badgeId) {
   const profile = getPlayerProfile();
   if (!profile.unlockedBadgeIds.includes(badgeId)) {
     profile.unlockedBadgeIds.push(badgeId);
-    const badge = BADGES.find(b => b.id === badgeId);
-    if (badge) profile.xp += badge.xpReward;
+    const badge = BADGES.find((b) => b.id === badgeId);
+    if (badge) {
+      profile.xp += badge.xpReward;
+    }
     savePlayerProfile(profile);
-    return badge;
+    return true;
   }
-  return null;
+  return false;
 }
 
 export function recordCardFlipped(cardId) {
@@ -153,4 +149,15 @@ export function recordCardFlipped(cardId) {
     }
     savePlayerProfile(profile);
   }
+}
+
+export function getRankFromXP(xp) {
+  let currentRank = RANKS[0];
+  for (let i = RANKS.length - 1; i >= 0; i--) {
+    if (xp >= RANKS[i].minXP) {
+      currentRank = RANKS[i];
+      break;
+    }
+  }
+  return currentRank;
 }
