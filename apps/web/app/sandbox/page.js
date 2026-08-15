@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import shared from '../../../../packages/shared/src/index.js';
+import * as shared from '../../lib/shared/index.js';
 
 const PRESET_SCENARIOS = {
   health: {

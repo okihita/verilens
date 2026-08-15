@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import fallaciesData from '../../../packages/shared/src/fallacies.json';
+import fallaciesData from '../lib/shared/fallacies.json';
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('All');

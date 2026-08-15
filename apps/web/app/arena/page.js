@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import scenariosData from '../../../../packages/shared/src/scenarios.json';
+import scenariosData from '../../lib/shared/scenarios.json';
 
 export default function ArenaPage() {
   const [gameStarted, setGameStarted] = useState(false);
