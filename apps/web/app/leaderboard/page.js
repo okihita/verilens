@@ -25,7 +25,6 @@ export default function LeaderboardPage() {
     setPlayerRank(getRankFromXP(p.xp));
   }, []);
 
-  // Compute player's simulated global rank position
   const sortedBoard = [...PEER_LEADERBOARD, {
     rank: 9,
     name: 'You (Local Citizen)',
@@ -37,68 +36,53 @@ export default function LeaderboardPage() {
   }].sort((a, b) => b.xp - a.xp).map((item, idx) => ({ ...item, rank: idx + 1 }));
 
   return (
-    <div className="container" style={{ maxWidth: '900px', padding: '40px 20px' }}>
+    <div className="container" style={{ maxWidth: '900px', padding: '30px 16px' }}>
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '12px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '11px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '8px' }}>
           <span>🏆 Global UNESCO Youth League</span>
         </div>
-        <h1 style={{ fontSize: '34px', fontWeight: '900', color: '#FFFFFF', marginBottom: '8px' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 5vw, 34px)', fontWeight: '900', color: '#FFFFFF', marginBottom: '6px' }}>
           Media Literacy Leaderboard
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '600px', margin: '0 auto' }}>
-          Compete with fellow digital citizens worldwide. Complete the Daily Gauntlet and Spotter Arena to climb the UNESCO ranks!
+        <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', maxWidth: '600px', margin: '0 auto' }}>
+          Compete with fellow digital citizens worldwide. Complete the Daily Gauntlet to climb ranks!
         </p>
       </div>
 
       {/* Leaderboard Table Card */}
-      <div className="card" style={{ padding: '0', overflow: 'hidden', marginBottom: '28px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '80px 2fr 1.5fr 1fr 1fr', padding: '16px 20px', background: 'var(--bg-surface-elevated)', borderBottom: '1px solid var(--border-subtle)', fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-          <span>Rank</span>
-          <span>Citizen / Student</span>
-          <span>Country</span>
-          <span>League</span>
-          <span style={{ textAlign: 'right' }}>Score</span>
-        </div>
-
+      <div className="card" style={{ padding: '0', overflow: 'hidden', marginBottom: '24px' }}>
         <div>
           {sortedBoard.map((row) => (
             <div
               key={row.name}
               style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 2fr 1.5fr 1fr 1fr',
-                padding: '16px 20px',
-                borderBottom: '1px solid var(--border-subtle)',
+                display: 'flex',
+                justifyContent: 'space-between',
                 alignItems: 'center',
+                padding: '14px 16px',
+                borderBottom: '1px solid var(--border-subtle)',
                 background: row.isCurrentPlayer ? 'rgba(245, 158, 11, 0.12)' : 'transparent',
-                borderLeft: row.isCurrentPlayer ? '4px solid var(--accent-amber)' : 'none'
+                borderLeft: row.isCurrentPlayer ? '4px solid var(--accent-amber)' : 'none',
+                gap: '10px'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '16px', fontWeight: '900', color: row.rank === 1 ? '#FBBF24' : row.rank === 2 ? '#94A3B8' : row.rank === 3 ? '#B45309' : '#FFFFFF' }}>
-                  {row.rank === 1 ? '🥇 1' : row.rank === 2 ? '🥈 2' : row.rank === 3 ? '🥉 3' : `#${row.rank}`}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontSize: '15px', fontWeight: '900', color: row.rank === 1 ? '#FBBF24' : row.rank === 2 ? '#94A3B8' : row.rank === 3 ? '#B45309' : '#FFFFFF', minWidth: '28px' }}>
+                  {row.rank === 1 ? '🥇1' : row.rank === 2 ? '🥈2' : row.rank === 3 ? '🥉3' : `#${row.rank}`}
                 </span>
-              </div>
 
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: '800', color: row.isCurrentPlayer ? 'var(--accent-amber)' : '#FFFFFF' }}>
-                  {row.name}
+                <div>
+                  <div style={{ fontSize: '13.5px', fontWeight: '800', color: row.isCurrentPlayer ? 'var(--accent-amber)' : '#FFFFFF' }}>
+                    {row.name}
+                  </div>
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+                    {row.country} • <span style={{ color: row.league === 'Grandmaster' ? '#FBBF24' : '#38BDF8' }}>{row.league}</span>
+                  </div>
                 </div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{row.badge}</div>
               </div>
 
-              <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-                {row.country}
-              </div>
-
-              <div>
-                <span style={{ fontSize: '10.5px', fontWeight: '800', padding: '2px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)', color: row.league === 'Grandmaster' ? '#FBBF24' : row.league === 'Diamond' ? '#38BDF8' : '#A855F7', textTransform: 'uppercase' }}>
-                  {row.league}
-                </span>
-              </div>
-
-              <div style={{ textAlign: 'right', fontSize: '15px', fontWeight: '900', color: '#FFFFFF' }}>
+              <div style={{ textAlign: 'right', fontSize: '14.5px', fontWeight: '900', color: '#FFFFFF', flexShrink: 0 }}>
                 {row.xp} XP
               </div>
             </div>
@@ -107,12 +91,12 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Quick CTAs */}
-      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-        <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '10px 24px' }}>
-          ⚔️ Play Gauntlet to Climb Rank
+      <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '8px 18px', fontSize: '13px' }}>
+          ⚔️ Play Gauntlet
         </Link>
-        <Link href="/arena" className="btn btn-primary" style={{ padding: '10px 24px' }}>
-          🎮 Enter 5-Round Arena
+        <Link href="/arena" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '13px' }}>
+          🎮 Play Arena
         </Link>
       </div>
     </div>

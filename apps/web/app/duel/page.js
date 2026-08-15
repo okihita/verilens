@@ -44,7 +44,6 @@ export default function CognitiveDuelPage() {
         setCurrentIndex(prev => prev + 1);
       }, 1200);
     } else {
-      // Recoil penalty for wrong guess
       if (playerNumber === 1) {
         const nextP1Hp = Math.max(0, p1Hp - 15);
         setP1Hp(nextP1Hp);
@@ -68,60 +67,56 @@ export default function CognitiveDuelPage() {
   };
 
   return (
-    <div className="container" style={{ maxWidth: '1040px', padding: '36px 20px' }}>
+    <div className="container" style={{ maxWidth: '1040px', padding: '30px 16px' }}>
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '8px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '20px', fontSize: '11px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '6px' }}>
           <span>⚔️ 2-Player Local Battle Arena</span>
         </div>
-        <h1 style={{ fontSize: '32px', fontWeight: '900', color: '#FFFFFF' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '900', color: '#FFFFFF' }}>
           Cognitive 1v1 Duel
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-          Split keyboard or shared screen. First player to spot the correct fallacy deals 25 damage!
+        <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px' }}>
+          Split keyboard or shared phone. First player to spot the correct fallacy deals 25 damage!
         </p>
       </div>
 
-      {/* Health Bars HUD */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 120px 1fr', gap: '16px', alignItems: 'center', marginBottom: '24px' }}>
+      {/* Health Bars HUD (Fluid for mobile) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px', alignItems: 'center', marginBottom: '20px' }}>
         {/* Player 1 Health */}
-        <div className="card" style={{ padding: '14px 18px', borderLeft: '4px solid #3B82F6' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-            <strong style={{ color: '#60A5FA', fontSize: '14px' }}>Player 1 (Blue)</strong>
-            <span style={{ fontWeight: '900', color: '#FFFFFF' }}>{p1Hp} / 100 HP</span>
+        <div className="card" style={{ padding: '12px 14px', borderLeft: '4px solid #3B82F6' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+            <strong style={{ color: '#60A5FA', fontSize: '13px' }}>Player 1 (Blue)</strong>
+            <span style={{ fontWeight: '900', color: '#FFFFFF', fontSize: '13px' }}>{p1Hp} / 100 HP</span>
           </div>
-          <div style={{ width: '100%', height: '10px', background: 'rgba(0,0,0,0.4)', borderRadius: '5px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.4)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p1Hp}%`, height: '100%', background: '#3B82F6', transition: 'width 0.3s ease' }}></div>
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', fontSize: '22px', fontWeight: '900', color: 'var(--accent-amber)' }}>
-          VS
-        </div>
-
         {/* Player 2 Health */}
-        <div className="card" style={{ padding: '14px 18px', borderRight: '4px solid #EF4444', textAlign: 'right' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-            <span style={{ fontWeight: '900', color: '#FFFFFF' }}>{p2Hp} / 100 HP</span>
-            <strong style={{ color: '#F87171', fontSize: '14px' }}>Player 2 (Red)</strong>
+        <div className="card" style={{ padding: '12px 14px', borderRight: '4px solid #EF4444', textAlign: 'right' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+            <span style={{ fontWeight: '900', color: '#FFFFFF', fontSize: '13px' }}>{p2Hp} / 100 HP</span>
+            <strong style={{ color: '#F87171', fontSize: '13px' }}>Player 2 (Red)</strong>
           </div>
-          <div style={{ width: '100%', height: '10px', background: 'rgba(0,0,0,0.4)', borderRadius: '5px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.4)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p2Hp}%`, height: '100%', background: '#EF4444', transition: 'width 0.3s ease', marginLeft: 'auto' }}></div>
           </div>
         </div>
       </div>
 
       {/* Target Claim in Center */}
-      <div className="card" style={{ textAlign: 'center', padding: '28px', marginBottom: '24px', background: 'var(--bg-surface)' }}>
-        <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
+      <div className="card" style={{ textAlign: 'center', padding: '20px', marginBottom: '20px', background: 'var(--bg-surface)' }}>
+        <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
           Target Headline #{currentIndex + 1}
         </span>
-        <blockquote style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', lineHeight: '1.4', margin: '10px 0' }}>
+        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '800', color: '#FFFFFF', lineHeight: '1.4', margin: '8px 0' }}>
           {scenario.headline}
         </blockquote>
 
         {roundFeedback && (
-          <div style={{ fontSize: '14px', fontWeight: '800', color: '#FBBF24', marginTop: '8px', animation: 'fadeIn 0.2s ease' }}>
+          <div style={{ fontSize: '13px', fontWeight: '800', color: '#FBBF24', marginTop: '6px', animation: 'fadeIn 0.2s ease' }}>
             {roundFeedback}
           </div>
         )}
@@ -129,15 +124,15 @@ export default function CognitiveDuelPage() {
 
       {/* Winner Screen or Split Control Panels */}
       {winner ? (
-        <div className="card" style={{ textAlign: 'center', padding: '36px', borderColor: 'var(--accent-amber)' }}>
-          <div style={{ fontSize: '48px', marginBottom: '10px' }}>👑</div>
-          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#FFFFFF', marginBottom: '8px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '28px', borderColor: 'var(--accent-amber)' }}>
+          <div style={{ fontSize: '42px', marginBottom: '8px' }}>👑</div>
+          <h2 style={{ fontSize: 'clamp(22px, 5vw, 26px)', fontWeight: '900', color: '#FFFFFF', marginBottom: '6px' }}>
             {winner} Wins the Duel!
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginBottom: '18px' }}>
             Flawless rhetorical defense awarded +250 XP to the champion.
           </p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
             <button onClick={restartDuel} className="btn btn-amber">
               🔄 Rematch
             </button>
@@ -147,11 +142,11 @@ export default function CognitiveDuelPage() {
           </div>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
           {/* Player 1 Choices */}
           <div className="card" style={{ borderColor: '#3B82F6' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '800', color: '#60A5FA', marginBottom: '12px' }}>
-              👤 Player 1 Controls
+            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#60A5FA', marginBottom: '10px' }}>
+              👤 Player 1 (Blue)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {scenario.options.map((opt) => (
@@ -159,7 +154,7 @@ export default function CognitiveDuelPage() {
                   key={opt.id}
                   onClick={() => handlePlayerChoice(1, opt.id)}
                   className="btn btn-outline"
-                  style={{ padding: '12px', fontSize: '13px', justifyContent: 'flex-start', textAlign: 'left' }}
+                  style={{ padding: '10px 12px', fontSize: '12.5px', justifyContent: 'flex-start', textAlign: 'left' }}
                 >
                   ⚡ {opt.name}
                 </button>
@@ -169,8 +164,8 @@ export default function CognitiveDuelPage() {
 
           {/* Player 2 Choices */}
           <div className="card" style={{ borderColor: '#EF4444' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '800', color: '#F87171', marginBottom: '12px', textAlign: 'right' }}>
-              👤 Player 2 Controls
+            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#F87171', marginBottom: '10px', textAlign: 'right' }}>
+              👤 Player 2 (Red)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {scenario.options.map((opt) => (
@@ -178,7 +173,7 @@ export default function CognitiveDuelPage() {
                   key={opt.id}
                   onClick={() => handlePlayerChoice(2, opt.id)}
                   className="btn btn-outline"
-                  style={{ padding: '12px', fontSize: '13px', justifyContent: 'flex-end', textAlign: 'right' }}
+                  style={{ padding: '10px 12px', fontSize: '12.5px', justifyContent: 'flex-end', textAlign: 'right' }}
                 >
                   {opt.name} ⚡
                 </button>

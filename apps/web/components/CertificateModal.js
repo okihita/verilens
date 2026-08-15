@@ -21,79 +21,78 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-      <div style={{ background: '#0B1120', border: '2px solid #F59E0B', borderRadius: '16px', maxWidth: '780px', width: '100%', padding: '32px', position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)' }}>
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
+      <div style={{ background: '#0B1120', border: '2px solid #F59E0B', borderRadius: '16px', maxWidth: '780px', width: '100%', padding: '24px 16px', position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)', maxHeight: '90vh', overflowY: 'auto' }}>
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: '#94A3B8', fontSize: '20px', cursor: 'pointer' }}
+          style={{ position: 'absolute', top: '14px', right: '14px', background: 'none', border: 'none', color: '#94A3B8', fontSize: '20px', cursor: 'pointer' }}
         >
           ✕
         </button>
 
         {/* Certificate Container */}
-        <div id="printable-certificate" style={{ border: '2px solid rgba(245, 158, 11, 0.4)', borderRadius: '12px', padding: '36px 28px', textAlign: 'center', background: 'radial-gradient(ellipse at center, #131E35 0%, #080C16 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div id="printable-certificate" style={{ border: '2px solid rgba(245, 158, 11, 0.4)', borderRadius: '12px', padding: '24px 16px', textAlign: 'center', background: 'radial-gradient(ellipse at center, #131E35 0%, #080C16 100%)', position: 'relative' }}>
           
-          {/* Top Badges */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px', color: '#F59E0B' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+            <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', color: '#F59E0B' }}>
               🏛️ UNESCO GLOBAL MIL YOUTH HACKATHON 2026
             </span>
           </div>
 
-          <h2 style={{ fontSize: '26px', fontWeight: '900', color: '#FFFFFF', letterSpacing: '-0.5px', marginBottom: '4px' }}>
+          <h2 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: '#FFFFFF', letterSpacing: '-0.5px', marginBottom: '2px' }}>
             Certificate of Cognitive Immunity
           </h2>
-          <div style={{ fontSize: '13px', color: '#94A3B8', marginBottom: '20px' }}>
+          <div style={{ fontSize: '12px', color: '#94A3B8', marginBottom: '16px' }}>
             Official Media & Information Literacy Certification • SIFT Framework
           </div>
 
-          <div style={{ fontSize: '12px', color: '#CBD5E1', marginBottom: '4px' }}>This certifies that</div>
+          <div style={{ fontSize: '11.5px', color: '#CBD5E1', marginBottom: '2px' }}>This certifies that</div>
           
           {/* Editable Name Field */}
           <input
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            style={{ fontSize: '28px', fontWeight: '900', color: '#FBBF24', textAlign: 'center', background: 'transparent', border: 'none', borderBottom: '2px dashed rgba(245, 158, 11, 0.5)', outline: 'none', width: '80%', margin: '4px auto 16px', fontFamily: 'serif' }}
+            style={{ fontSize: 'clamp(20px, 5vw, 28px)', fontWeight: '900', color: '#FBBF24', textAlign: 'center', background: 'transparent', border: 'none', borderBottom: '2px dashed rgba(245, 158, 11, 0.5)', outline: 'none', width: '90%', margin: '2px auto 14px', fontFamily: 'serif' }}
           />
 
-          <p style={{ fontSize: '13.5px', color: '#E2E8F0', maxWidth: '580px', margin: '0 auto 24px', lineHeight: '1.6' }}>
-            Has successfully completed the <strong>{mode || 'Media Literacy Arena'}</strong> assessment, demonstrating rigorous competence in detecting <strong>rhetorical fallacies, cognitive biases, algorithmic outrage, and artificial urgency scams</strong>.
+          <p style={{ fontSize: '12.5px', color: '#E2E8F0', maxWidth: '580px', margin: '0 auto 18px', lineHeight: '1.5' }}>
+            Has successfully completed the <strong>{mode || 'Media Literacy Arena'}</strong> assessment, demonstrating competence in detecting <strong>rhetorical fallacies, cognitive biases, and artificial urgency scams</strong>.
           </p>
 
-          {/* Certificate Metrics Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '14px', maxWidth: '500px', margin: '0 auto 20px' }}>
+          {/* Certificate Metrics Grid (Fluid for mobile) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '12px', maxWidth: '500px', margin: '0 auto 16px' }}>
             <div>
-              <div style={{ fontSize: '11px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Score</div>
-              <div style={{ fontSize: '18px', fontWeight: '900', color: '#FFFFFF' }}>{score} XP</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Score</div>
+              <div style={{ fontSize: '16px', fontWeight: '900', color: '#FFFFFF' }}>{score} XP</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Accuracy</div>
-              <div style={{ fontSize: '18px', fontWeight: '900', color: '#10B981' }}>{accuracy}%</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Accuracy</div>
+              <div style={{ fontSize: '16px', fontWeight: '900', color: '#10B981' }}>{accuracy}%</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Issued</div>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: '#FFFFFF', marginTop: '2px' }}>{dateStr}</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Issued</div>
+              <div style={{ fontSize: '12.5px', fontWeight: '700', color: '#FFFFFF', marginTop: '2px' }}>{dateStr}</div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '14px', maxWidth: '500px', margin: '0 auto', fontSize: '11px', color: '#64748B' }}>
-            <span>Verification ID: {certId}</span>
-            <span style={{ color: '#F59E0B', fontWeight: '700' }}>⭐ Verified by VeriLens Engine</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px', maxWidth: '500px', margin: '0 auto', fontSize: '10.5px', color: '#64748B', flexWrap: 'wrap', gap: '6px' }}>
+            <span>ID: {certId}</span>
+            <span style={{ color: '#F59E0B', fontWeight: '700' }}>⭐ Verified by VeriLens</span>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
-          <button onClick={handlePrint} className="btn btn-amber">
-            🖨️ Print / Save as PDF
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '16px', flexWrap: 'wrap' }}>
+          <button onClick={handlePrint} className="btn btn-amber" style={{ padding: '8px 16px', fontSize: '13px' }}>
+            🖨️ Print / PDF
           </button>
-          <button onClick={handleCopyShare} className="btn btn-primary">
-            {copied ? '✓ Copied Shareable Text!' : '📋 Copy Shareable Link'}
+          <button onClick={handleCopyShare} className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }}>
+            {copied ? '✓ Copied!' : '📋 Copy Link'}
           </button>
-          <button onClick={onClose} className="btn btn-outline">
+          <button onClick={onClose} className="btn btn-outline" style={{ padding: '8px 16px', fontSize: '13px' }}>
             Done
           </button>
         </div>
