@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import scenariosData from '../../lib/shared/scenarios.json';
+import { addPlayerXP, unlockBadge } from '../../lib/gamification';
+import CertificateModal from '../../components/CertificateModal';
 
 export default function ArenaPage() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -14,6 +16,7 @@ export default function ArenaPage() {
   const [maxStreak, setMaxStreak] = useState(0);
   const [gameFinished, setGameFinished] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [showCertificate, setShowCertificate] = useState(false);
 
   useEffect(() => {
     // Pick 5 random scenarios from dataset
@@ -138,17 +141,26 @@ export default function ArenaPage() {
           </div>
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={handleStartGame} className="btn btn-amber">
+            <button onClick={() => setShowCertificate(true)} className="btn btn-amber">
+              📜 Claim UNESCO Certificate
+            </button>
+            <button onClick={handleStartGame} className="btn btn-primary">
               🔄 Play Another Round
             </button>
-            <Link href="/sandbox" className="btn btn-primary">
+            <Link href="/sandbox" className="btn btn-outline">
               🧪 Test Live Articles
-            </Link>
-            <Link href="/" className="btn btn-outline">
-              🃏 Review Fallacy Codex
             </Link>
           </div>
         </div>
+
+        {showCertificate && (
+          <CertificateModal
+            score={score}
+            accuracy={accuracy}
+            mode="Bias Spotter Arena"
+            onClose={() => setShowCertificate(false)}
+          />
+        )}
       </div>
     );
   }

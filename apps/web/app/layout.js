@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import Navbar from '../components/Navbar';
 
 export const metadata = {
   title: 'VeriLens — UNESCO Gamified Media Literacy & Cognitive Companion',
@@ -15,27 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <nav className="navbar">
-          <div className="container navbar-inner">
-            <Link href="/" className="brand-group">
-              <div className="brand-logo">VL</div>
-              <div className="brand-text">
-                <h1>VeriLens</h1>
-                <span className="brand-badge">UNESCO MIL 2026</span>
-              </div>
-            </Link>
-
-            <div className="nav-links">
-              <Link href="/" className="nav-link">🃏 Bias Codex</Link>
-              <Link href="/arena" className="nav-link">🎮 Spotter Arena</Link>
-              <Link href="/sandbox" className="nav-link">🧪 Live Sandbox</Link>
-              <Link href="/educator" className="nav-link">🏫 Educator Hub</Link>
-              <Link href="/extension" className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '13px' }}>
-                🧩 Chrome Extension
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
 
         <main>{children}</main>
 
@@ -57,8 +38,10 @@ export default function RootLayout({ children }) {
                 <ul>
                   <li><Link href="/">Cognitive Bias Codex</Link></li>
                   <li><Link href="/arena">Bias Spotter Arena</Link></li>
+                  <li><Link href="/gauntlet">Daily Bias Gauntlet</Link></li>
                   <li><Link href="/sandbox">Live Article Sandbox</Link></li>
-                  <li><Link href="/educator">Classroom Mode</Link></li>
+                  <li><Link href="/classroom">Classroom Showdown</Link></li>
+                  <li><Link href="/profile">Trophy Room</Link></li>
                 </ul>
               </div>
 
@@ -76,7 +59,7 @@ export default function RootLayout({ children }) {
                 <h4>Ecosystem</h4>
                 <ul>
                   <li><Link href="/extension">Chrome Extension (MV3)</Link></li>
-                  <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                  <li><a href="https://github.com/okihita/verilens" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
                   <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">Gemini 2.0 Flash-Lite</a></li>
                 </ul>
               </div>

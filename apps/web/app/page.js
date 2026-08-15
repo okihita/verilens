@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import fallaciesData from '../lib/shared/fallacies.json';
+import { FALLACY_ILLUSTRATIONS } from '../lib/shared/illustrations.js';
+import { recordCardFlipped } from '../lib/gamification.js';
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [flippedCardId, setFlippedCardId] = useState(null);
+  const [inspectModalItem, setInspectModalItem] = useState(null);
 
   const categories = ['All', 'Logic', 'Emotional', 'Attribution', 'Cognitive', 'Scam'];
 
@@ -21,6 +24,7 @@ export default function HomePage() {
 
   const toggleFlip = (id) => {
     setFlippedCardId(flippedCardId === id ? null : id);
+    recordCardFlipped(id);
   };
 
   return (
@@ -37,15 +41,18 @@ export default function HomePage() {
           </h1>
 
           <p style={{ fontSize: '18px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '28px', maxWidth: '720px', margin: '0 auto 28px' }}>
-            Master the 12 rhetorical fallacies and cognitive biases weaponized by modern outrage algorithms. Practice with interactive scenarios in the <strong>Dojo</strong>, and protect your browsing in the wild with our <strong>Browser Armor</strong>.
+            Master the 12 rhetorical fallacies and cognitive biases weaponized by modern outrage algorithms. Train in the <strong>Dojo</strong>, conquer the <strong>Gauntlet</strong>, and protect your live browsing with <strong>Browser Armor</strong>.
           </p>
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/arena" className="btn btn-amber" style={{ padding: '12px 24px', fontSize: '15px' }}>
               🎮 Play "Bias Spotter" Arena
             </Link>
+            <Link href="/gauntlet" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '15px', background: '#DC2626', borderColor: '#EF4444' }}>
+              ⚔️ 60s Daily Gauntlet
+            </Link>
             <Link href="/sandbox" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '15px' }}>
-              🧪 Dissect Article in Sandbox
+              🧪 Live Article Sandbox
             </Link>
             <Link href="/extension" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '15px' }}>
               🧩 Get Chrome Extension
@@ -56,7 +63,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '48px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
             <div>
               <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--accent-amber)' }}>12</div>
-              <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>Cognitive Biases & Fallacies</div>
+              <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>Illustrated Codex Archetypes</div>
             </div>
             <div>
               <div style={{ fontSize: '28px', fontWeight: '800', color: 'var(--accent-blue-light)' }}>SIFT</div>
@@ -77,10 +84,10 @@ export default function HomePage() {
             <div>
               <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>Interactive Learning Dojo</span>
               <h2 style={{ fontSize: '28px', fontWeight: '800', color: '#FFFFFF', marginTop: '4px' }}>
-                🃏 The Cognitive Bias & Fallacy Codex
+                🃏 The Illustrated Fallacy & Bias Codex
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '4px' }}>
-                Click any card to flip it and reveal the psychological anatomy, viral social media examples, and UNESCO reflection prompts.
+                Inspired by <em>yourlogicalfallacyis.com</em>. Click any card to flip it and reveal the psychological anatomy, viral social media examples, and UNESCO reflection prompts.
               </p>
             </div>
 
@@ -121,16 +128,18 @@ export default function HomePage() {
           </div>
 
           {/* Fallacy Card Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '22px' }}>
             {filteredFallacies.map((item) => {
               const isFlipped = flippedCardId === item.id;
+              const svgIllustration = FALLACY_ILLUSTRATIONS[item.id] || '';
+
               return (
                 <div
                   key={item.id}
                   onClick={() => toggleFlip(item.id)}
                   style={{
                     perspective: '1000px',
-                    minHeight: '340px',
+                    minHeight: '390px',
                     cursor: 'pointer'
                   }}
                 >
@@ -144,7 +153,7 @@ export default function HomePage() {
                       transform: isFlipped ? 'rotateY(180deg)' : 'none'
                     }}
                   >
-                    {/* Front Face */}
+                    {/* Front Face with Bespoke Illustration */}
                     <div
                       style={{
                         position: 'absolute',
@@ -154,34 +163,39 @@ export default function HomePage() {
                         background: 'var(--bg-surface)',
                         border: '1px solid var(--border-card)',
                         borderRadius: 'var(--radius-lg)',
-                        padding: '24px',
+                        padding: '20px',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between'
+                        justifyContent: 'space-between',
+                        overflow: 'hidden'
                       }}
                     >
                       <div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                          <span style={{ fontSize: '28px' }}>{item.icon}</span>
-                          <span style={{ fontSize: '11px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)', color: item.color, textTransform: 'uppercase' }}>
+                        {/* Illustration Visual Header */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                          <div
+                            style={{ width: '84px', height: '84px', borderRadius: '14px', background: 'var(--bg-surface-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px' }}
+                            dangerouslySetInnerHTML={{ __html: svgIllustration }}
+                          />
+                          <span style={{ fontSize: '11px', fontWeight: '800', padding: '3px 9px', borderRadius: '6px', background: 'rgba(255,255,255,0.06)', color: item.color, textTransform: 'uppercase' }}>
                             {item.category}
                           </span>
                         </div>
 
-                        <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '4px' }}>
+                        <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '3px' }}>
                           {item.name}
                         </h3>
-                        <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--accent-amber)', marginBottom: '12px' }}>
+                        <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--accent-amber)', marginBottom: '10px' }}>
                           {item.subtitle}
                         </div>
 
-                        <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '16px' }}>
+                        <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
                           {item.description}
                         </p>
                       </div>
 
-                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: 'var(--accent-blue-light)', fontWeight: '600' }}>
-                        <span>💡 Click to view anatomy & viral examples</span>
+                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: 'var(--accent-blue-light)', fontWeight: '600' }}>
+                        <span>💡 Click to flip anatomy</span>
                         <span>➔</span>
                       </div>
                     </div>
@@ -197,7 +211,7 @@ export default function HomePage() {
                         background: 'var(--bg-surface-elevated)',
                         border: `1.5px solid ${item.color}`,
                         borderRadius: 'var(--radius-lg)',
-                        padding: '22px',
+                        padding: '20px',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
@@ -206,19 +220,19 @@ export default function HomePage() {
                     >
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                          <strong style={{ fontSize: '14px', color: '#FFFFFF' }}>{item.name}</strong>
+                          <strong style={{ fontSize: '14.5px', color: '#FFFFFF' }}>{item.name}</strong>
                           <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Click to flip back</span>
                         </div>
 
                         <div style={{ marginBottom: '10px' }}>
-                          <span style={{ fontSize: '10px', fontWeight: '700', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>📱 Viral Social Example:</span>
-                          <div style={{ fontSize: '12px', fontStyle: 'italic', background: 'rgba(0,0,0,0.25)', padding: '6px 10px', borderRadius: '6px', marginTop: '3px', color: '#E2E8F0' }}>
+                          <span style={{ fontSize: '10px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>📱 Viral Scenario:</span>
+                          <div style={{ fontSize: '12px', fontStyle: 'italic', background: 'rgba(0,0,0,0.3)', padding: '6px 10px', borderRadius: '6px', marginTop: '3px', color: '#E2E8F0' }}>
                             {item.viral_example}
                           </div>
                         </div>
 
                         <div style={{ marginBottom: '10px' }}>
-                          <span style={{ fontSize: '10px', fontWeight: '700', color: 'var(--accent-emerald-light)', textTransform: 'uppercase' }}>💡 UNESCO Metacognition Prompt:</span>
+                          <span style={{ fontSize: '10px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase' }}>💡 Metacognition Prompt:</span>
                           <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
                             {item.reflection_prompt}
                           </p>
@@ -245,43 +259,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Dual Ecosystem Callout */}
+      {/* Game Modes Showcase */}
       <section style={{ padding: '60px 0', background: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>The Complete System</span>
+            <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>The Gamified Ecosystem</span>
             <h2 style={{ fontSize: '30px', fontWeight: '800', color: '#FFFFFF', marginTop: '4px' }}>
-              From the Training Dojo to the Live Web
+              Choose Your Training Mode
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '15px', marginTop: '8px' }}>
-              VeriLens is not just an informational website—it is a live cognitive armor that accompanies you as you browse.
+              From fast 60-second speed trials to in-depth article dissections, master the art of lateral reasoning.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
             <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <div style={{ fontSize: '32px', marginBottom: '12px' }}>🎮</div>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>The "Bias Spotter" Arena</h3>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '16px' }}>
-                  Test your critical thinking instincts in our 5-round speed quiz. Dissect realistic crypto schemes, health hoaxes, and manipulated outrage banners.
+                <div style={{ fontSize: '32px', marginBottom: '10px' }}>⚔️</div>
+                <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>The Daily Gauntlet</h3>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
+                  60-second rapid-fire triage. Sort breaking claims into Fallacy, Fact, or Scam to build combo multipliers.
                 </p>
               </div>
-              <Link href="/arena" className="btn btn-amber" style={{ alignSelf: 'flex-start' }}>
-                Launch Arena Mode ➔
+              <Link href="/gauntlet" className="btn btn-amber" style={{ alignSelf: 'flex-start', fontSize: '12.5px' }}>
+                Enter Gauntlet ➔
               </Link>
             </div>
 
             <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <div style={{ fontSize: '32px', marginBottom: '12px' }}>🧩</div>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>The Chrome Extension (MV3)</h3>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '16px' }}>
-                  Take your cognitive shield to live websites. Highlight any sentence, right-click to verify, and stream Gemini Flash-Lite neural reasoning instantly.
+                <div style={{ fontSize: '32px', marginBottom: '10px' }}>🎮</div>
+                <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Spotter Arena</h3>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
+                  5-round scenario battle. Deconstruct crypto schemes and outrage clips with instant pedagogical feedback.
                 </p>
               </div>
-              <Link href="/extension" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-                Get Browser Extension ➔
+              <Link href="/arena" className="btn btn-primary" style={{ alignSelf: 'flex-start', fontSize: '12.5px' }}>
+                Launch Arena ➔
+              </Link>
+            </div>
+
+            <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontSize: '32px', marginBottom: '10px' }}>🏫</div>
+                <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Classroom Showdown</h3>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
+                  Smartboard presenter mode. Split classes into Team Alpha vs Team Beta with debate timers and live scorecards.
+                </p>
+              </div>
+              <Link href="/classroom" className="btn btn-outline" style={{ alignSelf: 'flex-start', fontSize: '12.5px' }}>
+                Open Classroom Mode ➔
               </Link>
             </div>
           </div>
