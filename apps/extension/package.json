@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AI-Powered Cognitive Companion for Media Literacy (UNESCO Global MIL Youth Hackathon)",
   "scripts": {
+    "build": "echo 'Extension ready'",
     "dev": "node scripts/watch.js",
     "watch": "node scripts/watch.js",
     "test": "node --test tests/unit.test.js",

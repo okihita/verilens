@@ -5,5 +5,9 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "types": "src/index.d.ts",
+  "scripts": {
+    "build": "echo 'Shared ready'",
+    "test": "node --test test/shared.test.js"
+  },
   "license": "MIT"
 }
