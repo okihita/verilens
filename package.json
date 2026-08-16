@@ -2,16 +2,12 @@
   "name": "verilens-monorepo",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "npm@10.8.2",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "node --test packages/shared/test/shared.test.js && node --test apps/extension/tests/unit.test.js && node --test apps/web/test/gamification.test.js",
-    "test:unit": "npm run test",
+    "test:unit": "pnpm test",
     "lint": "turbo run lint"
   },
   "devDependencies": {
