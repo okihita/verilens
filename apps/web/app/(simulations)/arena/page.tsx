@@ -233,7 +233,7 @@ export default function ArenaPage() {
       {/* Multiple Choice Options */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
         {(scenario.options || []).map((opt) => {
-          let btnStyle = {
+          let btnStyle: React.CSSProperties = {
             padding: '16px',
             borderRadius: 'var(--radius-md)',
             border: '1.5px solid var(--border-card)',

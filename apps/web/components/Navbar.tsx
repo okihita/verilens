@@ -11,8 +11,8 @@ import { isAudioMuted, toggleAudioMute, playClick } from '../lib/audio';
 export default function Navbar() {
   const { t, lang, setLanguage } = useTranslation();
   const { theme, setTheme } = useTheme();
-  const [profile, setProfile] = useState({ xp: 120 });
-  const [rank, setRank] = useState({ level: 1, name: 'Novice Skeptic', color: '#94A3B8', nextXP: 150 });
+  const [profile, setProfile] = useState<any>({ xp: 120 });
+  const [rank, setRank] = useState<any>({ level: 1, name: 'Novice Skeptic', color: '#94A3B8', nextXP: 150 });
   const [audioMuted, setAudioMuted] = useState(false);
   const [simsOpen, setSimsOpen] = useState(false);
   const [educatorsOpen, setEducatorsOpen] = useState(false);
@@ -20,11 +20,11 @@ export default function Navbar() {
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  const simsRef = useRef(null);
-  const educatorsRef = useRef(null);
-  const langDesktopRef = useRef(null);
-  const langMobileRef = useRef(null);
-  const profileRef = useRef(null);
+  const simsRef = useRef<HTMLDivElement | null>(null);
+  const educatorsRef = useRef<HTMLDivElement | null>(null);
+  const langDesktopRef = useRef<HTMLDivElement | null>(null);
+  const langMobileRef = useRef<HTMLDivElement | null>(null);
+  const profileRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
