@@ -40,7 +40,13 @@ export default function RootLayout({ children }) {
             <div className="footer-grid">
               <div className="footer-col">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                  <div className="brand-logo" style={{ width: '28px', height: '28px', fontSize: '11px' }}>VL</div>
+                  <img
+                    src="/logo.png"
+                    alt="VeriLens Logo"
+                    width={26}
+                    height={26}
+                    style={{ borderRadius: '6px', objectFit: 'cover' }}
+                  />
                   <strong style={{ color: 'var(--text-main)', fontSize: '15px', fontWeight: '800', letterSpacing: '-0.02em' }}>VeriLens Platform</strong>
                 </div>
                 <p style={{ lineHeight: '1.55', color: 'var(--text-secondary)', fontSize: '12.5px' }}>
