@@ -3,16 +3,16 @@
 import Link from 'next/link';
 
 export default function ExtensionPage() {
-  const downloadUrl = 'https://github.com/okihita/verilens/releases/download/v1.0.0/verilens-extension-v1.0.0.zip';
+  const downloadUrl = 'https://github.com/okihita/verilens/releases/download/v1.2.0/verilens-extension-v1.2.0.zip';
 
   return (
     <div className="container" style={{ maxWidth: '900px', padding: '40px 20px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '36px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '12px' }}>
-          <span>🧩 Chrome Manifest V3 Extension</span>
+          <span>Chrome Manifest V3 Extension</span>
         </div>
-        <h1 style={{ fontSize: '34px', fontWeight: '900', color: '#FFFFFF', marginBottom: '10px' }}>
+        <h1 style={{ fontSize: '34px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '10px' }}>
           VeriLens Browser Armor
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '680px', margin: '0 auto 24px' }}>
@@ -26,10 +26,10 @@ export default function ExtensionPage() {
             className="btn btn-amber"
             style={{ padding: '12px 24px', fontSize: '15px' }}
           >
-            ⬇️ Download Extension Package (.ZIP)
+            Download Extension Package (.ZIP)
           </a>
           <Link href="/sandbox" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '15px' }}>
-            🧪 Test In-Browser Sandbox (No Install)
+            Test In-Browser Sandbox (No Install)
           </Link>
         </div>
       </div>
@@ -37,9 +37,9 @@ export default function ExtensionPage() {
       {/* Feature Showcase Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '36px' }}>
         <div className="card">
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>⚡</div>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px' }}>
-            Zero-Lag TreeWalker
+          <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-amber)', marginBottom: '8px', textTransform: 'uppercase' }}>TreeWalker</div>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
+            Zero-Lag Parser
           </h3>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
             Non-destructive pure text node parser. Never breaks DOM attributes or web page event listeners.
@@ -47,8 +47,8 @@ export default function ExtensionPage() {
         </div>
 
         <div className="card">
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>🖱️</div>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px' }}>
+          <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-blue)', marginBottom: '8px', textTransform: 'uppercase' }}>SIFT Move</div>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
             Right-Click SIFT Verify
           </h3>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
@@ -57,8 +57,8 @@ export default function ExtensionPage() {
         </div>
 
         <div className="card">
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>🤖</div>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px' }}>
+          <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-emerald)', marginBottom: '8px', textTransform: 'uppercase' }}>AI Reasoning</div>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
             Gemini 2.0 Flash-Lite
           </h3>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
@@ -69,13 +69,13 @@ export default function ExtensionPage() {
 
       {/* 30-Second Installation Guide */}
       <div className="card" style={{ marginBottom: '36px' }}>
-        <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '16px' }}>
-          🛠️ 30-Second Quickstart Installation (Evaluator Guide)
+        <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '16px' }}>
+          30-Second Quickstart Installation (Evaluator Guide)
         </h2>
 
         <ol style={{ paddingLeft: '22px', color: 'var(--text-main)', fontSize: '14px', lineHeight: '1.9' }}>
           <li>
-            <strong>Download & Unzip:</strong> Download the <a href={downloadUrl} style={{ color: 'var(--accent-amber)', fontWeight: '700' }}>verilens-extension-v1.0.0.zip</a> release.
+            <strong>Download & Unzip:</strong> Download the <a href={downloadUrl} style={{ color: 'var(--accent-amber)', fontWeight: '700' }}>verilens-extension-v1.2.0.zip</a> release.
           </li>
           <li>
             Open Google Chrome and navigate to <code style={{ background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px', color: 'var(--accent-amber)' }}>chrome://extensions</code>.
@@ -94,8 +94,8 @@ export default function ExtensionPage() {
 
       {/* Pitch Video Container */}
       <div className="card" style={{ textAlign: 'center', padding: '36px 20px' }}>
-        <div style={{ fontSize: '32px', marginBottom: '10px' }}>🎥</div>
-        <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+        <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-amber)', marginBottom: '8px', textTransform: 'uppercase' }}>Demo Overview</div>
+        <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
           UNESCO Hackathon 2-Minute Pitch Video
         </h3>
         <p style={{ fontSize: '14px', color: 'var(--text-secondary)', maxWidth: '540px', margin: '0 auto 20px' }}>
@@ -103,8 +103,7 @@ export default function ExtensionPage() {
         </p>
 
         <div style={{ width: '100%', maxWidth: '640px', height: '320px', background: 'var(--bg-surface-elevated)', border: '2px dashed var(--border-card)', borderRadius: 'var(--radius-md)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
-          <span style={{ fontSize: '36px', marginBottom: '8px' }}>▶️</span>
-          <span style={{ fontSize: '13px', fontWeight: '600' }}>[ 2-Minute Video Pitch Embed Container ]</span>
+          <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-main)' }}>[ 2-Minute Video Pitch Embed Container ]</span>
           <span style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>Ready for YouTube / Vimeo submission link</span>
         </div>
       </div>

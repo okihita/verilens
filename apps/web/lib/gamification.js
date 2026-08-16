@@ -161,3 +161,17 @@ export function getRankFromXP(xp) {
   }
   return currentRank;
 }
+
+export function unlockSkill(skillId) {
+  const profile = getPlayerProfile();
+  if (!profile.unlockedSkillIds) {
+    profile.unlockedSkillIds = [];
+  }
+  if (!profile.unlockedSkillIds.includes(skillId)) {
+    profile.unlockedSkillIds.push(skillId);
+    savePlayerProfile(profile);
+    return true;
+  }
+  return false;
+}
+

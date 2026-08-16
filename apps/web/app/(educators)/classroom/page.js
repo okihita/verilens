@@ -68,7 +68,7 @@ export default function ClassroomPage() {
   };
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 70px)', background: '#050811', padding: '30px 20px', color: '#FFFFFF' }}>
+    <div style={{ minHeight: 'calc(100vh - 70px)', background: 'var(--bg-app)', padding: '30px 20px', color: 'var(--text-main)' }}>
       <div className="container" style={{ maxWidth: '1100px' }}>
         
         {/* Top Presenter Bar */}
@@ -86,12 +86,12 @@ export default function ClassroomPage() {
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1.5px solid #EF4444', padding: '6px 14px', borderRadius: '10px', textAlign: 'center' }}>
               <div style={{ fontSize: '10.5px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase' }}>Team Alpha [A]</div>
-              <div style={{ fontSize: '18px', fontWeight: '900', color: '#FFFFFF' }}>{teamAlphaScore} pts</div>
+              <div style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)' }}>{teamAlphaScore} pts</div>
             </div>
 
             <div style={{ background: 'rgba(59, 130, 246, 0.15)', border: '1.5px solid #3B82F6', padding: '6px 14px', borderRadius: '10px', textAlign: 'center' }}>
               <div style={{ fontSize: '10.5px', fontWeight: '800', color: '#60A5FA', textTransform: 'uppercase' }}>Team Beta [B]</div>
-              <div style={{ fontSize: '18px', fontWeight: '900', color: '#FFFFFF' }}>{teamBetaScore} pts</div>
+              <div style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)' }}>{teamBetaScore} pts</div>
             </div>
 
             {/* 30s Debate Timer */}
@@ -126,7 +126,7 @@ export default function ClassroomPage() {
             </div>
           </div>
 
-          <blockquote style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: '800', color: '#FFFFFF', lineHeight: '1.45', marginBottom: '16px' }}>
+          <blockquote style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: '800', color: 'var(--text-main)', lineHeight: '1.45', marginBottom: '16px' }}>
             {currentScenario.headline}
           </blockquote>
 
@@ -145,7 +145,7 @@ export default function ClassroomPage() {
                   border: '1.5px solid',
                   borderColor: isAnswerRevealed && opt.id === currentScenario.correct_fallacy_id ? '#10B981' : 'var(--border-card)',
                   background: isAnswerRevealed && opt.id === currentScenario.correct_fallacy_id ? 'rgba(16, 185, 129, 0.15)' : 'var(--bg-surface-elevated)',
-                  color: isAnswerRevealed && opt.id === currentScenario.correct_fallacy_id ? '#34D399' : '#FFFFFF',
+                  color: isAnswerRevealed && opt.id === currentScenario.correct_fallacy_id ? 'var(--accent-emerald-light)' : 'var(--text-main)',
                   fontSize: '15px',
                   fontWeight: '700',
                   display: 'flex',
@@ -168,13 +168,13 @@ export default function ClassroomPage() {
         {/* Revealed Pedagogical Breakdown */}
         {isAnswerRevealed && (
           <div className="card" style={{ background: 'rgba(16, 185, 129, 0.08)', border: '1.5px solid #10B981', marginBottom: '20px', animation: 'fadeIn 0.3s ease' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#34D399', marginBottom: '6px' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--accent-emerald-light)', marginBottom: '6px' }}>
               Pedagogical Breakdown: {currentScenario.correct_fallacy_name}
             </h3>
-            <p style={{ fontSize: '13.5px', color: '#FFFFFF', lineHeight: '1.5', marginBottom: '10px' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '10px' }}>
               {currentScenario.explanation}
             </p>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 14px', borderRadius: '6px', fontSize: '12.5px', color: '#93C5FD' }}>
+            <div style={{ background: 'rgba(0,0,0,0.1)', padding: '10px 14px', borderRadius: '6px', fontSize: '12.5px', color: 'var(--accent-blue)' }}>
               <strong>UNESCO SIFT Recommendation:</strong> {currentScenario.sift_recommendation}
             </div>
           </div>

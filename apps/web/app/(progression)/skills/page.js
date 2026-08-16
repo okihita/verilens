@@ -2,99 +2,94 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getPlayerProfile, getRankFromXP, savePlayerProfile } from '../../../lib/gamification';
+import { getPlayerProfile, getRankFromXP, unlockSkill } from '../../../lib/gamification';
 
 const SKILL_BRANCHES = [
   {
-    id: 'dialectical',
-    name: 'Dialectical Defense',
-    icon: '🛡️',
-    color: '#EF4444',
-    description: 'Mastery in deflecting personal smears, strawman arguments, and conspiratorial webs.',
+    id: 'sift_mastery',
+    name: 'SIFT Investigation Reflex',
+    color: '#3B82F6',
+    icon: 'SIFT',
+    description: 'Master Stanford History Education Group lateral reading techniques.',
     skills: [
-      { id: 'ad_hom_shield', name: 'Smear Deflector', cost: 1, desc: 'Instantly identifies Ad Hominem insults and highlights underlying claims.', perk: '+10% XP on Dialectical Scenarios' },
-      { id: 'strawman_crush', name: 'Strawman Crusher', cost: 2, desc: 'Reveals the original unedited quote when a caricatured strawman is detected.', perk: 'Unlocks Strawman Clues in Arena' },
-      { id: 'conspiracy_untangle', name: 'Web Untangler', cost: 3, desc: 'Traces conspiracy claims directly to primary peer-reviewed consensus archives.', perk: '+25% SIFT Speed Bonus' }
+      { id: 'sift_1', name: 'Stop & Pause', cost: 1, desc: 'Instinctively detect emotional hijack triggers before sharing.', perk: '+10% XP in Gauntlet Mode' },
+      { id: 'sift_2', name: 'Lateral Sifter', cost: 2, desc: 'Automate opening 3 lateral search windows in <1.2s.', perk: 'Unlocks Fast Wire Verification' },
+      { id: 'sift_3', name: 'Primary Tracing', cost: 3, desc: 'Trace viral infographics directly to original source papers.', perk: '+25% XP on Science Scenarios' }
     ]
   },
   {
-    id: 'statistical',
-    name: 'Statistical Scrutiny',
-    icon: '📊',
-    color: '#10B981',
-    description: 'Cognitive defense against cherry-picked data outliers and bandwagon herd momentum.',
-    skills: [
-      { id: 'cherry_filter', name: 'Sample Size Auditor', cost: 1, desc: 'Differentiates isolated anomalies from 50-year planetary statistical aggregate trends.', perk: '+15% Bonus on Science Claims' },
-      { id: 'bandwagon_brake', name: 'Herd Resistance', cost: 2, desc: 'Protects judgment from social proof and viral view count distortion.', perk: 'Ignores Fake Social Proof in Gauntlet' },
-      { id: 'sunk_cost_break', name: 'Sunk Cost Liberator', cost: 3, desc: 'Allows instant dispassionate resetting of ideological attachment.', perk: 'Second Chance on 1 Arena Error' }
-    ]
-  },
-  {
-    id: 'emotional',
-    name: 'Emotional Immunity',
-    icon: '🌋',
+    id: 'fallacy_defense',
+    name: 'Rhetoric & Fallacy Armor',
     color: '#F59E0B',
-    description: 'Armor against catastrophic panic bait, false dichotomies, and influencer charisma overreach.',
+    icon: 'ARMOR',
+    description: 'Immunity against 24 psychological traps and dialectical manipulation.',
     skills: [
-      { id: 'fear_dampener', name: 'Amygdala Cooling', cost: 1, desc: 'Suppresses acute panic reflexes when facing apocalyptic doomsday framing.', perk: '+5s Time on Catastrophic Headlines' },
-      { id: 'dilemma_bridge', name: 'The Nuance Bridge', cost: 2, desc: 'Illuminates 3rd and 4th compromise alternatives in forced binary ultimatums.', perk: 'Highlights Nuance Options in Arena' },
-      { id: 'halo_deflector', name: 'Authority Decoupler', cost: 3, desc: 'Separates celebrity charisma and athletic skill from biomedical claims.', perk: '+20% XP on Influencer Scams' }
+      { id: 'fallacy_1', name: 'Ad Hominem Deflector', cost: 1, desc: 'Isolate substantive claims from personal smears instantly.', perk: 'Auto-flags personal attacks' },
+      { id: 'fallacy_2', name: 'Strawman Dissector', cost: 2, desc: 'Reconstruct distorted arguments back to original definitions.', perk: '+1.5x Combo Multiplier Duration' },
+      { id: 'fallacy_3', name: 'Cognitive Immunity', cost: 3, desc: 'Complete resistance to binary False Dilemmas and Whataboutism.', perk: 'Unlocks Master Debater Rank Badge' }
     ]
   },
   {
-    id: 'scam',
-    name: 'Scam & Epistemic Armor',
-    icon: '⚡',
-    color: '#8B5CF6',
-    description: 'Immunity against urgent social engineering, phishing lures, and passive weasel words.',
+    id: 'scam_radar',
+    name: 'Phishing & Urgency Radar',
+    color: '#EF4444',
+    icon: 'RADAR',
+    description: 'Defeat social engineering, crypto lures, and panic traps.',
     skills: [
-      { id: 'urgency_brake', name: 'Time Dilation', cost: 1, desc: 'Automatically pauses countdown clocks when artificial urgency is detected.', perk: '+10s Gauntlet Timer' },
-      { id: 'weasel_light', name: 'Attribution Illuminator', cost: 2, desc: 'Exposes vague "experts say" phrasing by demanding named institution sources.', perk: 'Highlights Anonymous Citations' },
-      { id: 'phish_ward', name: 'Zero-Trust Ward', cost: 3, desc: 'Total immunity against malicious credential harvesting and SMS grant lures.', perk: 'Crown of Truth Badge Unlock' }
+      { id: 'scam_1', name: 'Panic Shield', cost: 1, desc: 'Immunity to 15-minute fake account expiration timers.', perk: '+5s Time Bonus in Gauntlet' },
+      { id: 'scam_2', name: 'Lure Sniffer', cost: 2, desc: 'Instantly spot free grant and crypto giveaway signatures.', perk: 'Highlight fake URL domains' },
+      { id: 'scam_3', name: 'Deepfake Cynicism Radar', cost: 3, desc: 'Verify synthetic media vs authentic whistleblowing files.', perk: 'Unlocks SIFT Forensic Analysis' }
+    ]
+  },
+  {
+    id: 'metacognition',
+    name: 'Metacognitive Autonomy',
+    color: '#10B981',
+    icon: 'MIND',
+    description: 'Self-awareness against confirmation bias and tribal in-group favoritism.',
+    skills: [
+      { id: 'meta_1', name: 'Confirmation Check', cost: 1, desc: 'Pause when an agreeable claim validates existing bias.', perk: 'Reflective metacognition prompt' },
+      { id: 'meta_2', name: 'Tribal Neutralizer', cost: 2, desc: 'Apply equal scrutiny to your favored political group.', perk: '+20% XP across Global League' },
+      { id: 'meta_3', name: 'Epistemic Humility', cost: 3, desc: 'Willingness to update beliefs based on verified empirical data.', perk: 'Unlocks UNESCO MIL Certificate of Honor' }
     ]
   }
 ];
 
-export default function SkillsTreePage() {
-  const [profile, setProfile] = useState({ xp: 120, unlockedSkillIds: ['ad_hom_shield', 'fear_dampener'] });
+export default function SkillsPage() {
+  const [profile, setProfile] = useState({ xp: 120, unlockedSkillIds: [] });
   const [rank, setRank] = useState({ level: 1, name: 'Novice Skeptic' });
-  const [selectedSkill, setSelectedSkill] = useState(null);
 
   useEffect(() => {
-    const p = getPlayerProfile();
-    if (!p.unlockedSkillIds) p.unlockedSkillIds = ['ad_hom_shield', 'fear_dampener'];
-    setProfile(p);
-    setRank(getRankFromXP(p.xp));
+    function refresh() {
+      const p = getPlayerProfile();
+      setProfile(p);
+      setRank(getRankFromXP(p.xp));
+    }
+    refresh();
+    window.addEventListener('verilens_profile_updated', refresh);
+    return () => window.removeEventListener('verilens_profile_updated', refresh);
   }, []);
 
-  // Calculate available skill points based on level
-  const totalEarnedPoints = Math.max(2, rank.level * 2);
+  const totalPointsEarned = rank.level;
   const spentPoints = (profile.unlockedSkillIds || []).length;
-  const availablePoints = Math.max(0, totalEarnedPoints - spentPoints);
+  const availablePoints = Math.max(0, totalPointsEarned - spentPoints);
 
   const handleUnlock = (skill) => {
-    if ((profile.unlockedSkillIds || []).includes(skill.id)) return;
-    if (availablePoints < skill.cost) {
-      alert('Not enough Skill Points! Level up by playing the Arena or Gauntlet to earn more points.');
-      return;
+    if (availablePoints >= skill.cost) {
+      unlockSkill(skill.id);
     }
-
-    const updatedSkills = [...(profile.unlockedSkillIds || []), skill.id];
-    const updatedProfile = { ...profile, unlockedSkillIds: updatedSkills };
-    setProfile(updatedProfile);
-    savePlayerProfile(updatedProfile);
   };
 
   return (
     <div className="container" style={{ maxWidth: '1000px', padding: '40px 20px' }}>
       {/* Top Banner */}
-      <div className="card" style={{ marginBottom: '28px', background: 'radial-gradient(ellipse at top, #1E1B4B 0%, #0F172A 80%)', border: '1.5px solid #8B5CF6' }}>
+      <div className="card" style={{ marginBottom: '28px', background: 'var(--bg-surface)', border: '1.5px solid var(--accent-purple)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#A78BFA', letterSpacing: '0.6px' }}>
-              🌳 UNESCO Cognitive Metacognition Tree
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.6px' }}>
+              UNESCO Cognitive Metacognition Tree
             </div>
-            <h1 style={{ fontSize: '28px', fontWeight: '900', color: '#FFFFFF', marginTop: '4px' }}>
+            <h1 style={{ fontSize: '28px', fontWeight: '900', color: 'var(--text-main)', marginTop: '4px' }}>
               Cognitive Mastery Skill Tree
             </h1>
             <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
@@ -102,9 +97,9 @@ export default function SkillsTreePage() {
             </p>
           </div>
 
-          <div style={{ background: 'rgba(0,0,0,0.4)', padding: '12px 20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
+          <div style={{ background: 'var(--bg-surface-elevated)', padding: '12px 20px', borderRadius: '12px', border: '1px solid var(--border-card)', textAlign: 'center' }}>
             <div style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '800' }}>Available Points</div>
-            <div style={{ fontSize: '26px', fontWeight: '900', color: '#FBBF24' }}>{availablePoints} ⚡</div>
+            <div style={{ fontSize: '26px', fontWeight: '900', color: 'var(--accent-amber)' }}>{availablePoints} PTS</div>
             <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Level {rank.level} ({spentPoints} Unlocked)</div>
           </div>
         </div>
@@ -115,8 +110,8 @@ export default function SkillsTreePage() {
         {SKILL_BRANCHES.map((branch) => (
           <div key={branch.id} className="card" style={{ borderTop: `4px solid ${branch.color}` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '24px' }}>{branch.icon}</span>
-              <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF' }}>{branch.name}</h2>
+              <span style={{ fontSize: '11px', fontWeight: '900', padding: '3px 8px', borderRadius: '6px', background: 'var(--bg-surface-elevated)', color: branch.color }}>{branch.icon}</span>
+              <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)' }}>{branch.name}</h2>
             </div>
             <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: '1.4' }}>
               {branch.description}
@@ -129,7 +124,7 @@ export default function SkillsTreePage() {
                   <div
                     key={skill.id}
                     style={{
-                      background: isUnlocked ? 'var(--bg-surface-elevated)' : 'rgba(0,0,0,0.25)',
+                      background: isUnlocked ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
                       border: `1.5px solid ${isUnlocked ? branch.color : 'var(--border-subtle)'}`,
                       borderRadius: '8px',
                       padding: '12px 14px',
@@ -141,15 +136,15 @@ export default function SkillsTreePage() {
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <strong style={{ fontSize: '13.5px', color: isUnlocked ? '#FFFFFF' : 'var(--text-muted)' }}>
-                          {isUnlocked ? '✓ ' : '🔒 '}{skill.name}
+                        <strong style={{ fontSize: '13.5px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>
+                          {isUnlocked ? '[ACTIVE] ' : '[LOCKED] '}{skill.name}
                         </strong>
                         <span style={{ fontSize: '10.5px', fontWeight: '700', padding: '1px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.08)', color: branch.color }}>
                           Tier {index + 1} ({skill.cost} pt)
                         </span>
                       </div>
                       <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginTop: '2px' }}>{skill.desc}</div>
-                      <div style={{ fontSize: '11px', color: '#FBBF24', fontWeight: '700', marginTop: '4px' }}>⚡ {skill.perk}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--accent-amber)', fontWeight: '700', marginTop: '4px' }}>PERK: {skill.perk}</div>
                     </div>
 
                     {!isUnlocked ? (
@@ -159,10 +154,12 @@ export default function SkillsTreePage() {
                         className="btn btn-primary"
                         style={{ padding: '6px 12px', fontSize: '11.5px', whiteSpace: 'nowrap' }}
                       >
-                        Unlock ({skill.cost} ⚡)
+                        Unlock ({skill.cost} pt)
                       </button>
                     ) : (
-                      <span style={{ fontSize: '11px', fontWeight: '800', color: '#10B981' }}>ACTIVE</span>
+                      <span style={{ fontSize: '11px', color: branch.color, fontWeight: '800', padding: '4px 8px', background: 'var(--bg-surface)', borderRadius: '4px' }}>
+                        MASTERED
+                      </span>
                     )}
                   </div>
                 );
@@ -170,12 +167,6 @@ export default function SkillsTreePage() {
             </div>
           </div>
         ))}
-      </div>
-
-      <div style={{ marginTop: '28px', textAlign: 'center' }}>
-        <Link href="/arena" className="btn btn-amber" style={{ padding: '10px 24px' }}>
-          🎮 Test Perks in the Arena ➔
-        </Link>
       </div>
     </div>
   );

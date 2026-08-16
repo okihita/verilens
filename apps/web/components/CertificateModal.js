@@ -13,8 +13,8 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
 
   const handleCopyShare = () => {
     const text = lang === 'id'
-      ? `Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi ${accuracy}% dan ${score} XP! Uji kemampuan literasi media Anda: https://web-six-lac-47.vercel.app #UNESCO #LiterasiMedia #VeriLens2026`
-      : `I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with ${accuracy}% accuracy and ${score} XP! Test yourself: https://web-six-lac-47.vercel.app #UNESCO #MediaLiteracy #VeriLens2026`;
+      ? `Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi ${accuracy}% dan ${score} XP! Uji kemampuan literasi media Anda: https://verilens.okihita.dev #UNESCO #LiterasiMedia #VeriLens2026`
+      : `I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with ${accuracy}% accuracy and ${score} XP! Test yourself: https://verilens.okihita.dev #UNESCO #MediaLiteracy #VeriLens2026`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -26,33 +26,33 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
-      <div style={{ background: '#0B1120', border: '2px solid #F59E0B', borderRadius: '16px', maxWidth: '780px', width: '100%', padding: '24px 16px', position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)', maxHeight: '90vh', overflowY: 'auto' }}>
+      <div style={{ background: 'var(--bg-surface)', border: '2px solid var(--accent-amber)', borderRadius: '16px', maxWidth: '780px', width: '100%', padding: '24px 16px', position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)', maxHeight: '90vh', overflowY: 'auto' }}>
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          style={{ position: 'absolute', top: '14px', right: '14px', background: 'none', border: 'none', color: '#94A3B8', fontSize: '20px', cursor: 'pointer' }}
+          style={{ position: 'absolute', top: '14px', right: '14px', background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '20px', cursor: 'pointer' }}
         >
           ✕
         </button>
 
         {/* Certificate Container */}
-        <div id="printable-certificate" style={{ border: '2px solid rgba(245, 158, 11, 0.4)', borderRadius: '12px', padding: '24px 16px', textAlign: 'center', background: 'radial-gradient(ellipse at center, #131E35 0%, #080C16 100%)', position: 'relative' }}>
+        <div id="printable-certificate" style={{ border: '2px solid rgba(245, 158, 11, 0.4)', borderRadius: '12px', padding: '24px 16px', textAlign: 'center', background: 'var(--bg-surface-elevated)', position: 'relative' }}>
           
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-            <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', color: '#F59E0B' }}>
+            <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', color: 'var(--accent-amber)' }}>
               {lang === 'id' ? 'HACKATHON PEMUDA MIL GLOBAL UNESCO 2026' : 'UNESCO GLOBAL MIL YOUTH HACKATHON 2026'}
             </span>
           </div>
 
-          <h2 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: '#FFFFFF', letterSpacing: '-0.5px', marginBottom: '2px' }}>
+          <h2 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: 'var(--text-main)', letterSpacing: '-0.5px', marginBottom: '2px' }}>
             {lang === 'id' ? 'Sertifikat Kekebalan Kognitif' : 'Certificate of Cognitive Immunity'}
           </h2>
-          <div style={{ fontSize: '12px', color: '#94A3B8', marginBottom: '16px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px' }}>
             {lang === 'id' ? 'Sertifikasi Literasi Media & Informasi Resmi • Kerangka SIFT' : 'Official Media & Information Literacy Certification • SIFT Framework'}
           </div>
 
-          <div style={{ fontSize: '11.5px', color: '#CBD5E1', marginBottom: '2px' }}>
+          <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginBottom: '2px' }}>
             {lang === 'id' ? 'Dengan ini menerangkan bahwa' : 'This certifies that'}
           </div>
           
@@ -61,10 +61,10 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            style={{ fontSize: 'clamp(20px, 5vw, 28px)', fontWeight: '900', color: '#FBBF24', textAlign: 'center', background: 'transparent', border: 'none', borderBottom: '2px dashed rgba(245, 158, 11, 0.5)', outline: 'none', width: '90%', margin: '2px auto 14px', fontFamily: 'serif' }}
+            style={{ fontSize: 'clamp(20px, 5vw, 28px)', fontWeight: '900', color: 'var(--accent-amber)', textAlign: 'center', background: 'transparent', border: 'none', borderBottom: '2px dashed rgba(245, 158, 11, 0.5)', outline: 'none', width: '90%', margin: '2px auto 14px', fontFamily: 'serif' }}
           />
 
-          <p style={{ fontSize: '12.5px', color: '#E2E8F0', maxWidth: '580px', margin: '0 auto 18px', lineHeight: '1.5' }}>
+          <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', maxWidth: '580px', margin: '0 auto 18px', lineHeight: '1.5' }}>
             {lang === 'id'
               ? <>Telah berhasil menyelesaikan evaluasi <strong>{mode || 'Arena Literasi Media'}</strong>, membuktikan kompetensi kritis dalam mendeteksi <strong>sesat pikir retorika, bias kognitif, manipulasi emosional, dan jebakan finansial digital</strong>.</>
               : <>Has successfully completed the <strong>{mode || 'Media Literacy Arena'}</strong> assessment, demonstrating competence in detecting <strong>rhetorical fallacies, cognitive biases, and artificial urgency scams</strong>.</>
@@ -72,30 +72,30 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
           </p>
 
           {/* Certificate Metrics Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '12px', maxWidth: '500px', margin: '0 auto 16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '8px', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '12px', maxWidth: '500px', margin: '0 auto 16px' }}>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
                 {lang === 'id' ? 'Skor Poin' : 'Score'}
               </div>
-              <div style={{ fontSize: '16px', fontWeight: '900', color: '#FFFFFF' }}>{score} XP</div>
+              <div style={{ fontSize: '16px', fontWeight: '900', color: 'var(--text-main)' }}>{score} XP</div>
             </div>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
                 {lang === 'id' ? 'Akurasi' : 'Accuracy'}
               </div>
               <div style={{ fontSize: '16px', fontWeight: '900', color: '#10B981' }}>{accuracy}%</div>
             </div>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
                 {lang === 'id' ? 'Diterbitkan' : 'Issued'}
               </div>
-              <div style={{ fontSize: '12.5px', fontWeight: '700', color: '#FFFFFF', marginTop: '2px' }}>{dateStr}</div>
+              <div style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--text-main)', marginTop: '2px' }}>{dateStr}</div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px', maxWidth: '500px', margin: '0 auto', fontSize: '10.5px', color: '#64748B', flexWrap: 'wrap', gap: '6px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-subtle)', paddingTop: '10px', maxWidth: '500px', margin: '0 auto', fontSize: '10.5px', color: 'var(--text-muted)', flexWrap: 'wrap', gap: '6px' }}>
             <span>ID: {certId}</span>
-            <span style={{ color: '#F59E0B', fontWeight: '700' }}>
+            <span style={{ color: 'var(--accent-amber)', fontWeight: '700' }}>
               {lang === 'id' ? 'Terverifikasi oleh VeriLens Engine' : 'Verified by VeriLens Engine'}
             </span>
           </div>

@@ -72,13 +72,29 @@ html, body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Executive Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
+/* Executive Typography Hierarchy & Dynamic Theme Inheritance */
+h1, h2, h3, h4, h5, h6, blockquote {
   font-family: var(--font-sans);
   letter-spacing: -0.03em;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   font-weight: 800;
   line-height: 1.2;
+  color: var(--text-main);
+}
+
+p, span, li, dt, dd {
+  color: inherit;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-card);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .mono-tag {

@@ -12,17 +12,17 @@ export default function PrivacyPage() {
         <Link href="/" style={{ fontSize: '13px', color: 'var(--accent-blue-light)', display: 'inline-flex', alignItems: 'center', gap: '4px', marginBottom: '16px' }}>
           ← Back to VeriLens
         </Link>
-        <h1 style={{ fontSize: '34px', fontWeight: '900', color: '#FFFFFF', marginBottom: '8px' }}>
+        <h1 style={{ fontSize: '34px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '8px' }}>
           Privacy Policy
         </h1>
         <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
-          Last Updated: August 15, 2026 • UNESCO Global MIL Youth Hackathon Edition
+          Last Updated: August 16, 2026 • UNESCO Global MIL Youth Hackathon Edition
         </div>
       </div>
 
       <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '24px', lineHeight: '1.7', fontSize: '14px', color: 'var(--text-secondary)' }}>
         <section>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
             1. Core Privacy Commitment
           </h2>
           <p>
@@ -31,12 +31,12 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
             2. What Data We Process & How It Is Used
           </h2>
           <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <li>
-              <strong>Website Content (In-Memory Processing):</strong> When you view an article or highlight a sentence and select <em>"⚡ SIFT & Verify with VeriLens"</em>, the text is analyzed in temporary browser memory. Client-side heuristic matching runs 100% locally on your machine.
+              <strong>Website Content (In-Memory Processing):</strong> When you view an article or highlight a sentence and select <em>"SIFT & Verify with VeriLens"</em>, the text is analyzed in temporary browser memory. Client-side heuristic matching runs 100% locally on your machine.
             </li>
             <li>
               <strong>AI Deep Scan (Gemini API):</strong> If you click <em>"Run Gemini AI Deep Scan"</em>, the selected article excerpt is transmitted via HTTPS directly to Google's official Gemini Generative Language API endpoint. No personally identifiable information (PII) is attached to this request.
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
             3. Data Sharing & Third Parties
           </h2>
           <p>
@@ -57,16 +57,16 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
             4. User Controls & Data Deletion
           </h2>
           <p>
-            You have full control over your data. You can clear your local Cognitive Gym streaks and saved preferences at any time by opening the extension <strong>Settings (⚙️)</strong> and clicking <em>"Reset Cognitive Gym Stats"</em>, or by uninstalling the extension.
+            You have full control over your data. You can clear your local Cognitive Gym streaks and saved preferences at any time by opening the extension <strong>Settings</strong> and clicking <em>"Reset Cognitive Gym Stats"</em>, or by uninstalling the extension.
           </p>
         </section>
 
         <section>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
             5. Contact & Open Source Verification
           </h2>
           <p>

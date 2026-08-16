@@ -6,28 +6,27 @@ import { scenarios } from '@verilens/shared';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
 import CertificateModal from '../../../components/CertificateModal';
 
-const scenariosData = { scenarios };
-
 export default function ArenaPage() {
-  const [gameStarted, setGameStarted] = useState(false);
   const [currentRound, setCurrentRound] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [showFeedback, setShowFeedback] = useState(false);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [showCertificate, setShowCertificate] = useState(false);
 
   useEffect(() => {
-    // Pick 5 random scenarios from dataset
-    const shuffled = [...scenariosData.scenarios].sort(() => 0.5 - Math.random()).slice(0, 5);
-    setShuffledQuestions(shuffled);
+    if (scenarios && scenarios.length > 0) {
+      const shuffled = [...scenarios].sort(() => 0.5 - Math.random()).slice(0, 5);
+      setShuffledQuestions(shuffled);
+    }
   }, []);
 
   const handleStartGame = () => {
-    const shuffled = [...scenariosData.scenarios].sort(() => 0.5 - Math.random()).slice(0, 5);
+    const shuffled = [...scenarios].sort(() => 0.5 - Math.random()).slice(0, 5);
     setShuffledQuestions(shuffled);
     setCurrentRound(0);
     setScore(0);
@@ -39,33 +38,39 @@ export default function ArenaPage() {
     setGameStarted(true);
   };
 
-  const handleOptionSelect = (optionId) => {
+  const handleSelectOption = (optionId) => {
     if (showFeedback) return;
+
     setSelectedOption(optionId);
     setShowFeedback(true);
 
-    const currentScenario = shuffledQuestions[currentRound];
-    const isCorrect = optionId === currentScenario.correct_fallacy_id;
+    const scenario = shuffledQuestions[currentRound];
+    const isCorrect = optionId === scenario.correct_fallacy_id;
 
     if (isCorrect) {
       const newStreak = streak + 1;
+      const roundScore = 100 + (newStreak * 25);
       setStreak(newStreak);
       if (newStreak > maxStreak) setMaxStreak(newStreak);
-      const pointsEarned = 100 + (newStreak * 25);
-      setScore(score + pointsEarned);
+      setScore((prev) => prev + roundScore);
+      addPlayerXP(roundScore);
+
+      if (newStreak >= 3) {
+        unlockBadge('streak_master');
+      }
     } else {
       setStreak(0);
     }
   };
 
   const handleNextRound = () => {
-    setSelectedOption(null);
-    setShowFeedback(false);
-
-    if (currentRound + 1 >= shuffledQuestions.length) {
-      setGameFinished(true);
+    if (currentRound + 1 < shuffledQuestions.length) {
+      setCurrentRound((prev) => prev + 1);
+      setSelectedOption(null);
+      setShowFeedback(false);
     } else {
-      setCurrentRound(currentRound + 1);
+      setGameFinished(true);
+      unlockBadge('first_shield');
     }
   };
 
@@ -73,11 +78,11 @@ export default function ArenaPage() {
     return (
       <div className="container" style={{ maxWidth: '800px', padding: '60px 20px', textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '16px' }}>
-          <span>🎮 UNESCO Cognitive Gym</span>
+          <span>UNESCO Cognitive Gym</span>
         </div>
 
-        <h1 style={{ fontSize: '38px', fontWeight: '900', color: '#FFFFFF', marginBottom: '14px' }}>
-          The "Bias Spotter" Arena
+        <h1 style={{ fontSize: '38px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '14px' }}>
+          The Bias Spotter Arena
         </h1>
 
         <p style={{ fontSize: '17px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '32px' }}>
@@ -85,16 +90,16 @@ export default function ArenaPage() {
         </p>
 
         <div className="card" style={{ maxWidth: '520px', margin: '0 auto 32px', textAlign: 'left' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '12px' }}>🎯 Arena Rules:</h3>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '12px' }}>Arena Rules:</h3>
           <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
             <li><strong>5 Micro-Rounds:</strong> One viral post or claim per round.</li>
-            <li><strong>Streak Multipliers:</strong> Correct answers in a row boost your XP (🔥 1x, 2x, 3x).</li>
+            <li><strong>Streak Multipliers:</strong> Correct answers in a row boost your XP (1x, 2x, 3x).</li>
             <li><strong>Pedagogical Feedback:</strong> Learn the UNESCO SIFT move for every scenario.</li>
           </ul>
         </div>
 
         <button onClick={handleStartGame} className="btn btn-amber" style={{ padding: '14px 36px', fontSize: '16px' }}>
-          🚀 Enter the Arena
+          Enter the Arena
         </button>
       </div>
     );
@@ -116,8 +121,8 @@ export default function ArenaPage() {
     return (
       <div className="container" style={{ maxWidth: '680px', padding: '60px 20px', textAlign: 'center' }}>
         <div className="card" style={{ padding: '40px 32px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '12px' }}>🏆</div>
-          <h2 style={{ fontSize: '28px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Arena Challenge Complete!</h2>
+          <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-amber)', marginBottom: '8px' }}>ARENA FINISHED</div>
+          <h2 style={{ fontSize: '28px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>Arena Challenge Complete!</h2>
           <div style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
             UNESCO Media & Information Literacy Assessment
           </div>
@@ -128,11 +133,11 @@ export default function ArenaPage() {
 
             <div style={{ display: 'flex', justifyContent: 'space-around', borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
               <div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF' }}>{score} XP</div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)' }}>{score} XP</div>
                 <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Total Score</div>
               </div>
               <div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--accent-amber)' }}>🔥 {maxStreak}</div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--accent-amber)' }}>{maxStreak}x</div>
                 <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Max Streak</div>
               </div>
               <div>
@@ -144,13 +149,13 @@ export default function ArenaPage() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => setShowCertificate(true)} className="btn btn-amber">
-              📜 Claim UNESCO Certificate
+              Claim UNESCO Certificate
             </button>
             <button onClick={handleStartGame} className="btn btn-primary">
-              🔄 Play Another Round
+              Play Another Round
             </button>
             <Link href="/sandbox" className="btn btn-outline">
-              🧪 Test Live Articles
+              Test Live Articles
             </Link>
           </div>
         </div>
@@ -179,15 +184,15 @@ export default function ArenaPage() {
           <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--accent-amber)' }}>
             Round {currentRound + 1} of {shuffledQuestions.length}
           </span>
-          <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF' }}>Spot the Weaponized Bias</h2>
+          <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)' }}>Spot the Weaponized Bias</h2>
         </div>
 
         <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
           <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', color: 'var(--accent-amber)' }}>
-            🔥 Streak: {streak}x
+            Streak: {streak}x
           </div>
           <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', color: 'var(--accent-emerald-light)' }}>
-            ⭐ {score} XP
+            {score} XP
           </div>
         </div>
       </div>
@@ -201,11 +206,11 @@ export default function ArenaPage() {
       <div className="card" style={{ marginBottom: '24px', borderLeft: '4px solid var(--accent-amber)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
           <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-            📱 Medium: {scenario.platform}
+            Medium: {scenario.platform}
           </span>
         </div>
 
-        <blockquote style={{ fontSize: '17px', fontWeight: '600', color: '#FFFFFF', lineHeight: '1.5', margin: '8px 0 14px', fontStyle: 'italic' }}>
+        <blockquote style={{ fontSize: '17px', fontWeight: '600', color: 'var(--text-main)', lineHeight: '1.5', margin: '8px 0 14px', fontStyle: 'italic' }}>
           {scenario.headline}
         </blockquote>
 
@@ -222,7 +227,7 @@ export default function ArenaPage() {
             borderRadius: 'var(--radius-md)',
             border: '1.5px solid var(--border-card)',
             background: 'var(--bg-surface)',
-            color: '#FFFFFF',
+            color: 'var(--text-main)',
             fontSize: '14px',
             fontWeight: '700',
             cursor: isAnswered ? 'default' : 'pointer',
@@ -232,24 +237,22 @@ export default function ArenaPage() {
 
           if (isAnswered) {
             if (opt.id === scenario.correct_fallacy_id) {
-              btnStyle.borderColor = '#10B981';
               btnStyle.background = 'rgba(16, 185, 129, 0.15)';
-              btnStyle.color = '#34D399';
+              btnStyle.borderColor = '#10B981';
+              btnStyle.color = 'var(--accent-emerald-light)';
             } else if (opt.id === selectedOption) {
-              btnStyle.borderColor = '#EF4444';
               btnStyle.background = 'rgba(239, 68, 68, 0.15)';
-              btnStyle.color = '#F87171';
-            } else {
-              btnStyle.opacity = 0.5;
+              btnStyle.borderColor = '#EF4444';
+              btnStyle.color = '#EF4444';
             }
           }
 
           return (
             <button
               key={opt.id}
-              onClick={() => handleOptionSelect(opt.id)}
-              disabled={isAnswered}
+              onClick={() => handleSelectOption(opt.id)}
               style={btnStyle}
+              disabled={isAnswered}
             >
               {opt.name}
             </button>
@@ -257,26 +260,34 @@ export default function ArenaPage() {
         })}
       </div>
 
-      {/* Feedback Modal / Card */}
+      {/* Pedagogical Feedback Section */}
       {showFeedback && (
-        <div className="card" style={{ background: isCorrect ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)', borderColor: isCorrect ? '#10B981' : '#EF4444', animation: 'fadeIn 0.3s ease' }}>
+        <div className="card" style={{ background: isCorrect ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)', border: `1.5px solid ${isCorrect ? '#10B981' : '#EF4444'}`, marginBottom: '24px', animation: 'fadeIn 0.3s ease' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span style={{ fontSize: '20px' }}>{isCorrect ? '✅' : '❌'}</span>
-            <h3 style={{ fontSize: '16px', fontWeight: '800', color: isCorrect ? '#34D399' : '#F87171' }}>
-              {isCorrect ? 'Spot On! +' + (100 + streak * 25) + ' XP' : 'Not Quite! Correct: ' + scenario.correct_fallacy_name}
-            </h3>
+            <span style={{ fontSize: '13px', fontWeight: '900', color: isCorrect ? 'var(--accent-emerald-light)' : '#EF4444' }}>
+              {isCorrect ? 'CORRECT SPOT' : 'MANIPULATION MISSED'}
+            </span>
           </div>
 
-          <p style={{ fontSize: '13.5px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '12px' }}>
+          <h3 style={{ fontSize: '17px', fontWeight: '800', color: isCorrect ? 'var(--accent-emerald-light)' : '#EF4444', marginBottom: '6px' }}>
+            {scenario.correct_fallacy_name}
+          </h3>
+
+          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '14px' }}>
             {scenario.explanation}
           </p>
 
-          <div style={{ background: 'rgba(0,0,0,0.25)', padding: '10px 14px', borderRadius: 'var(--radius-sm)', fontSize: '12.5px', color: '#93C5FD', marginBottom: '16px' }}>
-            <strong>🧭 UNESCO SIFT Move:</strong> {scenario.sift_recommendation}
+          <div style={{ background: 'var(--bg-surface-elevated)', padding: '12px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginBottom: '18px' }}>
+            <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', marginBottom: '2px' }}>
+              UNESCO SIFT Lateral Move:
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+              {scenario.sift_recommendation}
+            </div>
           </div>
 
-          <button onClick={handleNextRound} className="btn btn-primary" style={{ width: '100%', padding: '10px' }}>
-            {currentRound + 1 >= shuffledQuestions.length ? 'View Final Assessment ➔' : 'Next Scenario ➔'}
+          <button onClick={handleNextRound} className="btn btn-primary" style={{ width: '100%', padding: '12px' }}>
+            {currentRound + 1 < shuffledQuestions.length ? 'Next Scenario ➔' : 'View Final Evaluation ➔'}
           </button>
         </div>
       )}

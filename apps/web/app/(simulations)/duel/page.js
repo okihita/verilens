@@ -1,81 +1,83 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { scenarios } from '@verilens/shared';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
 
-const scenariosData = { scenarios };
-
-export default function CognitiveDuelPage() {
+export default function DuelPage() {
+  const [deck, setDeck] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [p1Hp, setP1Hp] = useState(100);
   const [p2Hp, setP2Hp] = useState(100);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [winner, setWinner] = useState(null);
   const [roundFeedback, setRoundFeedback] = useState(null);
 
-  const scenario = scenariosData.scenarios[currentIndex % scenariosData.scenarios.length];
+  useEffect(() => {
+    if (scenarios && scenarios.length > 0) {
+      setDeck([...scenarios].sort(() => 0.5 - Math.random()));
+    }
+  }, []);
 
-  const handlePlayerChoice = (playerNumber, choiceId) => {
-    if (winner) return;
+  const handlePlayerAnswer = (player, selectedOptionId) => {
+    if (winner || roundFeedback) return;
 
-    const isCorrect = choiceId === scenario.correct_fallacy_id;
+    const currentScenario = deck[currentIndex % deck.length];
+    const isCorrect = selectedOptionId === currentScenario.correct_fallacy_id;
 
     if (isCorrect) {
-      if (playerNumber === 1) {
-        const nextP2Hp = Math.max(0, p2Hp - 25);
-        setP2Hp(nextP2Hp);
-        setRoundFeedback(`⚡ Player 1 struck first! Correct: ${scenario.correct_fallacy_name}`);
-        if (nextP2Hp === 0) {
-          setWinner('Player 1 (Blue)');
+      if (player === 1) {
+        const nextHp = Math.max(0, p2Hp - 25);
+        setP2Hp(nextHp);
+        setRoundFeedback(`Player 1 struck Player 2! (${currentScenario.correct_fallacy_name})`);
+        if (nextHp === 0) {
+          setWinner('Player 1');
           addPlayerXP(250);
           unlockBadge('first_shield');
         }
       } else {
-        const nextP1Hp = Math.max(0, p1Hp - 25);
-        setP1Hp(nextP1Hp);
-        setRoundFeedback(`⚡ Player 2 struck first! Correct: ${scenario.correct_fallacy_name}`);
-        if (nextP1Hp === 0) {
-          setWinner('Player 2 (Red)');
+        const nextHp = Math.max(0, p1Hp - 25);
+        setP1Hp(nextHp);
+        setRoundFeedback(`Player 2 struck Player 1! (${currentScenario.correct_fallacy_name})`);
+        if (nextHp === 0) {
+          setWinner('Player 2');
           addPlayerXP(250);
           unlockBadge('first_shield');
         }
       }
-      setTimeout(() => {
-        setRoundFeedback(null);
-        setCurrentIndex(prev => prev + 1);
-      }, 1200);
     } else {
-      if (playerNumber === 1) {
-        const nextP1Hp = Math.max(0, p1Hp - 15);
-        setP1Hp(nextP1Hp);
-        setRoundFeedback('❌ Player 1 misfired! Recoil penalty (-15 HP)');
-        if (nextP1Hp === 0) setWinner('Player 2 (Red)');
-      } else {
-        const nextP2Hp = Math.max(0, p2Hp - 15);
-        setP2Hp(nextP2Hp);
-        setRoundFeedback('❌ Player 2 misfired! Recoil penalty (-15 HP)');
-        if (nextP2Hp === 0) setWinner('Player 1 (Blue)');
-      }
+      setRoundFeedback(`Wrong guess by Player ${player}!`);
     }
+
+    setTimeout(() => {
+      setRoundFeedback(null);
+      setCurrentIndex((prev) => prev + 1);
+    }, 1200);
   };
 
   const restartDuel = () => {
     setP1Hp(100);
     setP2Hp(100);
-    setCurrentIndex(0);
     setWinner(null);
+    setCurrentIndex(0);
     setRoundFeedback(null);
+    setDeck([...scenarios].sort(() => 0.5 - Math.random()));
   };
+
+  if (deck.length === 0) {
+    return <div className="container" style={{ padding: '60px 20px', textAlign: 'center' }}>Loading duel arena...</div>;
+  }
+
+  const scenario = deck[currentIndex % deck.length];
 
   return (
     <div className="container" style={{ maxWidth: '1040px', padding: '30px 16px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '20px', fontSize: '11px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '6px' }}>
-          <span>⚔️ 2-Player Local Battle Arena</span>
+          <span>2-Player Local Battle Arena</span>
         </div>
-        <h1 style={{ fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '900', color: '#FFFFFF' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '900', color: 'var(--text-main)' }}>
           Cognitive 1v1 Duel
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px' }}>
@@ -83,15 +85,15 @@ export default function CognitiveDuelPage() {
         </p>
       </div>
 
-      {/* Health Bars HUD (Fluid for mobile) */}
+      {/* Health Bars HUD */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px', alignItems: 'center', marginBottom: '20px' }}>
         {/* Player 1 Health */}
         <div className="card" style={{ padding: '12px 14px', borderLeft: '4px solid #3B82F6' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
             <strong style={{ color: '#60A5FA', fontSize: '13px' }}>Player 1 (Blue)</strong>
-            <span style={{ fontWeight: '900', color: '#FFFFFF', fontSize: '13px' }}>{p1Hp} / 100 HP</span>
+            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '13px' }}>{p1Hp} / 100 HP</span>
           </div>
-          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.4)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p1Hp}%`, height: '100%', background: '#3B82F6', transition: 'width 0.3s ease' }}></div>
           </div>
         </div>
@@ -99,10 +101,10 @@ export default function CognitiveDuelPage() {
         {/* Player 2 Health */}
         <div className="card" style={{ padding: '12px 14px', borderRight: '4px solid #EF4444', textAlign: 'right' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-            <span style={{ fontWeight: '900', color: '#FFFFFF', fontSize: '13px' }}>{p2Hp} / 100 HP</span>
+            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '13px' }}>{p2Hp} / 100 HP</span>
             <strong style={{ color: '#F87171', fontSize: '13px' }}>Player 2 (Red)</strong>
           </div>
-          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.4)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p2Hp}%`, height: '100%', background: '#EF4444', transition: 'width 0.3s ease', marginLeft: 'auto' }}></div>
           </div>
         </div>
@@ -113,12 +115,12 @@ export default function CognitiveDuelPage() {
         <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
           Target Headline #{currentIndex + 1}
         </span>
-        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '800', color: '#FFFFFF', lineHeight: '1.4', margin: '8px 0' }}>
+        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '800', color: 'var(--text-main)', lineHeight: '1.4', margin: '8px 0' }}>
           {scenario.headline}
         </blockquote>
 
         {roundFeedback && (
-          <div style={{ fontSize: '13px', fontWeight: '800', color: '#FBBF24', marginTop: '6px', animation: 'fadeIn 0.2s ease' }}>
+          <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-amber)', marginTop: '6px', animation: 'fadeIn 0.2s ease' }}>
             {roundFeedback}
           </div>
         )}
@@ -127,8 +129,8 @@ export default function CognitiveDuelPage() {
       {/* Winner Screen or Split Control Panels */}
       {winner ? (
         <div className="card" style={{ textAlign: 'center', padding: '28px', borderColor: 'var(--accent-amber)' }}>
-          <div style={{ fontSize: '42px', marginBottom: '8px' }}>👑</div>
-          <h2 style={{ fontSize: 'clamp(22px, 5vw, 26px)', fontWeight: '900', color: '#FFFFFF', marginBottom: '6px' }}>
+          <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-amber)', marginBottom: '8px' }}>VICTORY</div>
+          <h2 style={{ fontSize: 'clamp(22px, 5vw, 26px)', fontWeight: '900', color: 'var(--text-main)', marginBottom: '6px' }}>
             {winner} Wins the Duel!
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginBottom: '18px' }}>
@@ -136,10 +138,10 @@ export default function CognitiveDuelPage() {
           </p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
             <button onClick={restartDuel} className="btn btn-amber">
-              🔄 Rematch
+              Rematch
             </button>
             <Link href="/arena" className="btn btn-primary">
-              🎮 Solo Arena
+              Solo Arena
             </Link>
           </div>
         </div>
@@ -148,17 +150,18 @@ export default function CognitiveDuelPage() {
           {/* Player 1 Choices */}
           <div className="card" style={{ borderColor: '#3B82F6' }}>
             <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#60A5FA', marginBottom: '10px' }}>
-              👤 Player 1 (Blue)
+              PLAYER 1 (LEFT / A-D)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {scenario.options.map((opt) => (
+              {scenario.options.map((opt, i) => (
                 <button
-                  key={opt.id}
-                  onClick={() => handlePlayerChoice(1, opt.id)}
+                  key={`p1-${opt.id}`}
+                  onClick={() => handlePlayerAnswer(1, opt.id)}
                   className="btn btn-outline"
-                  style={{ padding: '10px 12px', fontSize: '12.5px', justifyContent: 'flex-start', textAlign: 'left' }}
+                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '12.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
                 >
-                  ⚡ {opt.name}
+                  <span>{opt.name}</span>
+                  <span style={{ color: 'var(--accent-blue)', fontWeight: '800' }}>[{['Q', 'W', 'E', 'R'][i]}]</span>
                 </button>
               ))}
             </div>
@@ -166,18 +169,19 @@ export default function CognitiveDuelPage() {
 
           {/* Player 2 Choices */}
           <div className="card" style={{ borderColor: '#EF4444' }}>
-            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#F87171', marginBottom: '10px', textAlign: 'right' }}>
-              👤 Player 2 (Red)
+            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#F87171', marginBottom: '10px' }}>
+              PLAYER 2 (RIGHT / U-P)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {scenario.options.map((opt) => (
+              {scenario.options.map((opt, i) => (
                 <button
-                  key={opt.id}
-                  onClick={() => handlePlayerChoice(2, opt.id)}
+                  key={`p2-${opt.id}`}
+                  onClick={() => handlePlayerAnswer(2, opt.id)}
                   className="btn btn-outline"
-                  style={{ padding: '10px 12px', fontSize: '12.5px', justifyContent: 'flex-end', textAlign: 'right' }}
+                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '12.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
                 >
-                  {opt.name} ⚡
+                  <span>{opt.name}</span>
+                  <span style={{ color: '#EF4444', fontWeight: '800' }}>[{['U', 'I', 'O', 'P'][i]}]</span>
                 </button>
               ))}
             </div>

@@ -54,11 +54,11 @@ export default function ProfilePage() {
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: rank.color, letterSpacing: '0.6px' }}>
                 {lang === 'id' ? `Peringkat MIL UNESCO • Tingkat ${rank.level}` : `UNESCO MIL Rank • Level ${rank.level}`}
               </div>
-              <h1 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: '#FFFFFF', marginTop: '2px' }}>
+              <h1 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: 'var(--text-main)', marginTop: '2px' }}>
                 {rank.name}
               </h1>
               <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
-                {lang === 'id' ? 'Total Poin: ' : 'Total Score: '}<strong style={{ color: '#FFFFFF' }}>{profile.xp} XP</strong> • {lang === 'id' ? `Peringkat berikutnya di ${nextRank.minXP} XP` : `Next rank at ${nextRank.minXP} XP`}
+                {lang === 'id' ? 'Total Poin: ' : 'Total Score: '}<strong style={{ color: 'var(--text-main)' }}>{profile.xp} XP</strong> • {lang === 'id' ? `Peringkat berikutnya di ${nextRank.minXP} XP` : `Next rank at ${nextRank.minXP} XP`}
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function ProfilePage() {
               <span>{lang === 'id' ? 'TINGKAT' : 'LVL'} {rank.level}</span>
               <span>{profile.xp} / {nextRank.minXP} XP</span>
             </div>
-            <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.4)', borderRadius: '4px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', overflow: 'hidden' }}>
               <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color, transition: 'width 0.4s ease' }}></div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function ProfilePage() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginBottom: '28px' }}>
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
           <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-amber)', marginBottom: '2px' }}>XP</div>
-          <div style={{ fontSize: '20px', fontWeight: '900', color: '#FFFFFF' }}>{profile.xp}</div>
+          <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--text-main)' }}>{profile.xp}</div>
           <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Total Poin XP' : 'Total XP Earned'}
           </div>
@@ -95,8 +95,8 @@ export default function ProfilePage() {
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
-          <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-blue-light)', marginBottom: '2px' }}>12</div>
-          <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>{profile.cardsFlipped.length}/12</div>
+          <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-blue-light)', marginBottom: '2px' }}>24</div>
+          <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>{profile.cardsFlipped.length}/24</div>
           <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Kartu Dikuasai' : 'Cards Mastered'}
           </div>
@@ -114,7 +114,7 @@ export default function ProfilePage() {
       {/* Achievement Badges Section */}
       <div style={{ marginBottom: '32px' }}>
         <div style={{ marginBottom: '14px' }}>
-          <h2 style={{ fontSize: 'clamp(18px, 4vw, 20px)', fontWeight: '800', color: '#FFFFFF' }}>
+          <h2 style={{ fontSize: 'clamp(18px, 4vw, 20px)', fontWeight: '800', color: 'var(--text-main)' }}>
             {lang === 'id' ? 'Lencana Prestasi Kognitif' : 'Cognitive Achievement Badges'}
           </h2>
           <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
@@ -140,7 +140,7 @@ export default function ProfilePage() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '12px',
-                  background: isUnlocked ? 'var(--bg-surface)' : 'rgba(16, 23, 38, 0.4)',
+                  background: isUnlocked ? 'var(--bg-surface)' : 'var(--bg-surface-elevated)',
                   borderColor: isUnlocked ? 'var(--accent-amber)' : 'var(--border-subtle)',
                   opacity: isUnlocked ? 1 : 0.6
                 }}
@@ -150,7 +150,7 @@ export default function ProfilePage() {
                 </div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <strong style={{ fontSize: '13px', color: isUnlocked ? '#FFFFFF' : 'var(--text-muted)' }}>{badgeName}</strong>
+                    <strong style={{ fontSize: '13px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>{badgeName}</strong>
                     {isUnlocked && <span style={{ fontSize: '10px', color: 'var(--accent-amber)', fontWeight: '800' }}>+{b.xpReward} XP</span>}
                   </div>
                   <p style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.3' }}>
@@ -166,7 +166,7 @@ export default function ProfilePage() {
       {/* Quick Play CTAs */}
       <div className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
         <div>
-          <h3 style={{ fontSize: '15px', fontWeight: '800', color: '#FFFFFF' }}>
+          <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
             {lang === 'id' ? 'Siap naik ke peringkat berikutnya?' : 'Ready to climb to the next rank?'}
           </h3>
           <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>

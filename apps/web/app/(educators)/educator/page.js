@@ -6,36 +6,36 @@ import { useTranslation } from '../../../lib/i18n';
 
 const LESSON_MODULES = [
   {
-    id: 'mod1',
-    code: 'UNESCO MIL Module 1',
-    title: 'Dissecting Algorithmic Outrage & Rhetorical Fallacies',
-    duration: '45 Minutes',
-    targetGrade: 'Secondary & Higher Education',
-    overview: 'Students deconstruct how engagement algorithms amplify high-arousal emotions (fear, anger) and analyze 12 rhetorical fallacy archetypes.',
-    competency: 'Understanding media functions, framing, and cognitive biases.',
-    classroomActivity: 'Split the class into Team Alpha and Team Beta. Run the Classroom Showdown mode on the projector with 30-second debate intervals.',
+    id: 'm1',
+    code: 'UNESCO-MIL-101',
+    title: 'Deconstructing Algorithmic Ragebait & Ad Hominem',
+    duration: '45 Mins',
+    targetGrade: 'High School & Higher Ed',
+    competency: 'MIL Law 3: Evaluation of Information & Ethical Civic Engagement',
+    overview: 'Teaches students how digital platforms algorithmically amplify out-group moral outrage. Focuses on identifying personal character smears versus factual empirical evidence.',
+    classroomActivity: 'Run Spotter Arena Round 1 & 4 on Classroom Smartboard. Divide students into 2 teams to debate whether personal attacks invalidate statistical data.',
     exerciseUrl: '/classroom'
   },
   {
-    id: 'mod2',
-    code: 'UNESCO MIL Module 2',
-    title: 'Lateral Reading & The SIFT Verification Method',
-    duration: '60 Minutes',
-    targetGrade: 'Secondary & University',
-    overview: 'Teaching the Stanford History Education Group (SHEG) lateral verification technique: Stop, Investigate the Source, Find Better Coverage, and Trace Claims.',
-    competency: 'Lateral investigation vs vertical reading; publisher reputation assessment.',
-    classroomActivity: 'Provide students with 3 viral articles in the Live Article Sandbox. Students must complete lateral search dossiers before making a credibility ruling.',
+    id: 'm2',
+    code: 'UNESCO-MIL-102',
+    title: 'Stanford SIFT Lateral Reading in Live Browsing',
+    duration: '30 Mins',
+    targetGrade: 'Middle & High School',
+    competency: 'MIL Law 2: Verification of Information Sources & Channels',
+    overview: 'Introduces Sam Wineburg’s 4 SIFT moves (Stop, Investigate Source, Find Better Coverage, Trace Claims). Teaches students never to evaluate a source based solely on its own website.',
+    classroomActivity: 'Students paste 3 viral articles into the VeriLens Sandbox. Practice opening 3 lateral search tabs to verify claims against accredited international fact-checkers.',
     exerciseUrl: '/sandbox'
   },
   {
-    id: 'mod3',
-    code: 'UNESCO MIL Module 3',
-    title: 'Social Engineering, Scams & Financial Manipulation',
-    duration: '30 Minutes',
-    targetGrade: 'All Youth Age Groups',
-    overview: 'Identifying artificial urgency triggers, phishing lures, and deceptive financial schemes across social networks.',
-    competency: 'Digital safety, privacy defense, and financial scam resistance.',
-    classroomActivity: 'Students run the 60-Second Daily Gauntlet speed trial, aiming for an 80%+ accuracy score to earn their Cognitive Immunity Certificate.',
+    id: 'm3',
+    code: 'UNESCO-MIL-103',
+    title: 'Spotting Artificial Urgency & Phishing Social Engineering',
+    duration: '25 Mins',
+    targetGrade: 'All Ages / Youth Groups',
+    competency: 'MIL Law 4: Digital Safety, Security & Scam Prevention',
+    overview: 'Examines the psychological triggers scammers use to bypass rational analysis (artificial 15-minute countdowns, fear of loss, crypto lottery lures).',
+    classroomActivity: 'Run the 60-Second Daily Bias Gauntlet in classroom speed-run mode. Challenge students to achieve 100% accuracy on scam detection.',
     exerciseUrl: '/gauntlet'
   }
 ];
@@ -57,7 +57,7 @@ export default function EducatorPage() {
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
           <span>{lang === 'id' ? 'Pusat Pendidik & Kurikulum UNESCO' : 'UNESCO MIL Educator Hub'}</span>
         </div>
-        <h1 style={{ fontSize: '32px', fontWeight: '900', color: '#FFFFFF', marginBottom: '10px' }}>
+        <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '10px' }}>
           {lang === 'id' ? 'Panduan Kurikulum & Generator RPP' : 'Curriculum Guide & Lesson Plan Generator'}
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '720px', margin: '0 auto', lineHeight: '1.6' }}>
@@ -68,10 +68,10 @@ export default function EducatorPage() {
       </div>
 
       {/* Lesson Plan Generator Card */}
-      <div className="card" style={{ marginBottom: '32px', background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', border: '1.5px solid var(--accent-blue)' }}>
+      <div className="card" style={{ marginBottom: '32px', background: 'var(--bg-surface)', border: '1.5px solid var(--accent-blue)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
           <div>
-            <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)' }}>
               {lang === 'id' ? 'Generator Rencana Pembelajaran 1-Klik' : '1-Click Classroom Lesson Plan Generator'}
             </h2>
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
@@ -86,7 +86,7 @@ export default function EducatorPage() {
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
           <div>
             <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
               {lang === 'id' ? 'Durasi Sesi' : 'Session Duration'}
@@ -94,7 +94,7 @@ export default function EducatorPage() {
             <select
               value={selectedDuration}
               onChange={(e) => setSelectedDuration(e.target.value)}
-              style={{ width: '100%', padding: '8px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', color: '#FFFFFF', fontSize: '13px', outline: 'none' }}
+              style={{ width: '100%', padding: '8px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', color: 'var(--text-main)', fontSize: '13px', outline: 'none' }}
             >
               <option value="15">15 Minutes (Warm-up Activity)</option>
               <option value="45">45 Minutes (Full Standard Class)</option>
@@ -109,7 +109,7 @@ export default function EducatorPage() {
             <select
               value={selectedGrade}
               onChange={(e) => setSelectedGrade(e.target.value)}
-              style={{ width: '100%', padding: '8px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', color: '#FFFFFF', fontSize: '13px', outline: 'none' }}
+              style={{ width: '100%', padding: '8px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', color: 'var(--text-main)', fontSize: '13px', outline: 'none' }}
             >
               <option value="Middle School">Middle School (Ages 11-14)</option>
               <option value="High School">High School (Ages 15-18)</option>
@@ -121,7 +121,7 @@ export default function EducatorPage() {
 
       {/* Curriculum Modules Grid */}
       <div style={{ marginBottom: '36px' }}>
-        <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', marginBottom: '16px' }}>
+        <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '16px' }}>
           {lang === 'id' ? 'Modul Kurikulum Literasi Media UNESCO' : 'UNESCO Media Literacy Curriculum Modules'}
         </h2>
 
@@ -135,7 +135,7 @@ export default function EducatorPage() {
                 <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{mod.targetGrade}</span>
               </div>
 
-              <h3 style={{ fontSize: '17px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>
+              <h3 style={{ fontSize: '17px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
                 {mod.title}
               </h3>
               <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '12px' }}>
@@ -144,7 +144,7 @@ export default function EducatorPage() {
 
               <div style={{ background: 'var(--bg-surface-elevated)', padding: '12px 14px', borderRadius: '8px', marginBottom: '12px', fontSize: '12.5px' }}>
                 <strong style={{ color: 'var(--accent-amber)' }}>Classroom Interactive Activity: </strong>
-                <span style={{ color: '#E2E8F0' }}>{mod.classroomActivity}</span>
+                <span style={{ color: 'var(--text-secondary)' }}>{mod.classroomActivity}</span>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
@@ -162,40 +162,40 @@ export default function EducatorPage() {
 
       {/* Printable Lesson Sheet Modal */}
       {printableModalOpen && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
-          <div style={{ background: '#0B1120', border: '1.5px solid var(--border-card)', borderRadius: '16px', maxWidth: '800px', width: '100%', padding: '28px', maxHeight: '90vh', overflowY: 'auto' }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
+          <div style={{ background: 'var(--bg-surface)', border: '1.5px solid var(--border-card)', borderRadius: '16px', maxWidth: '800px', width: '100%', padding: '28px', maxHeight: '90vh', overflowY: 'auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
               <div>
                 <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase' }}>
                   UNESCO Global MIL Curriculum Standard
                 </span>
-                <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#FFFFFF' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: '900', color: 'var(--text-main)' }}>
                   Classroom Activity & Lesson Worksheet
                 </h2>
               </div>
-              <button onClick={() => setPrintableModalOpen(false)} style={{ background: 'none', border: 'none', color: '#94A3B8', fontSize: '20px', cursor: 'pointer' }}>
+              <button onClick={() => setPrintableModalOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '20px', cursor: 'pointer' }}>
                 ✕
               </button>
             </div>
 
-            <div id="printable-lesson" style={{ background: 'var(--bg-surface)', padding: '24px', borderRadius: '10px', border: '1px solid var(--border-subtle)', marginBottom: '20px', lineHeight: '1.6', fontSize: '13.5px', color: '#E2E8F0' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px', marginBottom: '14px', fontSize: '12px', color: 'var(--text-muted)' }}>
+            <div id="printable-lesson" style={{ background: 'var(--bg-surface-elevated)', padding: '24px', borderRadius: '10px', border: '1px solid var(--border-subtle)', marginBottom: '20px', lineHeight: '1.6', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '10px', marginBottom: '14px', fontSize: '12px', color: 'var(--text-muted)' }}>
                 <span><strong>Target:</strong> {selectedGrade}</span>
                 <span><strong>Duration:</strong> {selectedDuration} Minutes</span>
                 <span><strong>Framework:</strong> UNESCO SIFT & Cognitive Reflex</span>
               </div>
 
-              <h4 style={{ fontSize: '15px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Part 1: 5-Minute Primer on Cognitive Biases</h4>
+              <h4 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>Part 1: 5-Minute Primer on Cognitive Biases</h4>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px' }}>
                 Explain to students that misinformation succeeds not because people lack intelligence, but because digital outrage algorithms exploit biological cognitive reflexes (Appeal to Fear, In-Group Confirmation, Artificial Scarcity).
               </p>
 
-              <h4 style={{ fontSize: '15px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Part 2: Interactive Smartboard Showdown ({selectedDuration === '15' ? '8' : selectedDuration === '45' ? '25' : '50'} Minutes)</h4>
+              <h4 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>Part 2: Interactive Smartboard Showdown ({selectedDuration === '15' ? '8' : selectedDuration === '45' ? '25' : '50'} Minutes)</h4>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '14px' }}>
                 Open <strong>VeriLens Classroom Showdown</strong> on the main projector. Divide the classroom into Team Alpha and Team Beta. Teams have 30 seconds per headline to deliberate and explain the rhetorical flaw before the teacher reveals the answer.
               </p>
 
-              <h4 style={{ fontSize: '15px', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>Part 3: Metacognitive Reflection Prompts</h4>
+              <h4 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>Part 3: Metacognitive Reflection Prompts</h4>
               <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', marginBottom: '14px' }}>
                 <li>"What emotional reaction was this headline designed to trigger in the reader?"</li>
                 <li>"Who benefits financially or politically from the viral spread of this claim?"</li>

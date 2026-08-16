@@ -90,7 +90,7 @@ export default function SandboxPage() {
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
           <span>{lang === 'id' ? 'Disetor Sandbox Dalam Browser' : 'In-Browser Sandbox Dissector'}</span>
         </div>
-        <h1 style={{ fontSize: '32px', fontWeight: '900', color: '#FFFFFF', marginBottom: '8px' }}>
+        <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '8px' }}>
           {lang === 'id' ? 'Disetor Retorika Artikel Langsung' : 'Live Article Rhetoric Dissector'}
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '680px', margin: '0 auto', lineHeight: '1.6' }}>
@@ -126,7 +126,7 @@ export default function SandboxPage() {
             type="text"
             value={inputTitle}
             onChange={(e) => setInputTitle(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontSize: '14px', marginTop: '4px', outline: 'none' }}
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '14px', marginTop: '4px', outline: 'none' }}
           />
         </div>
 
@@ -138,7 +138,7 @@ export default function SandboxPage() {
             rows={5}
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontSize: '14px', lineHeight: '1.5', marginTop: '4px', outline: 'none', resize: 'vertical' }}
+            style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '14px', lineHeight: '1.5', marginTop: '4px', outline: 'none', resize: 'vertical' }}
           />
         </div>
 
@@ -253,7 +253,7 @@ export default function SandboxPage() {
             <p style={{ color: '#F87171', fontSize: '13px' }}>{aiResult.error}</p>
           ) : (
             <div>
-              <p style={{ fontSize: '14px', color: '#FFFFFF', lineHeight: '1.5', marginBottom: '12px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '12px' }}>
                 {aiResult.analysis || aiResult.summary || 'Analysis complete.'}
               </p>
               {aiResult.fallacy && (

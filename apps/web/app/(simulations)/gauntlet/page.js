@@ -234,7 +234,7 @@ export default function GauntletPage() {
           <span>{t('gauntlet_badge')}</span>
         </div>
 
-        <h1 style={{ fontSize: 'clamp(26px, 5vw, 36px)', fontWeight: '900', color: '#FFFFFF', marginBottom: '12px' }}>
+        <h1 style={{ fontSize: 'clamp(26px, 5vw, 36px)', fontWeight: '900', color: 'var(--text-main)', marginBottom: '12px' }}>
           {t('gauntlet_title')}
         </h1>
 
@@ -243,7 +243,7 @@ export default function GauntletPage() {
         </p>
 
         <div className="card" style={{ maxWidth: '480px', margin: '0 auto 24px', textAlign: 'left' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '800', color: '#FFFFFF', marginBottom: '8px' }}>{t('gauntlet_rules_title')}</h3>
+          <h3 style={{ fontSize: '14px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>{t('gauntlet_rules_title')}</h3>
           <ul style={{ paddingLeft: '18px', color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.7' }}>
             <li>{t('gauntlet_rule_1')}</li>
             <li>{t('gauntlet_rule_2')}</li>
@@ -251,7 +251,7 @@ export default function GauntletPage() {
           </ul>
         </div>
 
-        <button onClick={startGame} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '16px', background: '#DC2626', borderColor: '#EF4444', width: '100%', maxWidth: '320px' }}>
+        <button onClick={startGame} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '16px', background: '#DC2626', borderColor: '#EF4444', color: '#FFFFFF', width: '100%', maxWidth: '320px' }}>
           {t('gauntlet_start_btn')}
         </button>
       </div>
@@ -267,7 +267,7 @@ export default function GauntletPage() {
       <div className="container" style={{ maxWidth: '720px', padding: '40px 16px', textAlign: 'center' }}>
         <div className="card" style={{ padding: '24px' }}>
           <div style={{ fontSize: '24px', fontWeight: '900', color: '#F59E0B', marginBottom: '6px' }}>60s</div>
-          <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '900', color: '#FFFFFF', marginBottom: '4px' }}>{t('gauntlet_time_up')}</h2>
+          <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '900', color: 'var(--text-main)', marginBottom: '4px' }}>{t('gauntlet_time_up')}</h2>
           <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
             {t('gauntlet_perf_sub')}
           </div>
@@ -275,7 +275,7 @@ export default function GauntletPage() {
           <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', padding: '16px', marginBottom: '24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
               <div>
-                <div style={{ fontSize: '22px', fontWeight: '900', color: '#FFFFFF' }}>{score}</div>
+                <div style={{ fontSize: '22px', fontWeight: '900', color: 'var(--text-main)' }}>{score}</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>XP</div>
               </div>
               <div>
@@ -319,7 +319,7 @@ export default function GauntletPage() {
       {/* Top Header & HUD */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ background: timeLeft <= 10 ? '#EF4444' : 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '5px 12px', borderRadius: '18px', fontSize: '14px', fontWeight: '900', color: '#FFFFFF' }}>
+          <div style={{ background: timeLeft <= 10 ? '#EF4444' : 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '5px 12px', borderRadius: '18px', fontSize: '14px', fontWeight: '900', color: timeLeft <= 10 ? '#FFFFFF' : 'var(--text-main)' }}>
             {timeLeft}s
           </div>
           {multiplier > 1 && (
@@ -353,7 +353,7 @@ export default function GauntletPage() {
         <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '6px' }}>
           {lang === 'id' ? `Klaim #${currentIndex + 1}` : `Claim #${currentIndex + 1}`}
         </span>
-        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '700', color: '#FFFFFF', lineHeight: '1.45', margin: '0 auto', maxWidth: '620px' }}>
+        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.45', margin: '0 auto', maxWidth: '620px' }}>
           {currentItem.text}
         </blockquote>
       </div>
