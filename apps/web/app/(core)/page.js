@@ -336,18 +336,34 @@ export default function HomePage() {
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
-                              padding: '4px',
+                              padding: '2px',
                               overflow: 'hidden',
                               flexShrink: 0
                             }}
                           >
+                            <img
+                              src={`/assets/images/fallacies/${item.id}.jpg`}
+                              alt={fallacyName}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                borderRadius: '10px'
+                              }}
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                if (e.currentTarget.nextSibling) {
+                                  e.currentTarget.nextSibling.style.display = 'flex';
+                                }
+                              }}
+                            />
                             {svgIllustration ? (
                               <div
-                                style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                style={{ width: '100%', height: '100%', display: 'none', alignItems: 'center', justifyContent: 'center' }}
                                 dangerouslySetInnerHTML={{ __html: svgIllustration }}
                               />
                             ) : (
-                              <div style={{ textAlign: 'center' }}>
+                              <div style={{ textAlign: 'center', display: 'none' }}>
                                 <span style={{ fontSize: '15px', fontWeight: '900', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
                                   {fallacyName ? fallacyName.substring(0, 2).toUpperCase() : 'VL'}
                                 </span>
