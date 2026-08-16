@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { scenarios } from '@verilens/shared';
 import { speakText } from '../../../lib/speech';
-import { useTranslation } from '../../../lib/i18n';
+import { useTranslation, getLocalizedScenario } from '../../../lib/i18n';
 
 const scenariosData = { scenarios };
 
 export default function ClassroomPage() {
-  const { lang } = useTranslation();
+  const { t, lang } = useTranslation();
   const [deck, setDeck] = useState(scenariosData.scenarios);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
@@ -47,7 +47,7 @@ export default function ClassroomPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex]);
 
-  const currentScenario = deck[currentIndex];
+  const currentScenario = getLocalizedScenario(deck[currentIndex], lang);
 
   const nextQuestion = () => {
     setIsAnswerRevealed(false);
@@ -184,7 +184,7 @@ export default function ClassroomPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             <button onClick={prevQuestion} className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 14px' }}>
-              Previous
+              {t('nav_prev')}
             </button>
             <button
               onClick={() => setIsAnswerRevealed(!isAnswerRevealed)}
@@ -194,7 +194,7 @@ export default function ClassroomPage() {
               {isAnswerRevealed ? 'Hide Answer [Space]' : 'Reveal Answer [Space]'}
             </button>
             <button onClick={nextQuestion} className="btn btn-primary" style={{ fontSize: '13px', padding: '8px 14px' }}>
-              Next Question
+              {t('nav_next')}
             </button>
           </div>
 

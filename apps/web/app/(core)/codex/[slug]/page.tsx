@@ -41,10 +41,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const prevSlug = idToSlug(fallacies[prevIndex].id);
   const nextSlug = idToSlug(fallacies[nextIndex].id);
 
-  // 5 Real-World Case Studies
+  // 5 Real-World Case Studies (Localized)
   const caseStudies = useMemo(() => {
-    return rawFallacy.case_studies || [];
-  }, [rawFallacy]);
+    return fallacy.case_studies || rawFallacy.case_studies || [];
+  }, [fallacy, rawFallacy]);
 
   // Clean, organic, non-branded share URLs
   const canonicalUrl = `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
@@ -181,11 +181,11 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                   borderRight: '1px solid var(--border-card)',
                   transition: 'background 0.15s ease'
                 }}
-                title={`Previous: ${prevFallacy.name}`}
-                aria-label={`Previous card: ${prevFallacy.name}`}
+                title={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
+                aria-label={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
               >
                 <span>←</span>
-                <span style={{ fontSize: '12px' }}>Prev</span>
+                <span style={{ fontSize: '12px' }}>{t('nav_prev')}</span>
               </Link>
               <Link
                 href={`/codex/${nextSlug}`}
@@ -200,10 +200,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                   gap: '4px',
                   transition: 'background 0.15s ease'
                 }}
-                title={`Next: ${nextFallacy.name}`}
-                aria-label={`Next card: ${nextFallacy.name}`}
+                title={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
+                aria-label={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
               >
-                <span style={{ fontSize: '12px' }}>Next</span>
+                <span style={{ fontSize: '12px' }}>{t('nav_next')}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -425,7 +425,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                       {caseStudies[activeCaseStudyTab].domain}
                     </span>
                     <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '600' }}>
-                      Field Case {activeCaseStudyTab + 1} of {caseStudies.length}
+                      {t('field_case_prefix')} {activeCaseStudyTab + 1} {t('field_case_of')} {caseStudies.length}
                     </span>
                   </div>
 
@@ -513,12 +513,12 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontWeight: '800', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Curriculum Standard:
+                {t('codex_curriculum_standard')}
               </span>
               <span>UNESCO Global Media & Information Literacy (MIL) — {fallacy.mil_competency}</span>
             </div>
             <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-              Open Cognitive Defense Framework
+              {t('codex_framework_label')}
             </span>
           </div>
         )}
@@ -541,10 +541,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           >
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 6px 0' }}>
-                Practice Verification in SIFT Sandbox
+                {t('codex_practice_sandbox_title')}
               </h3>
               <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, maxWidth: '620px', lineHeight: '1.5' }}>
-                Paste real-world news articles, social posts, or quotes to detect if they use {fallacy.name} or other rhetorical traps.
+                {t('codex_practice_sandbox_desc')}
               </p>
             </div>
             <Link
@@ -584,7 +584,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 borderRadius: 'var(--radius-md)',
                 transition: 'all 0.15s ease'
               }}
-              title={`Previous: ${prevFallacy.name}`}
+              title={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
             >
               <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>←</span>
               <div>
@@ -613,7 +613,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 textAlign: 'right',
                 transition: 'all 0.15s ease'
               }}
-              title={`Next: ${nextFallacy.name}`}
+              title={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
             >
               <div>
                 <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>

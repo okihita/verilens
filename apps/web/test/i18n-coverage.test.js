@@ -137,6 +137,14 @@ test('i18n: getLocalizedFallacy returns valid localized metadata for all 24 arch
       assert.ok(localized.reflection_prompt || localized.metacognition_prompt, `Missing localized reflection_prompt for ${f.id} in ${code}`);
       assert.ok(localized.psychology, `Missing localized psychology for ${f.id} in ${code}`);
       assert.ok(localized.sift_strategy, `Missing localized sift_strategy for ${f.id} in ${code}`);
+      assert.ok(Array.isArray(localized.case_studies) && localized.case_studies.length === 5, `Missing 5 case studies for ${f.id} in ${code}`);
+      for (const cs of localized.case_studies) {
+        assert.ok(cs.domain, `Missing domain in case study for ${f.id} in ${code}`);
+        assert.ok(cs.title, `Missing title in case study for ${f.id} in ${code}`);
+        assert.ok(cs.claim, `Missing claim in case study for ${f.id} in ${code}`);
+        assert.ok(cs.deconstruction, `Missing deconstruction in case study for ${f.id} in ${code}`);
+        assert.ok(cs.correction, `Missing correction in case study for ${f.id} in ${code}`);
+      }
     }
   }
 });

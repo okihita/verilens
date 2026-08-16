@@ -1,7 +1,9 @@
 import './globals.css';
 import Link from 'next/link';
+import { cookies } from 'next/headers';
 import Navbar from '../components/Navbar';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { I18nProvider } from '../lib/i18n';
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -25,13 +27,17 @@ export const metadata = {
   }
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en" className={sansFont.variable}>
-      <body className={sansFont.className}>
-        <Navbar />
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const initialLang = cookieStore.get('verilens_lang')?.value || 'en';
 
-        <main>{children}</main>
+  return (
+    <html lang={initialLang} className={sansFont.variable}>
+      <body className={sansFont.className}>
+        <I18nProvider initialLang={initialLang}>
+          <Navbar />
+
+          <main>{children}</main>
 
         <footer className="app-footer">
           <div className="container">
@@ -90,6 +96,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </footer>
+        </I18nProvider>
       </body>
     </html>
   );

@@ -4,8 +4,10 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { fallacies, idToSlug } from '@verilens/shared';
 import { generateStoryCardBlob, shareStoryImage } from '../../../lib/story-card';
+import { useTranslation } from '../../../lib/i18n';
 
 export default function ImagesGalleryPage() {
+  const { t, lang, getLocalizedFallacy } = useTranslation();
   const [selectedFormat, setSelectedFormat] = useState<'story' | 'portrait' | 'feed'>('story');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -22,11 +24,13 @@ export default function ImagesGalleryPage() {
     return ['all', ...Array.from(cats)];
   }, []);
 
-  // Filtered fallacies
+  // Filtered fallacies (Localized)
   const filteredFallacies = useMemo(() => {
-    if (selectedCategory === 'all') return fallacies;
-    return fallacies.filter(f => f.category?.toLowerCase() === selectedCategory.toLowerCase());
-  }, [selectedCategory]);
+    const list = selectedCategory === 'all' 
+      ? fallacies 
+      : fallacies.filter(f => f.category?.toLowerCase() === selectedCategory.toLowerCase());
+    return list.map(f => getLocalizedFallacy(f));
+  }, [selectedCategory, lang, getLocalizedFallacy]);
 
   // Render images for the filtered list in current format
   useEffect(() => {
@@ -447,7 +451,7 @@ export default function ImagesGalleryPage() {
                 cursor: 'pointer',
                 transition: 'all 0.15s ease'
               }}
-              title="Previous (Arrow Left)"
+              title={`${t('nav_prev')} (←)`}
             >
               ←
             </button>
@@ -501,7 +505,7 @@ export default function ImagesGalleryPage() {
                 cursor: 'pointer',
                 transition: 'all 0.15s ease'
               }}
-              title="Next (Arrow Right)"
+              title={`${t('nav_next')} (→)`}
             >
               →
             </button>

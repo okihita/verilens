@@ -1,21 +1,185 @@
-{
-  "version": "1.6.0",
-  "framework": "UNESCO Global MIL & SIFT Lateral Reading",
-  "fallacies": [
-    {
+export default {
+  "translations": {
+    "brand_sub": "UNESCO MIL 2026",
+    "nav_games": "Entraînement Cognitif",
+    "nav_codex": "Codex",
+    "nav_sandbox": "Laboratoire",
+    "nav_classroom": "Espace Enseignant",
+    "nav_extension": "Extension Navigateur",
+    "nav_trophy": "Salle des Trophées",
+    "nav_skills": "Arbre des Compétences",
+    "nav_league": "Ligue Mondiale",
+    "nav_daily_gauntlet": "Défi Quotidien",
+    "nav_spotter_arena": "Arène de Détection",
+    "nav_feed_sim": "Simulateur de Fil",
+    "nav_fallacy_forge": "Forge à Sophismes",
+    "nav_duel": "Duel Cognitif 1v1",
+    "xp_label": "XP",
+    "level_prefix": "Niv.",
+    "hackathon_badge": "Protégez Votre Attention et Votre Sérénité",
+    "hero_title": "Votre fil d’actualité est conçu pour vous indigner et vous piéger.",
+    "hero_desc": "Les algorithmes exploitent vos vulnérabilités cognitives pour générer des clics. En 60 secondes par jour, musclez vos réflexes pour déjouer les manipulations avant qu’elles ne volent votre temps.",
+    "hero_cta_primary": "Tester Mes Réflexes (60s)",
+    "hero_cta_secondary": "Comprendre les Pièges ▾",
+    "hero_cta_arena": "Arène de Détection",
+    "hero_cta_gauntlet": "Défi Quotidien 60s",
+    "hero_cta_skills": "Compétences",
+    "hero_cta_extension": "Extension Chrome",
+    "stat_faster_title": "70% Plus Rapide",
+    "stat_faster_desc": "Les fausses indignations se propagent 6x plus vite que les faits",
+    "stat_window_title": "<5 Secondes",
+    "stat_window_desc": "Le temps nécessaire à un algorithme pour détourner votre jugement",
+    "stat_local_title": "100% Local",
+    "stat_local_desc": "Protection en temps réel traitée en toute confidentialité dans votre navigateur",
+    "step1_badge": "ÉTAPE 01",
+    "step1_title": "Démasquer l’Appât",
+    "step1_desc": "Identifiez les 24 leviers psychologiques exploités par les créateurs de fake news pour tromper votre esprit critique.",
+    "step1_action": "Explorer les 24 Tactiques ▾",
+    "step2_badge": "ÉTAPE 02",
+    "step2_title": "Mettre Votre Radar à l’Épreuve",
+    "step2_desc": "Pouvez-vous détecter un faux titre en 5 secondes sous pression ? Testez-vous avant d’être manipulé.",
+    "step2_action": "Lancer le Test Rapide",
+    "step3_badge": "ÉTAPE 03",
+    "step3_title": "Sécuriser Votre Navigation en Direct",
+    "step3_desc": "Vérifiez n’importe quel article ou titre suspect en 3 clics grâce à la méthode latérale Stanford SIFT.",
+    "step3_action": "Ouvrir le Laboratoire",
+    "codex_badge": "Dojo d’Apprentissage Interactif",
+    "codex_title": "Codex Illustré : 24 Sophismes & Biais Cognitifs",
+    "codex_desc": "Inspiré de yourlogicalfallacyis.com. Cliquez sur une carte pour la retourner et explorer son anatomie cognitive.",
+    "search_placeholder": "Rechercher 24 sophismes (ex: peur, arnaque, autorité, ia, pente)...",
+    "cat_all": "Tous",
+    "cat_logic": "Logique",
+    "cat_emotional": "Émotionnel",
+    "cat_attribution": "Attribution",
+    "cat_cognitive": "Cognitif",
+    "cat_scam": "Arnaque",
+    "cat_dialectical": "Dialectique",
+    "cat_relevance": "Pertinence",
+    "cat_presumption": "Présomption",
+    "cat_ambiguity": "Ambiguïté",
+    "card_tap_front": "Cliquer pour voir l’anatomie",
+    "card_viral_scenario": "Exemple Viral :",
+    "card_reflection": "Question d’Auto-Évaluation :",
+    "card_sandbox_btn": "Tester en Laboratoire",
+    "card_view_dossier": "Voir la Carte Complète ➔",
+    "codex_dossier_breadcrumb": "Codex",
+    "codex_dossier_archetype_label": "Archétype",
+    "codex_dossier_allegorical_title": "Symbolisme et Anatomie Allégorique",
+    "codex_dossier_allegorical_desc": "Comment les maîtres de la Renaissance ont codifié cet archétype de manipulation en art symbolique.",
+    "codex_dossier_psychology_title": "Pourquoi le cerveau tombe dans ce piège",
+    "codex_dossier_media_title": "Étude de Cas Viral et Analyse des Médias",
+    "codex_dossier_sift_title": "Protocole de Défense Latérale SIFT",
+    "codex_dossier_try_sandbox_btn": "Lancer l'Analyseur SIFT Sandbox",
+    "codex_dossier_prev": "Archétype Précédent",
+    "codex_dossier_next": "Archétype Suivant",
+    "codex_dossier_back_btn": "Retour au Codex",
+    "codex_case_studies_title": "5 Études de Cas Réels et Déconstructions sur le Terrain",
+    "codex_case_studies_desc": "Comment ce sophisme se manifeste dans la politique, les algorithmes, le marketing, la santé et le travail.",
+    "field_case_prefix": "Cas de Terrain",
+    "field_case_of": "sur",
+    "codex_curriculum_standard": "Norme Pédagogique :",
+    "codex_framework_label": "Cadre Ouvert de Défense Cognitive",
+    "codex_practice_sandbox_title": "Entraînez-vous à la Vérification dans le Bac à Sable SIFT",
+    "codex_practice_sandbox_desc": "Collez des articles de presse, des publications sociales ou des citations réelles pour détecter s'ils utilisent ce sophisme ou d'autres pièges rhétoriques.",
+    "codex_claim_label": "Affirmation Trompeuse",
+    "codex_deconstruction_label": "Déconstruction Manipulatrice",
+    "codex_correction_label": "Correction Latérale SIFT",
+    "codex_share_whatsapp": "Partager sur WhatsApp",
+    "codex_share_btn": "Partager cette Carte",
+    "share_modal_title": "Partager cette Carte",
+    "share_modal_desc": "Partagez cette analyse de sophisme avec vos amis et votre communauté pour renforcer l’esprit critique collectif.",
+    "share_copy_link": "Copier le Lien Direct",
+    "share_link_copied": "Lien Copié dans le Presse-papiers !",
+    "share_instagram_tip": "Lien copié ! Collez-le dans votre bio Instagram, sticker de lien en Story ou message privé.",
+    "share_as_story_btn": "Partager Instagram Story (9:16 PNG)",
+    "share_as_square_btn": "Partager Carte Carrée (1:1 PNG)",
+    "share_generating": "Génération de l'Image...",
+    "gauntlet_badge": "Survie Chronométrée en 60 Secondes",
+    "gauntlet_title": "Le Défi Quotidien des Biais",
+    "gauntlet_desc": "Entraînez votre esprit critique. Vous avez 60 secondes pour catégoriser des titres en Sophisme, Fait ou Arnaque.",
+    "gauntlet_rules_title": "Règles du Défi :",
+    "gauntlet_rule_1": "Rapidité en 60s : Triez les affirmations avant la fin du compte à rebours.",
+    "gauntlet_rule_2": "Combos : Multiplicateurs 2x, 3x et 4x pour les réponses correctes consécutives.",
+    "gauntlet_rule_3": "Certification : Obtenez un score élevé pour débloquer votre Certificat UNESCO.",
+    "gauntlet_start_btn": "Démarrer le Défi 60s",
+    "gauntlet_time_up": "Temps Écoulé !",
+    "gauntlet_perf_sub": "Performance des Réflexes Cognitifs en 60s",
+    "gauntlet_accuracy": "Précision",
+    "gauntlet_sorted": "Titres Évalués",
+    "gauntlet_claim_cert": "Réclamer mon Certificat",
+    "gauntlet_replay": "Rejouer",
+    "btn_fallacy": "SOPHISME / BIAIS",
+    "btn_factual": "RAPPORT FACTUEL",
+    "btn_scam": "ARNAQUE / PHISHING",
+    "arena_badge": "Gym Cognitive de l'UNESCO",
+    "arena_title": "Arène de Détection des Biais",
+    "arena_desc": "Mets tes réflexes d'esprit critique à l'épreuve ! Tu feras face à 5 scénarios viraux réels (arnaques, titres sensationnalistes, faux contenus IA). Démasque le sophisme sous-jacent.",
+    "arena_rules_title": "Règles de l'Arène :",
+    "arena_rule_1": "5 Micro-Manches : Un post ou une affirmation virale par manche.",
+    "arena_rule_2": "Multiplicateurs de Série : Les bonnes réponses consécutives augmentent tes XP (1x, 2x, 3x).",
+    "arena_rule_3": "Pédagogie Active : Apprends le réflexe latéral UNESCO SIFT pour chaque situation.",
+    "arena_start_btn": "Entrer dans l'Arène",
+    "arena_round_label": "Manche",
+    "arena_of_label": "sur",
+    "arena_round_title": "Repère le Biais Manipulateur",
+    "arena_streak": "Série",
+    "arena_medium": "Support :",
+    "arena_context": "Contexte :",
+    "arena_correct_spot": "DÉTECTION EXACTE",
+    "arena_manipulation_missed": "MANIPULATION MANQUÉE",
+    "arena_sift_label": "Réflexe Latéral UNESCO SIFT :",
+    "arena_next_btn": "Scénario Suivant",
+    "arena_eval_btn": "Voir le Bilan Final",
+    "arena_finished_badge": "ARÈNE TERMINÉE",
+    "arena_finished_title": "Défi de l'Arène Terminé !",
+    "arena_finished_desc": "Évaluation de l'Éducation aux Médias et à l'Information de l'UNESCO",
+    "arena_grade_label": "Mention Obtenue",
+    "arena_score_label": "Score Total",
+    "arena_max_streak_label": "Série Maximale",
+    "arena_completed_label": "Complété",
+    "arena_cert_btn": "Obtenir le Certificat UNESCO",
+    "arena_replay_btn": "Rejouer une Manche",
+    "arena_test_live_btn": "Tester des Articles Réels",
+    "rank_master": "Maître de l'Esprit Critique",
+    "rank_proficient": "Vérificateur Confirmé",
+    "rank_developing": "Analyste en Progression",
+    "cert_badge": "HACKATHON MONDIAL JEUNESSE UNESCO EMI 2026",
+    "cert_title": "Certificat d'Immunité Cognitive",
+    "cert_subtitle": "Certification Officielle en Éducation aux Médias et à l'Information • Méthode SIFT",
+    "cert_certifies_that": "Ce certificat atteste que",
+    "cert_body": "A complété avec succès l'évaluation, démontrant sa compétence à démasquer les sophismes rhétoriques, biais cognitifs, manipulations émotionnelles et arnaques financières.",
+    "cert_score_label": "Score",
+    "cert_accuracy_label": "Précision",
+    "cert_issued_label": "Délivré le",
+    "cert_verified_by": "Vérifié par VeriLens Engine",
+    "cert_copy_btn": "Copier le Résumé de Partage",
+    "cert_copied_btn": "Copié dans le Presse-papier !",
+    "cert_print_btn": "Imprimer / Sauvegarder PDF",
+    "close_btn": "Fermer",
+    "cert_share_text": "Je viens d'obtenir mon Certificat d'Immunité Cognitive UNESCO sur VeriLens avec {accuracy}% de précision et {score} XP ! Teste ton esprit critique : https://verilens.okihita.dev #UNESCO #EMI #VeriLens2026",
+    "audio_toggle_on": "Couper les Effets Sonores",
+    "audio_toggle_off": "Activer les Effets Sonores",
+    "footer_desc": "Écosystème éducatif d’Éducation aux Médias et à l’Information (EMI) combinant entraînement ludique et protection du navigateur en temps réel. Conçu pour le Hackathon Mondial UNESCO MIL Youth 2026.",
+    "footer_train_title": "Jeux d’Entraînement",
+    "footer_prog_title": "Progression & Rangs",
+    "footer_eco_title": "Écosystème",
+    "footer_copy": "Projet VeriLens 2026 • Développé pour le Hackathon Mondial UNESCO MIL",
+    "footer_privacy_note": "Open Source • Traitement Local Respectueux de la Vie Privée",
+    "nav_prev": "Précédent",
+    "nav_next": "Suivant"
+  },
+  "fallacies": {
+    "ad_hominem": {
       "id": "ad_hominem",
       "name": "Ad Hominem",
-      "subtitle": "Character Smear & Deflection",
-      "category": "Dialectical",
-      "icon": "ad_hominem",
-      "color": "#EF4444",
-      "description": "Attacking an opponent's character, personality, or background rather than engaging with the substantive empirical merits of their argument.",
-      "psychology": "Your brain is hardwired for tribal threat-detection, which naturally values assessing a speaker's social trustworthiness over parsing complex raw data. Bad actors exploit this ancient social shortcut by substituting character insults for evidence, triggering instant moral outrage. Recognizing this allows you to cleanly separate personal feelings about a messenger from the empirical validity of their claims.",
-      "viral_example": "\"Don't listen to Dr. Aris's peer-reviewed climate data—he was once paid by a consulting firm so he is obviously a corrupt shill!\"",
-      "reflection_prompt": "If you strip away the personal insults, what actual empirical data or evidence remains in the claim?",
-      "mil_competency": "UNESCO MIL Law 3: Evaluation & Ethical Assessment",
-      "sift_strategy": "Trace the primary data independent of the spokesperson's personality.",
-      "slug": "ad-hominem",
+      "subtitle": "Attaque Personnelle et Déviation",
+      "category": "Dialectique",
+      "description": "Attaquer le caractère, la personnalité ou les antécédents d'un interlocuteur plutôt que de répondre au fond et à la valeur empirique de son argumentation.",
+      "psychology": "Le cerveau humain évalue instinctivement la fiabilité sociale d'un locuteur avant d'analyser des données complexes. Les manipulateurs exploitent ce raccourci en remplaçant les preuves par des attaques personnelles.",
+      "viral_example": "\"N'écoutez pas les données climatiques du Dr Aris ; il a autrefois conseillé une entreprise, c'est donc évidemment un vendu corrompu !\"",
+      "reflection_prompt": "Si l'on supprime toutes les insultes personnelles, quelles données ou preuves empiriques subsistent dans l'affirmation ?",
+      "sift_strategy": "Tracer les Données Primaires : Évaluez les données de manière indépendante de la personnalité du porte-parole.",
+      "mil_competency": "Loi 3 de l'UNESCO MIL : Évaluation Critique et Éthique de l'Information",
       "allegorical_symbols": [
         {
           "title": "The Silver Dagger",
@@ -33,7 +197,7 @@
       "case_studies": [
         {
           "id": "ah_1",
-          "domain": "Politics & Governance",
+          "domain": "Politique et Gouvernance",
           "title": "The Municipal Transit Debate",
           "claim": "\"Don't listen to Councilwoman Morales's transit proposal—she got divorced last year, so how could she manage a city budget?\"",
           "deconstruction": "The attacker substitutes personal marital history for an analysis of the urban planning data and budgetary feasibility.",
@@ -41,7 +205,7 @@
         },
         {
           "id": "ah_2",
-          "domain": "Science & Public Health",
+          "domain": "Science et Santé Publique",
           "title": "The Vaccine Trial Dismissal",
           "claim": "\"Dr. Aris published peer-reviewed climate data, but he once consulted for a renewable energy firm, so his entire 10-year dataset is fraudulent!\"",
           "deconstruction": "Instead of identifying methodology errors in the peer-reviewed dataset, the critic uses perceived affiliation to dismiss empirical evidence.",
@@ -49,7 +213,7 @@
         },
         {
           "id": "ah_3",
-          "domain": "Social Media & Whistleblowing",
+          "domain": "Réseaux Sociaux et Lanceurs d'Alerte",
           "title": "The Tech Whistleblower Smear",
           "claim": "\"The whistleblower who leaked internal privacy violations is just an awkward, disgruntled ex-employee looking for attention.\"",
           "deconstruction": "Corporate PR attacks the whistleblower's personality and motives to distract from the leaked internal documents.",
@@ -57,7 +221,7 @@
         },
         {
           "id": "ah_4",
-          "domain": "Consumer Tech & Journalism",
+          "domain": "Technologie Grand Public et Journalisme",
           "title": "The Hardware Reviewer Backlash",
           "claim": "\"That journalist gave our new flagship phone a poor battery score because he is obviously a paid rival-brand fanboy.\"",
           "deconstruction": "The manufacturer deflects from standardized battery benchmark tests by accusing the journalist of covert bias.",
@@ -73,20 +237,17 @@
         }
       ]
     },
-    {
+    "false_dilemma": {
       "id": "false_dilemma",
-      "name": "False Dilemma",
-      "subtitle": "Forced Black-and-White Dichotomy",
-      "category": "Logic",
-      "icon": "false_dilemma",
-      "color": "#F59E0B",
-      "description": "Artificially reducing a complex, multi-variable reality into only two extreme, mutually exclusive options while erasing all nuanced middle grounds.",
-      "psychology": "Human cognition conserves metabolic energy under stress by reducing messy, multi-variable situations into simple binary categories. Manipulators exploit this cognitive simplicity bias by manufacturing extreme either/or ultimatums that erase all viable middle ground. When you spot a forced dichotomy, you instantly regain control by asking what third and fourth options are being hidden.",
-      "viral_example": "\"Either you 100% support this controversial surveillance bill, or you want terrorists to attack our schools!\"",
-      "reflection_prompt": "What third, fourth, or compromise alternatives are being intentionally excluded by this ultimatum?",
-      "mil_competency": "UNESCO MIL Law 1: Critical Analysis of Media Content",
-      "sift_strategy": "Find Better Coverage across independent spectrums.",
-      "slug": "false-dilemma",
+      "name": "Faux Dilemme (False Dilemma)",
+      "subtitle": "Dichotomie Binaire Forcée",
+      "category": "Logique",
+      "description": "Réduire artificiellement une réalité complexe à seulement deux options extrêmes et mutuellement exclusives, en effaçant toutes les solutions intermédiaires.",
+      "psychology": "Sous stress, notre esprit simplifie la réalité en catégories binaires. Repérer un faux dilemme permet de reprendre le contrôle en cherchant les options tierces délibérément occultées.",
+      "viral_example": "\"Soit vous soutenez à 100 % ce projet de loi sur la surveillance, soit vous voulez que des terroristes attaquent nos écoles !\"",
+      "reflection_prompt": "Quelles alternatives intermédiaires ou compromis raisonnables sont délibérément exclus par cet ultimatum ?",
+      "sift_strategy": "Trouver une Meilleure Couverture : Comparez les avis d'experts indépendants sur tout le spectre.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Analyse Critique des Discours Médiatiques",
       "allegorical_symbols": [
         {
           "title": "The Blazing Monolith (Ignis)",
@@ -144,20 +305,17 @@
         }
       ]
     },
-    {
+    "ad_metum": {
       "id": "ad_metum",
-      "name": "Appeal to Fear",
-      "subtitle": "Catastrophizing & Doomsday Bait",
-      "category": "Emotional",
-      "icon": "ad_metum",
-      "color": "#DC2626",
-      "description": "Using terrifying, apocalyptic predictions to trigger an instinctual fight-or-flight response, forcing compliance without verification.",
-      "psychology": "Your amygdala evolved to prioritize immediate survival by triggering a rapid fight-or-flight response before your analytical prefrontal cortex can intervene. Demagogues and scammers intentionally weaponize visceral catastrophizing to induce panic and force blind compliance. Pausing to recognize the fear spike allows your rational brain to step in and demand verifiable proof before reacting.",
-      "viral_example": "\"If this treaty passes tomorrow, our society will face irreversible total annihilation and economic ruin within weeks!\"",
-      "reflection_prompt": "Does the underlying scientific consensus actually predict this catastrophic timeline, or is terror being used as persuasion?",
-      "mil_competency": "UNESCO MIL Law 4: Critical Engagement & Cognitive Autonomy",
-      "sift_strategy": "Stop: Pause when feeling a surge of acute existential dread.",
-      "slug": "ad-metum",
+      "name": "Appel à la Peur (Appeal to Fear)",
+      "subtitle": "Catastrophisme et Piège de Panique",
+      "category": "Émotionnel",
+      "description": "Employer des prédictions apocalyptiques et terrifiantes pour déclencher une réaction instinctive de panique, forçant l'adhésion sans vérification des faits.",
+      "psychology": "L'amygdale cérébrale réagit au danger perçu avant que le cortex préfrontal ne puisse analyser posément la situation.",
+      "viral_example": "\"Si ce traité est voté demain, notre société fera face à une ruine totale et irréversible en quelques semaines !\"",
+      "reflection_prompt": "Le consensus scientifique prédit-il réellement ce désastre ou la terreur est-elle utilisée comme outil de persuasion ?",
+      "sift_strategy": "Faire une Pause (Stop) : Prenez du recul face à un sentiment de peur existentielle aiguë.",
+      "mil_competency": "Loi 4 de l'UNESCO MIL : Autonomie Cognitive et Résistance à la Panique",
       "allegorical_symbols": [
         {
           "title": "The Luminous Celestial Sphere",
@@ -211,20 +369,17 @@
         }
       ]
     },
-    {
+    "confirmation_bias": {
       "id": "confirmation_bias",
-      "name": "Confirmation Bias",
-      "subtitle": "Echo Chamber Validation",
-      "category": "Cognitive",
-      "icon": "confirmation_bias",
-      "color": "#8B5CF6",
-      "description": "The subconscious tendency to eagerly accept and share information that confirms existing prejudices while aggressively rationalizing away contrary proof.",
-      "psychology": "Your brain naturally seeks efficiency and social cohesion by favoring information that validates your existing worldview while filtering out cognitive dissonance. Algorithmic echo chambers exploit this tendency by serving emotionally gratifying narratives that make unverified claims feel intuitively true. Developing metacognitive awareness empowers you to actively seek disconfirming evidence, making your intellect far sharper and more resilient.",
-      "viral_example": "\"I knew the opposing party was secretly running that ring! I won't even check if this screenshot is photoshopped because it feels so true.\"",
-      "reflection_prompt": "Would I scrutinize this claim more aggressively if it attacked a public figure I admire?",
-      "mil_competency": "UNESCO MIL Law 5: Metacognition & Self-Reflection",
-      "sift_strategy": "Investigate the Source from counter-perspective wire services.",
-      "slug": "confirmation-bias",
+      "name": "Biais de Confirmation (Confirmation Bias)",
+      "subtitle": "Validation en Chambre d'Écho",
+      "category": "Cognitif",
+      "description": "Tendance subconsciente à privilégier et partager les informations confirmant nos préjugés, tout en rationalisant ou ignorant les preuves contraires.",
+      "psychology": "L'esprit recherche l'efficacité et le confort en favorisant les récits qui flattent ses convictions préexistantes.",
+      "viral_example": "\"Je savais que le parti adverse était impliqué dans cette affaire ! Je ne vérifierai même pas cette capture d'écran parce qu'elle paraît tellement vraie.\"",
+      "reflection_prompt": "Examinerais-je cette allégation avec plus de rigueur si elle ciblait une personnalité que j'admire ?",
+      "sift_strategy": "Enquêter sur la Source : Consultez des sources d'information indépendantes aux points de vue variés.",
+      "mil_competency": "Loi 5 de l'UNESCO MIL : Métacognition et Autoréflexion Informationnelle",
       "allegorical_symbols": [
         {
           "title": "The Gilded Monocle Mirror",
@@ -278,20 +433,17 @@
         }
       ]
     },
-    {
+    "weasel_words": {
       "id": "weasel_words",
-      "name": "Weasel Words",
-      "subtitle": "Vague & Passive Attribution",
+      "name": "Termes Fuyants (Weasel Words)",
+      "subtitle": "Attribution Vague et Passive",
       "category": "Attribution",
-      "icon": "weasel_words",
-      "color": "#3B82F6",
-      "description": "Creating the illusion of widespread authoritative backing through anonymous, nebulous phrasing ('experts warn', 'many people are saying').",
-      "psychology": "Our cognitive architecture relies on linguistic authority cues to quickly absorb information without exhausting energy on deep source verification. Deceptive communicators exploit this by using passive vagueness—like 'experts say' or 'studies suggest'—to create an illusion of consensus with zero accountability. Spotting these linguistic cloaks trains you to immediately demand specific names, primary data, and methodology details.",
-      "viral_example": "\"Leading scientists all agree without a doubt that this secret household spice eliminates 100% of toxins!\"",
-      "reflection_prompt": "Which specific university, medical institution, or published paper is actually named in the body text?",
-      "mil_competency": "UNESCO MIL Law 2: Verification of Information Sources",
-      "sift_strategy": "Trace Claim: Locate the original peer-reviewed publication.",
-      "slug": "weasel-words",
+      "description": "Créer l'illusion d'un large consensus d'experts grâce à des formules anonymes et floues (« des experts avertissent », « beaucoup disent ») sans citer de sources réelles.",
+      "psychology": "Notre esprit s'appuie sur des signaux d'autorité linguistique pour assimiler rapidement des messages sans vérifier leur origine.",
+      "viral_example": "\"Les plus grands scientifiques s'accordent tous à dire que cette épice élimine 100 % des toxines de l'organisme !\"",
+      "reflection_prompt": "Quelle université, institution médicale ou revue scientifique à comité de lecture est nommément citée ?",
+      "sift_strategy": "Tracer la Source Primaire : Recherchez la publication scientifique originale évaluée par les pairs.",
+      "mil_competency": "Loi 2 de l'UNESCO MIL : Vérification des Sources d'Information",
       "allegorical_symbols": [
         {
           "title": "The Triple-Masked Bust",
@@ -345,20 +497,17 @@
         }
       ]
     },
-    {
+    "scam_urgency": {
       "id": "scam_urgency",
-      "name": "Artificial Urgency",
-      "subtitle": "Scam Pressure & Panic Trap",
-      "category": "Scam",
-      "icon": "scam_urgency",
-      "color": "#E11D48",
-      "description": "Imposing artificial deadlines ('Act now in 15 minutes or your account will be deleted') to short-circuit analytical reasoning.",
-      "psychology": "The human mind operates on an evolutionary scarcity reflex, where perceived time pressure triggers an instinctual urge to act before missing out. Scammers weaponize artificial countdowns and emergency deadlines to overwhelm your working memory and short-circuit deliberate analysis. Taking a conscious 60-second breathing pause instantly breaks the psychological pressure loop and restores full analytical control.",
-      "viral_example": "\"URGENT SECURITY ALERT: Your crypto wallet has been compromised. Verify your secret seed phrase within 10 minutes or lose all funds!\"",
-      "reflection_prompt": "Why is this platform demanding instant action rather than allowing me to navigate directly through their official app?",
-      "mil_competency": "UNESCO MIL Law 4: Digital Safety & Scam Resistance",
-      "sift_strategy": "Stop: Never click links inside urgent SMS, email, or DMs.",
-      "slug": "scam-urgency",
+      "name": "Urgence Artificielle (Scam Urgency)",
+      "subtitle": "Pression d'Arnaque et Piège Temporel",
+      "category": "Arnaque",
+      "description": "Imposer un délai arbitraire et serré (« Agissez dans les 15 minutes ou votre compte sera supprimé ») pour court-circuiter l'analyse critique.",
+      "psychology": "La peur de manquer une opportunité ou de subir une perte soudaine pousse à l'action impulsive sous la contrainte d'un compte à rebours factice.",
+      "viral_example": "\"ALERTE DE SÉCURITÉ URGENTE : Votre portefeuille crypto a été compromis. Confirmez votre phrase secrète sous 10 minutes sous peine de tout perdre !\"",
+      "reflection_prompt": "Pourquoi ce message exige-t-il une action immédiate au lieu de me laisser vérifier sur l'application officielle ?",
+      "sift_strategy": "Faire une Pause (Stop) : Ne cliquez jamais sur des liens d'urgence reçus par SMS, e-mail ou messagerie.",
+      "mil_competency": "Loi 4 de l'UNESCO MIL : Sécurité Numérique et Résistance aux Fraudes",
       "allegorical_symbols": [
         {
           "title": "The Winged Clockwork Hourglass",
@@ -412,20 +561,17 @@
         }
       ]
     },
-    {
+    "strawman": {
       "id": "strawman",
-      "name": "Strawman Argument",
-      "subtitle": "Caricaturing & Distorting Claims",
-      "category": "Logic",
-      "icon": "strawman",
-      "color": "#F97316",
-      "description": "Misrepresenting an opponent's nuanced argument into an absurd, extreme caricature that is ridiculously easy to knock down.",
-      "psychology": "The brain naturally prefers solving easier cognitive puzzles, making an absurdly exaggerated parody far quicker to refute than a nuanced, well-reasoned argument. Opponents exploit this mental shortcut by substituting a distorted caricature in place of what was actually said to score cheap rhetorical points. You gain the upper hand by calmly pulling the debate back to the exact original proposition and its supporting evidence.",
-      "viral_example": "\"Proponents of school lunch subsidies want to replace all parental authority with totalitarian state kitchen inspectors!\"",
-      "reflection_prompt": "Did the original advocates actually propose that extreme policy, or did the critic invent that scenario?",
-      "mil_competency": "UNESCO MIL Law 1: Critical Analysis of Discourse",
-      "sift_strategy": "Trace the original quote in its complete, unedited context.",
-      "slug": "strawman",
+      "name": "Épouvantail (Straw Man)",
+      "subtitle": "Caricature et Déformation des Arguments",
+      "category": "Logique",
+      "description": "Déformer l'argument nuancé d'un adversaire en une caricature ridicule et extrême afin de la réfuter avec une facilité déconcertante.",
+      "psychology": "Il est cognitivement plus aisé de démolir une version grotesque et simplifiée d'une thèse plutôt que d'affronter ses véritables fondements rationnels.",
+      "viral_example": "\"Ceux qui veulent subventionner les cantines scolaires veulent en réalité abolir l'autorité parentale et instaurer des inspecteurs d'État dans nos cuisines !\"",
+      "reflection_prompt": "Les partisans de la mesure ont-ils réellement proposé cela, ou le critique a-t-il forgé cette caricature de toutes pièces ?",
+      "sift_strategy": "Tracer la Citation Originale : Retrouvez le texte et la proposition dans son contexte intégral.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Analyse Critique des Arguments et du Débat Public",
       "allegorical_symbols": [
         {
           "title": "The Straw Knight Effigy",
@@ -479,20 +625,17 @@
         }
       ]
     },
-    {
+    "bandwagon": {
       "id": "bandwagon",
-      "name": "Bandwagon Effect",
-      "subtitle": "Social Proof Manipulation",
-      "category": "Cognitive",
-      "icon": "bandwagon",
-      "color": "#10B981",
-      "description": "Arguing that a claim must be valid or high-quality simply because millions of people believe it or it has 10M views on TikTok.",
-      "psychology": "As social primates, humans possess deeply ingrained conformity instincts because consensus historically signaled physical safety and group belonging. Viral algorithms and marketing campaigns exploit this by fabricating the impression that 'everyone agrees,' making conformity feel like effortless wisdom. True critical thinking allows you to remember that popularity has never been a reliable metric of empirical truth.",
-      "viral_example": "\"Over 5 million people bought this miracle magnetic detox bracelet this week—it can't possibly be fake!\"",
-      "reflection_prompt": "Can millions of well-intentioned people be swayed by viral marketing or algorithmic momentum without empirical evidence?",
-      "mil_competency": "UNESCO MIL Law 3: Differentiating Virality from Veracity",
-      "sift_strategy": "Investigate whether independent consumer protection agencies verified the claim.",
-      "slug": "bandwagon",
+      "name": "Effet de Mode (Bandwagon)",
+      "subtitle": "Manipulation par la Preuve Sociale",
+      "category": "Cognitif",
+      "description": "Prétendre qu'une affirmation est exacte ou de haute qualité simplement parce que des millions de personnes y croient ou qu'elle cumule des millions de vues.",
+      "psychology": "L'être humain possède un instinct de conformisme social hérité de l'évolution. Cependant, la popularité n'a jamais constitué une preuve empirique de vérité.",
+      "viral_example": "\"Plus de 5 millions de personnes ont acheté ce bracelet magnétique cette semaine ; il est impossible qu'ils se trompent tous !\"",
+      "reflection_prompt": "Des millions de personnes bien intentionnées peuvent-elles être influencées par un marketing viral sans preuve scientifique ?",
+      "sift_strategy": "Vérifier si des organismes indépendants de protection des consommateurs ou des essais cliniques ont validé l'allégation.",
+      "mil_competency": "Loi 3 de l'UNESCO MIL : Différencier Viralité et Vérité des Faits",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Bandwagon Effect",
@@ -510,7 +653,7 @@
       "case_studies": [
         {
           "id": "bandwagon_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Bandwagon Effect in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed social proof manipulation to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits exploits evolutionary herd instincts where individual safety was historically linked to following the majority consensus.",
@@ -518,7 +661,7 @@
         },
         {
           "id": "bandwagon_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Bandwagon Effect in Algorithmic Feeds",
           "claim": "\"Over 5 million people bought this miracle magnetic detox bracelet this week—it can't possibly be fake!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -526,7 +669,7 @@
         },
         {
           "id": "bandwagon_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Bandwagon Effect in Consumer Marketing",
           "claim": "\"Marketers leverage Bandwagon Effect to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -534,7 +677,7 @@
         },
         {
           "id": "bandwagon_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Bandwagon Effect in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize social proof manipulation to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -542,7 +685,7 @@
         },
         {
           "id": "bandwagon_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Bandwagon Effect in Executive Decision Making",
           "claim": "\"Project managers fall into Bandwagon Effect when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -550,20 +693,17 @@
         }
       ]
     },
-    {
+    "sunk_cost": {
       "id": "sunk_cost",
-      "name": "Sunk Cost Bias",
-      "subtitle": "Entrenched Commitment Trap",
-      "category": "Cognitive",
-      "icon": "sunk_cost",
-      "color": "#6366F1",
-      "description": "Refusing to abandon a discredited belief, investment, or political figure because of the enormous time, money, or reputation already invested in it.",
-      "psychology": "Your psychology possesses a natural loss-aversion bias that makes abandoning an existing investment of time, money, or belief feel like painful defeat. Deceptive systems leverage this trap to keep you doubling down on failing propositions simply because you have already committed resources. Framing your decisions around future utility rather than unrecoverable past costs gives you the mental freedom to pivot intelligently.",
-      "viral_example": "\"I've already invested $5,000 into this trading scheme and defended it to all my friends. I have to put in another $2,000 to prove I was right!\"",
-      "reflection_prompt": "If I was discovering this situation with fresh eyes today with zero prior investment, what decision would I make?",
-      "mil_competency": "UNESCO MIL Law 5: Ethical & Reflective Information Processing",
-      "sift_strategy": "Stop: Seek dispassionate third-party financial or academic counsel.",
-      "slug": "sunk-cost",
+      "name": "Coûts Irrécupérables (Sunk Cost)",
+      "subtitle": "Piège de l'Engagement Enraciné",
+      "category": "Cognitif",
+      "description": "Refuser d'abandonner une croyance erronée ou un investissement infructueux en raison du temps, de l'argent ou de l'amour-propre déjà investis.",
+      "psychology": "L'aversion à la perte rend l'abandon d'un projet coûteux psychologiquement douloureux, poussant à persister dans l'erreur.",
+      "viral_example": "\"J'ai déjà investi 5 000 euros dans ce système de trading et je l'ai défendu devant mes amis. Je dois en remettre 2 000 pour prouver que j'avais raison !\"",
+      "reflection_prompt": "Si je découvrais cette situation aujourd'hui sans aucun investissement passé, quelle décision prendrais-je ?",
+      "sift_strategy": "Faire une Pause (Stop) : Demandez l'avis d'un tiers neutre sans attachement émotionnel au projet.",
+      "mil_competency": "Loi 5 de l'UNESCO MIL : Décision Rationnelle et Lucidité Évaluationnelle",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Sunk Cost Bias",
@@ -581,7 +721,7 @@
       "case_studies": [
         {
           "id": "sunk_cost_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Sunk Cost Bias in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed entrenched commitment trap to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits driven by intense aversion to admitting personal error and public loss of status.",
@@ -589,7 +729,7 @@
         },
         {
           "id": "sunk_cost_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Sunk Cost Bias in Algorithmic Feeds",
           "claim": "\"I've already invested $5,000 into this trading scheme and defended it to all my friends. I have to put in another $2,000 to prove I was right!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -597,7 +737,7 @@
         },
         {
           "id": "sunk_cost_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Sunk Cost Bias in Consumer Marketing",
           "claim": "\"Marketers leverage Sunk Cost Bias to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -605,7 +745,7 @@
         },
         {
           "id": "sunk_cost_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Sunk Cost Bias in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize entrenched commitment trap to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -613,7 +753,7 @@
         },
         {
           "id": "sunk_cost_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Sunk Cost Bias in Executive Decision Making",
           "claim": "\"Project managers fall into Sunk Cost Bias when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -621,20 +761,17 @@
         }
       ]
     },
-    {
+    "halo_effect": {
       "id": "halo_effect",
-      "name": "Halo Effect",
-      "subtitle": "Celebrity & Influencer Overreach",
+      "name": "Effet de Halo (Halo Effect)",
+      "subtitle": "Biais d'Autorité et de Célébrité",
       "category": "Attribution",
-      "icon": "halo_effect",
-      "color": "#EC4899",
-      "description": "Assuming that a person's charisma, athletic skill, or celebrity status in one domain gives them authoritative expertise on complex unrelated subjects.",
-      "psychology": "The brain relies on global aesthetic heuristics, unconsciously assuming that someone who possesses charisma, beauty, or wealth must also excel in technical competence. Marketers and influencers capitalize on this positive spillover effect to endorse complex products or ideas far outside their actual domain of expertise. Recognizing this split enables you to admire a person's talents while objectively auditing their specific claims with strict scrutiny.",
-      "viral_example": "\"My favorite pop singer posted that drinking raw volcanic ash cures viral infections, so it must be medically sound!\"",
-      "reflection_prompt": "What peer-reviewed biomedical qualifications does this entertainer or sports star hold in immunology?",
-      "mil_competency": "UNESCO MIL Law 2: Verifying Domain-Specific Authority",
-      "sift_strategy": "Investigate Source: Check medical consensus on WHO, CDC, or PubMed.",
-      "slug": "halo-effect",
+      "description": "Supposer que le charisme, la renommée ou la réussite d'une personne dans un domaine lui confèrent automatiquement une expertise dans des matières sans rapport.",
+      "psychology": "Le cerveau a tendance à généraliser une impression positive sur un trait visible à l'ensemble des compétences d'un individu.",
+      "viral_example": "\"Ma chanteuse préférée a affirmé que boire de la cendre volcanique guérit les virus, cela doit donc être médicalement prouvé !\"",
+      "reflection_prompt": "Quelles compétences biomédicales ou publications scientifiques cette célébrité possède-t-elle en immunologie ?",
+      "sift_strategy": "Enquêter sur la Source : Consultez les avis des instances médicales et scientifiques reconnues.",
+      "mil_competency": "Loi 2 de l'UNESCO MIL : Validation de l'Expertise Spécifique",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Halo Effect",
@@ -652,7 +789,7 @@
       "case_studies": [
         {
           "id": "halo_effect_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Halo Effect in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed celebrity & influencer overreach to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits our brains generalize a positive impression in one visible area to all unseen cognitive domains.",
@@ -660,7 +797,7 @@
         },
         {
           "id": "halo_effect_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Halo Effect in Algorithmic Feeds",
           "claim": "\"My favorite pop singer posted that drinking raw volcanic ash cures viral infections, so it must be medically sound!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -668,7 +805,7 @@
         },
         {
           "id": "halo_effect_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Halo Effect in Consumer Marketing",
           "claim": "\"Marketers leverage Halo Effect to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -676,7 +813,7 @@
         },
         {
           "id": "halo_effect_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Halo Effect in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize celebrity & influencer overreach to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -684,7 +821,7 @@
         },
         {
           "id": "halo_effect_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Halo Effect in Executive Decision Making",
           "claim": "\"Project managers fall into Halo Effect when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -692,20 +829,17 @@
         }
       ]
     },
-    {
+    "cherry_picking": {
       "id": "cherry_picking",
-      "name": "Cherry Picking",
-      "subtitle": "Suppressed Evidence & Selective Data",
-      "category": "Logic",
-      "icon": "cherry_picking",
-      "color": "#14B8A6",
-      "description": "Carefully selecting isolated data points or outliers that support a preferred narrative while deliberately hiding the overwhelming majority of contrary data.",
-      "psychology": "Human attention is naturally drawn to compelling isolated anecdotes because our narrative-driven minds find specific stories far more memorable than dry aggregate statistics. Deceptive advocates exploit this by presenting only the flattering data points that support their thesis while concealing contradictory evidence. Demanding complete baseline datasets and randomized sample distributions instantly reveals the true underlying reality.",
-      "viral_example": "\"Global warming is a total hoax! Look at this single town in Siberia that had a record cold night last Thursday!\"",
-      "reflection_prompt": "Does this isolated anecdote represent the global 50-year aggregate trend, or is it a selective outlier?",
-      "mil_competency": "UNESCO MIL Law 1: Statistical & Scientific Literacy",
-      "sift_strategy": "Find Better Coverage: Consult NASA, IPCC, or meteorological aggregate reports.",
-      "slug": "cherry-picking",
+      "name": "Sélection Rigoureuse (Cherry Picking)",
+      "subtitle": "Données Sélectives et Dissimulation de Preuves",
+      "category": "Logique",
+      "description": "Sélectionner minutieusement quelques données isolées qui confirment une thèse tout en dissimulant la grande majorité des preuves scientifiques contraires.",
+      "psychology": "L'esprit retient plus facilement une anecdote frappante qu'un ensemble de données statistiques globales.",
+      "viral_example": "\"Le réchauffement climatique est un canular ! Regardez cette ville en Sibérie qui a connu un record de froid jeudi dernier !\"",
+      "reflection_prompt": "Cette anomalie météorologique locale reflète-t-elle la tendance climatique mondiale sur 50 ans ou s'agit-il d'une valeur aberrante isolée ?",
+      "sift_strategy": "Trouver une Meilleure Couverture : Consultez les rapports agrégés des agences météorologiques et climatologiques officielles.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Rigueur Méthodologique et Lecture Statistique",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Cherry Picking",
@@ -723,7 +857,7 @@
       "case_studies": [
         {
           "id": "cherry_picking_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Cherry Picking in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed suppressed evidence & selective data to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits creates the false illusion of empirical statistical backing while misleading through omission.",
@@ -731,7 +865,7 @@
         },
         {
           "id": "cherry_picking_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Cherry Picking in Algorithmic Feeds",
           "claim": "\"Global warming is a total hoax! Look at this single town in Siberia that had a record cold night last Thursday!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -739,7 +873,7 @@
         },
         {
           "id": "cherry_picking_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Cherry Picking in Consumer Marketing",
           "claim": "\"Marketers leverage Cherry Picking to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -747,7 +881,7 @@
         },
         {
           "id": "cherry_picking_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Cherry Picking in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize suppressed evidence & selective data to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -755,7 +889,7 @@
         },
         {
           "id": "cherry_picking_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Cherry Picking in Executive Decision Making",
           "claim": "\"Project managers fall into Cherry Picking when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -763,20 +897,17 @@
         }
       ]
     },
-    {
+    "conspiracy_framing": {
       "id": "conspiracy_framing",
-      "name": "Conspiracy Framing",
-      "subtitle": "The Suppression Myth",
-      "category": "Dialectical",
-      "icon": "conspiracy_framing",
-      "color": "#A855F7",
-      "description": "Claiming that the total absence of verifiable evidence for a theory is actually definitive proof of a massive institutional cover-up.",
-      "psychology": "Our minds evolved hyper-active pattern recognition to connect ambiguous dots, naturally preferring coherent grand narratives over messy, random, or uncomfortable coincidences. Conspiratorial rhetoric capitalizes on this by declaring every contradiction to be part of the cover-up, creating an unfalsifiable psychological loop. Applying the principle of parsimony empowers you to favor the simplest evidence-backed explanations over elaborate clandestine schemes.",
-      "viral_example": "\"Mainstream media won't report this secret cure because Big Pharma pays billions to keep humanity sick! Share before deleted!\"",
-      "reflection_prompt": "Is this hypothesis constructed so that no amount of counter-evidence can ever disprove it in the author's eyes?",
-      "mil_competency": "UNESCO MIL Law 3: Dissecting Epistemic Bubbles & Conspiracies",
-      "sift_strategy": "Trace the origin of the suppression claim using Google Fact Check.",
-      "slug": "conspiracy-framing",
+      "name": "Cadrage Complotiste (Conspiracy Framing)",
+      "subtitle": "Le Mythe de la Répression",
+      "category": "Dialectique",
+      "description": "Prétendre que l'absence totale de preuves vérifiables étayant une théorie est en réalité la preuve ultime d'un complot institutionnel de dissimulation.",
+      "psychology": "L'esprit cherche des intentions cachées derrière les événements complexes et réinterprète chaque démenti comme faisant partie intégrante du complot.",
+      "viral_example": "\"Les grands médias refusent de parler de ce remède secret parce que l'industrie pharmaceutique paie des milliards pour nous garder malades !\"",
+      "reflection_prompt": "Cette hypothèse est-elle formulée de manière à ce qu'aucune preuve contraire ne puisse jamais la réfuter aux yeux de son auteur ?",
+      "sift_strategy": "Tracer l'Origine de la Thèse via des organismes indépendants de vérification des faits (Fact-Checking).",
+      "mil_competency": "Loi 3 de l'UNESCO MIL : Déconstruction des Bulles Épistémiques et Conspirations",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Conspiracy Framing",
@@ -794,7 +925,7 @@
       "case_studies": [
         {
           "id": "conspiracy_framing_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Conspiracy Framing in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed the suppression myth to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits provides an unfalsifiable psychological shield—every debunking attempt is re-interpreted as part of the conspiracy itself.",
@@ -802,7 +933,7 @@
         },
         {
           "id": "conspiracy_framing_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Conspiracy Framing in Algorithmic Feeds",
           "claim": "\"Mainstream media won't report this secret cure because Big Pharma pays billions to keep humanity sick! Share before deleted!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -810,7 +941,7 @@
         },
         {
           "id": "conspiracy_framing_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Conspiracy Framing in Consumer Marketing",
           "claim": "\"Marketers leverage Conspiracy Framing to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -818,7 +949,7 @@
         },
         {
           "id": "conspiracy_framing_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Conspiracy Framing in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize the suppression myth to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -826,7 +957,7 @@
         },
         {
           "id": "conspiracy_framing_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Conspiracy Framing in Executive Decision Making",
           "claim": "\"Project managers fall into Conspiracy Framing when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -834,20 +965,17 @@
         }
       ]
     },
-    {
+    "slippery_slope": {
       "id": "slippery_slope",
-      "name": "Slippery Slope",
-      "subtitle": "The Domino Fallacy & Inevitable Catastrophe",
-      "category": "Logic",
-      "icon": "slippery_slope",
-      "color": "#EAB308",
-      "description": "Asserting that a minor initial step or moderate policy will inevitably trigger a catastrophic, extreme chain of events without demonstrating any proven causal link.",
-      "psychology": "Your cognitive imagination naturally projects domino sequences into the future, but it easily confuses theoretical plausibility with statistical certainty. Persuaders weaponize this mechanism by linking a reasonable first step to an inevitable, catastrophic chain reaction without demonstrating each causal link. You can neutralize this anxiety trap by isolating each incremental step and assessing its independent probability on its own merits.",
-      "viral_example": "\"If the city approves this 15-minute neighborhood zoning pilot, the next step will be mandatory movement permits, digital ration cards, and the complete confiscation of private vehicles!\"",
-      "reflection_prompt": "Has the author demonstrated an unbroken, evidence-backed causal chain between the first step and the final disaster, or are they ignoring multiple intermediate safeguards and democratic checkpoints?",
-      "mil_competency": "UNESCO MIL Law 1: Critical Analysis of Causal Chains",
-      "sift_strategy": "Find Better Coverage: Consult independent urban planning and legislative analyses to verify whether similar policies historically produced the claimed domino effect.",
-      "slug": "slippery-slope",
+      "name": "Pente Savonneuse (Slippery Slope)",
+      "subtitle": "Effet Domino et Catastrophe Inévitable",
+      "category": "Logique",
+      "description": "Affirmer qu'une première mesure modérée entraînera inéluctablement un enchaînement de catastrophes sans démontrer de relation de cause à effet réelle.",
+      "psychology": "L'anxiété pousse à extrapoler le pire des scénarios face au moindre changement réglementaire.",
+      "viral_example": "\"Si nous autorisons les élèves à utiliser des calculatrices en classe, dans six mois ils ne liront plus aucun livre et l'école s'effondrera !\"",
+      "reflection_prompt": "Existe-t-il un lien de cause à effet avéré entre cette mesure et l'issue extrême annoncée ?",
+      "sift_strategy": "Enquêter sur les Précédents Historiques : Observez comment cette politique s'est déroulée dans d'autres pays ou établissements.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Évaluation de la Causalité et Analyse des Risques",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Slippery Slope",
@@ -865,7 +993,7 @@
       "case_studies": [
         {
           "id": "slippery_slope_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Slippery Slope in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed the domino fallacy & inevitable catastrophe to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits exploits catastrophizing heuristics and the brain's difficulty in evaluating compounding conditional probabilities across multi-step scenarios.",
@@ -873,7 +1001,7 @@
         },
         {
           "id": "slippery_slope_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Slippery Slope in Algorithmic Feeds",
           "claim": "\"If the city approves this 15-minute neighborhood zoning pilot, the next step will be mandatory movement permits, digital ration cards, and the complete confiscation of private vehicles!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -881,7 +1009,7 @@
         },
         {
           "id": "slippery_slope_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Slippery Slope in Consumer Marketing",
           "claim": "\"Marketers leverage Slippery Slope to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -889,7 +1017,7 @@
         },
         {
           "id": "slippery_slope_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Slippery Slope in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize the domino fallacy & inevitable catastrophe to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -897,7 +1025,7 @@
         },
         {
           "id": "slippery_slope_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Slippery Slope in Executive Decision Making",
           "claim": "\"Project managers fall into Slippery Slope when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -905,20 +1033,17 @@
         }
       ]
     },
-    {
+    "whataboutism": {
       "id": "whataboutism",
-      "name": "Whataboutism",
-      "subtitle": "Hypocrisy Deflection & Tu Quoque",
-      "category": "Dialectical",
-      "icon": "whataboutism",
-      "color": "#F97316",
-      "description": "Deflecting legitimate criticism or factual allegations by immediately pointing to an unrelated wrongdoing or inconsistency committed by an opponent.",
-      "psychology": "The brain has an acute moral fairness radar that recoils at perceived hypocrisy, making it tempting to evaluate a person's consistency rather than the charge at hand. Bad-faith debaters exploit this sensitivity by answering valid criticism with an unrelated counter-accusation to deflect accountability. Masterful thinkers defeat this tactic by resolving the original issue first before addressing any separate grievances.",
-      "viral_example": "\"Why is the media investigating our company's unauthorized data harvesting? What about when that foreign tech giant leaked 100 million user records three years ago and faced zero penalties?!\"",
-      "reflection_prompt": "Does highlighting another party's past misconduct resolve, disprove, or answer the specific evidence behind the current allegation?",
-      "mil_competency": "UNESCO MIL Law 3: Dialectical Integrity & Accountability",
-      "sift_strategy": "Stop: Refocus on verifying the primary claim before allowing the dialogue to be derailed by secondary comparisons.",
-      "slug": "whataboutism",
+      "name": "Whataboutisme (Whataboutism / Tu Quoque)",
+      "subtitle": "Déviation par l'Hypocrisie",
+      "category": "Dialectique",
+      "description": "Éluder une critique légitime en pointant immédiatement du doigt une faute ou une incohérence commise par l'adversaire, sans aucun rapport avec le sujet initial.",
+      "psychology": "L'accusation d'hypocrisie (« et vous alors ? ») est un réflexe défensif efficace pour détourner l'attention du problème initial.",
+      "viral_example": "\"Pourquoi critiquez-vous la déforestation dans notre pays ? Qu'en est-il des émissions industrielles de votre pays au XIXe siècle ?!\"",
+      "reflection_prompt": "Les torts commis par un tiers annulent-ils la véracité ou la gravité du problème actuellement examiné ?",
+      "sift_strategy": "Garder le Cap : Terminez l'évaluation du premier fait avant d'entamer une discussion comparative sur d'autres cas.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Préservation du Débat et Démonstration Rigoureuse",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Whataboutism",
@@ -936,7 +1061,7 @@
       "case_studies": [
         {
           "id": "whataboutism_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Whataboutism in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed hypocrisy deflection & tu quoque to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits triggers moral outrage and tribal defensiveness, shifting cognitive focus away from evaluating the immediate accusation to relitigating unrelated historical grievances.",
@@ -944,7 +1069,7 @@
         },
         {
           "id": "whataboutism_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Whataboutism in Algorithmic Feeds",
           "claim": "\"Why is the media investigating our company's unauthorized data harvesting? What about when that foreign tech giant leaked 100 million user records three years ago and faced zero penalties?!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -952,7 +1077,7 @@
         },
         {
           "id": "whataboutism_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Whataboutism in Consumer Marketing",
           "claim": "\"Marketers leverage Whataboutism to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -960,7 +1085,7 @@
         },
         {
           "id": "whataboutism_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Whataboutism in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize hypocrisy deflection & tu quoque to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -968,7 +1093,7 @@
         },
         {
           "id": "whataboutism_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Whataboutism in Executive Decision Making",
           "claim": "\"Project managers fall into Whataboutism when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -976,20 +1101,17 @@
         }
       ]
     },
-    {
+    "false_cause": {
       "id": "false_cause",
-      "name": "False Cause",
-      "subtitle": "Post Hoc & Spurious Correlation",
-      "category": "Logic",
-      "icon": "false_cause",
-      "color": "#06B6D4",
-      "description": "Assuming that because Event B occurred after or alongside Event A, Event A must have directly caused Event B, confusing coincidence or correlation with genuine causation.",
-      "psychology": "The human brain is an aggressive pattern-seeking engine that naturally assumes that because event B followed event A, event A must have caused event B. Conspiracies and fraudulent medical products capitalize on this temporal illusion by treating coincidental timing as definitive proof of causation. Demanding controlled variables and mechanism studies allows you to cleanly distinguish genuine causation from random correlation.",
-      "viral_example": "\"Local clinic visits spiked right after the new telecommunications tower was activated last month, proving that radio frequencies are destroying neighborhood immune systems!\"",
-      "reflection_prompt": "Did Event A cause Event B through a verified scientific mechanism, or did they simply coincide due to seasonal shifts, third-variable confounders, or pure chance?",
-      "mil_competency": "UNESCO MIL Law 1: Scientific & Empirical Reasoning",
-      "sift_strategy": "Trace Claim: Query epidemiological and peer-reviewed databases (e.g. PubMed, Cochrane) to verify established causal mechanisms.",
-      "slug": "false-cause",
+      "name": "Fausse Cause (False Cause / Post Hoc)",
+      "subtitle": "Corrélation Spacieuse et Fausse Causalité",
+      "category": "Logique",
+      "description": "Tenir pour acquis que parce que l'Événement B est survenu après ou en même temps que l'Événement A, l'Événement A en est nécessairement la cause directe.",
+      "psychology": "Le cerveau humain associe intuitivement succession temporelle et causalité, confondant coïncidence ou influence d'un tiers facteur avec un lien direct.",
+      "viral_example": "\"Depuis que la mairie a installé des lampadaires LED, le taux de divorce a augmenté de 15 %. Les LED nuisent clairement aux couples !\"",
+      "reflection_prompt": "Existe-t-il un mécanisme biologique ou scientifique plausible reliant ces deux événements, ou y a-t-il des facteurs masqués ?",
+      "sift_strategy": "Rechercher les Facteurs Cachés : Examinez si des variables économiques, démographiques ou saisonnières expliquent les deux tendances.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Démarche Scientifique et Raisonnement Causal",
       "allegorical_symbols": [
         {
           "title": "The Emblem of False Cause",
@@ -1007,7 +1129,7 @@
       "case_studies": [
         {
           "id": "false_cause_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "False Cause in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed post hoc & spurious correlation to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits leverages teleological thinking and evolutionary patternicity—the instinctual human drive to infer direct causal intent from chronological sequence.",
@@ -1015,7 +1137,7 @@
         },
         {
           "id": "false_cause_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "False Cause in Algorithmic Feeds",
           "claim": "\"Local clinic visits spiked right after the new telecommunications tower was activated last month, proving that radio frequencies are destroying neighborhood immune systems!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1023,7 +1145,7 @@
         },
         {
           "id": "false_cause_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "False Cause in Consumer Marketing",
           "claim": "\"Marketers leverage False Cause to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1031,7 +1153,7 @@
         },
         {
           "id": "false_cause_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "False Cause in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize post hoc & spurious correlation to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1039,7 +1161,7 @@
         },
         {
           "id": "false_cause_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "False Cause in Executive Decision Making",
           "claim": "\"Project managers fall into False Cause when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1047,20 +1169,17 @@
         }
       ]
     },
-    {
+    "false_authority": {
       "id": "false_authority",
-      "name": "False Authority",
-      "subtitle": "Irrelevant Credential Overreach",
+      "name": "Fausse Autorité (False Authority)",
+      "subtitle": "Expertise Hors Domaine",
       "category": "Attribution",
-      "icon": "false_authority",
-      "color": "#2563EB",
-      "description": "Citing an individual with formal credentials in one specialized field to substantiate authoritative claims in a completely unrelated, complex discipline.",
-      "psychology": "Human civilizations rely on delegated expertise, causing the brain to naturally defer to prestige symbols, credentials, and titles to save analytical labor. Scammers and marketing campaigns exploit this deference by parading unrelated experts or paid endorsements as definitive domain authorities. You protect your judgment by verifying whether the cited expert actually conducts peer-reviewed research in that specific field.",
-      "viral_example": "\"A world-renowned aerospace engineering professor just published a blog post claiming that dietary cholesterol does not affect cardiac health—who are you going to trust, a literal rocket scientist or mainstream dietitians?!\"",
-      "reflection_prompt": "Is this expert's formal academic training, published research history, and peer-reviewed track record specifically in the discipline they are making claims about?",
-      "mil_competency": "UNESCO MIL Law 2: Verification of Domain-Specific Authority",
-      "sift_strategy": "Investigate the Source: Conduct a lateral search of the author's primary publication record on Google Scholar and institutional faculty directories.",
-      "slug": "false-authority",
+      "description": "Invoquer les titres ou la renommée d'un spécialiste dans un domaine précis pour appuyer des affirmations dans une discipline totalement étrangère à ses compétences.",
+      "psychology": "La déférence envers les titres académiques conduit à supposer qu'un expert dans un domaine possède une autorité universelle.",
+      "viral_example": "\"Ce professeur de physique lauréat du prix Nobel affirme que les virus peuvent être guéris par des fréquences sonores de quartz !\"",
+      "reflection_prompt": "Le domaine de recherche de cette personnalité correspond-il réellement à la virologie ou à la médecine clinique ?",
+      "sift_strategy": "Vérifier la Spécialité : Examinez les publications scientifiques et l'affiliation universitaire de la personne citée.",
+      "mil_competency": "Loi 2 de l'UNESCO MIL : Validation de la Pertinence de l'Expertise",
       "allegorical_symbols": [
         {
           "title": "The Emblem of False Authority",
@@ -1078,7 +1197,7 @@
       "case_studies": [
         {
           "id": "false_authority_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "False Authority in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed irrelevant credential overreach to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits exploits credential deference—audiences see a formal title ('doctor', 'professor', 'engineer') and automatically assume universal domain competence across all sciences.",
@@ -1086,7 +1205,7 @@
         },
         {
           "id": "false_authority_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "False Authority in Algorithmic Feeds",
           "claim": "\"A world-renowned aerospace engineering professor just published a blog post claiming that dietary cholesterol does not affect cardiac health—who are you going to trust, a literal rocket scientist or mainstream dietitians?!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1094,7 +1213,7 @@
         },
         {
           "id": "false_authority_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "False Authority in Consumer Marketing",
           "claim": "\"Marketers leverage False Authority to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1102,7 +1221,7 @@
         },
         {
           "id": "false_authority_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "False Authority in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize irrelevant credential overreach to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1110,7 +1229,7 @@
         },
         {
           "id": "false_authority_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "False Authority in Executive Decision Making",
           "claim": "\"Project managers fall into False Authority when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1118,20 +1237,17 @@
         }
       ]
     },
-    {
+    "appeal_to_nature": {
       "id": "appeal_to_nature",
-      "name": "Appeal to Nature",
-      "subtitle": "Naturalistic Health Fallacy",
-      "category": "Logic",
-      "icon": "appeal_to_nature",
-      "color": "#059669",
-      "description": "Arguing that a product or treatment is inherently safe, beneficial, and effective because it is 'natural', while asserting that anything synthetic or laboratory-refined is toxic.",
-      "psychology": "The mind operates on an intuitive purity heuristic that reflexively associates the word 'natural' with inherent goodness, safety, and health. Marketers weaponize this semantic framing to charge premiums for unregulated remedies while demonizing synthetic innovations that have undergone rigorous clinical testing. Recognizing that nature also produces deadly toxins reminds you to evaluate substances based on clinical pharmacology rather than marketing labels.",
-      "viral_example": "\"Throw away your laboratory blood pressure prescriptions! This wild-harvested jungle root is 100% all-natural, meaning it has zero side effects and completely cures cardiovascular disease!\"",
-      "reflection_prompt": "Are natural substances (such as arsenic, hemlock, or snake venom) inherently safe, and are laboratory-formulated compounds inherently dangerous without empirical clinical trial data?",
-      "mil_competency": "UNESCO MIL Law 1: Biomedical & Chemical Literacy",
-      "sift_strategy": "Trace Claim: Check clinical toxicology registers and public health bodies (WHO, FDA, EMA) for peer-reviewed efficacy and toxicity trials.",
-      "slug": "appeal-to-nature",
+      "name": "Appel à la Nature (Appeal to Nature)",
+      "subtitle": "Sophisme Naturaliste",
+      "category": "Logique",
+      "description": "Affirmer qu'un produit ou un traitement est intrinsèquement sain, efficace et sans danger parce qu'il est « naturel », tandis que tout élément de synthèse est toxique.",
+      "psychology": "Le biais pro-nature fait oublier que de nombreux poisons mortels (cyanure, venin) sont 100 % naturels, et que la sécurité dépend du dosage et des molécules.",
+      "viral_example": "\"Notre remède est 100 % issu de plantes sauvages sans produits chimiques de synthèse, il est donc absolument impossible qu'il ait des effets secondaires !\"",
+      "reflection_prompt": "Des substances mortelles comme l'arsenic proviennent aussi de la nature : pourquoi l'origine naturelle garantirait-elle l'innocuité ?",
+      "sift_strategy": "Consulter la Toxicologie : Vérifiez les seuils d'exposition sécuritaires et les études pharmacologiques.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Évaluation des Risques et Rigueur Biochimique",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Appeal to Nature",
@@ -1149,7 +1265,7 @@
       "case_studies": [
         {
           "id": "appeal_to_nature_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Appeal to Nature in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed naturalistic health fallacy to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits activates purity heuristics and naturalistic essentialism, pairing evolutionary disgust toward artificial adulteration with a romanticized ideal of untouched nature.",
@@ -1157,7 +1273,7 @@
         },
         {
           "id": "appeal_to_nature_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Appeal to Nature in Algorithmic Feeds",
           "claim": "\"Throw away your laboratory blood pressure prescriptions! This wild-harvested jungle root is 100% all-natural, meaning it has zero side effects and completely cures cardiovascular disease!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1165,7 +1281,7 @@
         },
         {
           "id": "appeal_to_nature_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Appeal to Nature in Consumer Marketing",
           "claim": "\"Marketers leverage Appeal to Nature to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1173,7 +1289,7 @@
         },
         {
           "id": "appeal_to_nature_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Appeal to Nature in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize naturalistic health fallacy to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1181,7 +1297,7 @@
         },
         {
           "id": "appeal_to_nature_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Appeal to Nature in Executive Decision Making",
           "claim": "\"Project managers fall into Appeal to Nature when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1189,20 +1305,17 @@
         }
       ]
     },
-    {
+    "no_true_scotsman": {
       "id": "no_true_scotsman",
-      "name": "No True Scotsman",
-      "subtitle": "The Purity Shield & Shifting Definitions",
-      "category": "Dialectical",
-      "icon": "no_true_scotsman",
-      "color": "#7C3AED",
-      "description": "Protecting a universal claim from clear counterexamples by retroactively altering the definition of the group to exclude the inconvenient case.",
-      "psychology": "When a cherished generalization is threatened by a counter-example, the brain experiences uncomfortable cognitive dissonance and instinctively seeks to protect its mental model. Ideologues exploit this by retroactively redefining terms on the fly to dismiss inconvenient contradictions as 'not pure' or 'not authentic.' Demanding fixed, objective criteria upfront prevents moving the goalposts and keeps dialogue intellectually honest.",
-      "viral_example": "\"Real journalists would never publish stories critical of our movement. If a reporter wrote that investigative article, they were never a genuine, ethical journalist in the first place!\"",
-      "reflection_prompt": "Did the speaker arbitrarily redefine the boundaries or criteria of the group solely to dismiss a legitimate counterexample that disproved their original generalization?",
-      "mil_competency": "UNESCO MIL Law 3: Critical Evaluation of Ideological Claims",
-      "sift_strategy": "Find Better Coverage: Consult established, independent professional standards and academic definitions from diverse reputable organizations.",
-      "slug": "no-true-scotsman",
+      "name": "Pas de Vrai Écossais (No True Scotsman)",
+      "subtitle": "Bouclier de Pureté et Redéfinition Opportuniste",
+      "category": "Dialectique",
+      "description": "Protéger une généralisation contestée en redéfinissant rétroactivement les critères d'appartenance au groupe afin d'en exclure le contre-exemple embarrassant.",
+      "psychology": "Pour préserver une conviction identitaire face à une preuve contraire, on modifie la définition en ajoutant le mot « véritable » pour disqualifier l'exception.",
+      "viral_example": "\"Aucun véritable supporter de notre club ne commettrait de violences ! Ceux qui ont déclenché des bagarres hier ne sont pas de vrais supporters.\"",
+      "reflection_prompt": "Ce critère d'authenticité existait-il au départ ou a-t-il été improvisé pour sauver la thèse initiale ?",
+      "sift_strategy": "Examiner les Définitions Formelles : Comparez les critères officiels d'adhésion avant et après l'incident.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Cohérence Logique et Définitions Rigoureuses",
       "allegorical_symbols": [
         {
           "title": "The Emblem of No True Scotsman",
@@ -1220,7 +1333,7 @@
       "case_studies": [
         {
           "id": "no_true_scotsman_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "No True Scotsman in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed the purity shield & shifting definitions to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits provides cognitive immunization, enabling individuals to protect cherished dogmas and group identity from falsification and cognitive dissonance.",
@@ -1228,7 +1341,7 @@
         },
         {
           "id": "no_true_scotsman_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "No True Scotsman in Algorithmic Feeds",
           "claim": "\"Real journalists would never publish stories critical of our movement. If a reporter wrote that investigative article, they were never a genuine, ethical journalist in the first place!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1236,7 +1349,7 @@
         },
         {
           "id": "no_true_scotsman_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "No True Scotsman in Consumer Marketing",
           "claim": "\"Marketers leverage No True Scotsman to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1244,7 +1357,7 @@
         },
         {
           "id": "no_true_scotsman_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "No True Scotsman in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize the purity shield & shifting definitions to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1252,7 +1365,7 @@
         },
         {
           "id": "no_true_scotsman_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "No True Scotsman in Executive Decision Making",
           "claim": "\"Project managers fall into No True Scotsman when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1260,20 +1373,17 @@
         }
       ]
     },
-    {
+    "anchoring_bias": {
       "id": "anchoring_bias",
-      "name": "Anchoring Bias",
-      "subtitle": "First Number Fixation & Price Priming",
-      "category": "Cognitive",
-      "icon": "anchoring_bias",
-      "color": "#4F46E5",
-      "description": "Fixating disproportionately on the first piece of numerical information encountered, allowing that initial anchor to distort subsequent value judgments, estimates, and negotiations.",
-      "psychology": "When facing uncertainty, the brain seizes upon the very first piece of numerical information it encounters and uses it as a subconscious baseline for all subsequent calculations. Negotiators and pricing strategists exploit this cognitive inertia by throwing out an inflated initial number to make mediocre compromises appear exceptionally generous. Resetting your baseline using independent market benchmarks instantly frees your reasoning from artificial psychological anchors.",
-      "viral_example": "\"This algorithmic crypto trading course is valued at $10,000 by Wall Street insiders, but for the next 2 hours you can access it for only $97! Save $9,903 instantly!\"",
-      "reflection_prompt": "Is the initial reference price a verified, market-tested baseline, or is it an artificial anchor created to make the secondary price seem like an irresistible discount?",
-      "mil_competency": "UNESCO MIL Law 5: Financial Literacy & Cognitive Autonomy",
-      "sift_strategy": "Investigate the Source: Lateral search independent price-tracking engines and open-market competitors to determine genuine baseline valuations.",
-      "slug": "anchoring-bias",
+      "name": "Biais d'Ancrage (Anchoring Bias)",
+      "subtitle": "Fixation sur le Premier Chiffre",
+      "category": "Cognitif",
+      "description": "Se focaliser de manière disproportionnée sur la première information chiffrée reçue, faussant ainsi les estimations, négociations et évaluations ultérieures.",
+      "psychology": "En situation d'incertitude, notre cerveau prend le premier chiffre comme point de repère absolu et ajuste timidement son jugement autour de lui.",
+      "viral_example": "\"Le prix initial de cette veste était de 500 euros, mais aujourd'hui elle est soldée à -80 % et ne coûte que 100 euros !\"",
+      "reflection_prompt": "Cet article vaut-il réellement cette somme sur le marché ou le prix barré a-t-il été gonflé pour créer une fausse référence ?",
+      "sift_strategy": "Comparer les Prix Indépendants : Consultez les prix moyens du marché sans tenir compte des remises affichées.",
+      "mil_competency": "Loi 4 de l'UNESCO MIL : Analyse Critique des Négociations et Tarifications",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Anchoring Bias",
@@ -1291,7 +1401,7 @@
       "case_studies": [
         {
           "id": "anchoring_bias_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Anchoring Bias in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed first number fixation & price priming to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits driven by the anchoring-and-adjustment heuristic, where the human brain insufficiently adjusts away from an arbitrary initial figure when assessing real worth under uncertainty.",
@@ -1299,7 +1409,7 @@
         },
         {
           "id": "anchoring_bias_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Anchoring Bias in Algorithmic Feeds",
           "claim": "\"This algorithmic crypto trading course is valued at $10,000 by Wall Street insiders, but for the next 2 hours you can access it for only $97! Save $9,903 instantly!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1307,7 +1417,7 @@
         },
         {
           "id": "anchoring_bias_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Anchoring Bias in Consumer Marketing",
           "claim": "\"Marketers leverage Anchoring Bias to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1315,7 +1425,7 @@
         },
         {
           "id": "anchoring_bias_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Anchoring Bias in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize first number fixation & price priming to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1323,7 +1433,7 @@
         },
         {
           "id": "anchoring_bias_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Anchoring Bias in Executive Decision Making",
           "claim": "\"Project managers fall into Anchoring Bias when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1331,20 +1441,17 @@
         }
       ]
     },
-    {
+    "dunning_kruger": {
       "id": "dunning_kruger",
-      "name": "Dunning-Kruger Effect",
-      "subtitle": "Overconfidence Bias & Novice Blindness",
-      "category": "Cognitive",
-      "icon": "dunning_kruger",
-      "color": "#DB2777",
-      "description": "A cognitive blindspot wherein individuals with minimal knowledge or superficial exposure to a complex subject vastly overestimate their own expertise and dismiss domain specialists.",
-      "psychology": "When you know very little about a domain, you lack the metacognitive expertise required to recognize how vast the subject actually is, producing an illusion of mastery. Disinformation campaigns exploit this novice confidence to convince untrained audiences that complex scientific nuances are trivial or easily debunked. Cultivating intellectual humility transforms your curiosity, making you sharper by actively seeking the unknown depths of every topic.",
-      "viral_example": "\"I watched three video essays over the weekend and now I understand national monetary policy and currency inflation far better than career central bank economists!\"",
-      "reflection_prompt": "Do I possess the methodological training and domain depth necessary to dismiss the consensus of career researchers after brief, informal media consumption?",
-      "mil_competency": "UNESCO MIL Law 5: Metacognitive Humility & Self-Assessment",
-      "sift_strategy": "Stop: Acknowledge personal knowledge boundaries and cross-reference foundational university textbooks or comprehensive academic literature reviews.",
-      "slug": "dunning-kruger",
+      "name": "Effet Dunning-Kruger (Dunning-Kruger Effect)",
+      "subtitle": "Illusion de Compétence du Débutant",
+      "category": "Cognitif",
+      "description": "Biais cognitif par lequel des personnes ayant une compréhension superficielle d'un sujet complexe surestiment considérablement leur niveau de maîtrise et dénigrent les experts.",
+      "psychology": "Reconnaître ses propres lacunes exige un socle de connaissances déjà solide ; le néophyte ignore l'immensité de ce qu'il ne sait pas.",
+      "viral_example": "\"J'ai lu un article de 15 minutes sur la virologie hier soir et je suis convaincu que tous les professeurs d'université se trompent !\"",
+      "reflection_prompt": "Combien d'années de recherches et de complexité méthodologique m'échappent encore dans cette discipline scientifique ?",
+      "sift_strategy": "Pratiquer l'Humilité Intellectuelle : Consultez des revues scientifiques de pointe pour mesurer la complexité réelle du domaine.",
+      "mil_competency": "Loi 5 de l'UNESCO MIL : Métacognition et Humilité Épistémique",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Dunning-Kruger Effect",
@@ -1362,7 +1469,7 @@
       "case_studies": [
         {
           "id": "dunning_kruger_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Dunning-Kruger Effect in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed overconfidence bias & novice blindness to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits a dual-burden metacognitive deficit—the absence of deep knowledge in a domain simultaneously deprives the novice of the ability to evaluate their own incompetence accurately.",
@@ -1370,7 +1477,7 @@
         },
         {
           "id": "dunning_kruger_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Dunning-Kruger Effect in Algorithmic Feeds",
           "claim": "\"I watched three video essays over the weekend and now I understand national monetary policy and currency inflation far better than career central bank economists!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1378,7 +1485,7 @@
         },
         {
           "id": "dunning_kruger_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Dunning-Kruger Effect in Consumer Marketing",
           "claim": "\"Marketers leverage Dunning-Kruger Effect to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1386,7 +1493,7 @@
         },
         {
           "id": "dunning_kruger_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Dunning-Kruger Effect in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize overconfidence bias & novice blindness to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1394,7 +1501,7 @@
         },
         {
           "id": "dunning_kruger_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Dunning-Kruger Effect in Executive Decision Making",
           "claim": "\"Project managers fall into Dunning-Kruger Effect when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1402,20 +1509,17 @@
         }
       ]
     },
-    {
+    "hasty_generalization": {
       "id": "hasty_generalization",
-      "name": "Hasty Generalization",
-      "subtitle": "Anecdotal Extrapolation & Micro-Sample Bias",
-      "category": "Logic",
-      "icon": "hasty_generalization",
-      "color": "#D97706",
-      "description": "Drawing broad, universal conclusions about an entire population, demographic, or technology based on an isolated anecdote or statistically inadequate sample size.",
-      "psychology": "Our ancestors survived by quickly generalizing from single dramatic encounters, hardwiring our brains to extrapolate universal rules from tiny sample sizes. Sensational media leverages this tendency by broadcasting rare, shocking anecdotes to make isolated occurrences appear like widespread systemic crises. Stepping back to review population-level empirical data ensures your worldview reflects mathematical reality rather than viral anomalies.",
-      "viral_example": "\"My cousin bought an electric vehicle and the battery died in subzero weather during his first road trip. Electric vehicles are a completely unviable scam that will never work for anyone!\"",
-      "reflection_prompt": "Is this viral video or personal story representative of aggregate real-world performance, or am I extrapolating a universal truth from a sample size of one?",
-      "mil_competency": "UNESCO MIL Law 1: Statistical Sampling & Empirical Validity",
-      "sift_strategy": "Find Better Coverage: Search for large-scale fleet telemetry, aggregate consumer reports, and statistically robust cohort studies.",
-      "slug": "hasty-generalization",
+      "name": "Généralisation Hâtive (Hasty Generalization)",
+      "subtitle": "Extrapolation Anecdotique et Échantillon Insuffisant",
+      "category": "Logique",
+      "description": "Tirer des conclusions générales sur l'ensemble d'une population ou d'une technologie à partir d'une seule anecdote ou d'un échantillon statistiquement insignifiant.",
+      "psychology": "La mémoire privilégie les anecdotes marquantes par rapport aux lois statistiques, menant à des stéréotypes infondés.",
+      "viral_example": "\"J'ai acheté un appareil de cette marque et l'écran s'est cassé dès le premier jour. Tous les produits de ce pays sont de mauvaise qualité !\"",
+      "reflection_prompt": "Quelle est la taille de l'échantillon ? Un cas isolé suffit-il à représenter des millions d'unités produites ?",
+      "sift_strategy": "Vérifier la Taille de l'Échantillon : Recherchez des études de fiabilité sur de grands volumes et des statistiques agrégées.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Validité Statistique et Représentativité",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Hasty Generalization",
@@ -1433,7 +1537,7 @@
       "case_studies": [
         {
           "id": "hasty_generalization_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Hasty Generalization in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed anecdotal extrapolation & micro-sample bias to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits driven by base-rate neglect and the availability heuristic—vivid, emotionally compelling stories are recalled with ease, leading the brain to substitute individual cases for aggregate probability.",
@@ -1441,7 +1545,7 @@
         },
         {
           "id": "hasty_generalization_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Hasty Generalization in Algorithmic Feeds",
           "claim": "\"My cousin bought an electric vehicle and the battery died in subzero weather during his first road trip. Electric vehicles are a completely unviable scam that will never work for anyone!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1449,7 +1553,7 @@
         },
         {
           "id": "hasty_generalization_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Hasty Generalization in Consumer Marketing",
           "claim": "\"Marketers leverage Hasty Generalization to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1457,7 +1561,7 @@
         },
         {
           "id": "hasty_generalization_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Hasty Generalization in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize anecdotal extrapolation & micro-sample bias to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1465,7 +1569,7 @@
         },
         {
           "id": "hasty_generalization_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Hasty Generalization in Executive Decision Making",
           "claim": "\"Project managers fall into Hasty Generalization when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1473,20 +1577,17 @@
         }
       ]
     },
-    {
+    "circular_reasoning": {
       "id": "circular_reasoning",
-      "name": "Circular Reasoning",
-      "subtitle": "Begging the Question & Tautological Loops",
-      "category": "Logic",
-      "icon": "circular_reasoning",
-      "color": "#9333EA",
-      "description": "Constructing an argument whose conclusion is presupposed directly in the premises, offering a self-referential loop rather than external empirical evidence.",
-      "psychology": "The brain naturally finds coherent self-referential loops comforting, often mistaking a restatement of the original claim in different words for legitimate evidence. Manipulative arguments disguise this tautology by dressing the conclusion in elaborate semantic variations that lead right back to where they started. You unpack this mental trap by tracing the premise and demanding independent external evidence that exists outside the assertion itself.",
-      "viral_example": "\"You can completely trust every leak released by this anonymous account because they only share absolute truth, and we know it is absolute truth because this account posted it!\"",
-      "reflection_prompt": "Does this argument offer independent, third-party corroboration, or is it merely restating its own premise in different words?",
-      "mil_competency": "UNESCO MIL Law 1: Structural Argument & Epistemic Verification",
-      "sift_strategy": "Trace Claim: Look for independent primary sources and corroborating documentation outside of the speaker's self-contained narrative loop.",
-      "slug": "circular-reasoning",
+      "name": "Raisonnement Circulaire (Circular Reasoning)",
+      "subtitle": "Pétition de Principe et Tautologie",
+      "category": "Logique",
+      "description": "Bâtir une argumentation dont la conclusion est déjà présupposée dans les prémisses de départ, tournant en rond sans apporter de preuve extérieure indépendante.",
+      "psychology": "L'éloquence peut masquer le fait qu'une démonstration ne fait que répéter l'affirmation initiale sous une forme reformulée.",
+      "viral_example": "\"Ce manuel est infaillible et sans défaut car il est écrit à la première page qu'il s'agit d'un ouvrage qui ne se trompe jamais !\"",
+      "reflection_prompt": "Existe-t-il des preuves externes indépendantes ou l'argument se contente-t-il de se valider lui-même en boucle ?",
+      "sift_strategy": "Chercher une Vérification Externe : Exigez des données probantes indépendantes du système évalué.",
+      "mil_competency": "Loi 1 de l'UNESCO MIL : Démonstration Logique et Vérification Indépendante",
       "allegorical_symbols": [
         {
           "title": "The Emblem of Circular Reasoning",
@@ -1504,7 +1605,7 @@
       "case_studies": [
         {
           "id": "circular_reasoning_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "Circular Reasoning in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed begging the question & tautological loops to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits leverages coherence bias—the brain frequently confuses internal linguistic symmetry and narrative self-consistency with genuine external empirical proof.",
@@ -1512,7 +1613,7 @@
         },
         {
           "id": "circular_reasoning_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "Circular Reasoning in Algorithmic Feeds",
           "claim": "\"You can completely trust every leak released by this anonymous account because they only share absolute truth, and we know it is absolute truth because this account posted it!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1520,7 +1621,7 @@
         },
         {
           "id": "circular_reasoning_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "Circular Reasoning in Consumer Marketing",
           "claim": "\"Marketers leverage Circular Reasoning to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1528,7 +1629,7 @@
         },
         {
           "id": "circular_reasoning_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "Circular Reasoning in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize begging the question & tautological loops to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1536,7 +1637,7 @@
         },
         {
           "id": "circular_reasoning_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "Circular Reasoning in Executive Decision Making",
           "claim": "\"Project managers fall into Circular Reasoning when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1544,20 +1645,17 @@
         }
       ]
     },
-    {
+    "in_group_bias": {
       "id": "in_group_bias",
-      "name": "In-Group Bias",
-      "subtitle": "Tribal Favoritism & Out-Group Devaluation",
-      "category": "Cognitive",
-      "icon": "in_group_bias",
-      "color": "#B91C1C",
-      "description": "Evaluating claims, actions, and ethics through tribal allegiance, generously forgiving questionable behavior from one's own group while harshly vilifying identical actions from opponents.",
-      "psychology": "Evolutionary psychology rooted human survival in close-knit bands, causing our brains to grant automatic charity to our own group while assuming malice from outsiders. Partisan architects exploit this tribal loyalty by framing every issue as an existential battle between 'us' and 'them' to enforce unquestioning conformity. Universal critical thinkers rise above this trap by judging arguments by their logical integrity regardless of which faction presents them.",
-      "viral_example": "\"When our favored political faction uses emergency parliamentary rules, it is bold leadership saving the nation; when the opposing faction does it, it is an unconstitutional coup!\"",
-      "reflection_prompt": "Would I evaluate this exact same statement, policy, or action differently if it were performed by an opponent or a member of an opposing cultural group?",
-      "mil_competency": "UNESCO MIL Law 4: Deconstructing Polarization & Tribalism",
-      "sift_strategy": "Find Better Coverage: Read reporting from non-partisan international wire services and cross-ideological sources to compare rhetorical framing.",
-      "slug": "in-group-bias",
+      "name": "Biais de Groupe (In-Group Bias)",
+      "subtitle": "Favoritisme Tribal et Deux Poids Deux Mesures",
+      "category": "Cognitif",
+      "description": "Juger les actes et affirmations selon l'appartenance partisane, en excusant les fautes de son propre camp tout en condamnant avec virulence les mêmes actes chez les rivaux.",
+      "psychology": "Le sentiment d'appartenance tribale engendre une indulgence aveugle envers les membres de son groupe et une sévérité excessive envers les personnes extérieures.",
+      "viral_example": "\"Quand notre parti réduit les dépenses, c'est de la gestion rigoureuse ; quand l'opposition le fait, c'est un sabotage cruel de la société !\"",
+      "reflection_prompt": "Si le groupe que j'apprécie le moins posait exactement le même acte, le jugerais-je avec la même indulgence ?",
+      "sift_strategy": "Test de Symétrie Morale : Remplacez l'auteur de l'acte par votre adversaire pour vérifier si votre jugement éthique reste équitable.",
+      "mil_competency": "Loi 5 de l'UNESCO MIL : Équité Morale et Dépassement de la Polarisation",
       "allegorical_symbols": [
         {
           "title": "The Emblem of In-Group Bias",
@@ -1575,7 +1673,7 @@
       "case_studies": [
         {
           "id": "in_group_bias_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "In-Group Bias in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed tribal favoritism & out-group devaluation to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits rooted in social identity theory—individuals prioritize social belonging and group status defense over objective factual consistency to avoid social alienation.",
@@ -1583,7 +1681,7 @@
         },
         {
           "id": "in_group_bias_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "In-Group Bias in Algorithmic Feeds",
           "claim": "\"When our favored political faction uses emergency parliamentary rules, it is bold leadership saving the nation; when the opposing faction does it, it is an unconstitutional coup!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1591,7 +1689,7 @@
         },
         {
           "id": "in_group_bias_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "In-Group Bias in Consumer Marketing",
           "claim": "\"Marketers leverage In-Group Bias to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1599,7 +1697,7 @@
         },
         {
           "id": "in_group_bias_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "In-Group Bias in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize tribal favoritism & out-group devaluation to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1607,7 +1705,7 @@
         },
         {
           "id": "in_group_bias_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "In-Group Bias in Executive Decision Making",
           "claim": "\"Project managers fall into In-Group Bias when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1615,20 +1713,17 @@
         }
       ]
     },
-    {
+    "liars_dividend": {
       "id": "liars_dividend",
-      "name": "The Liar's Dividend",
-      "subtitle": "Deepfake Cynicism & Accountability Evasion",
-      "category": "Scam",
-      "icon": "liars_dividend",
-      "color": "#BE123C",
-      "description": "Weaponizing public awareness of generative AI and deepfakes to dismiss authentic, verified audio, photographic, or documentary evidence of real-world misconduct as 'synthetic fabrication'.",
-      "psychology": "In an era of generative AI and media proliferation, the human brain copes with information overload by defaulting to wholesale cynicism rather than doing the hard work of verification. Deceptive actors exploit this cognitive exhaustion by claiming that legitimate, incriminating evidence is merely an AI deepfake or coordinated hoax. Knowing how to laterally cross-examine corroborating metadata protects you from falling into total epistemic paralysis.",
-      "viral_example": "\"That leaked audio recording of our campaign manager discussing illicit bribes is a 100% synthetic deepfake created by hostile foreign AI bots! Do not believe what you hear!\"",
-      "reflection_prompt": "Is the individual claiming an incriminating piece of evidence is an AI deepfake simply because it exposes their misconduct, without providing verifiable forensic proof of synthesis?",
-      "mil_competency": "UNESCO MIL Law 4: Synthetic Media Literacy & Provenance Verification",
-      "sift_strategy": "Trace to Source: Consult accredited news verification desks and inspect cryptographic metadata (e.g. C2PA provenance credentials) or raw capture records.",
-      "slug": "liars-dividend",
+      "name": "Dividende du Menteur (Liar's Dividend)",
+      "subtitle": "Cynisme Face aux Deepfakes et Fuite des Responsabilités",
+      "category": "Arnaque",
+      "description": "Exploiter la méfiance du public envers l'IA générative pour rejeter des preuves authentiques de fautes réelles sous prétexte de « trucages numériques ».",
+      "psychology": "L'essor des technologies de contrefaçon permet à des individus mis en cause de jeter le doute sur des enregistrements compromettants bien réels.",
+      "viral_example": "\"Cet enregistrement où je demande des commissions est un deepfake fabriqué par IA par mes ennemis politiques pour me détruire !\"",
+      "reflection_prompt": "L'affirmation d'un truquage est-elle appuyée par une analyse informatique médico-légale ou s'agit-il d'une esquive ?",
+      "sift_strategy": "Analyse Forensique et Chaîne de Preuve : Examinez les métadonnées de l'enregistrement et les expertises numériques certifiées.",
+      "mil_competency": "Loi 4 de l'UNESCO MIL : Résilience Face à l'IA et Authentification Numérique",
       "allegorical_symbols": [
         {
           "title": "The Emblem of The Liar's Dividend",
@@ -1646,7 +1741,7 @@
       "case_studies": [
         {
           "id": "liars_dividend_cs1",
-          "domain": "Politics & Legislation",
+          "domain": "Politique et Législation Publique",
           "title": "The Liar's Dividend in Public Policy Debates",
           "claim": "\"During debates on the national budget, spokespersons deployed deepfake cynicism & accountability evasion to distract from independent fiscal analysis.\"",
           "deconstruction": "Exploits induces epistemic nihilism—exploits universal media skepticism to erode the baseline credibility of authentic whistleblowing and journalistic evidence.",
@@ -1654,7 +1749,7 @@
         },
         {
           "id": "liars_dividend_cs2",
-          "domain": "Social Media & Viral Outrage",
+          "domain": "Réseaux Sociaux et Indignation Virale",
           "title": "The Liar's Dividend in Algorithmic Feeds",
           "claim": "\"That leaked audio recording of our campaign manager discussing illicit bribes is a 100% synthetic deepfake created by hostile foreign AI bots! Do not believe what you hear!\"",
           "deconstruction": "Weaponizes emotional heuristics to bypass critical scrutiny and generate rapid algorithmic shares.",
@@ -1662,7 +1757,7 @@
         },
         {
           "id": "liars_dividend_cs3",
-          "domain": "Commercial & Advertising",
+          "domain": "Commerce et Publicité",
           "title": "The Liar's Dividend in Consumer Marketing",
           "claim": "\"Marketers leverage The Liar's Dividend to create artificial urgency and convince buyers that alternative solutions are impossible.\"",
           "deconstruction": "Frames product choices through cognitive shortcuts, preventing thorough price and feature comparisons.",
@@ -1670,7 +1765,7 @@
         },
         {
           "id": "liars_dividend_cs4",
-          "domain": "Science & Health Misinformation",
+          "domain": "Science et Désinformation Médicale",
           "title": "The Liar's Dividend in Medical Claims",
           "claim": "\"Alternative medicine promoters utilize deepfake cynicism & accountability evasion to dismiss double-blind peer-reviewed clinical trials.\"",
           "deconstruction": "Substitutes anecdotal confirmation for large-scale epidemiological data.",
@@ -1678,7 +1773,7 @@
         },
         {
           "id": "liars_dividend_cs5",
-          "domain": "Workplace & Professional Life",
+          "domain": "Monde du Travail et Prise de Décision",
           "title": "The Liar's Dividend in Executive Decision Making",
           "claim": "\"Project managers fall into The Liar's Dividend when prioritizing quarterly roadmaps based on historical inertia rather than ROI.\"",
           "deconstruction": "Cognitive biases cloud rational resource allocation and risk mitigation.",
@@ -1686,5 +1781,63 @@
         }
       ]
     }
-  ]
-}
+  },
+  "scenarios": {
+    "q1": {
+      "headline": "🚨 URGENT : Votre bourse d'annulation de prêt étudiant a été approuvée ! Réclamez sous 15 minutes avant la clôture définitive.",
+      "platform": "Alerte SMS / Transfert Telegram",
+      "context": "Un étudiant reçoit un SMS inattendu contenant un lien raccourci Bitly.",
+      "explanation": "Les escrocs imposent un faux compte à rebours (15 minutes) pour provoquer la panique et empêcher toute vérification sur les sites officiels.",
+      "sift_recommendation": "Stop ! Ne clique jamais sur des liens SMS imprévus. Ouvre directement le portail gouvernemental officiel."
+    },
+    "q2": {
+      "headline": "“Soit vous soutenez notre projet de loi de surveillance numérique, soit vous laissez les terroristes entrer librement dans nos aéroports !”",
+      "platform": "Interview Télévisée / Extrait Viral sur X",
+      "context": "Un responsable politique défend un projet de loi controversé lors d'un débat télévisé houleux.",
+      "explanation": "L'orateur occulte toutes les solutions intermédiaires respectueuses de la vie privée pour imposer un faux dilemme anxiogène.",
+      "sift_recommendation": "Trouve une Meilleure Couverture : Consulte les analyses juridiques d'organisations indépendantes de libertés publiques."
+    },
+    "q3": {
+      "headline": "“Les plus grands scientifiques s'accordent en secret : la 5G altère les ondes cérébrales. Les médias grand public refusent de révéler ce complot !”",
+      "platform": "Vidéo TikTok / Chaîne WhatsApp",
+      "context": "Une vidéo avec une bande-son dramatique cumulant plus de 2,4 millions de vues.",
+      "explanation": "Présente l'absence de couverture médiatique comme la 'preuve' d'un complot, en utilisant des formules floues sans nommer aucun institut.",
+      "sift_recommendation": "Remonte à la Source : Vérifie les rapports de consensus scientifique de l'OMS et de l'IEEE."
+    },
+    "q4": {
+      "headline": "“Ne perdez pas de temps à lire l'étude sur l'inflation du Dr Sarah Lin : elle roule en voiture de sport de luxe et n'a aucune idée de la réalité !”",
+      "platform": "Fil de Discussion Politique",
+      "context": "Un internaute rejette une étude économique de 60 pages évaluée par des pairs en critiquant la voiture de l'autrice.",
+      "explanation": "Attaque le train de vie personnel du chercheur au lieu d'analyser la méthodologie statistique et les données empiriques.",
+      "sift_recommendation": "Évalue la Source : Lis les revues critiques rédigées par d'autres économistes, et non les attaques personnelles."
+    },
+    "q5": {
+      "headline": "“Notre ville a reçu 25 cm de neige cette nuit ! Le dérèglement climatique mondial est officiellement une imposture de bureaucrates !”",
+      "platform": "Publication Virale sur les Réseaux",
+      "context": "Photo d'une allée enneigée prise lors d'une tempête hivernale locale.",
+      "explanation": "Confond la météo locale ponctuelle avec les tendances climatiques globales sur plusieurs décennies, en isolant un jour de gel contre 50 ans de données thermiques.",
+      "sift_recommendation": "Trouve une Meilleure Couverture : Consulte les cartes d'anomalies thermiques mondiales de la NASA et de Météo-France."
+    },
+    "q6": {
+      "headline": "“La superstar du football Cristiano soutient cette tisane détox. Avec ses 600 millions d'abonnés, c'est la preuve qu'elle guérit les maladies !”",
+      "platform": "Reel Sponsorisé sur Instagram",
+      "context": "Un sportif mondialement célèbre fait la promotion d'un complément alimentaire non homologué.",
+      "explanation": "Associe à tort la notoriété sportive et le charisme d'une célébrité à une expertise pharmacologique et médicale.",
+      "sift_recommendation": "Évalue la Source : Vérifie si le produit dispose d'une autorisation de mise sur le marché délivrée par les autorités de santé."
+    },
+    "q7": {
+      "headline": "“Si nous n'interdisons pas ce livre immédiatement, notre civilisation s'effondrera dans l'anarchie et notre jeunesse sera perdue à jamais !”",
+      "platform": "Audition Publique Scolaire",
+      "context": "Un intervenant virulent réclame le retrait d'un ouvrage de la bibliothèque.",
+      "explanation": "Mobilise un vocabulaire apocalyptique pour susciter une peur panique plutôt que d'évaluer sereinement la pertinence pédagogique.",
+      "sift_recommendation": "Stop : Repère l'alarmisme émotionnel et demande des avis pédagogiques équilibrés."
+    },
+    "q8": {
+      "headline": "“Plus de 10 millions de jeunes investisseurs ont déjà rejoint le token Quantum-Yield ce mois-ci. Ne reste pas à la traîne !”",
+      "platform": "Serveur Discord de Trading / Publicité Web",
+      "context": "Une bannière publicitaire incitant à déposer des fonds dans un projet crypto non régulé.",
+      "explanation": "Exploite l'effet de meute et la peur de rater une opportunité (FOMO) pour faire croire à la légitimité du projet.",
+      "sift_recommendation": "Évalue la Source : Vérifie les registres officiels des autorités des marchés financiers."
+    }
+  }
+};
