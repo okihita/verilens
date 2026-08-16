@@ -1,6 +1,21 @@
 import './globals.css';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+
+const sansFont = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+  display: 'swap'
+});
+
+const monoFont = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-mono',
+  display: 'swap'
+});
 
 export const metadata = {
   title: 'VeriLens — UNESCO Gamified Media Literacy & Cognitive Companion',
@@ -14,8 +29,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${sansFont.variable} ${monoFont.variable}`}>
+      <body className={sansFont.className}>
         <Navbar />
 
         <main>{children}</main>
@@ -26,9 +41,9 @@ export default function RootLayout({ children }) {
               <div className="footer-col">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                   <div className="brand-logo" style={{ width: '28px', height: '28px', fontSize: '11px' }}>VL</div>
-                  <strong style={{ color: '#FFFFFF', fontSize: '15px' }}>VeriLens Platform</strong>
+                  <strong style={{ color: 'var(--text-main)', fontSize: '15px', fontWeight: '800', letterSpacing: '-0.02em' }}>VeriLens Platform</strong>
                 </div>
-                <p style={{ lineHeight: '1.5', color: '#94A3B8', fontSize: '12.5px' }}>
+                <p style={{ lineHeight: '1.55', color: 'var(--text-secondary)', fontSize: '12.5px' }}>
                   An open-access media & information literacy ecosystem combining gamified cognitive conditioning with real-time browser protection. Built for the <strong>UNESCO Global MIL Youth Hackathon 2026</strong>.
                 </p>
               </div>
@@ -59,16 +74,16 @@ export default function RootLayout({ children }) {
               <div className="footer-col">
                 <h4>Ecosystem</h4>
                 <ul>
+                  <li><Link href="/educator">Educator Guide & Lesson Plans</Link></li>
                   <li><Link href="/extension">Chrome Extension (MV3)</Link></li>
+                  <li><Link href="/privacy">Privacy & Security Architecture</Link></li>
                   <li><a href="https://github.com/okihita/verilens" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-                  <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">Gemini 2.0 Flash-Lite</a></li>
-                  <li><Link href="/privacy">Privacy Policy</Link></li>
                 </ul>
               </div>
             </div>
 
             <div className="footer-bottom">
-              <span>© 2026 VeriLens Project • Developed for UNESCO Global MIL Youth Hackathon</span>
+              <span>2026 VeriLens Project • Developed for UNESCO Global MIL Youth Hackathon</span>
               <span>Open Source • Privacy-First Local Processing</span>
             </div>
           </div>
