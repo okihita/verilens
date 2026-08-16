@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { fallacies, FALLACY_ILLUSTRATIONS } from '@verilens/shared';
 import { recordCardFlipped } from '../../lib/gamification';
 import { useTranslation } from '../../lib/i18n';
-import HeroRenaissanceBackground from '../../components/HeroRenaissanceBackground';
+import HeroParallaxBackground from '../../components/HeroParallaxBackground';
 
 export default function HomePage() {
   const { t, lang, getLocalizedFallacy } = useTranslation();
@@ -46,19 +46,23 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Consumer-Minded Emotional Hero Section (Loss-Aversion Framing) */}
+      {/* Grand Full-Bleed Sistine Fresco Hero Section with Parallax */}
       <section
         style={{
           position: 'relative',
-          padding: '64px 0 52px',
+          padding: '104px 0 88px',
+          minHeight: '620px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           textAlign: 'center',
-          background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 75%)',
+          background: 'var(--bg-app)',
           borderBottom: '1px solid var(--border-subtle)',
           overflow: 'hidden'
         }}
       >
-        {/* Renaissance Scholars Study Hall Engraving Background */}
-        <HeroRenaissanceBackground />
+        {/* Full-Bleed Colored Sistine Chapel Fresco Background with Scroll Parallax */}
+        <HeroParallaxBackground />
 
         <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
