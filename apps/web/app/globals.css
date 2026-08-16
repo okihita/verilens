@@ -29,6 +29,9 @@
   --radius-md: 10px;
   --radius-lg: 14px;
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 16px -4px rgba(0, 0, 0, 0.02);
+  --hero-bg-opacity: 0.10;
+  --hero-bg-blend: multiply;
+  --hero-bg-fade: rgba(248, 250, 252, 0.85);
 }
 
 [data-theme="dark"] {
@@ -50,6 +53,9 @@
   --accent-red: #EF4444;
   --accent-purple: #8B5CF6;
   --shadow-card: 0 4px 20px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --hero-bg-opacity: 0.32;
+  --hero-bg-blend: screen;
+  --hero-bg-fade: rgba(6, 9, 19, 0.70);
 }
 
 * {

@@ -46,8 +46,43 @@ export default function HomePage() {
   return (
     <div>
       {/* Consumer-Minded Emotional Hero Section (Loss-Aversion Framing) */}
-      <section style={{ padding: '52px 0 40px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
-        <div className="container" style={{ maxWidth: '880px' }}>
+      <section
+        style={{
+          position: 'relative',
+          padding: '64px 0 48px',
+          textAlign: 'center',
+          background: 'var(--bg-app)',
+          borderBottom: '1px solid var(--border-subtle)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Subtle Editorial Background Illustration */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(/assets/images/hero-prismatic-lens.jpg)',
+            backgroundPosition: 'right 20% center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            opacity: 'var(--hero-bg-opacity, 0.25)',
+            mixBlendMode: 'var(--hero-bg-blend, screen)',
+            pointerEvents: 'none',
+            filter: 'contrast(1.15) brightness(0.95)'
+          }}
+        />
+
+        {/* Soft Radial Vignette Overlay to ensure 100% Text Readability */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse at center, var(--hero-bg-fade, rgba(10, 15, 29, 0.65)) 0%, var(--bg-app) 100%)',
+            pointerEvents: 'none'
+          }}
+        />
+
+        <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
             <span>{t('hackathon_badge')}</span>
           </div>
