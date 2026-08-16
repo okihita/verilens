@@ -308,6 +308,7 @@ export default function HomePage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
                         background: 'var(--bg-surface)',
                         border: '1px solid var(--border-card)',
                         borderRadius: 'var(--radius-lg)',
@@ -315,7 +316,9 @@ export default function HomePage() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        pointerEvents: isFlipped ? 'none' : 'auto',
+                        zIndex: isFlipped ? 1 : 2
                       }}
                     >
                       {/* Washed Renaissance Fresco Canvas & Atmospheric Scrim */}
@@ -371,9 +374,18 @@ export default function HomePage() {
                         </p>
                       </div>
 
-                      <div style={{ position: 'relative', zIndex: 2, borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12.5px', color: 'var(--accent-blue-light)', fontWeight: '600' }}>
-                        <span>{t('card_tap_front')}</span>
-                        <span>➔</span>
+                      <div style={{ position: 'relative', zIndex: 3, borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12.5px' }}>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '11.5px', fontWeight: '600' }}>
+                          {t('card_tap_front')} ➔
+                        </span>
+                        <Link
+                          href={`/codex/${idToSlug(item.id)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="btn btn-outline"
+                          style={{ padding: '3px 8px', fontSize: '11px', textDecoration: 'none', fontWeight: '700', cursor: 'pointer', position: 'relative', zIndex: 10 }}
+                        >
+                          {t('card_view_dossier')}
+                        </Link>
                       </div>
                     </div>
 
@@ -384,6 +396,7 @@ export default function HomePage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
                         background: 'var(--bg-surface-elevated)',
                         border: `1.5px solid ${item.color}`,
@@ -392,7 +405,9 @@ export default function HomePage() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        overflowY: 'auto'
+                        overflowY: 'auto',
+                        pointerEvents: isFlipped ? 'auto' : 'none',
+                        zIndex: isFlipped ? 2 : 1
                       }}
                     >
                       <div>
@@ -416,12 +431,12 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap', position: 'relative', zIndex: 10 }}>
                         <Link
                           href={`/codex/${idToSlug(item.id)}`}
                           onClick={(e) => e.stopPropagation()}
                           className="btn btn-outline"
-                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', fontWeight: '700' }}
+                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', fontWeight: '700', cursor: 'pointer' }}
                         >
                           {t('card_view_dossier')}
                         </Link>
@@ -429,7 +444,7 @@ export default function HomePage() {
                           href={`/sandbox?sample=${encodeURIComponent(fallacyName)}`}
                           onClick={(e) => e.stopPropagation()}
                           className="btn btn-primary"
-                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none' }}
+                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', cursor: 'pointer' }}
                         >
                           {t('card_sandbox_btn')}
                         </Link>

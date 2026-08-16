@@ -165,32 +165,6 @@ export default function FallacyDossierPage({ params }) {
                   </span>
                 </div>
               )}
-
-              {/* Artwork Label Ribbon */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '12px',
-                  right: '12px',
-                  background: 'rgba(9, 13, 26, 0.85)',
-                  backdropFilter: 'blur(8px)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  fontSize: '11.5px',
-                  fontWeight: '700',
-                  color: '#FFFFFF',
-                  letterSpacing: '0.04em',
-                  border: '1px solid rgba(255, 255, 255, 0.15)'
-                }}
-              >
-                Direction 1: Master Renaissance Emblem
-              </div>
-            </div>
-
-            {/* Artwork Metadata Caption */}
-            <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px', color: 'var(--text-muted)' }}>
-              <span>Style: Raphael & Michelangelo Chiaroscuro</span>
-              <span>1:1 High-Resolution Aspect Ratio</span>
             </div>
           </div>
 
