@@ -143,9 +143,9 @@ a:hover {
 }
 
 .navbar-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   height: 60px;
 }
 
@@ -154,6 +154,7 @@ a:hover {
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  justify-self: start;
 }
 
 .brand-logo {
@@ -185,6 +186,14 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 6px;
+  justify-self: center;
+}
+
+.nav-controls-desktop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
 }
 
 .nav-link {
@@ -484,6 +493,10 @@ a:hover {
 
 /* Responsive Media Queries */
 @media (max-width: 960px) {
+  .navbar-inner {
+    display: flex;
+    justify-content: space-between;
+  }
   .desktop-only {
     display: none !important;
   }

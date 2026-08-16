@@ -221,7 +221,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Controls: Compact Hub (Desktop) */}
-        <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="nav-controls-desktop desktop-only">
           
           {/* Light / Dark / System Segmented Icon Switcher */}
           <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '8px', padding: '2px', gap: '2px' }}>
