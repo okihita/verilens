@@ -1,6 +1,6 @@
 {
   "name": "@verilens/shared",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Shared heuristics, fallacy taxonomy, and SIFT verification engines for VeriLens",
   "main": "src/index.js",
   "module": "src/index.js",

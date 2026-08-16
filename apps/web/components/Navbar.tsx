@@ -79,7 +79,7 @@ export default function Navbar() {
             style={{ height: '28px', width: 'auto', display: 'block', flexShrink: 0 }}
           />
           <div className="brand-text">
-            <h1 style={{ fontSize: '17px', fontWeight: '900', letterSpacing: '-0.03em', margin: 0 }}>VeriLens</h1>
+            <span style={{ fontSize: '17px', fontWeight: '900', letterSpacing: '-0.03em', margin: 0, color: 'var(--text-main)', display: 'block' }}>VeriLens</span>
           </div>
         </Link>
 
@@ -226,7 +226,7 @@ export default function Navbar() {
         </div>
 
         {/* Column 3: Controls, Language, Profile (Aligned to End with Exactly Equal 36px Heights) */}
-        <div className="nav-controls-desktop desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="nav-controls-desktop desktop-only">
           
           {/* Light / Dark / System Segmented Switcher (Height: 36px) */}
           <div
@@ -458,7 +458,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Header Controls (Unified 32px Equal Height & Zero Sound Icon) */}
-        <div className="mobile-only-controls" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <div className="mobile-only-controls">
           
           {/* Mobile Theme Switcher (Height: 32px) */}
           <div
