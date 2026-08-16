@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getPlayerProfile, getRankFromXP } from '../lib/gamification';
 import { useTranslation } from '../lib/i18n';
+import { useTheme } from '../lib/theme';
 
 export default function Navbar() {
   const { t, lang, setLanguage } = useTranslation();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [profile, setProfile] = useState({ xp: 120 });
   const [rank, setRank] = useState({ level: 1, name: 'Novice Skeptic', color: '#94A3B8', nextXP: 150 });
   const [gamesOpen, setGamesOpen] = useState(false);
@@ -48,6 +50,14 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const cycleTheme = () => {
+    if (theme === 'system') setTheme('light');
+    else if (theme === 'light') setTheme('dark');
+    else setTheme('system');
+  };
+
+  const themeLabel = theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark';
+
   const progressPercent = Math.min(100, Math.round((profile.xp / rank.nextXP) * 100));
   const isGameRoute = ['/gauntlet', '/arena', '/feed', '/forge', '/duel'].includes(pathname);
   const isProgressionRoute = ['/profile', '/skills', '/leaderboard'].includes(pathname);
@@ -83,10 +93,10 @@ export default function Navbar() {
                 </div>
 
                 <Link href="/gauntlet" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(220, 38, 38, 0.15)', color: '#F87171', fontWeight: '800', fontSize: '11px' }}>60s</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(220, 38, 38, 0.15)', color: '#F87171', fontWeight: '800' }}>60s</div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_daily_gauntlet')}</strong>
+                      <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_daily_gauntlet')}</strong>
                       <span style={{ fontSize: '9.5px', background: '#DC2626', color: '#FFF', padding: '1px 5px', borderRadius: '4px', fontWeight: '800' }}>
                         {lang === 'id' ? 'UJI CEPAT' : 'SPEED TRIAL'}
                       </span>
@@ -98,9 +108,9 @@ export default function Navbar() {
                 </Link>
 
                 <Link href="/arena" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800', fontSize: '11px' }}>5R</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800' }}>5R</div>
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_spotter_arena')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_spotter_arena')}</strong>
                     <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Pertarungan analisis 5 skenario berita' : '5-round scenario analysis battle'}
                     </div>
@@ -108,9 +118,9 @@ export default function Navbar() {
                 </Link>
 
                 <Link href="/feed" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', fontWeight: '800', fontSize: '11px' }}>Feed</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', fontWeight: '800' }}>Feed</div>
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_feed_sim')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_feed_sim')}</strong>
                     <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Moderasi beranda sosial & SIFT' : 'Simulated social feed moderation & SIFT'}
                     </div>
@@ -118,9 +128,9 @@ export default function Navbar() {
                 </Link>
 
                 <Link href="/forge" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24', fontWeight: '800', fontSize: '11px' }}>Lab</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24', fontWeight: '800' }}>Lab</div>
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_fallacy_forge')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_fallacy_forge')}</strong>
                     <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Pelajari manipulasi dengan membalik fakta' : 'Reverse-spin neutral facts to learn deception'}
                     </div>
@@ -128,9 +138,9 @@ export default function Navbar() {
                 </Link>
 
                 <Link href="/duel" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA', fontWeight: '800', fontSize: '11px' }}>1v1</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA', fontWeight: '800' }}>1v1</div>
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_duel')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_duel')}</strong>
                     <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Pertarungan layar bagi 2 pemain' : '2-player split screen battle'}
                     </div>
@@ -154,10 +164,37 @@ export default function Navbar() {
           <Link href="/classroom" className={`nav-link ${pathname === '/classroom' ? 'active' : ''}`}>
             {t('nav_classroom')}
           </Link>
+
+          {/* Pillar 5: Educator Guide */}
+          <Link href="/educator" className={`nav-link ${pathname === '/educator' ? 'active' : ''}`}>
+            {lang === 'id' ? 'RPP Guru' : 'Educator'}
+          </Link>
         </div>
 
-        {/* Right: Language Switcher, RPG Profile Hub & Action CTA (Desktop) */}
-        <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Right: Theme Toggle, Language Switcher, RPG Hub (Desktop) */}
+        <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Theme Switcher Toggle */}
+          <button
+            onClick={cycleTheme}
+            style={{
+              background: 'var(--bg-surface-elevated)',
+              border: '1px solid var(--border-card)',
+              color: 'var(--text-secondary)',
+              padding: '4px 10px',
+              borderRadius: '16px',
+              fontSize: '11px',
+              fontWeight: '800',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}
+            title="Switch Theme (Auto / Light / Dark)"
+          >
+            <span>Theme:</span>
+            <span style={{ color: 'var(--accent-amber)' }}>{themeLabel}</span>
+          </button>
+
           {/* Top-Right Language Switcher */}
           <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '16px', padding: '2px', overflow: 'hidden' }}>
             <button
@@ -208,7 +245,7 @@ export default function Navbar() {
                   <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color }}></div>
                 </div>
               </div>
-              <span style={{ fontSize: '11px', fontWeight: '800', color: '#FFFFFF' }}>{profile.xp} {t('xp_label')}</span>
+              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-main)' }}>{profile.xp} {t('xp_label')}</span>
               <span style={{ fontSize: '9px', color: 'var(--text-muted)', transform: profileOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
@@ -220,7 +257,7 @@ export default function Navbar() {
 
                 <Link href="/profile" className="dropdown-item">
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_trophy')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_trophy')}</strong>
                     <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Lencana & Statistik Akurasi' : 'Badges & Accuracy Stats'}
                     </div>
@@ -229,7 +266,7 @@ export default function Navbar() {
 
                 <Link href="/skills" className="dropdown-item">
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_skills')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_skills')}</strong>
                     <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Buka 4 Cabang Pertahanan' : 'Unlock 4 Defense Branches'}
                     </div>
@@ -238,7 +275,7 @@ export default function Navbar() {
 
                 <Link href="/leaderboard" className="dropdown-item">
                   <div>
-                    <strong style={{ fontSize: '13px', color: '#FFFFFF' }}>{t('nav_league')}</strong>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_league')}</strong>
                     <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Papan Peringkat Pemuda' : 'Youth Leaderboard Ladder'}
                     </div>
@@ -253,8 +290,24 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Right Controls: Language Toggle + Compact XP + Hamburger */}
+        {/* Mobile Right Controls */}
         <div className="mobile-only-controls">
+          <button
+            onClick={cycleTheme}
+            style={{
+              background: 'var(--bg-surface-elevated)',
+              border: '1px solid var(--border-card)',
+              color: 'var(--text-secondary)',
+              padding: '3px 7px',
+              borderRadius: '12px',
+              fontSize: '10.5px',
+              fontWeight: '800',
+              cursor: 'pointer'
+            }}
+          >
+            {themeLabel}
+          </button>
+
           <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '14px', padding: '1px' }}>
             <button
               onClick={() => setLanguage('en')}
@@ -290,7 +343,7 @@ export default function Navbar() {
 
           <Link href="/profile" style={{ textDecoration: 'none' }}>
             <div style={{ background: 'var(--bg-surface-elevated)', border: `1px solid ${rank.color}`, padding: '4px 8px', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '800', color: '#FFFFFF' }}>{profile.xp} {t('xp_label')}</span>
+              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-main)' }}>{profile.xp} {t('xp_label')}</span>
             </div>
           </Link>
 
@@ -324,6 +377,7 @@ export default function Navbar() {
               <Link href="/" className="mobile-nav-item">{t('nav_codex')}</Link>
               <Link href="/sandbox" className="mobile-nav-item">{t('nav_sandbox')}</Link>
               <Link href="/classroom" className="mobile-nav-item">{t('nav_classroom')}</Link>
+              <Link href="/educator" className="mobile-nav-item">{lang === 'id' ? 'RPP Guru' : 'Educator Hub'}</Link>
             </div>
           </div>
 
