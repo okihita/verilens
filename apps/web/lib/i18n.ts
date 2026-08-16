@@ -103,6 +103,9 @@ export const TRANSLATIONS = {
     share_copy_link: 'Copy Direct Link',
     share_link_copied: 'Link Copied to Clipboard!',
     share_instagram_tip: 'Link copied! Paste it in your Instagram Bio, Story Link Sticker, or DM.',
+    share_as_story_btn: 'Share Instagram Story (9:16 PNG)',
+    share_as_square_btn: 'Share Square Card (1:1 PNG)',
+    share_generating: 'Generating Image...',
 
     // Gauntlet
     gauntlet_badge: '60-Second Timed Survival Mode',
@@ -276,6 +279,9 @@ export const TRANSLATIONS = {
     share_copy_link: 'Salin Tautan Langsung',
     share_link_copied: 'Tautan Berhasil Disalin!',
     share_instagram_tip: 'Tautan tersalin! Tempel di Bio, Stiker Tautan Cerita, atau DM Instagram Anda.',
+    share_as_story_btn: 'Bagikan Instagram Story (9:16 PNG)',
+    share_as_square_btn: 'Bagikan Kartu Persegi (1:1 PNG)',
+    share_generating: 'Membuat Gambar...',
 
     // Gauntlet
     gauntlet_badge: 'Mode Bertahan Cepat 60 Detik',
@@ -449,6 +455,9 @@ export const TRANSLATIONS = {
     share_copy_link: 'Copiar Enlace Directo',
     share_link_copied: '¡Enlace Copiado al Portapapeles!',
     share_instagram_tip: '¡Enlace copiado! Pégalo en tu biografía, sticker de enlace en Stories o DM de Instagram.',
+    share_as_story_btn: 'Compartir Instagram Story (9:16 PNG)',
+    share_as_square_btn: 'Compartir Tarjeta Cuadrada (1:1 PNG)',
+    share_generating: 'Generando Imagen...',
 
     // Gauntlet
     gauntlet_badge: 'Modo Supervivencia Contrarreloj (60s)',
@@ -621,7 +630,10 @@ export const TRANSLATIONS = {
     share_modal_desc: 'Partagez cette analyse de sophisme avec vos amis et votre communauté pour renforcer l’esprit critique collectif.',
     share_copy_link: 'Copier le Lien Direct',
     share_link_copied: 'Lien Copié dans le Presse-papiers !',
-    share_instagram_tip: 'Lien copié ! Collez-le dans votre bio, sticker de lien en Story ou DM Instagram.',
+    share_instagram_tip: 'Lien copié ! Collez-le dans votre bio Instagram, sticker de lien en Story ou message privé.',
+    share_as_story_btn: 'Partager Instagram Story (9:16 PNG)',
+    share_as_square_btn: 'Partager Carte Carrée (1:1 PNG)',
+    share_generating: 'Génération de l\'Image...',
 
     // Gauntlet
     gauntlet_badge: 'Survie Chronométrée en 60 Secondes',
@@ -795,6 +807,9 @@ export const TRANSLATIONS = {
     share_copy_link: '复制直接链接',
     share_link_copied: '链接已复制到剪贴板！',
     share_instagram_tip: '链接已复制！粘贴到您的 Instagram 简介、快拍链接贴纸或私信中。',
+    share_as_story_btn: '分享 Instagram 快拍图片 (9:16 PNG)',
+    share_as_square_btn: '分享方形卡片 (1:1 PNG)',
+    share_generating: '正在生成图片...',
 
     // Gauntlet
     gauntlet_badge: '60秒极速生存挑战',

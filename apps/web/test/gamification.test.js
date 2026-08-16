@@ -113,3 +113,10 @@ test('Audio Engine: Native Web Audio synthesizer exports callable sound handlers
     audioModule.playComplete();
   });
 });
+
+test('Story Card Engine: Exports generateStoryCardBlob and shareStoryImage handlers', async () => {
+  const storyModule = await import('../lib/story-card.ts');
+  assert.ok(typeof storyModule.generateStoryCardBlob === 'function');
+  assert.ok(typeof storyModule.shareStoryImage === 'function');
+});
+
