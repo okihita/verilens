@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
   if (!fallacy) {
     return {
-      title: 'Fallacy Dossier — VeriLens',
+      title: 'Fallacy Guide — VeriLens',
       description: 'UNESCO Global MIL Cognitive Fallacy & Bias Codex.'
     };
   }
