@@ -12,14 +12,15 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [flippedCardId, setFlippedCardId] = useState(null);
 
-  const categories = ['ALL', 'Relevance', 'Presumption', 'Ambiguity', 'Dialectical', 'Cognitive Bias'];
+  const categories = ['ALL', 'Logic', 'Emotional', 'Cognitive', 'Attribution', 'Scam', 'Dialectical'];
   const categoryLabels = {
     'ALL': t('cat_all'),
-    'Relevance': t('cat_relevance'),
-    'Presumption': t('cat_presumption'),
-    'Ambiguity': t('cat_ambiguity'),
-    'Dialectical': t('cat_dialectical'),
-    'Cognitive Bias': t('cat_cognitive')
+    'Logic': t('cat_logic'),
+    'Emotional': t('cat_emotional'),
+    'Cognitive': t('cat_cognitive'),
+    'Attribution': t('cat_attribution'),
+    'Scam': t('cat_scam'),
+    'Dialectical': t('cat_dialectical')
   };
 
   const localizedFallacies = useMemo(() => {
