@@ -86,21 +86,21 @@ export default function SkillsPage() {
       <div className="card" style={{ marginBottom: '28px', background: 'var(--bg-surface)', border: '1.5px solid var(--accent-purple)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.6px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.6px' }}>
               UNESCO Cognitive Metacognition Tree
             </div>
             <h1 style={{ fontSize: '28px', fontWeight: '900', color: 'var(--text-main)', marginTop: '4px' }}>
               Cognitive Mastery Skill Tree
             </h1>
-            <p style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
+            <p style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
               Spend your earned Level Points to unlock passive cognitive perks and defense boosters.
             </p>
           </div>
 
           <div style={{ background: 'var(--bg-surface-elevated)', padding: '12px 20px', borderRadius: '12px', border: '1px solid var(--border-card)', textAlign: 'center' }}>
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '800' }}>Available Points</div>
+            <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '800' }}>Available Points</div>
             <div style={{ fontSize: '26px', fontWeight: '900', color: 'var(--accent-amber)' }}>{availablePoints} PTS</div>
-            <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Level {rank.level} ({spentPoints} Unlocked)</div>
+            <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Level {rank.level} ({spentPoints} Unlocked)</div>
           </div>
         </div>
       </div>
@@ -110,10 +110,10 @@ export default function SkillsPage() {
         {SKILL_BRANCHES.map((branch) => (
           <div key={branch.id} className="card" style={{ borderTop: `4px solid ${branch.color}` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '900', padding: '3px 8px', borderRadius: '6px', background: 'var(--bg-surface-elevated)', color: branch.color }}>{branch.icon}</span>
+              <span style={{ fontSize: '12px', fontWeight: '900', padding: '3px 8px', borderRadius: '6px', background: 'var(--bg-surface-elevated)', color: branch.color }}>{branch.icon}</span>
               <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)' }}>{branch.name}</h2>
             </div>
-            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: '1.4' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: '1.45' }}>
               {branch.description}
             </p>
 
@@ -136,15 +136,15 @@ export default function SkillsPage() {
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <strong style={{ fontSize: '13.5px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>
+                        <strong style={{ fontSize: '14px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>
                           {isUnlocked ? '[ACTIVE] ' : '[LOCKED] '}{skill.name}
                         </strong>
-                        <span style={{ fontSize: '10.5px', fontWeight: '700', padding: '1px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.08)', color: branch.color }}>
+                        <span style={{ fontSize: '12px', fontWeight: '700', padding: '1px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.08)', color: branch.color }}>
                           Tier {index + 1} ({skill.cost} pt)
                         </span>
                       </div>
-                      <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginTop: '2px' }}>{skill.desc}</div>
-                      <div style={{ fontSize: '11px', color: 'var(--accent-amber)', fontWeight: '700', marginTop: '4px' }}>PERK: {skill.perk}</div>
+                      <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '2px' }}>{skill.desc}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--accent-amber)', fontWeight: '700', marginTop: '4px' }}>PERK: {skill.perk}</div>
                     </div>
 
                     {!isUnlocked ? (
@@ -152,12 +152,12 @@ export default function SkillsPage() {
                         onClick={() => handleUnlock(skill)}
                         disabled={availablePoints < skill.cost}
                         className="btn btn-primary"
-                        style={{ padding: '6px 12px', fontSize: '11.5px', whiteSpace: 'nowrap' }}
+                        style={{ padding: '7px 14px', fontSize: '12.5px', whiteSpace: 'nowrap' }}
                       >
                         Unlock ({skill.cost} pt)
                       </button>
                     ) : (
-                      <span style={{ fontSize: '11px', color: branch.color, fontWeight: '800', padding: '4px 8px', background: 'var(--bg-surface)', borderRadius: '4px' }}>
+                      <span style={{ fontSize: '12px', color: branch.color, fontWeight: '800', padding: '4px 8px', background: 'var(--bg-surface)', borderRadius: '4px' }}>
                         MASTERED
                       </span>
                     )}

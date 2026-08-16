@@ -91,7 +91,7 @@ export default function ArenaPage() {
 
         <div className="card" style={{ maxWidth: '520px', margin: '0 auto 32px', textAlign: 'left' }}>
           <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '12px' }}>Arena Rules:</h3>
-          <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.8' }}>
             <li><strong>5 Micro-Rounds:</strong> One viral post or claim per round.</li>
             <li><strong>Streak Multipliers:</strong> Correct answers in a row boost your XP (1x, 2x, 3x).</li>
             <li><strong>Pedagogical Feedback:</strong> Learn the UNESCO SIFT move for every scenario.</li>
@@ -128,33 +128,33 @@ export default function ArenaPage() {
           </div>
 
           <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', padding: '20px', marginBottom: '28px' }}>
-            <div style={{ fontSize: '13px', textTransform: 'uppercase', fontWeight: '700', color: 'var(--text-muted)' }}>Assigned Grade</div>
+            <div style={{ fontSize: '12px', textTransform: 'uppercase', fontWeight: '700', color: 'var(--text-muted)' }}>Assigned Grade</div>
             <div style={{ fontSize: '26px', fontWeight: '900', color: rankColor, margin: '4px 0 12px' }}>{rank}</div>
 
             <div style={{ display: 'flex', justifyContent: 'space-around', borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
               <div>
                 <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)' }}>{score} XP</div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Total Score</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Total Score</div>
               </div>
               <div>
                 <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--accent-amber)' }}>{maxStreak}x</div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Max Streak</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Max Streak</div>
               </div>
               <div>
                 <div style={{ fontSize: '20px', fontWeight: '800', color: 'var(--accent-emerald-light)' }}>{shuffledQuestions.length}/5</div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Completed</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Completed</div>
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => setShowCertificate(true)} className="btn btn-amber">
+            <button onClick={() => setShowCertificate(true)} className="btn btn-amber" style={{ padding: '10px 20px', fontSize: '14px' }}>
               Claim UNESCO Certificate
             </button>
-            <button onClick={handleStartGame} className="btn btn-primary">
+            <button onClick={handleStartGame} className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
               Play Another Round
             </button>
-            <Link href="/sandbox" className="btn btn-outline">
+            <Link href="/sandbox" className="btn btn-outline" style={{ padding: '10px 20px', fontSize: '14px' }}>
               Test Live Articles
             </Link>
           </div>
@@ -181,17 +181,17 @@ export default function ArenaPage() {
       {/* Top Header & Progress */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
-          <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--accent-amber)' }}>
+          <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--accent-amber)' }}>
             Round {currentRound + 1} of {shuffledQuestions.length}
           </span>
           <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)' }}>Spot the Weaponized Bias</h2>
         </div>
 
         <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-          <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', color: 'var(--accent-amber)' }}>
+          <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '5px 14px', borderRadius: '20px', fontSize: '13.5px', fontWeight: '700', color: 'var(--accent-amber)' }}>
             Streak: {streak}x
           </div>
-          <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '4px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', color: 'var(--accent-emerald-light)' }}>
+          <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '5px 14px', borderRadius: '20px', fontSize: '13.5px', fontWeight: '700', color: 'var(--accent-emerald-light)' }}>
             {score} XP
           </div>
         </div>
@@ -205,16 +205,16 @@ export default function ArenaPage() {
       {/* The Scenario Card */}
       <div className="card" style={{ marginBottom: '24px', borderLeft: '4px solid var(--accent-amber)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-          <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
             Medium: {scenario.platform}
           </span>
         </div>
 
-        <blockquote style={{ fontSize: '17px', fontWeight: '600', color: 'var(--text-main)', lineHeight: '1.5', margin: '8px 0 14px', fontStyle: 'italic' }}>
+        <blockquote style={{ fontSize: '17.5px', fontWeight: '600', color: 'var(--text-main)', lineHeight: '1.5', margin: '8px 0 14px', fontStyle: 'italic' }}>
           {scenario.headline}
         </blockquote>
 
-        <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
+        <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
           <strong>Context:</strong> {scenario.context}
         </div>
       </div>
@@ -228,7 +228,7 @@ export default function ArenaPage() {
             border: '1.5px solid var(--border-card)',
             background: 'var(--bg-surface)',
             color: 'var(--text-main)',
-            fontSize: '14px',
+            fontSize: '14.5px',
             fontWeight: '700',
             cursor: isAnswered ? 'default' : 'pointer',
             textAlign: 'left',
@@ -264,7 +264,7 @@ export default function ArenaPage() {
       {showFeedback && (
         <div className="card" style={{ background: isCorrect ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)', border: `1.5px solid ${isCorrect ? '#10B981' : '#EF4444'}`, marginBottom: '24px', animation: 'fadeIn 0.3s ease' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span style={{ fontSize: '13px', fontWeight: '900', color: isCorrect ? 'var(--accent-emerald-light)' : '#EF4444' }}>
+            <span style={{ fontSize: '13.5px', fontWeight: '900', color: isCorrect ? 'var(--accent-emerald-light)' : '#EF4444' }}>
               {isCorrect ? 'CORRECT SPOT' : 'MANIPULATION MISSED'}
             </span>
           </div>
@@ -273,20 +273,20 @@ export default function ArenaPage() {
             {scenario.correct_fallacy_name}
           </h3>
 
-          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '14px' }}>
+          <p style={{ fontSize: '14.5px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '14px' }}>
             {scenario.explanation}
           </p>
 
           <div style={{ background: 'var(--bg-surface-elevated)', padding: '12px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginBottom: '18px' }}>
-            <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', marginBottom: '2px' }}>
+            <div style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', marginBottom: '2px' }}>
               UNESCO SIFT Lateral Move:
             </div>
-            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+            <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
               {scenario.sift_recommendation}
             </div>
           </div>
 
-          <button onClick={handleNextRound} className="btn btn-primary" style={{ width: '100%', padding: '12px' }}>
+          <button onClick={handleNextRound} className="btn btn-primary" style={{ width: '100%', padding: '12px', fontSize: '14.5px' }}>
             {currentRound + 1 < shuffledQuestions.length ? 'Next Scenario ➔' : 'View Final Evaluation ➔'}
           </button>
         </div>

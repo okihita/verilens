@@ -74,13 +74,13 @@ export default function DuelPage() {
     <div className="container" style={{ maxWidth: '1040px', padding: '30px 16px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '20px', fontSize: '11px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '6px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '6px' }}>
           <span>2-Player Local Battle Arena</span>
         </div>
         <h1 style={{ fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '900', color: 'var(--text-main)' }}>
           Cognitive 1v1 Duel
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px' }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
           Split keyboard or shared phone. First player to spot the correct fallacy deals 25 damage!
         </p>
       </div>
@@ -90,8 +90,8 @@ export default function DuelPage() {
         {/* Player 1 Health */}
         <div className="card" style={{ padding: '12px 14px', borderLeft: '4px solid #3B82F6' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-            <strong style={{ color: '#60A5FA', fontSize: '13px' }}>Player 1 (Blue)</strong>
-            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '13px' }}>{p1Hp} / 100 HP</span>
+            <strong style={{ color: '#60A5FA', fontSize: '14px' }}>Player 1 (Blue)</strong>
+            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '14px' }}>{p1Hp} / 100 HP</span>
           </div>
           <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p1Hp}%`, height: '100%', background: '#3B82F6', transition: 'width 0.3s ease' }}></div>
@@ -101,8 +101,8 @@ export default function DuelPage() {
         {/* Player 2 Health */}
         <div className="card" style={{ padding: '12px 14px', borderRight: '4px solid #EF4444', textAlign: 'right' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '13px' }}>{p2Hp} / 100 HP</span>
-            <strong style={{ color: '#F87171', fontSize: '13px' }}>Player 2 (Red)</strong>
+            <span style={{ fontWeight: '900', color: 'var(--text-main)', fontSize: '14px' }}>{p2Hp} / 100 HP</span>
+            <strong style={{ color: '#F87171', fontSize: '14px' }}>Player 2 (Red)</strong>
           </div>
           <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{ width: `${p2Hp}%`, height: '100%', background: '#EF4444', transition: 'width 0.3s ease', marginLeft: 'auto' }}></div>
@@ -112,15 +112,15 @@ export default function DuelPage() {
 
       {/* Target Claim in Center */}
       <div className="card" style={{ textAlign: 'center', padding: '20px', marginBottom: '20px', background: 'var(--bg-surface)' }}>
-        <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
+        <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
           Target Headline #{currentIndex + 1}
         </span>
-        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '800', color: 'var(--text-main)', lineHeight: '1.4', margin: '8px 0' }}>
+        <blockquote style={{ fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: '800', color: 'var(--text-main)', lineHeight: '1.4', margin: '8px 0' }}>
           {scenario.headline}
         </blockquote>
 
         {roundFeedback && (
-          <div style={{ fontSize: '13px', fontWeight: '800', color: 'var(--accent-amber)', marginTop: '6px', animation: 'fadeIn 0.2s ease' }}>
+          <div style={{ fontSize: '14px', fontWeight: '800', color: 'var(--accent-amber)', marginTop: '6px', animation: 'fadeIn 0.2s ease' }}>
             {roundFeedback}
           </div>
         )}
@@ -133,14 +133,14 @@ export default function DuelPage() {
           <h2 style={{ fontSize: 'clamp(22px, 5vw, 26px)', fontWeight: '900', color: 'var(--text-main)', marginBottom: '6px' }}>
             {winner} Wins the Duel!
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginBottom: '18px' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '18px' }}>
             Flawless rhetorical defense awarded +250 XP to the champion.
           </p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-            <button onClick={restartDuel} className="btn btn-amber">
+            <button onClick={restartDuel} className="btn btn-amber" style={{ padding: '9px 18px', fontSize: '14px' }}>
               Rematch
             </button>
-            <Link href="/arena" className="btn btn-primary">
+            <Link href="/arena" className="btn btn-primary" style={{ padding: '9px 18px', fontSize: '14px' }}>
               Solo Arena
             </Link>
           </div>
@@ -149,7 +149,7 @@ export default function DuelPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
           {/* Player 1 Choices */}
           <div className="card" style={{ borderColor: '#3B82F6' }}>
-            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#60A5FA', marginBottom: '10px' }}>
+            <h3 style={{ fontSize: '14px', fontWeight: '800', color: '#60A5FA', marginBottom: '10px' }}>
               PLAYER 1 (LEFT / A-D)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -158,7 +158,7 @@ export default function DuelPage() {
                   key={`p1-${opt.id}`}
                   onClick={() => handlePlayerAnswer(1, opt.id)}
                   className="btn btn-outline"
-                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '12.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
+                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '13.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
                 >
                   <span>{opt.name}</span>
                   <span style={{ color: 'var(--accent-blue)', fontWeight: '800' }}>[{['Q', 'W', 'E', 'R'][i]}]</span>
@@ -169,7 +169,7 @@ export default function DuelPage() {
 
           {/* Player 2 Choices */}
           <div className="card" style={{ borderColor: '#EF4444' }}>
-            <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#F87171', marginBottom: '10px' }}>
+            <h3 style={{ fontSize: '14px', fontWeight: '800', color: '#F87171', marginBottom: '10px' }}>
               PLAYER 2 (RIGHT / U-P)
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -178,7 +178,7 @@ export default function DuelPage() {
                   key={`p2-${opt.id}`}
                   onClick={() => handlePlayerAnswer(2, opt.id)}
                   className="btn btn-outline"
-                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '12.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
+                  style={{ textAlign: 'left', padding: '10px 12px', fontSize: '13.5px', display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)' }}
                 >
                   <span>{opt.name}</span>
                   <span style={{ color: '#EF4444', fontWeight: '800' }}>[{['U', 'I', 'O', 'P'][i]}]</span>

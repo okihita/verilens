@@ -74,10 +74,10 @@ export default function ClassroomPage() {
         {/* Top Presenter Bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ padding: '4px 10px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--accent-amber)', borderRadius: '6px', fontSize: '11px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
+            <span style={{ padding: '4px 10px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--accent-amber)', borderRadius: '6px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
               SMARTBOARD SHOWDOWN
             </span>
-            <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+            <span style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
               Scenario {currentIndex + 1} of {deck.length}
             </span>
           </div>
@@ -85,12 +85,12 @@ export default function ClassroomPage() {
           {/* Classroom Scoreboard */}
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1.5px solid #EF4444', padding: '6px 14px', borderRadius: '10px', textAlign: 'center' }}>
-              <div style={{ fontSize: '10.5px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase' }}>Team Alpha [A]</div>
+              <div style={{ fontSize: '12px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase' }}>Team Alpha [A]</div>
               <div style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)' }}>{teamAlphaScore} pts</div>
             </div>
 
             <div style={{ background: 'rgba(59, 130, 246, 0.15)', border: '1.5px solid #3B82F6', padding: '6px 14px', borderRadius: '10px', textAlign: 'center' }}>
-              <div style={{ fontSize: '10.5px', fontWeight: '800', color: '#60A5FA', textTransform: 'uppercase' }}>Team Beta [B]</div>
+              <div style={{ fontSize: '12px', fontWeight: '800', color: '#60A5FA', textTransform: 'uppercase' }}>Team Beta [B]</div>
               <div style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)' }}>{teamBetaScore} pts</div>
             </div>
 
@@ -102,7 +102,7 @@ export default function ClassroomPage() {
               <button
                 onClick={() => setTimerRunning(!timerRunning)}
                 className="btn btn-outline"
-                style={{ padding: '2px 8px', fontSize: '11px' }}
+                style={{ padding: '2px 8px', fontSize: '12px' }}
               >
                 {timerRunning ? 'Pause' : 'Start'}
               </button>
@@ -113,14 +113,14 @@ export default function ClassroomPage() {
         {/* Projector Scenario Display */}
         <div className="card" style={{ padding: '36px 30px', marginBottom: '20px', background: 'var(--bg-surface)', border: '2px solid var(--border-card)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '12.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
               Platform: {currentScenario.platform}
             </span>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <button onClick={handleSpeak} className="btn btn-outline" style={{ padding: '3px 10px', fontSize: '11.5px' }}>
+              <button onClick={handleSpeak} className="btn btn-outline" style={{ padding: '4px 12px', fontSize: '12.5px' }}>
                 Read Aloud (TTS)
               </button>
-              <span style={{ fontSize: '11.5px', color: 'var(--text-muted)' }}>
+              <span style={{ fontSize: '12.5px', color: 'var(--text-muted)' }}>
                 Press [Space] to Reveal • [Right Arrow] Next
               </span>
             </div>
@@ -130,7 +130,7 @@ export default function ClassroomPage() {
             {currentScenario.headline}
           </blockquote>
 
-          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+          <div style={{ fontSize: '14.5px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
             <strong>Context for Debate:</strong> {currentScenario.context}
           </div>
 
@@ -153,7 +153,7 @@ export default function ClassroomPage() {
                   gap: '10px'
                 }}
               >
-                <span style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
+                <span style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px' }}>
                   {['A', 'B', 'C', 'D'][i]}
                 </span>
                 <span>{opt.name}</span>
@@ -171,10 +171,10 @@ export default function ClassroomPage() {
             <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--accent-emerald-light)', marginBottom: '6px' }}>
               Pedagogical Breakdown: {currentScenario.correct_fallacy_name}
             </h3>
-            <p style={{ fontSize: '13.5px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '10px' }}>
+            <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '10px' }}>
               {currentScenario.explanation}
             </p>
-            <div style={{ background: 'rgba(0,0,0,0.1)', padding: '10px 14px', borderRadius: '6px', fontSize: '12.5px', color: 'var(--accent-blue)' }}>
+            <div style={{ background: 'rgba(0,0,0,0.1)', padding: '10px 14px', borderRadius: '6px', fontSize: '13px', color: 'var(--accent-blue)' }}>
               <strong>UNESCO SIFT Recommendation:</strong> {currentScenario.sift_recommendation}
             </div>
           </div>
@@ -183,29 +183,29 @@ export default function ClassroomPage() {
         {/* Presenter Controls Footer */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <button onClick={prevQuestion} className="btn btn-outline" style={{ fontSize: '12px' }}>
+            <button onClick={prevQuestion} className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 14px' }}>
               Previous
             </button>
             <button
               onClick={() => setIsAnswerRevealed(!isAnswerRevealed)}
               className="btn btn-amber"
-              style={{ fontSize: '12px' }}
+              style={{ fontSize: '13px', padding: '8px 14px' }}
             >
               {isAnswerRevealed ? 'Hide Answer [Space]' : 'Reveal Answer [Space]'}
             </button>
-            <button onClick={nextQuestion} className="btn btn-primary" style={{ fontSize: '12px' }}>
+            <button onClick={nextQuestion} className="btn btn-primary" style={{ fontSize: '13px', padding: '8px 14px' }}>
               Next Question
             </button>
           </div>
 
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <button onClick={() => setTeamAlphaScore((prev) => prev + 100)} className="btn" style={{ background: '#DC2626', color: '#FFF', fontSize: '12px', padding: '6px 12px' }}>
+            <button onClick={() => setTeamAlphaScore((prev) => prev + 100)} className="btn" style={{ background: '#DC2626', color: '#FFF', fontSize: '13px', padding: '8px 14px' }}>
               +100 Alpha [A]
             </button>
-            <button onClick={() => setTeamBetaScore((prev) => prev + 100)} className="btn" style={{ background: '#2563EB', color: '#FFF', fontSize: '12px', padding: '6px 12px' }}>
+            <button onClick={() => setTeamBetaScore((prev) => prev + 100)} className="btn" style={{ background: '#2563EB', color: '#FFF', fontSize: '13px', padding: '8px 14px' }}>
               +100 Beta [B]
             </button>
-            <button onClick={() => { setTeamAlphaScore(0); setTeamBetaScore(0); }} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
+            <button onClick={() => { setTeamAlphaScore(0); setTeamBetaScore(0); }} className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 14px' }}>
               Reset Scores
             </button>
           </div>

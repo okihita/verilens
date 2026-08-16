@@ -51,13 +51,13 @@ export default function ProfilePage() {
               Lv.{rank.level}
             </div>
             <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: rank.color, letterSpacing: '0.6px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: rank.color, letterSpacing: '0.6px' }}>
                 {lang === 'id' ? `Peringkat MIL UNESCO • Tingkat ${rank.level}` : `UNESCO MIL Rank • Level ${rank.level}`}
               </div>
               <h1 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: 'var(--text-main)', marginTop: '2px' }}>
                 {rank.name}
               </h1>
-              <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
+              <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
                 {lang === 'id' ? 'Total Poin: ' : 'Total Score: '}<strong style={{ color: 'var(--text-main)' }}>{profile.xp} XP</strong> • {lang === 'id' ? `Peringkat berikutnya di ${nextRank.minXP} XP` : `Next rank at ${nextRank.minXP} XP`}
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function ProfilePage() {
 
           {/* Level Progress Bar */}
           <div style={{ width: '100%', maxWidth: '260px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--text-muted)', marginBottom: '4px', fontWeight: '700' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px', fontWeight: '700' }}>
               <span>{lang === 'id' ? 'TINGKAT' : 'LVL'} {rank.level}</span>
               <span>{profile.xp} / {nextRank.minXP} XP</span>
             </div>
@@ -81,7 +81,7 @@ export default function ProfilePage() {
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
           <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-amber)', marginBottom: '2px' }}>XP</div>
           <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--text-main)' }}>{profile.xp}</div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Total Poin XP' : 'Total XP Earned'}
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function ProfilePage() {
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
           <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-amber)', marginBottom: '2px' }}>MAX</div>
           <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-amber)' }}>{profile.maxStreak}x</div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Rentetan Tertinggi' : 'Highest Streak'}
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function ProfilePage() {
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
           <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-blue-light)', marginBottom: '2px' }}>24</div>
           <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>{profile.cardsFlipped.length}/24</div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Kartu Dikuasai' : 'Cards Mastered'}
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ProfilePage() {
         <div className="card" style={{ textAlign: 'center', padding: '14px' }}>
           <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-emerald-light)', marginBottom: '2px' }}>8</div>
           <div style={{ fontSize: '20px', fontWeight: '900', color: 'var(--accent-emerald-light)' }}>{profile.unlockedBadgeIds.length}/{BADGES.length}</div>
-          <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
             {lang === 'id' ? 'Lencana Terbuka' : 'Badges Unlocked'}
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function ProfilePage() {
           <h2 style={{ fontSize: 'clamp(18px, 4vw, 20px)', fontWeight: '800', color: 'var(--text-main)' }}>
             {lang === 'id' ? 'Lencana Prestasi Kognitif' : 'Cognitive Achievement Badges'}
           </h2>
-          <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
             {lang === 'id'
               ? 'Selesaikan tantangan di Arena, Gauntlet, dan Kodeks untuk membuka lencana dan bonus XP.'
               : 'Complete challenges across the Arena, Gauntlet, and Codex to unlock badges and earn bonus XP.'}
@@ -150,10 +150,10 @@ export default function ProfilePage() {
                 </div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <strong style={{ fontSize: '13px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>{badgeName}</strong>
-                    {isUnlocked && <span style={{ fontSize: '10px', color: 'var(--accent-amber)', fontWeight: '800' }}>+{b.xpReward} XP</span>}
+                    <strong style={{ fontSize: '14px', color: isUnlocked ? 'var(--text-main)' : 'var(--text-muted)' }}>{badgeName}</strong>
+                    {isUnlocked && <span style={{ fontSize: '12px', color: 'var(--accent-amber)', fontWeight: '800' }}>+{b.xpReward} XP</span>}
                   </div>
-                  <p style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.3' }}>
+                  <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.35' }}>
                     {badgeDesc}
                   </p>
                 </div>
@@ -169,15 +169,15 @@ export default function ProfilePage() {
           <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
             {lang === 'id' ? 'Siap naik ke peringkat berikutnya?' : 'Ready to climb to the next rank?'}
           </h3>
-          <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
             {lang === 'id' ? 'Mainkan Tantangan 60 Detik atau masuk ke Arena 5 ronde.' : 'Play the 60-second Gauntlet or jump into the 5-round Arena.'}
           </p>
         </div>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '8px 16px', fontSize: '13px' }}>
+          <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '8px 16px', fontSize: '14px' }}>
             {lang === 'id' ? 'Tantangan 60s' : 'Gauntlet'}
           </Link>
-          <Link href="/arena" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }}>
+          <Link href="/arena" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '14px' }}>
             {lang === 'id' ? 'Arena Deteksi' : 'Arena'}
           </Link>
         </div>

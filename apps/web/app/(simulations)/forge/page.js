@@ -87,27 +87,27 @@ export default function ForgePage() {
       {/* The Challenge Card */}
       <div className="card" style={{ marginBottom: '24px', borderLeft: '4px solid var(--accent-amber)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
             Mission {currentIndex + 1} of {FORGE_CHALLENGES.length}
           </span>
-          <span style={{ fontSize: '11px', color: 'var(--accent-emerald-light)', fontWeight: '700' }}>
+          <span style={{ fontSize: '12px', color: 'var(--accent-emerald-light)', fontWeight: '700' }}>
             Forged: {totalForged} Headlines
           </span>
         </div>
 
         <div style={{ marginBottom: '14px' }}>
-          <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase' }}>Neutral Raw Fact:</span>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase' }}>Neutral Raw Fact:</span>
           <div style={{ fontSize: '16px', color: 'var(--text-main)', fontStyle: 'italic', background: 'var(--bg-surface-elevated)', padding: '10px 14px', borderRadius: '6px', marginTop: '4px' }}>
             "{challenge.neutralFact}"
           </div>
         </div>
 
         <div>
-          <span style={{ fontSize: '11px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase' }}>Target Weaponized Fallacy to Forge:</span>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase' }}>Target Weaponized Fallacy to Forge:</span>
           <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginTop: '2px' }}>
             {challenge.targetFallacy}
           </h2>
-          <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '4px' }}>
             <strong>Hint:</strong> {challenge.hint}
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function ForgePage() {
 
       {/* Input Text Area */}
       <div className="card" style={{ marginBottom: '24px' }}>
-        <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>
+        <label style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>
           Your Crafted Headline / Post:
         </label>
         <textarea
@@ -123,7 +123,7 @@ export default function ForgePage() {
           value={userSubmission}
           onChange={(e) => setUserSubmission(e.target.value)}
           placeholder={`Craft your spun headline here (e.g. "SHOCKING SECRET: Mainstream media is hiding the total collapse...")`}
-          style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '14px', lineHeight: '1.5', outline: 'none', resize: 'vertical' }}
+          style={{ width: '100%', padding: '12px 14px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '14.5px', lineHeight: '1.5', outline: 'none', resize: 'vertical' }}
         />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
@@ -144,7 +144,7 @@ export default function ForgePage() {
           <h3 style={{ fontSize: '16px', fontWeight: '800', color: evaluation.isSuccess ? 'var(--accent-emerald-light)' : '#EF4444', marginBottom: '6px' }}>
             {evaluation.isSuccess ? 'Disinformation Craft Successful' : 'Needs More Weaponized Spin'}
           </h3>
-          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.5' }}>
+          <p style={{ fontSize: '14.5px', color: 'var(--text-main)', lineHeight: '1.5' }}>
             {evaluation.feedback}
           </p>
         </div>

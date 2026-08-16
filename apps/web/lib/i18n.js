@@ -1213,5 +1213,7 @@ export function useTranslation() {
     return dict[key] || TRANSLATIONS.en[key] || key;
   };
 
-  return { t, lang, setLanguage, languages: SUPPORTED_LANGUAGES };
+  const getLocalized = (item) => getLocalizedFallacy(item, lang);
+
+  return { t, lang, setLanguage, languages: SUPPORTED_LANGUAGES, getLocalizedFallacy: getLocalized };
 }
