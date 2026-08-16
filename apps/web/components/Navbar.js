@@ -70,8 +70,7 @@ export default function Navbar() {
         <Link href="/" className="brand-group">
           <div className="brand-logo">VL</div>
           <div className="brand-text">
-            <h1>VeriLens</h1>
-            <span className="brand-badge">{t('brand_sub')}</span>
+            <h1 style={{ fontSize: '17px', fontWeight: '900', letterSpacing: '-0.3px', margin: 0 }}>VeriLens</h1>
           </div>
         </Link>
 
