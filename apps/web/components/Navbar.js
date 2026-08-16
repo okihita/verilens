@@ -20,7 +20,8 @@ export default function Navbar() {
   
   const simsRef = useRef(null);
   const educatorsRef = useRef(null);
-  const langRef = useRef(null);
+  const langDesktopRef = useRef(null);
+  const langMobileRef = useRef(null);
   const profileRef = useRef(null);
   const pathname = usePathname();
 
@@ -47,7 +48,10 @@ export default function Navbar() {
     function handleClickOutside(event) {
       if (simsRef.current && !simsRef.current.contains(event.target)) setSimsOpen(false);
       if (educatorsRef.current && !educatorsRef.current.contains(event.target)) setEducatorsOpen(false);
-      if (langRef.current && !langRef.current.contains(event.target)) setLangOpen(false);
+      const clickedInsideLang =
+        (langDesktopRef.current && langDesktopRef.current.contains(event.target)) ||
+        (langMobileRef.current && langMobileRef.current.contains(event.target));
+      if (!clickedInsideLang) setLangOpen(false);
       if (profileRef.current && !profileRef.current.contains(event.target)) setProfileOpen(false);
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -306,7 +310,7 @@ export default function Navbar() {
           </div>
 
           {/* Translate Dropdown (A / 文 Icon) */}
-          <div className="nav-dropdown-wrapper" ref={langRef}>
+          <div className="nav-dropdown-wrapper" ref={langDesktopRef}>
             <button
               onClick={() => { setLangOpen(!langOpen); setSimsOpen(false); setEducatorsOpen(false); setProfileOpen(false); }}
               style={{
@@ -349,6 +353,11 @@ export default function Navbar() {
                   return (
                     <button
                       key={l.code}
+                      onMouseDown={(e) => {
+                        e.stopPropagation();
+                        setLanguage(l.code);
+                        setLangOpen(false);
+                      }}
                       onClick={() => {
                         setLanguage(l.code);
                         setLangOpen(false);
@@ -462,7 +471,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Language Selector */}
-          <div className="nav-dropdown-wrapper" ref={langRef}>
+          <div className="nav-dropdown-wrapper" ref={langMobileRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
               style={{
@@ -493,6 +502,11 @@ export default function Navbar() {
                 {SUPPORTED_LANGUAGES.map((l) => (
                   <button
                     key={l.code}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      setLanguage(l.code);
+                      setLangOpen(false);
+                    }}
                     onClick={() => { setLanguage(l.code); setLangOpen(false); }}
                     style={{
                       background: l.code === lang ? 'var(--bg-surface-elevated)' : 'transparent',

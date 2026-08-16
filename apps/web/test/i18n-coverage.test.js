@@ -221,3 +221,21 @@ test('i18n: useTranslation hook registers and cleans up verilens_lang_updated ev
     'useTranslation hook must clean up verilens_lang_updated event listener on unmount'
   );
 });
+
+test('i18n: Navbar component does not contain duplicate ref bindings across desktop and mobile views', () => {
+  const navbarSource = fs.readFileSync(path.resolve(__dirname, '../components/Navbar.js'), 'utf8');
+  const refMatches = navbarSource.match(/ref=\{([a-zA-Z0-9_$]+)\}/g) || [];
+  const refCounts = {};
+
+  for (const match of refMatches) {
+    const refName = match.replace(/ref=\{|\}/g, '');
+    refCounts[refName] = (refCounts[refName] || 0) + 1;
+  }
+
+  const duplicates = Object.entries(refCounts).filter(([_, count]) => count > 1);
+  assert.strictEqual(
+    duplicates.length,
+    0,
+    `Found duplicate ref bindings in Navbar.js: ${duplicates.map(([name, count]) => `${name} (${count}x)`).join(', ')}`
+  );
+});
