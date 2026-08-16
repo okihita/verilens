@@ -329,13 +329,14 @@ a:hover {
   font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  padding: 8px 16px;
+  padding: 9px 18px;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   touch-action: manipulation;
+  user-select: none;
 }
 
 .btn:active {
@@ -346,32 +347,50 @@ a:hover {
   background: #2563EB;
   border-color: #3B82F6;
   color: #FFFFFF;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover {
   background: #1D4ED8;
+  border-color: #2563EB;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .btn-amber {
-  background: #D97706;
-  border-color: #F59E0B;
+  background: #0F172A;
+  border-color: #0F172A;
   color: #FFFFFF;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btn-amber:hover {
-  background: #B45309;
+  background: #1E293B;
+  border-color: #334155;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+}
+
+[data-theme="dark"] .btn-amber {
+  background: #F59E0B;
+  border-color: #FBBF24;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+
+[data-theme="dark"] .btn-amber:hover {
+  background: #FBBF24;
+  border-color: #FCD34D;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
 }
 
 .btn-outline {
-  background: var(--bg-surface-elevated);
+  background: var(--bg-surface);
   border: 1px solid var(--border-card);
   color: var(--text-main);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .btn-outline:hover {
-  background: var(--bg-surface-hover);
+  background: var(--bg-surface-elevated);
   border-color: var(--text-secondary);
 }
 
