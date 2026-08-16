@@ -59,7 +59,7 @@
 }
 
 .hero-fresco-parallax {
-  opacity: 0.38;
+  opacity: 0.50;
   filter: contrast(1.08) saturate(1.15) brightness(1.02);
   transition: opacity 0.3s ease;
 }
