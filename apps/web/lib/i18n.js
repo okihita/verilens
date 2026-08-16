@@ -91,6 +91,12 @@ export const TRANSLATIONS = {
     codex_dossier_prev: 'Previous Archetype',
     codex_dossier_next: 'Next Archetype',
     codex_dossier_back_btn: 'Back to Codex',
+    codex_case_studies_title: '5 Real-World Case Studies & Field Deconstructions',
+    codex_case_studies_desc: 'How this fallacy manifests across politics, algorithms, corporate marketing, health, and workplace culture.',
+    codex_claim_label: 'Deceptive Claim',
+    codex_deconstruction_label: 'Manipulative Deconstruction',
+    codex_correction_label: 'SIFT Lateral Correction',
+    codex_share_whatsapp: 'Share Dossier on WhatsApp',
 
     // Gauntlet
     gauntlet_badge: '60-Second Timed Survival Mode',
@@ -252,6 +258,12 @@ export const TRANSLATIONS = {
     codex_dossier_prev: 'Arketipe Sebelumnya',
     codex_dossier_next: 'Arketipe Berikutnya',
     codex_dossier_back_btn: 'Kembali ke Kodeks',
+    codex_case_studies_title: '5 Studi Kasus Nyata & Dekonstruksi Lapangan',
+    codex_case_studies_desc: 'Bagaimana sesat pikir ini muncul di ranah politik, algoritma media sosial, pemasaran, kesehatan, dan tempat kerja.',
+    codex_claim_label: 'Klaim Menyesatkan',
+    codex_deconstruction_label: 'Dekonstruksi Manipulasi',
+    codex_correction_label: 'Koreksi Lateral SIFT',
+    codex_share_whatsapp: 'Bagikan Berkas di WhatsApp',
 
     // Gauntlet
     gauntlet_badge: 'Mode Bertahan Cepat 60 Detik',
@@ -413,6 +425,12 @@ export const TRANSLATIONS = {
     codex_dossier_prev: 'Arquetipo Anterior',
     codex_dossier_next: 'Arquetipo Siguiente',
     codex_dossier_back_btn: 'Volver al Códice',
+    codex_case_studies_title: '5 Estudios de Caso Reales y Deconstrucciones de Campo',
+    codex_case_studies_desc: 'Cómo se manifiesta esta falacia en la política, los algoritmos, el marketing corporativo, la salud y la cultura laboral.',
+    codex_claim_label: 'Afirmación Engañosa',
+    codex_deconstruction_label: 'Deconstrucción Manipulativa',
+    codex_correction_label: 'Corrección Lateral SIFT',
+    codex_share_whatsapp: 'Compartir Dossier en WhatsApp',
 
     // Gauntlet
     gauntlet_badge: 'Modo Supervivencia Contrarreloj (60s)',
@@ -574,6 +592,12 @@ export const TRANSLATIONS = {
     codex_dossier_prev: 'Archétype Précédent',
     codex_dossier_next: 'Archétype Suivant',
     codex_dossier_back_btn: 'Retour au Codex',
+    codex_case_studies_title: '5 Études de Cas Réels et Déconstructions sur le Terrain',
+    codex_case_studies_desc: 'Comment ce sophisme se manifeste dans la politique, les algorithmes, le marketing, la santé et le travail.',
+    codex_claim_label: 'Affirmation Trompeuse',
+    codex_deconstruction_label: 'Déconstruction Manipulatrice',
+    codex_correction_label: 'Correction Latérale SIFT',
+    codex_share_whatsapp: 'Partager le Dossier sur WhatsApp',
 
     // Gauntlet
     gauntlet_badge: 'Survie Chronométrée en 60 Secondes',
@@ -735,6 +759,12 @@ export const TRANSLATIONS = {
     codex_dossier_prev: '上一个原型',
     codex_dossier_next: '下一个原型',
     codex_dossier_back_btn: '返回法典',
+    codex_case_studies_title: '5个真实世界案例研究与现场剖析',
+    codex_case_studies_desc: '这种谬误如何在政治、算法推荐、商业营销、健康医疗和职场文化中表现出来。',
+    codex_claim_label: '欺骗性主张',
+    codex_deconstruction_label: '操纵手法剖析',
+    codex_correction_label: 'SIFT 侧向验证纠正',
+    codex_share_whatsapp: '在 WhatsApp 上分享档案',
 
     // Gauntlet
     gauntlet_badge: '60秒极速生存挑战',
