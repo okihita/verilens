@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug, slugToId } from '@verilens/shared';
 import { useTranslation } from '../../../../lib/i18n';
 
-export default function FallacyDetailsPage({ params }) {
+export default function FallacyDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const rawSlug = resolvedParams.slug;
   const targetId = slugToId(rawSlug);
@@ -37,39 +37,42 @@ export default function FallacyDetailsPage({ params }) {
   const prevSlug = idToSlug(fallacies[prevIndex].id);
   const nextSlug = idToSlug(fallacies[nextIndex].id);
 
-  // Allegorical Anatomy symbols
-  const allegoricalSymbols = useMemo(() => {
-    return rawFallacy.allegorical_symbols || [
-      {
-        title: 'The Central Allegorical Motif',
-        desc: 'A singular Renaissance metaphor codifying this cognitive vulnerability into an enduring visual emblem.'
-      },
-      {
-        title: 'Chiaroscuro Illumination',
-        desc: 'Dramatic contrast of light and shadow illustrating empirical truth piercing through rhetorical deception.'
-      },
-      {
-        title: 'The Stone Plinth of Truth',
-        desc: 'The unyielding foundation of lateral cross-referencing and verification.'
-      }
-    ];
-  }, [rawFallacy]);
-
-  // 5 Case Studies
+  // 5 Real-World Case Studies
   const caseStudies = useMemo(() => {
     return rawFallacy.case_studies || [];
   }, [rawFallacy]);
 
-  // Canonical share URLs
+  // Clean, organic, non-branded share URLs
   const canonicalUrl = `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
-  const shareHeadline = `VeriLens: How to spot and debunk the "${fallacy.name}" fallacy (${fallacy.subtitle})`;
-  const shareTextWithUrl = `${shareHeadline} — Explore the full breakdown & SIFT defense: ${canonicalUrl}`;
+  const shareHeadline = `How to spot and debunk the "${fallacy.name}" (${fallacy.subtitle}) fallacy`;
+  const shareTextWithUrl = `${shareHeadline} — Explore 5 case studies & breakdown: ${canonicalUrl}`;
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTextWithUrl)}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareHeadline)}&url=${encodeURIComponent(canonicalUrl)}`;
   const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(shareHeadline)}`;
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`;
+
+  // Hybrid Share Handler: Native System Share on Mobile + Modal on Desktop
+  const handleOpenShare = async () => {
+    const isMobile = typeof navigator !== 'undefined' && /mobile|android|iphone|ipad|ipod/i.test(navigator.userAgent || '');
+    if (isMobile && navigator?.share) {
+      try {
+        await navigator.share({
+          title: `${fallacy.name} (${fallacy.subtitle})`,
+          text: `Spot and debunk the "${fallacy.name}" fallacy — 5 case studies & breakdown:`,
+          url: canonicalUrl
+        });
+        return;
+      } catch (err: any) {
+        if (err?.name !== 'AbortError') {
+          setIsShareModalOpen(true);
+        }
+        return;
+      }
+    }
+    setIsShareModalOpen(true);
+  };
 
   const handleCopyLink = async () => {
     try {
@@ -98,7 +101,7 @@ export default function FallacyDetailsPage({ params }) {
 
   // Close share modal on ESC key
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsShareModalOpen(false);
       }
@@ -111,7 +114,7 @@ export default function FallacyDetailsPage({ params }) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-app)', paddingBottom: '80px' }}>
-      {/* Top Breadcrumb Header Bar */}
+      {/* Top Breadcrumb & Actions Bar */}
       <section style={{ borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', padding: '16px 0' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
@@ -128,9 +131,52 @@ export default function FallacyDetailsPage({ params }) {
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            {/* Top Prev / Next Quick Nav Controls */}
+            <div style={{ display: 'inline-flex', alignItems: 'center', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)', background: 'var(--bg-surface-elevated)', overflow: 'hidden' }}>
+              <Link
+                href={`/codex/${prevSlug}`}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  color: 'var(--text-secondary)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  borderRight: '1px solid var(--border-card)',
+                  transition: 'background 0.15s ease'
+                }}
+                title={`Previous: ${prevFallacy.name}`}
+                aria-label={`Previous card: ${prevFallacy.name}`}
+              >
+                <span>←</span>
+                <span style={{ fontSize: '12px' }}>Prev</span>
+              </Link>
+              <Link
+                href={`/codex/${nextSlug}`}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  color: 'var(--text-secondary)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  transition: 'background 0.15s ease'
+                }}
+                title={`Next: ${nextFallacy.name}`}
+                aria-label={`Next card: ${nextFallacy.name}`}
+              >
+                <span style={{ fontSize: '12px' }}>Next</span>
+                <span>→</span>
+              </Link>
+            </div>
+
             <button
-              onClick={() => setIsShareModalOpen(true)}
+              onClick={handleOpenShare}
               className="btn btn-outline"
               style={{
                 padding: '6px 14px',
@@ -213,7 +259,7 @@ export default function FallacyDetailsPage({ params }) {
           {/* Right Column: Card Breakdown & Taxonomy Data */}
           <div>
             {/* Header Eyebrow */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <span
                 style={{
                   fontSize: '12px',
@@ -228,9 +274,6 @@ export default function FallacyDetailsPage({ params }) {
               >
                 {fallacy.category}
               </span>
-              <span style={{ fontSize: '13px', fontWeight: '800', color: 'var(--text-muted)' }}>
-                {t('codex_dossier_archetype_label')} #{String(fallacyIndex + 1).padStart(2, '0')} / {fallacies.length}
-              </span>
             </div>
 
             {/* Title & Subtitle */}
@@ -242,115 +285,56 @@ export default function FallacyDetailsPage({ params }) {
             </div>
 
             {/* Core Definition Card */}
-            <div className="card" style={{ padding: '20px', marginBottom: '20px', borderLeft: `4px solid ${fallacy.color || 'var(--accent-red)'}` }}>
+            <div className="card" style={{ padding: '20px', marginBottom: '24px', borderLeft: `4px solid ${fallacy.color || 'var(--accent-red)'}` }}>
               <p style={{ fontSize: '15px', color: 'var(--text-main)', lineHeight: '1.55', fontWeight: '500' }}>
                 {fallacy.description}
               </p>
             </div>
 
-            {/* UNESCO Law Badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '24px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', letterSpacing: '0.08em' }}>
-                UNESCO MIL
-              </span>
-              <span style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: '600' }}>
-                {fallacy.mil_competency}
-              </span>
-            </div>
-
-            {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            {/* Primary Action Button (Single, full-width, clean) */}
+            <div>
               <Link
                 href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
                 className="btn btn-primary"
                 style={{
-                  flex: '1 1 200px',
-                  padding: '14px 20px',
-                  fontSize: '14px',
+                  width: '100%',
+                  padding: '14px 24px',
+                  fontSize: '14.5px',
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '10px',
                   textDecoration: 'none'
                 }}
               >
                 <span>{t('codex_dossier_try_sandbox_btn')}</span>
                 <span>➔</span>
               </Link>
-              <button
-                onClick={() => setIsShareModalOpen(true)}
-                className="btn btn-outline"
-                style={{
-                  padding: '14px 20px',
-                  fontSize: '14px',
-                  fontWeight: '800',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  cursor: 'pointer'
-                }}
-              >
-                <span>↗</span>
-                <span>{t('codex_share_btn')}</span>
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Section 1: Allegorical Symbolism & Anatomy */}
-        <section style={{ marginTop: '56px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '4px' }}>
-              {t('codex_dossier_allegorical_title')}
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-              {t('codex_dossier_allegorical_desc')}
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '18px' }}>
-            {allegoricalSymbols.map((sym, idx) => (
-              <div
-                key={idx}
-                className="card"
-                style={{
-                  padding: '20px',
-                  background: 'var(--bg-surface)',
-                  borderTop: `3px solid ${fallacy.color || 'var(--accent-amber)'}`
-                }}
-              >
-                <div style={{ fontSize: '12px', fontWeight: '800', color: fallacy.color || 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  Symbol #{idx + 1}
-                </div>
-                <h3 style={{ fontSize: '16.5px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
-                  {sym.title}
-                </h3>
-                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                  {sym.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 2: Cognitive Mechanism & Psychology */}
-        <section style={{ marginTop: '48px' }}>
-          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)' }}>
-            <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.08em' }}>
-              Psychological Anatomy
-            </span>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '12px' }}>
+        {/* Section 1: Cognitive Mechanism & Psychology */}
+        <section style={{ marginTop: '40px' }}>
+          <div
+            className="card"
+            style={{
+              padding: '24px 28px',
+              background: 'var(--bg-surface)',
+              borderLeft: `4px solid ${fallacy.color || 'var(--accent-purple)'}`
+            }}
+          >
+            <h2 style={{ fontSize: '18.5px', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 10px 0' }}>
               {t('codex_dossier_psychology_title')}
             </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.65', margin: 0 }}>
               {fallacy.psychology}
             </p>
           </div>
         </section>
 
-        {/* Section 3: 5 Real-World Case Studies & Field Deconstructions */}
+        {/* Section 2: 5 Real-World Case Studies & Field Deconstructions */}
         <section style={{ marginTop: '48px' }}>
           <div style={{ marginBottom: '20px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '4px' }}>
@@ -361,93 +345,113 @@ export default function FallacyDetailsPage({ params }) {
             </p>
           </div>
 
-          {/* Case Study Tab Selectors */}
+          {/* Case Study Domain Switcher (Wrapped, zero scrollbar) */}
           {caseStudies.length > 0 && (
             <div>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', overflowX: 'auto', paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}>
-                {caseStudies.map((cs, idx) => (
-                  <button
-                    key={cs.id || idx}
-                    onClick={() => setActiveCaseStudyTab(idx)}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '8px',
-                      fontSize: '13px',
-                      fontWeight: '800',
-                      border: '1px solid',
-                      cursor: 'pointer',
-                      whiteSpace: 'nowrap',
-                      transition: 'all 0.15s ease',
-                      borderColor: activeCaseStudyTab === idx ? 'var(--accent-blue-light)' : 'var(--border-card)',
-                      background: activeCaseStudyTab === idx ? 'var(--accent-blue)' : 'var(--bg-surface)',
-                      color: activeCaseStudyTab === idx ? '#FFFFFF' : 'var(--text-secondary)'
-                    }}
-                  >
-                    Case {idx + 1}: {cs.domain}
-                  </button>
-                ))}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' }}>
+                {caseStudies.map((cs, idx) => {
+                  const isActive = activeCaseStudyTab === idx;
+                  return (
+                    <button
+                      key={cs.id || idx}
+                      onClick={() => setActiveCaseStudyTab(idx)}
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '20px',
+                        fontSize: '13px',
+                        fontWeight: '700',
+                        border: '1px solid',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                        borderColor: isActive ? 'var(--accent-blue-light)' : 'var(--border-card)',
+                        background: isActive ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                        color: isActive ? '#FFFFFF' : 'var(--text-secondary)'
+                      }}
+                    >
+                      {cs.domain}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Active Case Study Card */}
+              {/* Active Case Study Editorial Card */}
               {caseStudies[activeCaseStudyTab] && (
                 <div
                   className="card"
                   style={{
-                    padding: '28px',
-                    background: 'var(--bg-surface-elevated)',
+                    padding: '28px 32px',
+                    background: 'var(--bg-surface)',
                     border: '1px solid var(--border-card)',
-                    borderLeft: `4px solid ${fallacy.color || 'var(--accent-blue)'}`
+                    borderRadius: 'var(--radius-lg)'
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
+                  {/* Case Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
                     <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {caseStudies[activeCaseStudyTab].domain}
                     </span>
-                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '700' }}>
-                      Case Study {activeCaseStudyTab + 1} of {caseStudies.length}
+                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '600' }}>
+                      Field Case {activeCaseStudyTab + 1} of {caseStudies.length}
                     </span>
                   </div>
 
-                  <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '16px' }}>
+                  {/* Title */}
+                  <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 18px 0' }}>
                     {caseStudies[activeCaseStudyTab].title}
                   </h3>
 
-                  {/* Deceptive Claim Box */}
-                  <div
+                  {/* Authentic Quote Box */}
+                  <blockquote
                     style={{
-                      background: 'rgba(0, 0, 0, 0.25)',
-                      borderLeft: '4px solid var(--accent-red)',
+                      margin: '0 0 20px 0',
                       padding: '16px 20px',
-                      borderRadius: '8px',
-                      marginBottom: '16px'
+                      borderLeft: '4px solid var(--accent-red)',
+                      background: 'rgba(239, 68, 68, 0.06)',
+                      borderRadius: '0 8px 8px 0',
+                      fontSize: '15.5px',
+                      fontStyle: 'italic',
+                      color: 'var(--text-main)',
+                      lineHeight: '1.55'
                     }}
                   >
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_claim_label')}
-                    </div>
-                    <p style={{ fontSize: '15px', fontStyle: 'italic', color: 'var(--text-main)', lineHeight: '1.5', margin: 0 }}>
-                      {caseStudies[activeCaseStudyTab].claim}
-                    </p>
-                  </div>
+                    {caseStudies[activeCaseStudyTab].claim}
+                  </blockquote>
 
-                  {/* Manipulative Deconstruction */}
-                  <div style={{ background: 'var(--bg-surface)', padding: '16px 20px', borderRadius: '8px', border: '1px solid var(--border-subtle)', marginBottom: '14px' }}>
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_deconstruction_label')}
+                  {/* Two-column Deconstruction & Verification Grid */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                    {/* The Manipulation */}
+                    <div
+                      style={{
+                        padding: '16px 18px',
+                        background: 'var(--bg-surface-elevated)',
+                        border: '1px solid var(--border-subtle)',
+                        borderRadius: 'var(--radius-md)'
+                      }}
+                    >
+                      <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '6px', letterSpacing: '0.04em' }}>
+                        {t('codex_deconstruction_label')}
+                      </div>
+                      <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                        {caseStudies[activeCaseStudyTab].deconstruction}
+                      </p>
                     </div>
-                    <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.55', margin: 0 }}>
-                      {caseStudies[activeCaseStudyTab].deconstruction}
-                    </p>
-                  </div>
 
-                  {/* SIFT Lateral Correction */}
-                  <div style={{ background: 'var(--bg-surface)', padding: '16px 20px', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_correction_label')}
+                    {/* How to Verify (SIFT Defense) */}
+                    <div
+                      style={{
+                        padding: '16px 18px',
+                        background: 'rgba(16, 185, 129, 0.05)',
+                        border: '1px solid rgba(16, 185, 129, 0.25)',
+                        borderRadius: 'var(--radius-md)'
+                      }}
+                    >
+                      <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase', marginBottom: '6px', letterSpacing: '0.04em' }}>
+                        {t('codex_correction_label')}
+                      </div>
+                      <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0, fontWeight: '500' }}>
+                        {caseStudies[activeCaseStudyTab].correction}
+                      </p>
                     </div>
-                    <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.55', margin: 0, fontWeight: '600' }}>
-                      {caseStudies[activeCaseStudyTab].correction}
-                    </p>
                   </div>
                 </div>
               )}
@@ -455,40 +459,61 @@ export default function FallacyDetailsPage({ params }) {
           )}
         </section>
 
-        {/* Section 4: SIFT Lateral Defense Protocol */}
-        <section style={{ marginTop: '48px' }}>
-          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)', borderLeft: '4px solid var(--accent-blue)' }}>
-            <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', letterSpacing: '0.08em' }}>
-              Stanford SHEG Framework
+        {/* Footnote: UNESCO MIL Standard Reference */}
+        {fallacy.mil_competency && (
+          <div
+            style={{
+              marginTop: '44px',
+              padding: '12px 16px',
+              borderRadius: 'var(--radius-md)',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '8px',
+              fontSize: '12px',
+              color: 'var(--text-muted)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: '800', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Curriculum Standard:
+              </span>
+              <span>UNESCO Global Media & Information Literacy (MIL) — {fallacy.mil_competency}</span>
+            </div>
+            <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+              Open Cognitive Defense Framework
             </span>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '12px' }}>
-              {t('codex_dossier_sift_title')}
-            </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text-main)', lineHeight: '1.6', fontWeight: '600' }}>
-              {fallacy.sift_strategy}
-            </p>
           </div>
-        </section>
+        )}
 
-        {/* Section 5: Adjacent Navigation Bar */}
-        <section style={{ marginTop: '56px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+        {/* Section 3: Adjacent Archetype Navigation Bar */}
+        <section style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             <Link
               href={`/codex/${prevSlug}`}
+              className="card"
               style={{
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
-                color: 'var(--text-secondary)'
+                gap: '14px',
+                padding: '16px 20px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-card)',
+                borderRadius: 'var(--radius-md)',
+                transition: 'all 0.15s ease'
               }}
+              title={`Previous: ${prevFallacy.name}`}
             >
-              <span style={{ fontSize: '20px' }}>←</span>
+              <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>←</span>
               <div>
-                <div style={{ fontSize: '11.5px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   {t('codex_dossier_prev')}
                 </div>
-                <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
                   {prevFallacy.name}
                 </div>
               </div>
@@ -496,24 +521,31 @@ export default function FallacyDetailsPage({ params }) {
 
             <Link
               href={`/codex/${nextSlug}`}
+              className="card"
               style={{
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
+                justifyContent: 'flex-end',
+                gap: '14px',
+                padding: '16px 20px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-card)',
+                borderRadius: 'var(--radius-md)',
                 textAlign: 'right',
-                color: 'var(--text-secondary)'
+                transition: 'all 0.15s ease'
               }}
+              title={`Next: ${nextFallacy.name}`}
             >
               <div>
-                <div style={{ fontSize: '11.5px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   {t('codex_dossier_next')}
                 </div>
-                <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
                   {nextFallacy.name}
                 </div>
               </div>
-              <span style={{ fontSize: '20px' }}>→</span>
+              <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>→</span>
             </Link>
           </div>
         </section>
@@ -627,7 +659,9 @@ export default function FallacyDetailsPage({ params }) {
                   transition: 'opacity 0.15s ease'
                 }}
               >
-                <span>●</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
                 <span>WhatsApp</span>
               </a>
 
@@ -649,7 +683,9 @@ export default function FallacyDetailsPage({ params }) {
                   cursor: 'pointer'
                 }}
               >
-                <span>📷</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
                 <span>Instagram</span>
               </button>
 
@@ -673,7 +709,7 @@ export default function FallacyDetailsPage({ params }) {
                   fontWeight: '800'
                 }}
               >
-                <span>𝕏</span>
+                <span style={{ fontSize: '14px', fontWeight: '900' }}>𝕏</span>
                 <span>X / Twitter</span>
               </a>
 
@@ -696,7 +732,9 @@ export default function FallacyDetailsPage({ params }) {
                   fontWeight: '800'
                 }}
               >
-                <span>✈</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+                </svg>
                 <span>Telegram</span>
               </a>
 
@@ -719,7 +757,9 @@ export default function FallacyDetailsPage({ params }) {
                   fontWeight: '800'
                 }}
               >
-                <span>in</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
                 <span>LinkedIn</span>
               </a>
 
@@ -742,7 +782,9 @@ export default function FallacyDetailsPage({ params }) {
                   fontWeight: '800'
                 }}
               >
-                <span>f</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                </svg>
                 <span>Facebook</span>
               </a>
             </div>
