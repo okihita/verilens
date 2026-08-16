@@ -46,95 +46,28 @@ export default function HomePage() {
   return (
     <div>
       {/* Consumer-Minded Emotional Hero Section (Loss-Aversion Framing) */}
-      <section
-        style={{
-          position: 'relative',
-          padding: '48px 0 36px',
-          background: 'radial-gradient(ellipse at top right, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)',
-          borderBottom: '1px solid var(--border-subtle)',
-          overflow: 'hidden'
-        }}
-      >
-        <div className="container" style={{ maxWidth: '1120px' }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '36px',
-              alignItems: 'center'
-            }}
-          >
-            {/* Left Column: Typography & CTAs */}
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 14px', background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '14px' }}>
-                <span>{t('hackathon_badge')}</span>
-              </div>
+      <section style={{ padding: '56px 0 44px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div className="container" style={{ maxWidth: '880px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
+            <span>{t('hackathon_badge')}</span>
+          </div>
 
-              <h1 style={{ fontSize: 'clamp(28px, 4.2vw, 42px)', fontWeight: '900', letterSpacing: '-0.035em', lineHeight: '1.18', marginBottom: '14px', color: 'var(--text-main)' }}>
-                {t('hero_title')}
-              </h1>
+          <h1 style={{ fontSize: 'clamp(30px, 5.5vw, 46px)', fontWeight: '900', letterSpacing: '-0.035em', lineHeight: '1.18', marginBottom: '16px', color: 'var(--text-main)' }}>
+            {t('hero_title')}
+          </h1>
 
-              <p style={{ fontSize: 'clamp(14.5px, 2vw, 16.5px)', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '24px', letterSpacing: '-0.01em' }}>
-                {t('hero_desc')}
-              </p>
+          <p style={{ fontSize: 'clamp(15px, 3.5vw, 17.5px)', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '28px', maxWidth: '720px', margin: '0 auto 28px', letterSpacing: '-0.01em' }}>
+            {t('hero_desc')}
+          </p>
 
-              {/* 2 Action CTAs */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px' }}>
-                <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '12px 24px', fontSize: '15px', fontWeight: '800' }}>
-                  {t('hero_cta_primary')}
-                </Link>
-                <a href="#codex" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '15px' }}>
-                  {t('hero_cta_secondary')}
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column: High-End Hero Editorial Artwork Frame */}
-            <div
-              style={{
-                position: 'relative',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                border: '1px solid var(--border-card)',
-                boxShadow: 'var(--shadow-card)',
-                background: '#0A0F1D'
-              }}
-            >
-              <img
-                src="/assets/images/hero-prismatic-lens.jpg"
-                alt="VeriLens Prismatic Truth Lens"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  objectFit: 'cover'
-                }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '10px',
-                  left: '12px',
-                  right: '12px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  background: 'rgba(10, 15, 29, 0.85)',
-                  backdropFilter: 'blur(8px)',
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  fontSize: '12px'
-                }}
-              >
-                <span style={{ fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  The VeriLens Prism
-                </span>
-                <span style={{ color: 'var(--accent-emerald-light)', fontWeight: '700' }}>
-                  Noise ➔ Clarity
-                </span>
-              </div>
-            </div>
+          {/* 2 High-Contrast Action CTAs */}
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '12px 24px', fontSize: '15px', fontWeight: '800' }}>
+              {t('hero_cta_primary')}
+            </Link>
+            <a href="#codex" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '15px' }}>
+              {t('hero_cta_secondary')}
+            </a>
           </div>
         </div>
       </section>
