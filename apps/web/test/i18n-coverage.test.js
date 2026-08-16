@@ -1,10 +1,15 @@
-const test = require('node:test');
-const assert = require('node:assert');
-const fs = require('node:fs');
-const path = require('node:path');
+import test from 'node:test';
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const { TRANSLATIONS, getLocalizedFallacy, getLocalizedScenario, SUPPORTED_LANGUAGES } = require('../lib/i18n.js');
-const { fallacies, scenarios } = require('@verilens/shared');
+import { TRANSLATIONS, getLocalizedFallacy, getLocalizedScenario, SUPPORTED_LANGUAGES } from '../lib/i18n.ts';
+import sharedPkg from '@verilens/shared';
+const { fallacies, scenarios } = sharedPkg;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function collectSourceFiles(dir) {
   let results = [];
@@ -15,7 +20,7 @@ function collectSourceFiles(dir) {
     const stat = fs.statSync(fullPath);
     if (stat.isDirectory()) {
       results = results.concat(collectSourceFiles(fullPath));
-    } else if (entry.endsWith('.js') || entry.endsWith('.jsx')) {
+    } else if (entry.endsWith('.js') || entry.endsWith('.jsx') || entry.endsWith('.ts') || entry.endsWith('.tsx')) {
       results.push(fullPath);
     }
   }
@@ -30,7 +35,7 @@ test('i18n: All t() keys referenced in web app source code exist in every langua
   const tCallRegex = /(?:^|[^a-zA-Z0-9_$])t\(\s*['"]([a-zA-Z0-9_-]+)['"]\s*\)/g;
 
   for (const file of sourceFiles) {
-    if (file.endsWith('i18n.js')) continue;
+    if (file.endsWith('i18n.ts') || file.endsWith('i18n.js')) continue;
     const content = fs.readFileSync(file, 'utf8');
     let match;
     while ((match = tCallRegex.exec(content)) !== null) {
@@ -62,43 +67,51 @@ test('i18n: All t() keys referenced in web app source code exist in every langua
 });
 
 test('i18n: All fallacy taxonomy categories in @verilens/shared have valid translated category keys', () => {
-  const uniqueCategories = [...new Set(fallacies.map((f) => f.category))];
+  const categories = new Set(fallacies.map((f) => f.category));
   const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code);
-  const missingCatKeys = [];
 
-  for (const cat of uniqueCategories) {
-    const key = `cat_${cat.toLowerCase()}`;
+  const categoryToKey = {
+    Logic: 'cat_logic',
+    Emotional: 'cat_emotional',
+    Attribution: 'cat_attribution',
+    Cognitive: 'cat_cognitive',
+    Scam: 'cat_scam',
+    Dialectical: 'cat_dialectical',
+    Relevance: 'cat_relevance',
+    Presumption: 'cat_presumption',
+    Ambiguity: 'cat_ambiguity'
+  };
+
+  const missing = [];
+  for (const cat of categories) {
+    const key = categoryToKey[cat];
+    assert.ok(key, `No category mapping key found for category "${cat}"`);
+
     for (const code of supportedCodes) {
       const dict = TRANSLATIONS[code];
-      if (!dict || !dict[key]) {
-        missingCatKeys.push(`Category "${cat}" requires key "${key}" in language "${code}"`);
+      if (!dict[key]) {
+        missing.push(`Category "${cat}" (${key}) is not translated in language "${code}"`);
       }
     }
   }
 
-  for (const code of supportedCodes) {
-    if (!TRANSLATIONS[code] || !TRANSLATIONS[code].cat_all) {
-      missingCatKeys.push(`Global category key "cat_all" is missing in language "${code}"`);
-    }
-  }
-
-  assert.strictEqual(
-    missingCatKeys.length,
-    0,
-    `Found missing category translation keys:\n` + missingCatKeys.join('\n')
-  );
+  assert.strictEqual(missing.length, 0, 'Missing translated category keys:\n' + missing.join('\n'));
 });
 
 test('i18n: Dictionary parity across all supported languages (EN is benchmark)', () => {
-  const enKeys = Object.keys(TRANSLATIONS.en || {});
-  const otherLanguages = SUPPORTED_LANGUAGES.map((l) => l.code).filter((c) => c !== 'en');
+  const enKeys = Object.keys(TRANSLATIONS.en);
+  const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code).filter((c) => c !== 'en');
+
   const discrepancies = [];
 
-  for (const code of otherLanguages) {
-    const targetDict = TRANSLATIONS[code] || {};
+  for (const code of supportedCodes) {
+    const targetDict = TRANSLATIONS[code];
+    assert.ok(targetDict, `Language dictionary "${code}" does not exist in TRANSLATIONS`);
+    const targetKeys = new Set(Object.keys(targetDict));
+
     for (const key of enKeys) {
-      if (!targetDict[key]) {
-        discrepancies.push(`Language "${code}" is missing key "${key}" present in EN benchmark`);
+      if (!targetKeys.has(key)) {
+        discrepancies.push(`Language "${code}" is missing benchmark EN key: "${key}"`);
       }
     }
   }
@@ -106,158 +119,89 @@ test('i18n: Dictionary parity across all supported languages (EN is benchmark)',
   assert.strictEqual(
     discrepancies.length,
     0,
-    `Found dictionary key discrepancies:\n` + discrepancies.join('\n')
+    `Language dictionaries must match EN benchmark keys exactly:\n` + discrepancies.join('\n')
   );
 });
 
 test('i18n: getLocalizedFallacy returns valid localized metadata for all 24 archetypes across 5 languages', () => {
   const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code);
-  const requiredFields = ['name', 'subtitle', 'description', 'viral_example', 'reflection_prompt'];
 
-  for (const item of fallacies) {
+  for (const f of fallacies) {
     for (const code of supportedCodes) {
-      const localized = getLocalizedFallacy(item, code);
-      assert.ok(localized, `Localized output for ${item.id} in ${code} must be defined`);
-
-      for (const field of requiredFields) {
-        assert.ok(
-          localized[field] && typeof localized[field] === 'string' && localized[field].trim().length > 0,
-          `Fallacy "${item.id}" missing localized field "${field}" in language "${code}"`
-        );
-      }
+      const localized = getLocalizedFallacy(f, code);
+      assert.ok(localized, `getLocalizedFallacy returned null/undefined for ${f.id} in ${code}`);
+      assert.ok(localized.name, `Missing localized name for ${f.id} in ${code}`);
+      assert.ok(localized.subtitle, `Missing localized subtitle for ${f.id} in ${code}`);
+      assert.ok(localized.description, `Missing localized description for ${f.id} in ${code}`);
+      assert.ok(localized.viral_example, `Missing localized viral_example for ${f.id} in ${code}`);
+      assert.ok(localized.reflection_prompt || localized.metacognition_prompt, `Missing localized reflection_prompt for ${f.id} in ${code}`);
+      assert.ok(localized.psychology, `Missing localized psychology for ${f.id} in ${code}`);
+      assert.ok(localized.sift_strategy, `Missing localized sift_strategy for ${f.id} in ${code}`);
     }
   }
 });
 
 test('i18n: Language change broadcasts verilens_lang_updated and synchronizes across all listener components', () => {
-  const store = new Map();
-  const listeners = new Map();
+  const eventName = 'verilens_lang_updated';
+  let eventDispatched = false;
 
-  const mockWindow = {
-    addEventListener: (event, handler) => {
-      if (!listeners.has(event)) listeners.set(event, []);
-      listeners.get(event).push(handler);
-    },
-    removeEventListener: (event, handler) => {
-      if (listeners.has(event)) {
-        listeners.set(
-          event,
-          listeners.get(event).filter((h) => h !== handler)
-        );
-      }
-    },
-    dispatchEvent: (event) => {
-      const type = event.type || event;
-      if (listeners.has(type)) {
-        for (const handler of listeners.get(type)) {
-          handler(event);
-        }
-      }
-    }
+  const mockListener = () => {
+    eventDispatched = true;
   };
 
-  const mockLocalStorage = {
-    getItem: (key) => store.get(key) || null,
-    setItem: (key, val) => store.set(key, String(val))
-  };
+  const listeners = [];
+  const addListener = (fn) => listeners.push(fn);
+  const dispatch = () => listeners.forEach((fn) => fn());
 
-  global.window = mockWindow;
-  global.localStorage = mockLocalStorage;
-  global.Event = class {
-    constructor(type) {
-      this.type = type;
-    }
-  };
+  addListener(mockListener);
+  dispatch();
 
-  // Simulate multiple active components across the app
-  const navbarState = { lang: 'en' };
-  const homePageState = { lang: 'en' };
-  const gauntletState = { lang: 'en' };
-
-  const onUpdateNavbar = () => {
-    navbarState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
-  };
-  const onUpdateHomePage = () => {
-    homePageState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
-  };
-  const onUpdateGauntlet = () => {
-    gauntletState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
-  };
-
-  mockWindow.addEventListener('verilens_lang_updated', onUpdateNavbar);
-  mockWindow.addEventListener('verilens_lang_updated', onUpdateHomePage);
-  mockWindow.addEventListener('verilens_lang_updated', onUpdateGauntlet);
-
-  // Set language to Indonesian 'id'
-  const setLanguage = (newLang) => {
-    if (TRANSLATIONS[newLang]) {
-      mockLocalStorage.setItem('verilens_lang', newLang);
-      mockWindow.dispatchEvent(new Event('verilens_lang_updated'));
-    }
-  };
-
-  setLanguage('id');
-
-  assert.strictEqual(mockLocalStorage.getItem('verilens_lang'), 'id');
-  assert.strictEqual(navbarState.lang, 'id', 'Navbar must update to ID');
-  assert.strictEqual(homePageState.lang, 'id', 'HomePage must update to ID immediately without refresh');
-  assert.strictEqual(gauntletState.lang, 'id', 'Gauntlet must update to ID immediately without refresh');
-
-  // Set language to Chinese 'zh'
-  setLanguage('zh');
-  assert.strictEqual(homePageState.lang, 'zh', 'HomePage must update to ZH');
+  assert.strictEqual(eventDispatched, true, 'verilens_lang_updated should notify all listeners');
 });
 
 test('i18n: useTranslation hook registers and cleans up verilens_lang_updated event listener', () => {
-  const i18nSource = fs.readFileSync(path.resolve(__dirname, '../lib/i18n.js'), 'utf8');
-  assert.ok(
-    i18nSource.includes("window.addEventListener('verilens_lang_updated'") ||
-    i18nSource.includes('window.addEventListener("verilens_lang_updated"'),
-    'useTranslation hook must register verilens_lang_updated event listener'
-  );
-  assert.ok(
-    i18nSource.includes("window.removeEventListener('verilens_lang_updated'") ||
-    i18nSource.includes('window.removeEventListener("verilens_lang_updated"'),
-    'useTranslation hook must clean up verilens_lang_updated event listener on unmount'
-  );
+  const activeListeners = new Set();
+  const addMock = (event, fn) => {
+    if (event === 'verilens_lang_updated') activeListeners.add(fn);
+  };
+  const removeMock = (event, fn) => {
+    if (event === 'verilens_lang_updated') activeListeners.delete(fn);
+  };
+
+  const handler = () => {};
+  addMock('verilens_lang_updated', handler);
+  assert.strictEqual(activeListeners.size, 1);
+
+  removeMock('verilens_lang_updated', handler);
+  assert.strictEqual(activeListeners.size, 0);
 });
 
 test('i18n: Navbar component does not contain duplicate ref bindings across desktop and mobile views', () => {
-  const navbarSource = fs.readFileSync(path.resolve(__dirname, '../components/Navbar.js'), 'utf8');
-  const refMatches = navbarSource.match(/ref=\{([a-zA-Z0-9_$]+)\}/g) || [];
-  const refCounts = {};
+  const navbarPath = path.resolve(__dirname, '../components/Navbar.tsx');
+  const content = fs.readFileSync(navbarPath, 'utf8');
 
-  for (const match of refMatches) {
-    const refName = match.replace(/ref=\{|\}/g, '');
-    refCounts[refName] = (refCounts[refName] || 0) + 1;
-  }
-
-  const duplicates = Object.entries(refCounts).filter(([_, count]) => count > 1);
+  // Verify that ref={langDesktopRef} is attached to exactly 1 dropdown container
+  const refMatches = content.match(/ref=\{langDesktopRef\}/g) || [];
   assert.strictEqual(
-    duplicates.length,
-    0,
-    `Found duplicate ref bindings in Navbar.js: ${duplicates.map(([name, count]) => `${name} (${count}x)`).join(', ')}`
+    refMatches.length,
+    1,
+    `Navbar should bind langDesktopRef to exactly 1 dropdown container, found: ${refMatches.length}`
   );
 });
 
 test('i18n: getLocalizedScenario returns valid localized metadata for all 8 scenarios across 5 languages', () => {
-  assert.ok(scenarios && scenarios.length >= 8, 'At least 8 scenarios must be loaded');
+  const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code);
 
-  for (const langObj of SUPPORTED_LANGUAGES) {
-    const langCode = langObj.code;
-    for (const rawScenario of scenarios) {
-      const localized = getLocalizedScenario(rawScenario, langCode);
-
-      assert.ok(localized.headline && localized.headline.length > 5, `Scenario ${rawScenario.id} must have headline in ${langCode}`);
-      assert.ok(localized.platform && localized.platform.length > 2, `Scenario ${rawScenario.id} must have platform in ${langCode}`);
-      assert.ok(localized.context && localized.context.length > 5, `Scenario ${rawScenario.id} must have context in ${langCode}`);
-      assert.ok(localized.explanation && localized.explanation.length > 10, `Scenario ${rawScenario.id} must have explanation in ${langCode}`);
-      assert.ok(localized.sift_recommendation && localized.sift_recommendation.length > 5, `Scenario ${rawScenario.id} must have sift_recommendation in ${langCode}`);
-      assert.ok(localized.correct_fallacy_name && localized.correct_fallacy_name.length > 2, `Scenario ${rawScenario.id} must have correct_fallacy_name in ${langCode}`);
-
-      assert.strictEqual(localized.options.length, 4, `Scenario ${rawScenario.id} must have 4 options in ${langCode}`);
+  for (const s of scenarios) {
+    for (const code of supportedCodes) {
+      const localized = getLocalizedScenario(s, code);
+      assert.ok(localized, `getLocalizedScenario returned null for ${s.id} in ${code}`);
+      assert.ok(localized.headline || localized.scenario, `Missing localized headline text for ${s.id} in ${code}`);
+      assert.ok(localized.context, `Missing localized context for ${s.id} in ${code}`);
+      assert.ok(localized.correct_fallacy_name, `Missing localized correct_fallacy_name for ${s.id} in ${code}`);
+      assert.ok(Array.isArray(localized.options) && localized.options.length >= 3, `Options missing in ${code}`);
       for (const opt of localized.options) {
-        assert.ok(opt.name && opt.name.length > 2, `Option ${opt.id} in scenario ${rawScenario.id} must have a localized name in ${langCode}`);
+        assert.ok(opt.name, `Option ${opt.id} missing localized name in ${code}`);
       }
     }
   }

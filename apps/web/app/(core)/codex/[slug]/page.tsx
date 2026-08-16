@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug, slugToId } from '@verilens/shared';
 import { useTranslation } from '../../../../lib/i18n';
 
-export default function FallacyDetailsPage({ params }) {
+export default function FallacyDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const rawSlug = resolvedParams.slug;
   const targetId = slugToId(rawSlug);

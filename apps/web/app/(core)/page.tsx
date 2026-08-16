@@ -352,8 +352,9 @@ export default function HomePage() {
                               }}
                               onError={(e) => {
                                 e.currentTarget.style.display = 'none';
-                                if (e.currentTarget.nextSibling) {
-                                  e.currentTarget.nextSibling.style.display = 'flex';
+                                const sibling = e.currentTarget.nextSibling as HTMLElement | null;
+                                if (sibling) {
+                                  sibling.style.display = 'flex';
                                 }
                               }}
                             />

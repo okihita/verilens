@@ -6,12 +6,12 @@
  * Uses Web Audio API native oscillators with soft acoustic envelopes.
  */
 
-let audioCtx = null;
+let audioCtx: AudioContext | null = null;
 
-function getAudioContext() {
+function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (AudioContextClass) {
       audioCtx = new AudioContextClass();
     }
@@ -22,18 +22,18 @@ function getAudioContext() {
   return audioCtx;
 }
 
-export function isAudioMuted() {
+export function isAudioMuted(): boolean {
   if (typeof window === 'undefined') return false;
   return localStorage.getItem('verilens_audio_muted') === 'true';
 }
 
-export function setAudioMuted(muted) {
+export function setAudioMuted(muted: boolean): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem('verilens_audio_muted', muted ? 'true' : 'false');
   window.dispatchEvent(new Event('verilens_audio_updated'));
 }
 
-export function toggleAudioMute() {
+export function toggleAudioMute(): boolean {
   const current = isAudioMuted();
   setAudioMuted(!current);
   return !current;
@@ -42,7 +42,7 @@ export function toggleAudioMute() {
 /**
  * Play a gentle tactile click
  */
-export function playClick() {
+export function playClick(): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -64,7 +64,7 @@ export function playClick() {
 
     osc.start(now);
     osc.stop(now + 0.02);
-  } catch (e) {
+  } catch {
     // Graceful fallback for locked audio contexts
   }
 }
@@ -72,7 +72,7 @@ export function playClick() {
 /**
  * Play correct spot harmonic chime (C5 -> E5 ascending)
  */
-export function playCorrect() {
+export function playCorrect(): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -104,13 +104,13 @@ export function playCorrect() {
     gain2.connect(ctx.destination);
     osc2.start(now + 0.07);
     osc2.stop(now + 0.35);
-  } catch (e) {}
+  } catch {}
 }
 
 /**
  * Play celebratory streak chime with higher harmonic arpeggio
  */
-export function playStreak(streakCount = 3) {
+export function playStreak(streakCount = 3): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -138,13 +138,13 @@ export function playStreak(streakCount = 3) {
       osc.start(noteTime);
       osc.stop(noteTime + 0.25);
     });
-  } catch (e) {}
+  } catch {}
 }
 
 /**
  * Play soft dampened low thud for missed manipulation
  */
-export function playIncorrect() {
+export function playIncorrect(): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -172,13 +172,13 @@ export function playIncorrect() {
 
     osc.start(now);
     osc.stop(now + 0.18);
-  } catch (e) {}
+  } catch {}
 }
 
 /**
  * Play game start upward chime
  */
-export function playStart() {
+export function playStart(): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -200,13 +200,13 @@ export function playStart() {
 
     osc.start(now);
     osc.stop(now + 0.22);
-  } catch (e) {}
+  } catch {}
 }
 
 /**
  * Play challenge completion fanfare
  */
-export function playComplete() {
+export function playComplete(): void {
   if (isAudioMuted()) return;
   const ctx = getAudioContext();
   if (!ctx) return;
@@ -233,5 +233,5 @@ export function playComplete() {
       osc.start(startTime);
       osc.stop(startTime + 0.6);
     });
-  } catch (e) {}
+  } catch {}
 }

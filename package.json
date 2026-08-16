@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "test": "node --test packages/shared/test/shared.test.js && node --test apps/extension/tests/unit.test.js && node --test apps/web/test/gamification.test.js && node --test apps/web/test/theme-contrast-lint.test.js && node --test apps/web/test/i18n-coverage.test.js",
+    "test": "node --test packages/shared/test/shared.test.js && node --test apps/extension/tests/unit.test.js && node --experimental-strip-types --test apps/web/test/gamification.test.js && node --experimental-strip-types --test apps/web/test/theme-contrast-lint.test.js && node --experimental-strip-types --test apps/web/test/i18n-coverage.test.js",
     "test:unit": "pnpm test",
+    "typecheck": "pnpm --filter @verilens/web typecheck",
     "lint": "turbo run lint"
   },
   "devDependencies": {

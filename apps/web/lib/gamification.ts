@@ -3,7 +3,32 @@
  * UNESCO MIL Hackathon 2026
  */
 
-export const RANKS = [
+export interface Rank {
+  level: number;
+  name: string;
+  minXP: number;
+  color: string;
+}
+
+export interface Badge {
+  id: string;
+  name: string;
+  desc: string;
+  xpReward: number;
+}
+
+export interface PlayerProfile {
+  xp: number;
+  streak: number;
+  maxStreak: number;
+  quizzesCompleted: number;
+  cardsFlipped: string[];
+  unlockedBadgeIds: string[];
+  unlockedSkillIds: string[];
+  lastPlayedDate: string;
+}
+
+export const RANKS: Rank[] = [
   { level: 1, name: 'Novice Skeptic', minXP: 0, color: '#94A3B8' },
   { level: 2, name: 'Heuristic Apprentice', minXP: 150, color: '#38BDF8' },
   { level: 3, name: 'Logical Analyst', minXP: 350, color: '#60A5FA' },
@@ -16,7 +41,7 @@ export const RANKS = [
   { level: 10, name: 'Grand Inquisitor of Truth', minXP: 7500, color: '#EC4899' }
 ];
 
-export const BADGES = [
+export const BADGES: Badge[] = [
   {
     id: 'first_shield',
     name: 'First Shield',
@@ -67,7 +92,7 @@ export const BADGES = [
   }
 ];
 
-export function getPlayerProfile() {
+export function getPlayerProfile(): PlayerProfile {
   if (typeof window === 'undefined') {
     return {
       xp: 120,
@@ -90,7 +115,7 @@ export function getPlayerProfile() {
     }
   }
 
-  const initialProfile = {
+  const initialProfile: PlayerProfile = {
     xp: 120,
     streak: 0,
     maxStreak: 3,
@@ -105,13 +130,13 @@ export function getPlayerProfile() {
   return initialProfile;
 }
 
-export function savePlayerProfile(profile) {
+export function savePlayerProfile(profile: PlayerProfile): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem('verilens_player_profile', JSON.stringify(profile));
   window.dispatchEvent(new Event('verilens_profile_updated'));
 }
 
-export function addPlayerXP(points) {
+export function addPlayerXP(points: number): { newXP: number; leveledUp: boolean; newRank: Rank } {
   const profile = getPlayerProfile();
   const oldRank = getRankFromXP(profile.xp);
   profile.xp += points;
@@ -126,7 +151,7 @@ export function addPlayerXP(points) {
   };
 }
 
-export function unlockBadge(badgeId) {
+export function unlockBadge(badgeId: string): boolean {
   const profile = getPlayerProfile();
   if (!profile.unlockedBadgeIds.includes(badgeId)) {
     profile.unlockedBadgeIds.push(badgeId);
@@ -140,7 +165,7 @@ export function unlockBadge(badgeId) {
   return false;
 }
 
-export function recordCardFlipped(cardId) {
+export function recordCardFlipped(cardId: string): void {
   const profile = getPlayerProfile();
   if (!profile.cardsFlipped.includes(cardId)) {
     profile.cardsFlipped.push(cardId);
@@ -151,7 +176,7 @@ export function recordCardFlipped(cardId) {
   }
 }
 
-export function getRankFromXP(xp) {
+export function getRankFromXP(xp: number): Rank {
   let currentRank = RANKS[0];
   for (let i = RANKS.length - 1; i >= 0; i--) {
     if (xp >= RANKS[i].minXP) {
@@ -162,7 +187,7 @@ export function getRankFromXP(xp) {
   return currentRank;
 }
 
-export function unlockSkill(skillId) {
+export function unlockSkill(skillId: string): boolean {
   const profile = getPlayerProfile();
   if (!profile.unlockedSkillIds) {
     profile.unlockedSkillIds = [];
@@ -174,4 +199,3 @@ export function unlockSkill(skillId) {
   }
   return false;
 }
-

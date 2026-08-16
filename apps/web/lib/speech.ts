@@ -3,7 +3,7 @@
  * Accessibility & Multilingual Narration
  */
 
-export function speakText(text, lang = 'en') {
+export function speakText(text: string, lang = 'en'): boolean {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     return false;
   }
@@ -20,7 +20,7 @@ export function speakText(text, lang = 'en') {
   return true;
 }
 
-export function stopSpeaking() {
+export function stopSpeaking(): void {
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }
