@@ -2,10 +2,36 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { fallacies, FALLACY_ILLUSTRATIONS } from '@verilens/shared';
+import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug } from '@verilens/shared';
 import { recordCardFlipped } from '../../lib/gamification';
 import { useTranslation } from '../../lib/i18n';
 import HeroParallaxBackground from '../../components/HeroParallaxBackground';
+
+function FrescoCardBackdrop({ fallacyId }) {
+  const [loaded, setLoaded] = useState(true);
+  const imageSrc = `/assets/images/fallacies/${fallacyId}.jpg`;
+
+  if (!loaded) return null;
+
+  return (
+    <>
+      <div
+        className="fallacy-card-fresco-bg"
+        style={{
+          backgroundImage: `url(${imageSrc})`
+        }}
+      />
+      <img
+        src={imageSrc}
+        alt=""
+        aria-hidden="true"
+        style={{ display: 'none' }}
+        onError={() => setLoaded(false)}
+      />
+      <div className="fallacy-card-fresco-scrim" />
+    </>
+  );
+}
 
 export default function HomePage() {
   const { t, lang, getLocalizedFallacy } = useTranslation();
@@ -257,6 +283,7 @@ export default function HomePage() {
               return (
                 <div
                   key={item.id}
+                  className="fallacy-card-flip-wrapper"
                   onClick={() => toggleFlip(item.id)}
                   style={{
                     perspective: '1000px',
@@ -281,6 +308,7 @@ export default function HomePage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
                         background: 'var(--bg-surface)',
                         border: '1px solid var(--border-card)',
                         borderRadius: 'var(--radius-lg)',
@@ -288,10 +316,15 @@ export default function HomePage() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        pointerEvents: isFlipped ? 'none' : 'auto',
+                        zIndex: isFlipped ? 1 : 2
                       }}
                     >
-                      <div>
+                      {/* Washed Renaissance Fresco Canvas & Atmospheric Scrim */}
+                      <FrescoCardBackdrop fallacyId={item.id} />
+
+                      <div style={{ position: 'relative', zIndex: 2 }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                           <div
                             style={{
@@ -304,7 +337,8 @@ export default function HomePage() {
                               alignItems: 'center',
                               justifyContent: 'center',
                               padding: '4px',
-                              overflow: 'hidden'
+                              overflow: 'hidden',
+                              flexShrink: 0
                             }}
                           >
                             {svgIllustration ? (
@@ -340,9 +374,18 @@ export default function HomePage() {
                         </p>
                       </div>
 
-                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12.5px', color: 'var(--accent-blue-light)', fontWeight: '600' }}>
-                        <span>{t('card_tap_front')}</span>
-                        <span>➔</span>
+                      <div style={{ position: 'relative', zIndex: 3, borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12.5px' }}>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '11.5px', fontWeight: '600' }}>
+                          {t('card_tap_front')} ➔
+                        </span>
+                        <Link
+                          href={`/codex/${idToSlug(item.id)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="btn btn-outline"
+                          style={{ padding: '3px 8px', fontSize: '11px', textDecoration: 'none', fontWeight: '700', cursor: 'pointer', position: 'relative', zIndex: 10 }}
+                        >
+                          {t('card_view_dossier')}
+                        </Link>
                       </div>
                     </div>
 
@@ -353,6 +396,7 @@ export default function HomePage() {
                         width: '100%',
                         height: '100%',
                         backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
                         background: 'var(--bg-surface-elevated)',
                         border: `1.5px solid ${item.color}`,
@@ -361,7 +405,9 @@ export default function HomePage() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        overflowY: 'auto'
+                        overflowY: 'auto',
+                        pointerEvents: isFlipped ? 'auto' : 'none',
+                        zIndex: isFlipped ? 2 : 1
                       }}
                     >
                       <div>
@@ -385,13 +431,20 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{item.mil_competency}</span>
+                      <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap', position: 'relative', zIndex: 10 }}>
+                        <Link
+                          href={`/codex/${idToSlug(item.id)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="btn btn-outline"
+                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', fontWeight: '700', cursor: 'pointer' }}
+                        >
+                          {t('card_view_dossier')}
+                        </Link>
                         <Link
                           href={`/sandbox?sample=${encodeURIComponent(fallacyName)}`}
                           onClick={(e) => e.stopPropagation()}
                           className="btn btn-primary"
-                          style={{ padding: '5px 10px', fontSize: '12px' }}
+                          style={{ padding: '4px 8px', fontSize: '11px', textDecoration: 'none', cursor: 'pointer' }}
                         >
                           {t('card_sandbox_btn')}
                         </Link>
