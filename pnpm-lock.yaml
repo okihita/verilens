@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@verilens/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       next:
         specifier: ^16.0.0
         version: 16.3.1(@playwright/test@1.62.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)

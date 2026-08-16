@@ -6,9 +6,9 @@ const test = require('node:test');
 const assert = require('node:assert');
 
 const { RANKS, BADGES, getRankFromXP } = require('../lib/gamification.js');
-const { FALLACY_ILLUSTRATIONS } = require('../lib/shared/illustrations.js');
-const fallaciesData = require('../lib/shared/fallacies.json');
-const scenariosData = require('../lib/shared/scenarios.json');
+const { FALLACY_ILLUSTRATIONS, fallacies, scenarios } = require('@verilens/shared');
+const fallaciesData = { fallacies };
+const scenariosData = { scenarios };
 
 test('Gamification: Ranks progression contains 10 distinct levels', () => {
   assert.strictEqual(RANKS.length, 10);

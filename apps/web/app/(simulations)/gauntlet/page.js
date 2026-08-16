@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { addPlayerXP, unlockBadge } from '../../lib/gamification';
-import { useTranslation } from '../../lib/i18n';
-import CertificateModal from '../../components/CertificateModal';
+import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
+import { useTranslation } from '../../../lib/i18n';
+import CertificateModal from '../../../components/CertificateModal';
 
 const GAUNTLET_ITEMS_EN = [
   {

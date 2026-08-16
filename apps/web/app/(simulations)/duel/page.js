@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import scenariosData from '../../lib/shared/scenarios.json';
-import { addPlayerXP, unlockBadge } from '../../lib/gamification';
+import { scenarios } from '@verilens/shared';
+import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
+
+const scenariosData = { scenarios };
 
 export default function CognitiveDuelPage() {
   const [p1Hp, setP1Hp] = useState(100);

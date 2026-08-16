@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import * as shared from '../../lib/shared/index.js';
-import { useTranslation } from '../../lib/i18n';
+import * as shared from '@verilens/shared';
+import { useTranslation } from '../../../lib/i18n';
 
 const PRESET_SCENARIOS = {
   health: {

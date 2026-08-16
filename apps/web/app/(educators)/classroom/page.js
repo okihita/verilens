@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import scenariosData from '../../lib/shared/scenarios.json';
-import { speakText } from '../../lib/speech';
-import { useTranslation } from '../../lib/i18n';
+import { scenarios } from '@verilens/shared';
+import { speakText } from '../../../lib/speech';
+import { useTranslation } from '../../../lib/i18n';
+
+const scenariosData = { scenarios };
 
 export default function ClassroomPage() {
   const { lang } = useTranslation();

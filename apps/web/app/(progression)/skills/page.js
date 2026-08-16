@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getPlayerProfile, getRankFromXP, savePlayerProfile } from '../../lib/gamification';
+import { getPlayerProfile, getRankFromXP, savePlayerProfile } from '../../../lib/gamification';
 
 const SKILL_BRANCHES = [
   {

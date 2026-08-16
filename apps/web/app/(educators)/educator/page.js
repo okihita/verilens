@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useTranslation } from '../../lib/i18n';
+import { useTranslation } from '../../../lib/i18n';
 
 const LESSON_MODULES = [
   {

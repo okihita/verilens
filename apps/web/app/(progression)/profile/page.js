@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getPlayerProfile, getRankFromXP, RANKS, BADGES } from '../../lib/gamification';
-import { useTranslation } from '../../lib/i18n';
+import { getPlayerProfile, getRankFromXP, RANKS, BADGES } from '../../../lib/gamification';
+import { useTranslation } from '../../../lib/i18n';
 
 const BADGES_ID = {
   first_shield: { name: 'Perisai Pertama', desc: 'Menyelesaikan tantangan analisis skenario pertama Anda.' },

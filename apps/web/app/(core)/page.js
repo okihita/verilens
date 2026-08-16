@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import fallaciesData from '../lib/shared/fallacies.json';
-import { FALLACY_ILLUSTRATIONS } from '../lib/shared/illustrations.js';
-import { recordCardFlipped } from '../lib/gamification.js';
-import { useTranslation, INDONESIAN_FALLACIES } from '../lib/i18n.js';
+import { fallacies, FALLACY_ILLUSTRATIONS } from '@verilens/shared';
+import { recordCardFlipped } from '../../lib/gamification.js';
+import { useTranslation, INDONESIAN_FALLACIES } from '../../lib/i18n.js';
 
 export default function HomePage() {
   const { t, lang } = useTranslation();
@@ -23,7 +22,7 @@ export default function HomePage() {
     Scam: t('cat_scam')
   };
 
-  const filteredFallacies = fallaciesData.fallacies.filter((item) => {
+  const filteredFallacies = (fallacies || []).filter((item) => {
     const idData = INDONESIAN_FALLACIES[item.id] || {};
     const name = lang === 'id' && idData.name ? idData.name : item.name;
     const desc = lang === 'id' && idData.description ? idData.description : item.description;
@@ -44,13 +43,13 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section style={{ padding: '40px 0 30px', textAlign: 'center', background: 'radial-gradient(ellipse at top, #141E33 0%, #080C16 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: '40px 0 30px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '880px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '700', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '14px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '14px' }}>
             <span>{t('hackathon_badge')}</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(26px, 5.5vw, 42px)', fontWeight: '900', letterSpacing: '-0.8px', lineHeight: '1.2', marginBottom: '14px', color: '#FFFFFF' }}>
+          <h1 style={{ fontSize: 'clamp(26px, 5.5vw, 42px)', fontWeight: '900', letterSpacing: '-0.8px', lineHeight: '1.2', marginBottom: '14px', color: 'var(--text-main)' }}>
             {t('hero_title')}
           </h1>
 
@@ -77,27 +76,27 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginTop: '36px', paddingTop: '20px', borderTop: '1px solid var(--border-subtle)' }}>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-amber)' }}>12</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_archetypes')}</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('metrics_archetypes')}</div>
             </div>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-blue-light)' }}>SIFT</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_framework')}</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('metrics_framework')}</div>
             </div>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-emerald-light)' }}>&lt; 300ms</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_latency')}</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '700' }}>{t('metrics_latency')}</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Flagship Module 1: The Interactive Fallacy Codex */}
+      {/* Flagship Module: The Interactive Fallacy Codex */}
       <section style={{ padding: '40px 0' }} id="codex">
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
             <div>
-              <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>{t('codex_badge')}</span>
-              <h2 style={{ fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: '800', color: '#FFFFFF', marginTop: '2px' }}>
+              <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>{t('codex_badge')}</span>
+              <h2 style={{ fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: '900', color: 'var(--text-main)', marginTop: '2px' }}>
                 {t('codex_title')}
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginTop: '2px' }}>
@@ -112,7 +111,7 @@ export default function HomePage() {
                 placeholder={t('search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ width: '100%', padding: '9px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontSize: '13px', outline: 'none' }}
+                style={{ width: '100%', padding: '9px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '13px', outline: 'none' }}
               />
             </div>
           </div>
@@ -146,7 +145,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '18px' }}>
             {filteredFallacies.map((item) => {
               const isFlipped = flippedCardId === item.id;
-              const svgIllustration = FALLACY_ILLUSTRATIONS[item.id] || '';
+              const svgIllustration = (FALLACY_ILLUSTRATIONS && FALLACY_ILLUSTRATIONS[item.id]) || '';
               
               const idData = INDONESIAN_FALLACIES[item.id] || {};
               const fallacyName = lang === 'id' && idData.name ? idData.name : item.name;
@@ -203,10 +202,10 @@ export default function HomePage() {
                           </span>
                         </div>
 
-                        <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '2px' }}>
+                        <h3 style={{ fontSize: '18px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '2px' }}>
                           {fallacyName}
                         </h3>
-                        <div style={{ fontSize: '11.5px', fontWeight: '600', color: 'var(--accent-amber)', marginBottom: '8px' }}>
+                        <div style={{ fontSize: '11.5px', fontWeight: '700', color: 'var(--accent-amber)', marginBottom: '8px' }}>
                           {fallacySubtitle}
                         </div>
 
@@ -241,13 +240,13 @@ export default function HomePage() {
                     >
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                          <strong style={{ fontSize: '14px', color: '#FFFFFF' }}>{fallacyName}</strong>
+                          <strong style={{ fontSize: '14px', color: 'var(--text-main)' }}>{fallacyName}</strong>
                           <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>{t('card_tap_back')}</span>
                         </div>
 
                         <div style={{ marginBottom: '8px' }}>
                           <span style={{ fontSize: '9.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>{t('card_viral_scenario')}</span>
-                          <div style={{ fontSize: '11.5px', fontStyle: 'italic', background: 'rgba(0,0,0,0.3)', padding: '6px 8px', borderRadius: '6px', marginTop: '2px', color: '#E2E8F0' }}>
+                          <div style={{ fontSize: '11.5px', fontStyle: 'italic', background: 'rgba(0,0,0,0.15)', padding: '6px 8px', borderRadius: '6px', marginTop: '2px', color: 'var(--text-main)' }}>
                             {fallacyViralExample}
                           </div>
                         </div>

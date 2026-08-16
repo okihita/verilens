@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import scenariosData from '../../lib/shared/scenarios.json';
-import { addPlayerXP, unlockBadge } from '../../lib/gamification';
-import CertificateModal from '../../components/CertificateModal';
+import { scenarios } from '@verilens/shared';
+import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
+import CertificateModal from '../../../components/CertificateModal';
+
+const scenariosData = { scenarios };
 
 export default function ArenaPage() {
   const [gameStarted, setGameStarted] = useState(false);

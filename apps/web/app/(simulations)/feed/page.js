@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { addPlayerXP, unlockBadge } from '../../lib/gamification';
-import { scanText, calculateSensationalismIndex } from '../../lib/shared/heuristics';
+import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
+import { scanText, calculateSensationalismIndex } from '@verilens/shared';
 
 const SIMULATED_FEED = [
   {
