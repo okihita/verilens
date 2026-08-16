@@ -9,14 +9,16 @@ import { useTheme } from '../lib/theme';
 
 export default function Navbar() {
   const { t, lang, setLanguage } = useTranslation();
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [profile, setProfile] = useState({ xp: 120 });
   const [rank, setRank] = useState({ level: 1, name: 'Novice Skeptic', color: '#94A3B8', nextXP: 150 });
-  const [gamesOpen, setGamesOpen] = useState(false);
+  const [simsOpen, setSimsOpen] = useState(false);
+  const [educatorsOpen, setEducatorsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  const gamesRef = useRef(null);
+  const simsRef = useRef(null);
+  const educatorsRef = useRef(null);
   const profileRef = useRef(null);
   const pathname = usePathname();
 
@@ -32,19 +34,17 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setGamesOpen(false);
+    setSimsOpen(false);
+    setEducatorsOpen(false);
     setProfileOpen(false);
     setMobileMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (gamesRef.current && !gamesRef.current.contains(event.target)) {
-        setGamesOpen(false);
-      }
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setProfileOpen(false);
-      }
+      if (simsRef.current && !simsRef.current.contains(event.target)) setSimsOpen(false);
+      if (educatorsRef.current && !educatorsRef.current.contains(event.target)) setEducatorsOpen(false);
+      if (profileRef.current && !profileRef.current.contains(event.target)) setProfileOpen(false);
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -57,14 +57,15 @@ export default function Navbar() {
   };
 
   const themeLabel = theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark';
-
   const progressPercent = Math.min(100, Math.round((profile.xp / rank.nextXP) * 100));
-  const isGameRoute = ['/gauntlet', '/arena', '/feed', '/forge', '/duel'].includes(pathname);
+  const isSimRoute = ['/gauntlet', '/arena', '/feed', '/forge', '/duel', '/sandbox', '/extension'].includes(pathname);
+  const isEducatorRoute = ['/classroom', '/educator'].includes(pathname);
   const isProgressionRoute = ['/profile', '/skills', '/leaderboard'].includes(pathname);
 
   return (
     <nav className="navbar">
       <div className="container navbar-inner">
+        
         {/* Left: Brand Identity */}
         <Link href="/" className="brand-group">
           <div className="brand-logo">VL</div>
@@ -74,22 +75,23 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Center: 4 Clean Pillars (Desktop) */}
+        {/* Center: 3 Streamlined Anchors (Desktop) */}
         <div className="nav-links desktop-only">
-          {/* Pillar 1: Training Games Dropdown */}
-          <div className="nav-dropdown-wrapper" ref={gamesRef}>
+          
+          {/* Anchor 1: Simulations & Tools Dropdown */}
+          <div className="nav-dropdown-wrapper" ref={simsRef}>
             <button
-              onClick={() => { setGamesOpen(!gamesOpen); setProfileOpen(false); }}
-              className={`nav-link nav-dropdown-btn ${isGameRoute ? 'active' : ''}`}
+              onClick={() => { setSimsOpen(!simsOpen); setEducatorsOpen(false); setProfileOpen(false); }}
+              className={`nav-link nav-dropdown-btn ${isSimRoute ? 'active' : ''}`}
             >
-              <span>{t('nav_games')}</span>
-              <span style={{ fontSize: '10px', transform: gamesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
+              <span>{lang === 'id' ? 'Simulasi' : 'Simulations'}</span>
+              <span style={{ fontSize: '9px', transform: simsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
-            {gamesOpen && (
+            {simsOpen && (
               <div className="nav-dropdown-menu" style={{ width: '320px' }}>
-                <div style={{ padding: '8px 12px 6px', fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
-                  {lang === 'id' ? 'Simulasi Interaktif' : 'Interactive Simulations'}
+                <div style={{ padding: '6px 12px 4px', fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
+                  {lang === 'id' ? 'Pelatihan & Peralatan' : 'Interactive Labs'}
                 </div>
 
                 <Link href="/gauntlet" className="dropdown-item">
@@ -97,12 +99,10 @@ export default function Navbar() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                       <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_daily_gauntlet')}</strong>
-                      <span style={{ fontSize: '9.5px', background: '#DC2626', color: '#FFF', padding: '1px 5px', borderRadius: '4px', fontWeight: '800' }}>
-                        {lang === 'id' ? 'UJI CEPAT' : 'SPEED TRIAL'}
-                      </span>
+                      <span style={{ fontSize: '9px', background: '#DC2626', color: '#FFF', padding: '1px 4px', borderRadius: '3px', fontWeight: '800' }}>SPEED</span>
                     </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Sortir cepat dengan pengali kombo' : 'Rapid-fire triage with combo multipliers'}
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Sortir cepat dengan kombo' : 'Rapid-fire triage with combos'}
                     </div>
                   </div>
                 </Link>
@@ -111,8 +111,18 @@ export default function Navbar() {
                   <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800' }}>5R</div>
                   <div>
                     <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_spotter_arena')}</strong>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Pertarungan analisis 5 skenario berita' : '5-round scenario analysis battle'}
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Pertarungan analisis 5 skenario' : '5-round scenario battle'}
+                    </div>
+                  </div>
+                </Link>
+
+                <Link href="/sandbox" className="dropdown-item">
+                  <div className="dropdown-icon" style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA', fontWeight: '800' }}>SIFT</div>
+                  <div>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_sandbox')}</strong>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Disetor artikel langsung & Gemini AI' : 'Live article dissector & AI scan'}
                     </div>
                   </div>
                 </Link>
@@ -121,8 +131,8 @@ export default function Navbar() {
                   <div className="dropdown-icon" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', fontWeight: '800' }}>Feed</div>
                   <div>
                     <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_feed_sim')}</strong>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Moderasi beranda sosial & SIFT' : 'Simulated social feed moderation & SIFT'}
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Moderasi beranda sosial & SIFT' : 'Simulated social feed moderation'}
                     </div>
                   </div>
                 </Link>
@@ -131,84 +141,118 @@ export default function Navbar() {
                   <div className="dropdown-icon" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24', fontWeight: '800' }}>Lab</div>
                   <div>
                     <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_fallacy_forge')}</strong>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Pelajari manipulasi dengan membalik fakta' : 'Reverse-spin neutral facts to learn deception'}
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Balik fakta untuk pelajari manipulasi' : 'Reverse-spin neutral facts'}
                     </div>
                   </div>
                 </Link>
 
                 <Link href="/duel" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA', fontWeight: '800' }}>1v1</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#F87171', fontWeight: '800' }}>1v1</div>
                   <div>
                     <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_duel')}</strong>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
                       {lang === 'id' ? 'Pertarungan layar bagi 2 pemain' : '2-player split screen battle'}
+                    </div>
+                  </div>
+                </Link>
+
+                <div style={{ borderTop: '1px solid var(--border-subtle)', margin: '4px 0', paddingTop: '4px' }}>
+                  <Link href="/extension" className="dropdown-item">
+                    <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800' }}>Ext</div>
+                    <div>
+                      <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_extension')}</strong>
+                      <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                        {lang === 'id' ? 'Perisai browser Chrome <300ms' : 'Chrome Browser Armor (<300ms)'}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Anchor 2: The Fallacy Codex */}
+          <Link href="/#codex" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
+            {t('nav_codex')}
+          </Link>
+
+          {/* Anchor 3: Educators & Classroom Dropdown */}
+          <div className="nav-dropdown-wrapper" ref={educatorsRef}>
+            <button
+              onClick={() => { setEducatorsOpen(!educatorsOpen); setSimsOpen(false); setProfileOpen(false); }}
+              className={`nav-link nav-dropdown-btn ${isEducatorRoute ? 'active' : ''}`}
+            >
+              <span>{lang === 'id' ? 'Pendidik' : 'Educators'}</span>
+              <span style={{ fontSize: '9px', transform: educatorsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
+            </button>
+
+            {educatorsOpen && (
+              <div className="nav-dropdown-menu" style={{ width: '280px' }}>
+                <div style={{ padding: '6px 12px 4px', fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
+                  {lang === 'id' ? 'Peralatan Kelas UNESCO' : 'UNESCO Classroom Tools'}
+                </div>
+
+                <Link href="/classroom" className="dropdown-item">
+                  <div className="dropdown-icon" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24', fontWeight: '800' }}>Live</div>
+                  <div>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_classroom')}</strong>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Tampilan smartboard proyektor' : 'Smartboard presenter showdown'}
+                    </div>
+                  </div>
+                </Link>
+
+                <Link href="/educator" className="dropdown-item">
+                  <div className="dropdown-icon" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', fontWeight: '800' }}>RPP</div>
+                  <div>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>
+                      {lang === 'id' ? 'Generator RPP 1-Klik' : 'Lesson Plan Generator'}
+                    </strong>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Lembar kerja kelas siap cetak' : 'Printable workshop worksheets'}
                     </div>
                   </div>
                 </Link>
               </div>
             )}
           </div>
-
-          {/* Pillar 2: The Fallacy Codex */}
-          <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
-            {t('nav_codex')}
-          </Link>
-
-          {/* Pillar 3: Real-Time Article Sandbox */}
-          <Link href="/sandbox" className={`nav-link ${pathname === '/sandbox' ? 'active' : ''}`}>
-            {t('nav_sandbox')}
-          </Link>
-
-          {/* Pillar 4: Classroom Showdown */}
-          <Link href="/classroom" className={`nav-link ${pathname === '/classroom' ? 'active' : ''}`}>
-            {t('nav_classroom')}
-          </Link>
-
-          {/* Pillar 5: Educator Guide */}
-          <Link href="/educator" className={`nav-link ${pathname === '/educator' ? 'active' : ''}`}>
-            {lang === 'id' ? 'RPP Guru' : 'Educator'}
-          </Link>
         </div>
 
-        {/* Right: Theme Toggle, Language Switcher, RPG Hub (Desktop) */}
+        {/* Right Controls: Compact Hub (Desktop) */}
         <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Theme Switcher Toggle */}
+          
+          {/* Minimal Theme Switcher */}
           <button
             onClick={cycleTheme}
             style={{
               background: 'var(--bg-surface-elevated)',
               border: '1px solid var(--border-card)',
               color: 'var(--text-secondary)',
-              padding: '4px 10px',
-              borderRadius: '16px',
+              padding: '4px 8px',
+              borderRadius: '8px',
               fontSize: '11px',
-              fontWeight: '800',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px'
+              fontWeight: '700',
+              cursor: 'pointer'
             }}
-            title="Switch Theme (Auto / Light / Dark)"
+            title="Theme: Auto / Light / Dark"
           >
-            <span>Theme:</span>
-            <span style={{ color: 'var(--accent-amber)' }}>{themeLabel}</span>
+            {themeLabel}
           </button>
 
-          {/* Top-Right Language Switcher */}
-          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '16px', padding: '2px', overflow: 'hidden' }}>
+          {/* Clean Language Switcher */}
+          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '8px', padding: '1px', overflow: 'hidden' }}>
             <button
               onClick={() => setLanguage('en')}
               style={{
                 background: lang === 'en' ? 'var(--accent-blue)' : 'transparent',
                 color: lang === 'en' ? '#FFFFFF' : 'var(--text-secondary)',
                 border: 'none',
-                padding: '3px 8px',
-                borderRadius: '12px',
+                padding: '3px 7px',
+                borderRadius: '6px',
                 fontSize: '11px',
                 fontWeight: '800',
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
             >
               EN
@@ -219,40 +263,53 @@ export default function Navbar() {
                 background: lang === 'id' ? 'var(--accent-blue)' : 'transparent',
                 color: lang === 'id' ? '#FFFFFF' : 'var(--text-secondary)',
                 border: 'none',
-                padding: '3px 8px',
-                borderRadius: '12px',
+                padding: '3px 7px',
+                borderRadius: '6px',
                 fontSize: '11px',
                 fontWeight: '800',
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
             >
               ID
             </button>
           </div>
 
-          {/* Progression Hub Dropdown */}
+          {/* Compact RPG Progression Hub */}
           <div className="nav-dropdown-wrapper" ref={profileRef}>
             <button
-              onClick={() => { setProfileOpen(!profileOpen); setGamesOpen(false); }}
-              style={{ background: 'var(--bg-surface-elevated)', border: `1.5px solid ${isProgressionRoute ? 'var(--accent-amber)' : rank.color}`, padding: '4px 10px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', outline: 'none' }}
+              onClick={() => { setProfileOpen(!profileOpen); setSimsOpen(false); setEducatorsOpen(false); }}
+              style={{
+                background: 'var(--bg-surface-elevated)',
+                border: `1.5px solid ${isProgressionRoute ? 'var(--accent-amber)' : rank.color}`,
+                padding: '4px 10px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                cursor: 'pointer',
+                outline: 'none'
+              }}
             >
-              <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                <span style={{ fontSize: '10px', fontWeight: '800', color: rank.color, textTransform: 'uppercase', lineHeight: '1.1' }}>
-                  {t('level_prefix')}{rank.level} {rank.name}
-                </span>
-                <div style={{ width: '55px', height: '3px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '2px' }}>
-                  <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color }}></div>
-                </div>
-              </div>
-              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-main)' }}>{profile.xp} {t('xp_label')}</span>
-              <span style={{ fontSize: '9px', color: 'var(--text-muted)', transform: profileOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
+              <span style={{ fontSize: '11px', fontWeight: '800', color: rank.color }}>
+                {t('level_prefix')}{rank.level}
+              </span>
+              <span style={{ color: 'var(--border-card)' }}>•</span>
+              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-main)' }}>
+                {profile.xp} {t('xp_label')}
+              </span>
+              <span style={{ fontSize: '8px', color: 'var(--text-muted)', transform: profileOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
             {profileOpen && (
-              <div className="nav-dropdown-menu" style={{ right: 0, width: '240px' }}>
-                <div style={{ padding: '8px 12px 6px', fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
-                  {lang === 'id' ? 'Pertumbuhan Metakognitif' : 'Metacognitive Growth'}
+              <div className="nav-dropdown-menu" style={{ right: 0, width: '250px' }}>
+                <div style={{ padding: '8px 12px 6px', borderBottom: '1px solid var(--border-subtle)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ fontSize: '12px', color: rank.color }}>Level {rank.level} {rank.name}</strong>
+                    <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{profile.xp}/{rank.nextXP} XP</span>
+                  </div>
+                  <div style={{ width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '4px' }}>
+                    <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color }}></div>
+                  </div>
                 </div>
 
                 <Link href="/profile" className="dropdown-item">
@@ -268,7 +325,7 @@ export default function Navbar() {
                   <div>
                     <strong style={{ fontSize: '13px', color: 'var(--text-main)' }}>{t('nav_skills')}</strong>
                     <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Buka 4 Cabang Pertahanan' : 'Unlock 4 Defense Branches'}
+                      {lang === 'id' ? 'Pohon Keterampilan Kognitif' : 'Unlock Defense Branches'}
                     </div>
                   </div>
                 </Link>
@@ -285,65 +342,25 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="/extension" className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '12.5px' }}>
-            {t('nav_extension')}
-          </Link>
         </div>
 
-        {/* Mobile Right Controls */}
+        {/* Mobile Header Controls */}
         <div className="mobile-only-controls">
           <button
             onClick={cycleTheme}
-            style={{
-              background: 'var(--bg-surface-elevated)',
-              border: '1px solid var(--border-card)',
-              color: 'var(--text-secondary)',
-              padding: '3px 7px',
-              borderRadius: '12px',
-              fontSize: '10.5px',
-              fontWeight: '800',
-              cursor: 'pointer'
-            }}
+            style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', color: 'var(--text-secondary)', padding: '3px 6px', borderRadius: '6px', fontSize: '10px', fontWeight: '700', cursor: 'pointer' }}
           >
             {themeLabel}
           </button>
 
-          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '14px', padding: '1px' }}>
-            <button
-              onClick={() => setLanguage('en')}
-              style={{
-                background: lang === 'en' ? 'var(--accent-blue)' : 'transparent',
-                color: lang === 'en' ? '#FFFFFF' : 'var(--text-secondary)',
-                border: 'none',
-                padding: '2px 6px',
-                borderRadius: '10px',
-                fontSize: '10px',
-                fontWeight: '800',
-                cursor: 'pointer'
-              }}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('id')}
-              style={{
-                background: lang === 'id' ? 'var(--accent-blue)' : 'transparent',
-                color: lang === 'id' ? '#FFFFFF' : 'var(--text-secondary)',
-                border: 'none',
-                padding: '2px 6px',
-                borderRadius: '10px',
-                fontSize: '10px',
-                fontWeight: '800',
-                cursor: 'pointer'
-              }}
-            >
-              ID
-            </button>
+          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', padding: '1px' }}>
+            <button onClick={() => setLanguage('en')} style={{ background: lang === 'en' ? 'var(--accent-blue)' : 'transparent', color: lang === 'en' ? '#FFFFFF' : 'var(--text-secondary)', border: 'none', padding: '2px 5px', borderRadius: '4px', fontSize: '9.5px', fontWeight: '800', cursor: 'pointer' }}>EN</button>
+            <button onClick={() => setLanguage('id')} style={{ background: lang === 'id' ? 'var(--accent-blue)' : 'transparent', color: lang === 'id' ? '#FFFFFF' : 'var(--text-secondary)', border: 'none', padding: '2px 5px', borderRadius: '4px', fontSize: '9.5px', fontWeight: '800', cursor: 'pointer' }}>ID</button>
           </div>
 
           <Link href="/profile" style={{ textDecoration: 'none' }}>
-            <div style={{ background: 'var(--bg-surface-elevated)', border: `1px solid ${rank.color}`, padding: '4px 8px', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-main)' }}>{profile.xp} {t('xp_label')}</span>
+            <div style={{ background: 'var(--bg-surface-elevated)', border: `1px solid ${rank.color}`, padding: '3px 6px', borderRadius: '12px', fontSize: '10.5px', fontWeight: '800', color: 'var(--text-main)' }}>
+              {profile.xp} XP
             </div>
           </Link>
 
@@ -352,7 +369,7 @@ export default function Navbar() {
             aria-label="Toggle navigation menu"
             className="mobile-hamburger-btn"
           >
-            {mobileMenuOpen ? 'X' : 'Menu'}
+            {mobileMenuOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
@@ -361,10 +378,11 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="mobile-nav-drawer">
           <div className="mobile-nav-section">
-            <span className="mobile-nav-label">{t('nav_games')}</span>
+            <span className="mobile-nav-label">{lang === 'id' ? 'Simulasi' : 'Simulations'}</span>
             <div className="mobile-nav-grid">
               <Link href="/gauntlet" className="mobile-nav-item" style={{ color: 'var(--accent-amber)' }}>{t('nav_daily_gauntlet')}</Link>
               <Link href="/arena" className="mobile-nav-item">{t('nav_spotter_arena')}</Link>
+              <Link href="/sandbox" className="mobile-nav-item">{t('nav_sandbox')}</Link>
               <Link href="/feed" className="mobile-nav-item">{t('nav_feed_sim')}</Link>
               <Link href="/forge" className="mobile-nav-item">{t('nav_fallacy_forge')}</Link>
               <Link href="/duel" className="mobile-nav-item">{t('nav_duel')}</Link>
@@ -372,28 +390,22 @@ export default function Navbar() {
           </div>
 
           <div className="mobile-nav-section">
-            <span className="mobile-nav-label">{lang === 'id' ? 'Alat Utama UNESCO' : 'Core UNESCO Tools'}</span>
+            <span className="mobile-nav-label">{lang === 'id' ? 'Pendidik & Kodeks' : 'Educators & Codex'}</span>
             <div className="mobile-nav-grid">
-              <Link href="/" className="mobile-nav-item">{t('nav_codex')}</Link>
-              <Link href="/sandbox" className="mobile-nav-item">{t('nav_sandbox')}</Link>
+              <Link href="/#codex" className="mobile-nav-item">{t('nav_codex')}</Link>
               <Link href="/classroom" className="mobile-nav-item">{t('nav_classroom')}</Link>
-              <Link href="/educator" className="mobile-nav-item">{lang === 'id' ? 'RPP Guru' : 'Educator Hub'}</Link>
+              <Link href="/educator" className="mobile-nav-item">{lang === 'id' ? 'RPP Guru' : 'Lesson Plans'}</Link>
+              <Link href="/extension" className="mobile-nav-item">{t('nav_extension')}</Link>
             </div>
           </div>
 
           <div className="mobile-nav-section">
-            <span className="mobile-nav-label">{lang === 'id' ? 'Perkembangan & Peringkat' : 'Progression & Ranks'}</span>
+            <span className="mobile-nav-label">{lang === 'id' ? 'Perkembangan' : 'Progression'}</span>
             <div className="mobile-nav-grid">
               <Link href="/profile" className="mobile-nav-item">{t('nav_trophy')}</Link>
               <Link href="/skills" className="mobile-nav-item">{t('nav_skills')}</Link>
               <Link href="/leaderboard" className="mobile-nav-item">{t('nav_league')}</Link>
             </div>
-          </div>
-
-          <div style={{ paddingTop: '8px', borderTop: '1px solid var(--border-subtle)', display: 'flex', gap: '8px' }}>
-            <Link href="/extension" className="btn btn-primary" style={{ flex: 1, padding: '10px', fontSize: '13px' }}>
-              {t('hero_cta_extension')}
-            </Link>
           </div>
         </div>
       )}
