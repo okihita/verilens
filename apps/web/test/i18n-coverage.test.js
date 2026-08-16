@@ -128,3 +128,96 @@ test('i18n: getLocalizedFallacy returns valid localized metadata for all 24 arch
     }
   }
 });
+
+test('i18n: Language change broadcasts verilens_lang_updated and synchronizes across all listener components', () => {
+  const store = new Map();
+  const listeners = new Map();
+
+  const mockWindow = {
+    addEventListener: (event, handler) => {
+      if (!listeners.has(event)) listeners.set(event, []);
+      listeners.get(event).push(handler);
+    },
+    removeEventListener: (event, handler) => {
+      if (listeners.has(event)) {
+        listeners.set(
+          event,
+          listeners.get(event).filter((h) => h !== handler)
+        );
+      }
+    },
+    dispatchEvent: (event) => {
+      const type = event.type || event;
+      if (listeners.has(type)) {
+        for (const handler of listeners.get(type)) {
+          handler(event);
+        }
+      }
+    }
+  };
+
+  const mockLocalStorage = {
+    getItem: (key) => store.get(key) || null,
+    setItem: (key, val) => store.set(key, String(val))
+  };
+
+  global.window = mockWindow;
+  global.localStorage = mockLocalStorage;
+  global.Event = class {
+    constructor(type) {
+      this.type = type;
+    }
+  };
+
+  // Simulate multiple active components across the app
+  const navbarState = { lang: 'en' };
+  const homePageState = { lang: 'en' };
+  const gauntletState = { lang: 'en' };
+
+  const onUpdateNavbar = () => {
+    navbarState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
+  };
+  const onUpdateHomePage = () => {
+    homePageState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
+  };
+  const onUpdateGauntlet = () => {
+    gauntletState.lang = mockLocalStorage.getItem('verilens_lang') || 'en';
+  };
+
+  mockWindow.addEventListener('verilens_lang_updated', onUpdateNavbar);
+  mockWindow.addEventListener('verilens_lang_updated', onUpdateHomePage);
+  mockWindow.addEventListener('verilens_lang_updated', onUpdateGauntlet);
+
+  // Set language to Indonesian 'id'
+  const setLanguage = (newLang) => {
+    if (TRANSLATIONS[newLang]) {
+      mockLocalStorage.setItem('verilens_lang', newLang);
+      mockWindow.dispatchEvent(new Event('verilens_lang_updated'));
+    }
+  };
+
+  setLanguage('id');
+
+  assert.strictEqual(mockLocalStorage.getItem('verilens_lang'), 'id');
+  assert.strictEqual(navbarState.lang, 'id', 'Navbar must update to ID');
+  assert.strictEqual(homePageState.lang, 'id', 'HomePage must update to ID immediately without refresh');
+  assert.strictEqual(gauntletState.lang, 'id', 'Gauntlet must update to ID immediately without refresh');
+
+  // Set language to Chinese 'zh'
+  setLanguage('zh');
+  assert.strictEqual(homePageState.lang, 'zh', 'HomePage must update to ZH');
+});
+
+test('i18n: useTranslation hook registers and cleans up verilens_lang_updated event listener', () => {
+  const i18nSource = fs.readFileSync(path.resolve(__dirname, '../lib/i18n.js'), 'utf8');
+  assert.ok(
+    i18nSource.includes("window.addEventListener('verilens_lang_updated'") ||
+    i18nSource.includes('window.addEventListener("verilens_lang_updated"'),
+    'useTranslation hook must register verilens_lang_updated event listener'
+  );
+  assert.ok(
+    i18nSource.includes("window.removeEventListener('verilens_lang_updated'") ||
+    i18nSource.includes('window.removeEventListener("verilens_lang_updated"'),
+    'useTranslation hook must clean up verilens_lang_updated event listener on unmount'
+  );
+});

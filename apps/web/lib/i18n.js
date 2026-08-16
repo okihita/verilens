@@ -1209,10 +1209,21 @@ export function useTranslation() {
   const [lang, setLang] = useState('en');
 
   useEffect(() => {
-    const saved = localStorage.getItem('verilens_lang');
-    if (saved && TRANSLATIONS[saved]) {
-      setLang(saved);
-    }
+    const updateLang = () => {
+      const saved = localStorage.getItem('verilens_lang');
+      if (saved && TRANSLATIONS[saved]) {
+        setLang(saved);
+      }
+    };
+
+    updateLang();
+    window.addEventListener('verilens_lang_updated', updateLang);
+    window.addEventListener('storage', updateLang);
+
+    return () => {
+      window.removeEventListener('verilens_lang_updated', updateLang);
+      window.removeEventListener('storage', updateLang);
+    };
   }, []);
 
   const setLanguage = (newLang) => {
