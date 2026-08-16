@@ -65,8 +65,12 @@ export default function HomePage() {
         <HeroParallaxBackground />
 
         <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
-            <span>{t('hackathon_badge')}</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+            <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
+            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.14em', fontFamily: 'var(--font-mono)' }}>
+              {t('hackathon_badge')}
+            </span>
+            <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
           </div>
 
           <h1 style={{ fontSize: 'clamp(30px, 5.5vw, 46px)', fontWeight: '900', letterSpacing: '-0.035em', lineHeight: '1.18', marginBottom: '16px', color: 'var(--text-main)' }}>
