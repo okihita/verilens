@@ -1,7 +1,9 @@
 # VeriLens — AI Cognitive Shield for Media & Information Literacy
 
 [![UNESCO MIL Hackathon 2026](https://img.shields.io/badge/UNESCO-Global%20MIL%20Hackathon%202026-F59E0B?style=for-the-badge)](https://www.unesco.org/en/global-mil-week)
-[![Next.js 14](https://img.shields.io/badge/Next.js-14%20App%20Router-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16%20Turbopack-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
+[![React 19](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
+[![pnpm Workspace](https://img.shields.io/badge/pnpm-Workspace-F69220?style=for-the-badge&logo=pnpm)](https://pnpm.io)
 [![Chrome Extension](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Gemini AI](https://img.shields.io/badge/AI%20Engine-Gemini%202.0%20Flash--Lite-8E75B2?style=for-the-badge&logo=googlegemini)](https://aistudio.google.com)
 [![Tests Passing](https://img.shields.io/badge/Unit%20Tests-17%2F17%20Passed-10B981?style=for-the-badge)](https://github.com/okihita/verilens)
@@ -10,114 +12,136 @@
 
 ---
 
-## 🌐 Live Production Links
+## Production Deployment
 
-* 🚀 **Live Web Platform:** [https://web-six-lac-47.vercel.app](https://web-six-lac-47.vercel.app)
-* 🃏 **Illustrated Fallacy Codex:** [https://web-six-lac-47.vercel.app/#codex](https://web-six-lac-47.vercel.app/#codex)
-* ⚔️ **60s Daily Gauntlet:** [https://web-six-lac-47.vercel.app/gauntlet](https://web-six-lac-47.vercel.app/gauntlet)
-* 🌳 **Cognitive Skill Tree:** [https://web-six-lac-47.vercel.app/skills](https://web-six-lac-47.vercel.app/skills)
-* 🧪 **The Fallacy Forge:** [https://web-six-lac-47.vercel.app/forge](https://web-six-lac-47.vercel.app/forge)
-* 📱 **Social Feed Simulator:** [https://web-six-lac-47.vercel.app/feed](https://web-six-lac-47.vercel.app/feed)
-* ⚔️ **1v1 Cognitive Duel:** [https://web-six-lac-47.vercel.app/duel](https://web-six-lac-47.vercel.app/duel)
-* 🏆 **Global League Leaderboard:** [https://web-six-lac-47.vercel.app/leaderboard](https://web-six-lac-47.vercel.app/leaderboard)
-* 🏫 **Classroom Showdown:** [https://web-six-lac-47.vercel.app/classroom](https://web-six-lac-47.vercel.app/classroom)
-* 🏆 **Trophy Room Profile:** [https://web-six-lac-47.vercel.app/profile](https://web-six-lac-47.vercel.app/profile)
-* 📦 **GitHub Release v1.0.0:** [https://github.com/okihita/verilens/releases/tag/v1.0.0](https://github.com/okihita/verilens/releases/tag/v1.0.0)
+* **Official Production URL:** [https://verilens.okihita.dev/](https://verilens.okihita.dev/)
+* **Illustrated Fallacy Codex:** [https://verilens.okihita.dev/#codex](https://verilens.okihita.dev/#codex)
+* **60s Daily Gauntlet:** [https://verilens.okihita.dev/gauntlet](https://verilens.okihita.dev/gauntlet)
+* **Real-Time Article Sandbox:** [https://verilens.okihita.dev/sandbox](https://verilens.okihita.dev/sandbox)
+* **Smartboard Classroom Showdown:** [https://verilens.okihita.dev/classroom](https://verilens.okihita.dev/classroom)
+* **Educator Lesson Plan Generator:** [https://verilens.okihita.dev/educator](https://verilens.okihita.dev/educator)
+* **Cognitive Skill Tree:** [https://verilens.okihita.dev/skills](https://verilens.okihita.dev/skills)
+* **The Fallacy Forge:** [https://verilens.okihita.dev/forge](https://verilens.okihita.dev/forge)
+* **Social Feed Simulator:** [https://verilens.okihita.dev/feed](https://verilens.okihita.dev/feed)
+* **1v1 Cognitive Duel:** [https://verilens.okihita.dev/duel](https://verilens.okihita.dev/duel)
+* **Global League Leaderboard:** [https://verilens.okihita.dev/leaderboard](https://verilens.okihita.dev/leaderboard)
+* **Trophy Room & Cognitive Badges:** [https://verilens.okihita.dev/profile](https://verilens.okihita.dev/profile)
+* **GitHub Repository:** [https://github.com/okihita/verilens](https://github.com/okihita/verilens)
 
 ---
 
-## 🏗️ Monorepo Architecture Overview
+## Monorepo Architecture
 
-This project is organized as a unified **Turborepo Workspace**:
+This project is organized as a high-performance **pnpm + Turborepo Monorepo**:
 
-```
+```text
 verilens/
 ├── apps/
-│   ├── web/                       # Next.js 14 App Router Gamified Web Platform
-│   │   ├── app/                   # 18 Static & Dynamic Routes (Codex, Arena, Gauntlet, Skills, etc.)
-│   │   ├── components/            # Reusable UI (Navbar, CertificateModal, Badges)
-│   │   └── lib/                   # Gamification engine, Illustrations, Heuristics, Sifter
+│   ├── web/                       # Next.js 16 (Turbopack) & React 19 Web Platform
+│   │   ├── app/
+│   │   │   ├── (core)/            # /, /sandbox, /extension, /privacy
+│   │   │   ├── (simulations)/     # /gauntlet, /arena, /feed, /forge, /duel
+│   │   │   ├── (progression)/     # /profile, /skills, /leaderboard
+│   │   │   ├── (educators)/       # /classroom, /educator
+│   │   │   └── api/analyze/       # Gemini 2.0 Flash-Lite edge router
+│   │   ├── components/            # Navbar, CertificateModal, Badges
+│   │   └── lib/                   # Gamification, i18n, Theme, Speech synthesis
 │   │
 │   └── extension/                 # Chrome Manifest V3 Browser Armor
 │       ├── manifest.json          # MV3 configuration with contextMenus & activeTab
-│       ├── src/content/           # Zero-lag TreeWalker text highlighter & in-DOM sidebar
-│       ├── src/background/        # Service worker & Gemini 2.0 Flash-Lite gateway
-│       ├── src/popup/             # 400px Linear Sensationalism meter popup
-│       └── src/options/           # User model selection & sensitivity settings
+│       ├── src/content/           # Zero-lag TreeWalker text highlighter & sidebar
+│       ├── src/background/        # Service worker & Gemini AI gateway
+│       ├── src/popup/             # Sensationalism meter popup
+│       └── demo/                  # Offline demo articles for testing
 │
 ├── packages/
 │   └── shared/                    # @verilens/shared (Single Source of Truth)
 │       ├── src/fallacies.json     # 12 UNESCO Standardized Fallacies & Biases
-│       ├── src/scenarios.json     # 15+ Real-world viral news & scam scenarios
+│       ├── src/scenarios.json     # 15+ Real-world news & scam scenarios
 │       ├── src/heuristics.js      # Zero-lag client-side pattern regex engine
-│       └── src/sifter.js          # SIFT lateral URL generator & publisher dossiers
+│       ├── src/sifter.js          # SIFT lateral URL generator & publisher dossiers
+│       └── src/illustrations.js   # 12 Bespoke inline SVG vector illustrations
 │
-├── docs/                          # Comprehensive Hackathon & Architecture Documentation
+├── docs/                          # UNESCO Hackathon PRDs & Architecture
 │   ├── 01_UNESCO_Youth_Hackathon_Overview.md
 │   ├── 02_Ideation_Brainstorming_and_Scoring_Matrix.md
 │   ├── 03_VeriLens_High_Level_Architecture_and_Code_Design.md
 │   └── 04_VeriLens_Web_App_and_Gamified_Platform_PRD.md
 │
-├── package.json                   # Root workspace package configuration
+├── pnpm-workspace.yaml            # pnpm workspace definition
 └── turbo.json                     # Turborepo task pipeline
 ```
 
 ---
 
-## 🎮 The 10 Gamification Modes
+## Core Feature Highlights
 
-| Mode | Route | Core Pedagogical Value |
-| :--- | :--- | :--- |
-| **1. Illustrated Codex** | `/` | 12 custom vector illustrations (*yourlogicalfallacyis* style) on 3D flip cards with viral examples and reflection prompts. |
-| **2. Trophy Room** | `/profile` | RPG Level progression (Level 1 Novice to Level 10 Grand Inquisitor), 8 achievement badges, and XP trackers. |
-| **3. Daily Gauntlet** | `/gauntlet` | 60-Second rapid-fire timed survival mode with 4x combo multipliers. |
-| **4. Immunity Certificate** | Modal | Official-grade printable UNESCO certification with custom username and verification hash. |
-| **5. Classroom Showdown** | `/classroom` | Smartboard presenter mode with Team Alpha vs Team Beta live scoreboard and debate timers. |
-| **6. Skill Tree** | `/skills` | 4 Skill Branches (Dialectical, Statistical, Emotional, Scam) with unlockable passive booster perks. |
-| **7. Fallacy Forge** | `/forge` | Reverse-gamification: take neutral facts and weaponize headlines to learn spin construction. |
-| **8. Global League** | `/leaderboard` | International student ladder positioning player rank based on total XP. |
-| **9. 1v1 Cognitive Duel** | `/duel` | 2-Player pass-and-play split keyboard battle dealing damage to opponent's Credibility Shield. |
-| **10. Feed Simulator** | `/feed` | Simulated vertical social feed with live Critical Hygiene score and Community Notes moderation. |
+### 1. 12 Illustrated Fallacy Archetypes
+A complete taxonomy of rhetorical manipulation patterns, including Ad Hominem, False Dilemma, Straw Man, Appeal to Fear, Sunk Cost, Post Hoc Ergo Propter Hoc, Bandwagon, Halo Effect, Anchoring Bias, Confirmation Bias, Phishing Scams, and In-Group Favoritism.
+
+### 2. 60-Second Daily Gauntlet (`/gauntlet`)
+A high-tempo triage speed trial where players classify viral claims under ticking time pressure with combo streaks (up to 4x multipliers).
+
+### 3. SIFT Lateral Reading Engine (`/sandbox`)
+Built on the Stanford History Education Group (SHEG) framework:
+* **Stop**: Interrupt the emotional reaction.
+* **Investigate the Source**: Automated publisher credibility lookup.
+* **Find Trusted Coverage**: Automated lateral search queries.
+* **Trace Claims**: Primary context and archive locators.
+
+### 4. Interactive Educator Lesson Plan Generator (`/educator`)
+A 1-click workshop tool for teachers to configure class duration (15m, 45m, 90m) and generate printable PDF worksheets aligned with the UNESCO MIL Curriculum.
+
+### 5. Multilingual Support (English & Indonesian)
+Instant zero-reload language switching (`EN` | `ID`) translating all cards, game prompts, rules, and official completion certificates.
+
+### 6. Theme Engine
+Automatic detection of operating system dark/light preferences by default, with manual override controls (`Auto` / `Light` / `Dark`).
 
 ---
 
-## 🧩 Chrome Extension Installation (30 Seconds)
+## Local Development & Testing
 
-1. Clone or download this repository.
-2. Open Google Chrome and navigate to `chrome://extensions`.
-3. Toggle **Developer mode** in the top-right corner.
-4. Click **Load unpacked** and select the [`apps/extension/`](file:///Users/okihita/Documents/Grimoire/Hackathon/UNESCO%20Youth/apps/extension) folder.
-5. Highlight any text on Twitter, Reddit, or news articles, right-click, and select **"⚡ SIFT & Verify with VeriLens"**!
+### Prerequisites
+* Node.js >= 18.0.0
+* pnpm >= 9.0.0
 
----
-
-## 🧪 Testing Suite (100% Pass Rate)
-
-Run all automated unit test suites across the monorepo:
-
+### Installation
 ```bash
-# Run shared package tests
-node --test packages/shared/test/shared.test.js
+# Clone the repository
+git clone https://github.com/okihita/verilens.git
+cd verilens
 
-# Run extension unit tests
-node --test apps/extension/tests/unit.test.js
-
-# Run web gamification & illustrations tests
-node --test apps/web/test/gamification.test.js
+# Install all workspace dependencies
+pnpm install
 ```
 
+### Running the Web Platform
+```bash
+pnpm dev
+# Opens http://localhost:3000
+```
+
+### Running Automated Tests
+```bash
+pnpm test
+# Executes all 17 unit tests across shared, extension, and web packages
+```
+
+### Building for Production
+```bash
+pnpm build
+# Runs Turborepo parallel compilation with Next.js Turbopack
+```
+
+### Loading the Chrome Extension in Developer Mode
+1. Open Google Chrome and go to `chrome://extensions`
+2. Enable **Developer mode** in the top right.
+3. Click **Load unpacked** and select the `apps/extension` directory.
+4. Open `apps/extension/demo/mock_article.html` to test text selection analysis.
+
 ---
 
-## 📚 Project Documentation
+## License
 
-* [01. UNESCO Youth Hackathon Overview & Past Winners](docs/01_UNESCO_Youth_Hackathon_Overview.md)
-* [02. Ideation Brainstorming & Scoring Matrix](docs/02_Ideation_Brainstorming_and_Scoring_Matrix.md)
-* [03. High-Level Architecture & Code Design](docs/03_VeriLens_High_Level_Architecture_and_Code_Design.md)
-* [04. Web App & Gamified Platform PRD](docs/04_VeriLens_Web_App_and_Gamified_Platform_PRD.md)
-* [Chrome Web Store Publishing Guide](apps/extension/CHROMEWEBSTORE.md)
-
----
-
-## ⚖️ License & Credits
-
-Developed for the **UNESCO Global Media & Information Literacy Youth Hackathon 2026**. Open source under the MIT License.
+Developed under the MIT License for the UNESCO Global Media & Information Literacy (MIL) Youth Hackathon 2026.
