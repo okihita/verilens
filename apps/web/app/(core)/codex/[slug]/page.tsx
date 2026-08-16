@@ -90,6 +90,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
         color: rawFallacy.color,
         description: fallacy.description,
         psychology: fallacy.psychology,
+        siftStrategy: fallacy.sift_strategy || rawFallacy.sift_strategy,
         format
       });
       if (result === 'downloaded') {
@@ -713,14 +714,8 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
 
-            {/* Solid Editorial Image Sharing Section */}
+            {/* Solid Image Sharing Section */}
             <div style={{ padding: '14px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
-              <div style={{ marginBottom: '8px' }}>
-                <span style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  Editorial Poster Export (PNG)
-                </span>
-              </div>
-
               {/* Format Presets Selector */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
                 {(['story', 'portrait', 'feed'] as const).map((fmt) => {
