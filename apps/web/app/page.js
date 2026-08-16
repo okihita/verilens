@@ -5,19 +5,34 @@ import Link from 'next/link';
 import fallaciesData from '../lib/shared/fallacies.json';
 import { FALLACY_ILLUSTRATIONS } from '../lib/shared/illustrations.js';
 import { recordCardFlipped } from '../lib/gamification.js';
+import { useTranslation, INDONESIAN_FALLACIES } from '../lib/i18n.js';
 
 export default function HomePage() {
+  const { t, lang } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [flippedCardId, setFlippedCardId] = useState(null);
 
   const categories = ['All', 'Logic', 'Emotional', 'Attribution', 'Cognitive', 'Scam'];
+  const categoryLabels = {
+    All: t('cat_all'),
+    Logic: t('cat_logic'),
+    Emotional: t('cat_emotional'),
+    Attribution: t('cat_attribution'),
+    Cognitive: t('cat_cognitive'),
+    Scam: t('cat_scam')
+  };
 
   const filteredFallacies = fallaciesData.fallacies.filter((item) => {
+    const idData = INDONESIAN_FALLACIES[item.id] || {};
+    const name = lang === 'id' && idData.name ? idData.name : item.name;
+    const desc = lang === 'id' && idData.description ? idData.description : item.description;
+    const sub = lang === 'id' && idData.subtitle ? idData.subtitle : item.subtitle;
+
     const matchesCat = selectedCategory === 'All' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          item.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          sub.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCat && matchesSearch;
   });
 
@@ -32,29 +47,29 @@ export default function HomePage() {
       <section style={{ padding: '40px 0 30px', textAlign: 'center', background: 'radial-gradient(ellipse at top, #141E33 0%, #080C16 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '880px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '700', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '14px' }}>
-            <span>⚡ UNESCO Global MIL Youth Hackathon 2026</span>
+            <span>{t('hackathon_badge')}</span>
           </div>
 
           <h1 style={{ fontSize: 'clamp(26px, 5.5vw, 42px)', fontWeight: '900', letterSpacing: '-0.8px', lineHeight: '1.2', marginBottom: '14px', color: '#FFFFFF' }}>
-            The AI-Powered Cognitive Shield for the Next Generation
+            {t('hero_title')}
           </h1>
 
           <p style={{ fontSize: 'clamp(14px, 3.5vw, 17px)', color: 'var(--text-secondary)', lineHeight: '1.55', marginBottom: '24px', maxWidth: '720px', margin: '0 auto 24px' }}>
-            Master the 12 rhetorical fallacies and cognitive biases weaponized by modern outrage algorithms. Train in the <strong>Dojo</strong>, conquer the <strong>Gauntlet</strong>, and protect your live browsing with <strong>Browser Armor</strong>.
+            {t('hero_desc')}
           </p>
 
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/arena" className="btn btn-amber" style={{ padding: '10px 18px', fontSize: '14px' }}>
-              🎮 Play "Bias Spotter" Arena
+              {t('hero_cta_arena')}
             </Link>
             <Link href="/gauntlet" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '14px', background: '#DC2626', borderColor: '#EF4444' }}>
-              ⚔️ 60s Daily Gauntlet
+              {t('hero_cta_gauntlet')}
             </Link>
             <Link href="/skills" className="btn btn-outline" style={{ padding: '10px 18px', fontSize: '14px' }}>
-              🌳 Skill Tree
+              {t('hero_cta_skills')}
             </Link>
             <Link href="/extension" className="btn btn-outline" style={{ padding: '10px 16px', fontSize: '14px' }}>
-              🧩 Get Chrome Extension
+              {t('hero_cta_extension')}
             </Link>
           </div>
 
@@ -62,15 +77,15 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginTop: '36px', paddingTop: '20px', borderTop: '1px solid var(--border-subtle)' }}>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-amber)' }}>12</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>Illustrated Archetypes</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_archetypes')}</div>
             </div>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-blue-light)' }}>SIFT</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>UNESCO Framework</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_framework')}</div>
             </div>
             <div>
               <div style={{ fontSize: '24px', fontWeight: '800', color: 'var(--accent-emerald-light)' }}>&lt; 300ms</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>Gemini Flash-Lite</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: '600' }}>{t('metrics_latency')}</div>
             </div>
           </div>
         </div>
@@ -81,12 +96,12 @@ export default function HomePage() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
             <div>
-              <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>Interactive Learning Dojo</span>
+              <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>{t('codex_badge')}</span>
               <h2 style={{ fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: '800', color: '#FFFFFF', marginTop: '2px' }}>
-                🃏 The Illustrated Fallacy & Bias Codex
+                {t('codex_title')}
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginTop: '2px' }}>
-                Inspired by <em>yourlogicalfallacyis.com</em>. Tap any card to flip it and reveal the psychological anatomy.
+                {t('codex_desc')}
               </p>
             </div>
 
@@ -94,7 +109,7 @@ export default function HomePage() {
             <div style={{ width: '100%', maxWidth: '300px' }}>
               <input
                 type="text"
-                placeholder="Search fallacies..."
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{ width: '100%', padding: '9px 12px', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontSize: '13px', outline: 'none' }}
@@ -122,16 +137,23 @@ export default function HomePage() {
                   color: selectedCategory === cat ? '#FFFFFF' : 'var(--text-secondary)'
                 }}
               >
-                {cat}
+                {categoryLabels[cat] || cat}
               </button>
             ))}
           </div>
 
-          {/* Fallacy Card Grid (Fluid for mobile) */}
+          {/* Fallacy Card Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '18px' }}>
             {filteredFallacies.map((item) => {
               const isFlipped = flippedCardId === item.id;
               const svgIllustration = FALLACY_ILLUSTRATIONS[item.id] || '';
+              
+              const idData = INDONESIAN_FALLACIES[item.id] || {};
+              const fallacyName = lang === 'id' && idData.name ? idData.name : item.name;
+              const fallacySubtitle = lang === 'id' && idData.subtitle ? idData.subtitle : item.subtitle;
+              const fallacyDescription = lang === 'id' && idData.description ? idData.description : item.description;
+              const fallacyViralExample = lang === 'id' && idData.viral_example ? idData.viral_example : item.viral_example;
+              const fallacyPrompt = lang === 'id' && idData.reflection_prompt ? idData.reflection_prompt : item.reflection_prompt;
 
               return (
                 <div
@@ -182,19 +204,19 @@ export default function HomePage() {
                         </div>
 
                         <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#FFFFFF', marginBottom: '2px' }}>
-                          {item.name}
+                          {fallacyName}
                         </h3>
                         <div style={{ fontSize: '11.5px', fontWeight: '600', color: 'var(--accent-amber)', marginBottom: '8px' }}>
-                          {item.subtitle}
+                          {fallacySubtitle}
                         </div>
 
                         <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45', marginBottom: '10px' }}>
-                          {item.description}
+                          {fallacyDescription}
                         </p>
                       </div>
 
                       <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11.5px', color: 'var(--accent-blue-light)', fontWeight: '600' }}>
-                        <span>💡 Tap to flip anatomy</span>
+                        <span>{t('card_tap_front')}</span>
                         <span>➔</span>
                       </div>
                     </div>
@@ -219,21 +241,21 @@ export default function HomePage() {
                     >
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                          <strong style={{ fontSize: '14px', color: '#FFFFFF' }}>{item.name}</strong>
-                          <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Tap to flip back</span>
+                          <strong style={{ fontSize: '14px', color: '#FFFFFF' }}>{fallacyName}</strong>
+                          <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>{t('card_tap_back')}</span>
                         </div>
 
                         <div style={{ marginBottom: '8px' }}>
-                          <span style={{ fontSize: '9.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>📱 Viral Scenario:</span>
+                          <span style={{ fontSize: '9.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>{t('card_viral_scenario')}</span>
                           <div style={{ fontSize: '11.5px', fontStyle: 'italic', background: 'rgba(0,0,0,0.3)', padding: '6px 8px', borderRadius: '6px', marginTop: '2px', color: '#E2E8F0' }}>
-                            {item.viral_example}
+                            {fallacyViralExample}
                           </div>
                         </div>
 
                         <div style={{ marginBottom: '8px' }}>
-                          <span style={{ fontSize: '9.5px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase' }}>💡 Metacognition Prompt:</span>
+                          <span style={{ fontSize: '9.5px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase' }}>{t('card_reflection')}</span>
                           <p style={{ fontSize: '11.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.35' }}>
-                            {item.reflection_prompt}
+                            {fallacyPrompt}
                           </p>
                         </div>
                       </div>
@@ -241,12 +263,12 @@ export default function HomePage() {
                       <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{item.mil_competency}</span>
                         <Link
-                          href={`/sandbox?sample=${encodeURIComponent(item.name)}`}
+                          href={`/sandbox?sample=${encodeURIComponent(fallacyName)}`}
                           onClick={(e) => e.stopPropagation()}
                           className="btn btn-primary"
                           style={{ padding: '4px 8px', fontSize: '10.5px' }}
                         >
-                          🧪 Sandbox
+                          {t('card_sandbox_btn')}
                         </Link>
                       </div>
                     </div>
@@ -254,62 +276,6 @@ export default function HomePage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Game Modes Showcase (Fluid for mobile) */}
-      <section style={{ padding: '40px 0', background: 'var(--bg-surface)', borderTop: '1px solid var(--border-subtle)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 28px' }}>
-            <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--accent-amber)' }}>The Gamified Ecosystem</span>
-            <h2 style={{ fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: '800', color: '#FFFFFF', marginTop: '2px' }}>
-              Choose Your Training Mode
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginTop: '4px' }}>
-              From fast 60-second speed trials to 1v1 local duels, master lateral reasoning.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
-            <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ fontSize: '28px', marginBottom: '8px' }}>⚔️</div>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#FFFFFF', marginBottom: '4px' }}>The Daily Gauntlet</h3>
-                <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45', marginBottom: '12px' }}>
-                  60-second rapid triage. Sort claims into Fallacy, Fact, or Scam for combo multipliers.
-                </p>
-              </div>
-              <Link href="/gauntlet" className="btn btn-amber" style={{ alignSelf: 'flex-start', fontSize: '12px', padding: '6px 12px' }}>
-                Enter Gauntlet ➔
-              </Link>
-            </div>
-
-            <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ fontSize: '28px', marginBottom: '8px' }}>🎮</div>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#FFFFFF', marginBottom: '4px' }}>Spotter Arena</h3>
-                <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45', marginBottom: '12px' }}>
-                  5-round scenario battle. Deconstruct crypto schemes and outrage clips with instant SIFT feedback.
-                </p>
-              </div>
-              <Link href="/arena" className="btn btn-primary" style={{ alignSelf: 'flex-start', fontSize: '12px', padding: '6px 12px' }}>
-                Launch Arena ➔
-              </Link>
-            </div>
-
-            <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ fontSize: '28px', marginBottom: '8px' }}>🌳</div>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#FFFFFF', marginBottom: '4px' }}>Skill Tree</h3>
-                <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45', marginBottom: '12px' }}>
-                  Unlock 4 cognitive branches (Dialectical, Statistical, Emotional, Scam) with passive perks.
-                </p>
-              </div>
-              <Link href="/skills" className="btn btn-outline" style={{ alignSelf: 'flex-start', fontSize: '12px', padding: '6px 12px' }}>
-                Open Skill Tree ➔
-              </Link>
-            </div>
           </div>
         </div>
       </section>

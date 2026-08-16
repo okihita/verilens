@@ -1,16 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from '../lib/i18n';
 
 export default function CertificateModal({ score, accuracy, mode, onClose }) {
+  const { lang } = useTranslation();
   const [userName, setUserName] = useState('April Wang');
   const [copied, setCopied] = useState(false);
 
   const certId = `VL-${Math.random().toString(36).substring(2, 9).toUpperCase()}-2026`;
-  const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateStr = new Date().toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   const handleCopyShare = () => {
-    const text = `🏆 I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with ${accuracy}% accuracy and ${score} XP! Can you beat my streak? Test yourself: https://web-six-lac-47.vercel.app #UNESCO #MediaLiteracy #VeriLens2026`;
+    const text = lang === 'id'
+      ? `Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi ${accuracy}% dan ${score} XP! Uji kemampuan literasi media Anda: https://web-six-lac-47.vercel.app #UNESCO #LiterasiMedia #VeriLens2026`
+      : `I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with ${accuracy}% accuracy and ${score} XP! Test yourself: https://web-six-lac-47.vercel.app #UNESCO #MediaLiteracy #VeriLens2026`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -37,18 +41,20 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
           
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
             <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', color: '#F59E0B' }}>
-              🏛️ UNESCO GLOBAL MIL YOUTH HACKATHON 2026
+              {lang === 'id' ? 'HACKATHON PEMUDA MIL GLOBAL UNESCO 2026' : 'UNESCO GLOBAL MIL YOUTH HACKATHON 2026'}
             </span>
           </div>
 
           <h2 style={{ fontSize: 'clamp(20px, 4.5vw, 26px)', fontWeight: '900', color: '#FFFFFF', letterSpacing: '-0.5px', marginBottom: '2px' }}>
-            Certificate of Cognitive Immunity
+            {lang === 'id' ? 'Sertifikat Kekebalan Kognitif' : 'Certificate of Cognitive Immunity'}
           </h2>
           <div style={{ fontSize: '12px', color: '#94A3B8', marginBottom: '16px' }}>
-            Official Media & Information Literacy Certification • SIFT Framework
+            {lang === 'id' ? 'Sertifikasi Literasi Media & Informasi Resmi • Kerangka SIFT' : 'Official Media & Information Literacy Certification • SIFT Framework'}
           </div>
 
-          <div style={{ fontSize: '11.5px', color: '#CBD5E1', marginBottom: '2px' }}>This certifies that</div>
+          <div style={{ fontSize: '11.5px', color: '#CBD5E1', marginBottom: '2px' }}>
+            {lang === 'id' ? 'Dengan ini menerangkan bahwa' : 'This certifies that'}
+          </div>
           
           {/* Editable Name Field */}
           <input
@@ -59,41 +65,52 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
           />
 
           <p style={{ fontSize: '12.5px', color: '#E2E8F0', maxWidth: '580px', margin: '0 auto 18px', lineHeight: '1.5' }}>
-            Has successfully completed the <strong>{mode || 'Media Literacy Arena'}</strong> assessment, demonstrating competence in detecting <strong>rhetorical fallacies, cognitive biases, and artificial urgency scams</strong>.
+            {lang === 'id'
+              ? <>Telah berhasil menyelesaikan evaluasi <strong>{mode || 'Arena Literasi Media'}</strong>, membuktikan kompetensi kritis dalam mendeteksi <strong>sesat pikir retorika, bias kognitif, manipulasi emosional, dan jebakan finansial digital</strong>.</>
+              : <>Has successfully completed the <strong>{mode || 'Media Literacy Arena'}</strong> assessment, demonstrating competence in detecting <strong>rhetorical fallacies, cognitive biases, and artificial urgency scams</strong>.</>
+            }
           </p>
 
-          {/* Certificate Metrics Grid (Fluid for mobile) */}
+          {/* Certificate Metrics Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '12px', maxWidth: '500px', margin: '0 auto 16px' }}>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Score</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+                {lang === 'id' ? 'Skor Poin' : 'Score'}
+              </div>
               <div style={{ fontSize: '16px', fontWeight: '900', color: '#FFFFFF' }}>{score} XP</div>
             </div>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Accuracy</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+                {lang === 'id' ? 'Akurasi' : 'Accuracy'}
+              </div>
               <div style={{ fontSize: '16px', fontWeight: '900', color: '#10B981' }}>{accuracy}%</div>
             </div>
             <div>
-              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>Issued</div>
+              <div style={{ fontSize: '10px', color: '#94A3B8', textTransform: 'uppercase', fontWeight: '700' }}>
+                {lang === 'id' ? 'Diterbitkan' : 'Issued'}
+              </div>
               <div style={{ fontSize: '12.5px', fontWeight: '700', color: '#FFFFFF', marginTop: '2px' }}>{dateStr}</div>
             </div>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px', maxWidth: '500px', margin: '0 auto', fontSize: '10.5px', color: '#64748B', flexWrap: 'wrap', gap: '6px' }}>
             <span>ID: {certId}</span>
-            <span style={{ color: '#F59E0B', fontWeight: '700' }}>⭐ Verified by VeriLens</span>
+            <span style={{ color: '#F59E0B', fontWeight: '700' }}>
+              {lang === 'id' ? 'Terverifikasi oleh VeriLens Engine' : 'Verified by VeriLens Engine'}
+            </span>
           </div>
         </div>
 
         {/* Action Buttons */}
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '16px', flexWrap: 'wrap' }}>
           <button onClick={handlePrint} className="btn btn-amber" style={{ padding: '8px 16px', fontSize: '13px' }}>
-            🖨️ Print / PDF
+            {lang === 'id' ? 'Cetak / Simpan PDF' : 'Print / PDF'}
           </button>
           <button onClick={handleCopyShare} className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }}>
-            {copied ? '✓ Copied!' : '📋 Copy Link'}
+            {copied ? (lang === 'id' ? 'Tersalin!' : 'Copied!') : (lang === 'id' ? 'Salin Tautan' : 'Copy Link')}
           </button>
           <button onClick={onClose} className="btn btn-outline" style={{ padding: '8px 16px', fontSize: '13px' }}>
-            Done
+            {lang === 'id' ? 'Tutup' : 'Done'}
           </button>
         </div>
       </div>
