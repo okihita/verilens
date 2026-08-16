@@ -42,10 +42,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
     return rawFallacy.case_studies || [];
   }, [rawFallacy]);
 
-  // Canonical share URLs
+  // Clean, organic, non-branded share URLs
   const canonicalUrl = `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
-  const shareHeadline = `VeriLens: How to spot and debunk the "${fallacy.name}" fallacy (${fallacy.subtitle})`;
-  const shareTextWithUrl = `${shareHeadline} — Explore the full breakdown & SIFT defense: ${canonicalUrl}`;
+  const shareHeadline = `How to spot and debunk the "${fallacy.name}" (${fallacy.subtitle}) fallacy`;
+  const shareTextWithUrl = `${shareHeadline} — Explore 5 case studies & breakdown: ${canonicalUrl}`;
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTextWithUrl)}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareHeadline)}&url=${encodeURIComponent(canonicalUrl)}`;
@@ -59,8 +59,8 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
     if (isMobile && navigator?.share) {
       try {
         await navigator.share({
-          title: shareHeadline,
-          text: `${fallacy.description} Learn how to spot and debunk it:`,
+          title: `${fallacy.name} (${fallacy.subtitle})`,
+          text: `Spot and debunk the "${fallacy.name}" fallacy — 5 case studies & breakdown:`,
           url: canonicalUrl
         });
         return;
@@ -245,23 +245,13 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             </div>
 
             {/* Core Definition Card */}
-            <div className="card" style={{ padding: '20px', marginBottom: '20px', borderLeft: `4px solid ${fallacy.color || 'var(--accent-red)'}` }}>
+            <div className="card" style={{ padding: '20px', marginBottom: '24px', borderLeft: `4px solid ${fallacy.color || 'var(--accent-red)'}` }}>
               <p style={{ fontSize: '15px', color: 'var(--text-main)', lineHeight: '1.55', fontWeight: '500' }}>
                 {fallacy.description}
               </p>
             </div>
 
-            {/* UNESCO Law Badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '24px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', letterSpacing: '0.08em' }}>
-                UNESCO MIL
-              </span>
-              <span style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: '600' }}>
-                {fallacy.mil_competency}
-              </span>
-            </div>
-
-            {/* Primary Action Button (Single, prominent, zero duplicate share) */}
+            {/* Primary Action Button (Single, full-width, clean) */}
             <div>
               <Link
                 href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
@@ -405,8 +395,38 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           )}
         </section>
 
+        {/* Footnote: UNESCO MIL Standard Reference */}
+        {fallacy.mil_competency && (
+          <div
+            style={{
+              marginTop: '44px',
+              padding: '12px 16px',
+              borderRadius: 'var(--radius-md)',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '8px',
+              fontSize: '12px',
+              color: 'var(--text-muted)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: '800', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Curriculum Standard:
+              </span>
+              <span>UNESCO Global Media & Information Literacy (MIL) — {fallacy.mil_competency}</span>
+            </div>
+            <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+              Open Cognitive Defense Framework
+            </span>
+          </div>
+        )}
+
         {/* Section 3: Adjacent Archetype Navigation Bar */}
-        <section style={{ marginTop: '56px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
+        <section style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
             <Link
               href={`/codex/${prevSlug}`}

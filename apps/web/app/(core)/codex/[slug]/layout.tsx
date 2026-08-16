@@ -24,22 +24,22 @@ export async function generateMetadata({ params }) {
   const canonicalUrl = `${siteUrl}/codex/${idToSlug(fallacy.id)}`;
 
   return {
-    title: `${fallacy.name} — ${fallacy.subtitle} | VeriLens Codex`,
-    description: `${fallacy.description} Spot and debunk this manipulation pattern with the Stanford SIFT protocol.`,
+    title: `${fallacy.name} (${fallacy.subtitle}) — Cognitive Defense Guide`,
+    description: `${fallacy.description} Explore 5 real-world field case studies and verification strategies.`,
     alternates: {
       canonical: canonicalUrl
     },
     openGraph: {
-      title: `${fallacy.name}: ${fallacy.subtitle} — VeriLens`,
-      description: fallacy.description,
+      title: `${fallacy.name}: ${fallacy.subtitle}`,
+      description: `${fallacy.description} 5 real-world field case studies and verification guide.`,
       url: canonicalUrl,
-      siteName: 'VeriLens — UNESCO MIL 2026',
+      siteName: 'Media Literacy & Critical Thinking Codex',
       images: [
         {
           url: imageUrl,
           width: 1024,
           height: 1024,
-          alt: `${fallacy.name} Renaissance Allegorical Fresco Emblem`,
+          alt: `${fallacy.name} Artwork Emblem`,
           type: 'image/jpeg'
         }
       ],
@@ -47,8 +47,8 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${fallacy.name} — VeriLens Codex`,
-      description: fallacy.description,
+      title: `${fallacy.name}: ${fallacy.subtitle}`,
+      description: `${fallacy.description} 5 real-world field case studies and verification guide.`,
       images: [imageUrl]
     }
   };
