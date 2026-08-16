@@ -208,7 +208,7 @@ export default function HeroLineArt() {
           <text
             x="1290"
             y="236"
-            fontFamily="var(--font-mono)"
+            fontFamily="var(--font-sans)"
             fontSize="9"
             fontWeight="800"
             fill="var(--accent-amber)"

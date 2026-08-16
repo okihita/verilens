@@ -365,9 +365,8 @@ export default function Navbar() {
                 alignItems: 'center',
                 gap: '5px',
                 cursor: 'pointer',
-                fontFamily: 'var(--font-mono)',
                 fontSize: '12px',
-                fontWeight: '700'
+                fontWeight: '800'
               }}
               title="Change Language / 切换语言"
               aria-label="Change Language"
@@ -421,7 +420,7 @@ export default function Navbar() {
                       }}
                     >
                       <span>{l.native}</span>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                      <span style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>
                         {l.code}
                       </span>
                     </button>

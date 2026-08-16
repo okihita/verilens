@@ -67,7 +67,7 @@ export default function HomePage() {
         <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
             <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
-            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.14em', fontFamily: 'var(--font-mono)' }}>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
               {t('hackathon_badge')}
             </span>
             <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
@@ -98,7 +98,7 @@ export default function HomePage() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', textAlign: 'center' }}>
             <div style={{ padding: '8px 12px' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-red)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-red)', letterSpacing: '-0.02em' }}>
                 {t('stat_faster_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -107,7 +107,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-amber)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-amber)', letterSpacing: '-0.02em' }}>
                 {t('stat_window_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -116,7 +116,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-emerald)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-emerald)', letterSpacing: '-0.02em' }}>
                 {t('stat_local_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -314,10 +314,10 @@ export default function HomePage() {
                               />
                             ) : (
                               <div style={{ textAlign: 'center' }}>
-                                <span style={{ fontSize: '15px', fontWeight: '900', fontFamily: 'var(--font-mono)', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
+                                <span style={{ fontSize: '15px', fontWeight: '900', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
                                   {fallacyName ? fallacyName.substring(0, 2).toUpperCase() : 'VL'}
                                 </span>
-                                <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                                <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)' }}>
                                   #{String(fallacies.findIndex(f => f.id === item.id) + 1).padStart(2, '0')}
                                 </span>
                               </div>

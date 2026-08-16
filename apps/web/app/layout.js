@@ -1,19 +1,12 @@
 import './globals.css';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
-  display: 'swap'
-});
-
-const monoFont = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-mono',
   display: 'swap'
 });
 
@@ -34,7 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${sansFont.variable} ${monoFont.variable}`}>
+    <html lang="en" className={sansFont.variable}>
       <body className={sansFont.className}>
         <Navbar />
 
