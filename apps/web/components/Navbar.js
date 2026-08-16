@@ -64,9 +64,7 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="VeriLens Logo"
-            width={28}
-            height={28}
-            style={{ borderRadius: '6px', objectFit: 'cover', display: 'block' }}
+            style={{ height: '28px', width: 'auto', display: 'block', flexShrink: 0 }}
           />
           <div className="brand-text">
             <h1 style={{ fontSize: '17px', fontWeight: '900', letterSpacing: '-0.03em', margin: 0 }}>VeriLens</h1>

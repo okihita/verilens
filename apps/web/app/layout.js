@@ -43,9 +43,7 @@ export default function RootLayout({ children }) {
                   <img
                     src="/logo.png"
                     alt="VeriLens Logo"
-                    width={26}
-                    height={26}
-                    style={{ borderRadius: '6px', objectFit: 'cover' }}
+                    style={{ height: '24px', width: 'auto', display: 'block' }}
                   />
                   <strong style={{ color: 'var(--text-main)', fontSize: '15px', fontWeight: '800', letterSpacing: '-0.02em' }}>VeriLens Platform</strong>
                 </div>
