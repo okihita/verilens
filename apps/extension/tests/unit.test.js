@@ -24,7 +24,7 @@ test('Manifest: Contains contextMenus permission and valid MV3 structure', () =>
 });
 
 test('Taxonomy: Fallacies JSON schema validity', () => {
-  assert.ok(fallaciesData.fallacies.length >= 7, 'Must have at least 7 fallacies');
+  assert.strictEqual(fallaciesData.fallacies.length, 24, 'Must have exactly 24 standardized UNESCO fallacies');
   for (const f of fallaciesData.fallacies) {
     assert.ok(f.id, 'Fallacy must have an id');
     assert.ok(f.name, 'Fallacy must have a name');

@@ -1,6 +1,6 @@
 {
   "name": "verilens-extension",
-  "version": "1.4.0",
+  "version": "1.7.0",
   "description": "AI-Powered Cognitive Companion for Media Literacy (UNESCO Global MIL Youth Hackathon)",
   "scripts": {
     "build": "echo 'Extension ready'",

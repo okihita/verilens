@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug, slugToId } from '@verilens/shared';
 import { useTranslation } from '../../../../lib/i18n';
+import { shareStoryImage } from '../../../../lib/story-card';
 
 export default function FallacyDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
@@ -26,6 +27,9 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [instagramFeedback, setInstagramFeedback] = useState(false);
+  const [selectedStoryFormat, setSelectedStoryFormat] = useState<'story' | 'feed' | 'portrait'>('story');
+  const [isGeneratingStory, setIsGeneratingStory] = useState(false);
+  const [storyFeedback, setStoryFeedback] = useState('');
 
   const imageSrc = `/assets/images/fallacies/${rawFallacy.id}.jpg`;
   const svgIllustration = (FALLACY_ILLUSTRATIONS && FALLACY_ILLUSTRATIONS[rawFallacy.id]) || '';
@@ -37,10 +41,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const prevSlug = idToSlug(fallacies[prevIndex].id);
   const nextSlug = idToSlug(fallacies[nextIndex].id);
 
-  // 5 Real-World Case Studies
+  // 5 Real-World Case Studies (Localized)
   const caseStudies = useMemo(() => {
-    return rawFallacy.case_studies || [];
-  }, [rawFallacy]);
+    return fallacy.case_studies || rawFallacy.case_studies || [];
+  }, [fallacy, rawFallacy]);
 
   // Clean, organic, non-branded share URLs
   const canonicalUrl = `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
@@ -72,6 +76,35 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
       }
     }
     setIsShareModalOpen(true);
+  };
+
+  const handleShareStory = async (format: 'story' | 'feed' | 'portrait' = selectedStoryFormat) => {
+    setIsGeneratingStory(true);
+    setStoryFeedback('');
+    try {
+      const result = await shareStoryImage({
+        fallacyId: rawFallacy.id,
+        name: fallacy.name,
+        subtitle: fallacy.subtitle,
+        category: fallacy.category,
+        color: rawFallacy.color,
+        description: fallacy.description,
+        psychology: fallacy.psychology,
+        siftStrategy: fallacy.sift_strategy || rawFallacy.sift_strategy,
+        format
+      });
+      if (result === 'downloaded') {
+        const label = format === 'story' ? 'Story (9:16 PNG)' : format === 'portrait' ? 'Portrait (4:5 PNG)' : 'Square (1:1 PNG)';
+        setStoryFeedback(`${label} downloaded!`);
+        setTimeout(() => setStoryFeedback(''), 4500);
+      }
+    } catch (e) {
+      console.error('Failed to generate story image:', e);
+      setStoryFeedback('Could not render image on this device.');
+      setTimeout(() => setStoryFeedback(''), 4500);
+    } finally {
+      setIsGeneratingStory(false);
+    }
   };
 
   const handleCopyLink = async () => {
@@ -148,11 +181,11 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                   borderRight: '1px solid var(--border-card)',
                   transition: 'background 0.15s ease'
                 }}
-                title={`Previous: ${prevFallacy.name}`}
-                aria-label={`Previous card: ${prevFallacy.name}`}
+                title={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
+                aria-label={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
               >
                 <span>←</span>
-                <span style={{ fontSize: '12px' }}>Prev</span>
+                <span style={{ fontSize: '12px' }}>{t('nav_prev')}</span>
               </Link>
               <Link
                 href={`/codex/${nextSlug}`}
@@ -167,10 +200,10 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                   gap: '4px',
                   transition: 'background 0.15s ease'
                 }}
-                title={`Next: ${nextFallacy.name}`}
-                aria-label={`Next card: ${nextFallacy.name}`}
+                title={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
+                aria-label={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
               >
-                <span style={{ fontSize: '12px' }}>Next</span>
+                <span style={{ fontSize: '12px' }}>{t('nav_next')}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -188,7 +221,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 color: 'var(--text-main)',
                 cursor: 'pointer'
               }}
-              title="Share this Card on WhatsApp, Instagram, X, LinkedIn, Telegram"
+              title="Share this Card as Image, WhatsApp, Instagram, X"
             >
               <span style={{ color: 'var(--accent-blue-light)', fontWeight: '900' }}>↗</span>
               <span>{t('codex_share_btn')}</span>
@@ -256,7 +289,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             </div>
           </div>
 
-          {/* Right Column: Card Breakdown & Taxonomy Data */}
+          {/* Right Column: Card Breakdown & Informational Overview */}
           <div>
             {/* Header Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
@@ -291,26 +324,27 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
 
-            {/* Primary Action Button (Single, full-width, clean) */}
+            {/* Single Informational Hero CTA: Share as Story or Link */}
             <div>
-              <Link
-                href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
+              <button
+                onClick={handleOpenShare}
                 className="btn btn-primary"
                 style={{
                   width: '100%',
-                  padding: '14px 24px',
-                  fontSize: '14.5px',
+                  padding: '14px 20px',
+                  fontSize: '14px',
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '10px',
-                  textDecoration: 'none'
+                  cursor: 'pointer'
                 }}
+                title="Share this Card as Image, WhatsApp, Instagram, X"
               >
-                <span>{t('codex_dossier_try_sandbox_btn')}</span>
-                <span>➔</span>
-              </Link>
+                <span>↗</span>
+                <span>{t('codex_share_btn')}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -391,7 +425,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                       {caseStudies[activeCaseStudyTab].domain}
                     </span>
                     <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '600' }}>
-                      Field Case {activeCaseStudyTab + 1} of {caseStudies.length}
+                      {t('field_case_prefix')} {activeCaseStudyTab + 1} {t('field_case_of')} {caseStudies.length}
                     </span>
                   </div>
 
@@ -479,18 +513,62 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontWeight: '800', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Curriculum Standard:
+                {t('codex_curriculum_standard')}
               </span>
               <span>UNESCO Global Media & Information Literacy (MIL) — {fallacy.mil_competency}</span>
             </div>
             <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-              Open Cognitive Defense Framework
+              {t('codex_framework_label')}
             </span>
           </div>
         )}
 
-        {/* Section 3: Adjacent Archetype Navigation Bar */}
-        <section style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
+        {/* Section 3: Bottom Interactive Practice & SIFT Sandbox Verification */}
+        <section style={{ marginTop: '28px' }}>
+          <div
+            className="card"
+            style={{
+              padding: '24px 28px',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border-card)',
+              borderRadius: 'var(--radius-lg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '20px'
+            }}
+          >
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 6px 0' }}>
+                {t('codex_practice_sandbox_title')}
+              </h3>
+              <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, maxWidth: '620px', lineHeight: '1.5' }}>
+                {t('codex_practice_sandbox_desc')}
+              </p>
+            </div>
+            <Link
+              href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
+              className="btn btn-primary"
+              style={{
+                padding: '12px 20px',
+                fontSize: '13.5px',
+                fontWeight: '800',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <span>{t('codex_dossier_try_sandbox_btn')}</span>
+              <span>➔</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Section 4: Adjacent Archetype Navigation Bar */}
+        <section style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             <Link
               href={`/codex/${prevSlug}`}
@@ -506,7 +584,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 borderRadius: 'var(--radius-md)',
                 transition: 'all 0.15s ease'
               }}
-              title={`Previous: ${prevFallacy.name}`}
+              title={`${t('codex_dossier_prev')}: ${prevFallacy.name}`}
             >
               <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>←</span>
               <div>
@@ -535,7 +613,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 textAlign: 'right',
                 transition: 'all 0.15s ease'
               }}
-              title={`Next: ${nextFallacy.name}`}
+              title={`${t('codex_dossier_next')}: ${nextFallacy.name}`}
             >
               <div>
                 <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
@@ -552,14 +630,13 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
       </div>
 
-      {/* Interactive Social Share Modal */}
+      {/* Interactive Social Share Modal (Solid Civic Editorial, Zero Glassmorphism) */}
       {isShareModalOpen && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(6px)',
+            background: 'rgba(0, 0, 0, 0.85)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -572,12 +649,12 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             className="card"
             style={{
               width: '100%',
-              maxWidth: '480px',
+              maxWidth: '520px',
               background: 'var(--bg-surface-elevated)',
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-lg)',
               padding: '24px',
-              boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.7)',
               position: 'relative'
             }}
             onClick={(e) => e.stopPropagation()}
@@ -609,7 +686,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </button>
             </div>
 
-            {/* Fallacy Mini Card Banner */}
+            {/* Fallacy Mini Banner */}
             <div
               style={{
                 display: 'flex',
@@ -619,7 +696,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-md)',
-                marginBottom: '20px'
+                marginBottom: '16px'
               }}
             >
               <img
@@ -637,8 +714,75 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
 
+            {/* Solid Image Sharing Section */}
+            <div style={{ padding: '14px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
+              {/* Format Presets Selector */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
+                {(['story', 'portrait', 'feed'] as const).map((fmt) => {
+                  const isSel = selectedStoryFormat === fmt;
+                  const label = fmt === 'story' ? 'Story (9:16)' : fmt === 'portrait' ? 'Portrait (4:5)' : 'Square (1:1)';
+                  return (
+                    <button
+                      key={fmt}
+                      onClick={() => setSelectedStoryFormat(fmt)}
+                      style={{
+                        padding: '6px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11.5px',
+                        fontWeight: '700',
+                        border: '1px solid',
+                        cursor: 'pointer',
+                        borderColor: isSel ? 'var(--accent-blue-light)' : 'var(--border-card)',
+                        background: isSel ? 'var(--accent-blue)' : 'var(--bg-surface-elevated)',
+                        color: isSel ? '#FFFFFF' : 'var(--text-secondary)',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Primary Action Button */}
+              <button
+                onClick={() => handleShareStory(selectedStoryFormat)}
+                disabled={isGeneratingStory}
+                className="btn btn-primary"
+                style={{
+                  width: '100%',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  cursor: isGeneratingStory ? 'wait' : 'pointer'
+                }}
+              >
+                <span>📸</span>
+                <span>
+                  {isGeneratingStory
+                    ? t('share_generating')
+                    : selectedStoryFormat === 'story'
+                    ? t('share_as_story_btn')
+                    : selectedStoryFormat === 'portrait'
+                    ? 'Download Portrait Poster (4:5 PNG)'
+                    : t('share_as_square_btn')}
+                </span>
+              </button>
+
+              {storyFeedback && (
+                <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--accent-emerald-light)', fontWeight: '700', textAlign: 'center' }}>
+                  ✓ {storyFeedback}
+                </div>
+              )}
+            </div>
+
             {/* Social Share Channels Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '16px' }}>
               {/* WhatsApp */}
               <a
                 href={whatsappUrl}

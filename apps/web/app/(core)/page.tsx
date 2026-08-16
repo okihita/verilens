@@ -430,7 +430,6 @@ export default function HomePage() {
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                           <strong style={{ fontSize: '15px', color: 'var(--text-main)' }}>{fallacyName}</strong>
-                          <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{t('card_tap_back')}</span>
                         </div>
 
                         <div style={{ marginBottom: '8px' }}>

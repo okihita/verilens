@@ -3,17 +3,16 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Sun, Moon, Monitor, Globe } from 'lucide-react';
 import { getPlayerProfile, getRankFromXP } from '../lib/gamification';
 import { useTranslation, SUPPORTED_LANGUAGES } from '../lib/i18n';
 import { useTheme } from '../lib/theme';
-import { isAudioMuted, toggleAudioMute, playClick } from '../lib/audio';
 
 export default function Navbar() {
   const { t, lang, setLanguage } = useTranslation();
   const { theme, setTheme } = useTheme();
   const [profile, setProfile] = useState<any>({ xp: 120 });
   const [rank, setRank] = useState<any>({ level: 1, name: 'Novice Skeptic', color: '#94A3B8', nextXP: 150 });
-  const [audioMuted, setAudioMuted] = useState(false);
   const [simsOpen, setSimsOpen] = useState(false);
   const [educatorsOpen, setEducatorsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -32,14 +31,11 @@ export default function Navbar() {
       const p = getPlayerProfile();
       setProfile(p);
       setRank(getRankFromXP(p.xp));
-      setAudioMuted(isAudioMuted());
     }
     refresh();
     window.addEventListener('verilens_profile_updated', refresh);
-    window.addEventListener('verilens_audio_updated', refresh);
     return () => {
       window.removeEventListener('verilens_profile_updated', refresh);
-      window.removeEventListener('verilens_audio_updated', refresh);
     };
   }, []);
 
@@ -52,7 +48,7 @@ export default function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event: any) {
       if (simsRef.current && !simsRef.current.contains(event.target)) setSimsOpen(false);
       if (educatorsRef.current && !educatorsRef.current.contains(event.target)) setEducatorsOpen(false);
       const clickedInsideLang =
@@ -154,48 +150,46 @@ export default function Navbar() {
                   <div>
                     <strong style={{ fontSize: '13.5px', color: 'var(--text-main)' }}>{t('nav_fallacy_forge')}</strong>
                     <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Balik fakta untuk pelajari manipulasi' : lang === 'zh' ? '事实逆向操纵工坊' : 'Reverse-spin neutral facts'}
+                      {lang === 'id' ? 'Sintesis argumen interaktif' : lang === 'zh' ? '逆向论证重构实验室' : 'Interactive fallacy synthesis'}
                     </div>
                   </div>
                 </Link>
 
                 <Link href="/duel" className="dropdown-item">
-                  <div className="dropdown-icon" style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#F87171', fontWeight: '800' }}>1v1</div>
+                  <div className="dropdown-icon" style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#F87171', fontWeight: '800' }}>PvP</div>
                   <div>
                     <strong style={{ fontSize: '13.5px', color: 'var(--text-main)' }}>{t('nav_duel')}</strong>
                     <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                      {lang === 'id' ? 'Pertarungan layar bagi 2 pemain' : lang === 'zh' ? '同屏双人思辨对决' : '2-player split screen battle'}
+                      {lang === 'id' ? 'Duel debat PvP berbasis giliran' : lang === 'zh' ? '双人对决辩论演练' : 'Turn-based debate showdown'}
                     </div>
                   </div>
                 </Link>
 
-                <div style={{ borderTop: '1px solid var(--border-subtle)', margin: '4px 0', paddingTop: '4px' }}>
-                  <Link href="/extension" className="dropdown-item">
-                    <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800' }}>Ext</div>
-                    <div>
-                      <strong style={{ fontSize: '13.5px', color: 'var(--text-main)' }}>{t('nav_extension')}</strong>
-                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                        {lang === 'id' ? 'Perisai browser Chrome <300ms' : lang === 'zh' ? 'Chrome 浏览器极速护盾' : 'Chrome Browser Armor (<300ms)'}
-                      </div>
+                <Link href="/extension" className="dropdown-item">
+                  <div className="dropdown-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', fontWeight: '800' }}>CRX</div>
+                  <div>
+                    <strong style={{ fontSize: '13.5px', color: 'var(--text-main)' }}>{t('nav_extension')}</strong>
+                    <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+                      {lang === 'id' ? 'Pelindung browser waktu-nyata' : lang === 'zh' ? 'Chrome 浏览器实时伴侣' : 'Real-time Chrome companion'}
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             )}
           </div>
 
-          {/* Anchor 2: The Fallacy Codex */}
+          {/* Anchor 2: Cognitive Codex Direct Link */}
           <Link href="/#codex" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
             {t('nav_codex')}
           </Link>
 
-          {/* Anchor 3: Educators & Classroom Dropdown */}
+          {/* Anchor 3: Educators & Classroom */}
           <div className="nav-dropdown-wrapper" ref={educatorsRef}>
             <button
               onClick={() => { setEducatorsOpen(!educatorsOpen); setSimsOpen(false); setLangOpen(false); setProfileOpen(false); }}
               className={`nav-link nav-dropdown-btn ${isEducatorRoute ? 'active' : ''}`}
             >
-              <span>{lang === 'id' ? 'Pendidik' : lang === 'es' ? 'Educadores' : lang === 'fr' ? 'Éducateurs' : lang === 'zh' ? '教师专区' : 'Educators'}</span>
+              <span>{lang === 'id' ? 'Pendidik' : lang === 'es' ? 'Educadores' : lang === 'fr' ? 'Éducateurs' : lang === 'zh' ? '教学专区' : 'Educators'}</span>
               <span style={{ fontSize: '12px', transform: educatorsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
@@ -231,157 +225,118 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Column 3: Controls, Language, Profile (Aligned to End) */}
-        <div className="nav-controls-desktop desktop-only">
+        {/* Column 3: Controls, Language, Profile (Aligned to End with Exactly Equal 36px Heights) */}
+        <div className="nav-controls-desktop desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           
-          {/* Audio Mute/Unmute Button */}
-          <button
-            onClick={() => {
-              playClick();
-              toggleAudioMute();
-            }}
+          {/* Light / Dark / System Segmented Switcher (Height: 36px) */}
+          <div
             style={{
-              background: 'var(--bg-surface-elevated)',
-              border: '1px solid var(--border-card)',
-              color: audioMuted ? 'var(--text-muted)' : 'var(--accent-emerald-light)',
-              padding: '6px 8px',
-              borderRadius: '8px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.15s ease'
+              height: '36px',
+              boxSizing: 'border-box',
+              background: 'var(--bg-surface-elevated)',
+              border: '1px solid var(--border-card)',
+              borderRadius: '8px',
+              padding: '2px',
+              gap: '2px'
             }}
-            title={audioMuted ? t('audio_toggle_off') : t('audio_toggle_on')}
-            aria-label={audioMuted ? t('audio_toggle_off') : t('audio_toggle_on')}
           >
-            {audioMuted ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-            ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              </svg>
-            )}
-          </button>
-          
-          {/* Light / Dark / System Segmented Icon Switcher */}
-          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '8px', padding: '2px', gap: '2px' }}>
             {/* Sun (Light Mode) */}
             <button
               onClick={() => setTheme('light')}
               style={{
-                background: theme === 'light' ? 'var(--bg-surface)' : 'transparent',
-                color: theme === 'light' ? 'var(--accent-amber)' : 'var(--text-secondary)',
-                border: 'none',
-                padding: '4px 6px',
+                height: '30px',
+                padding: '0 8px',
                 borderRadius: '6px',
+                background: theme === 'light' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'light' ? '#D97706' : 'var(--text-muted)',
+                border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: theme === 'light' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+                boxShadow: theme === 'light' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.15s ease'
               }}
-              title="Light Theme"
-              aria-label="Light Theme"
+              title="Light Mode (Sun)"
+              aria-label="Light Mode"
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
+              <Sun size={15} strokeWidth={2.2} />
             </button>
 
             {/* Moon (Dark Mode) */}
             <button
               onClick={() => setTheme('dark')}
               style={{
-                background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent',
-                color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-secondary)',
-                border: 'none',
-                padding: '4px 6px',
+                height: '30px',
+                padding: '0 8px',
                 borderRadius: '6px',
+                background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-muted)',
+                border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: theme === 'dark' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+                boxShadow: theme === 'dark' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.15s ease'
               }}
-              title="Dark Theme"
-              aria-label="Dark Theme"
+              title="Dark Mode (Moon)"
+              aria-label="Dark Mode"
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
+              <Moon size={15} strokeWidth={2.2} />
             </button>
 
-            {/* System / Screen */}
+            {/* System (Monitor) */}
             <button
               onClick={() => setTheme('system')}
               style={{
-                background: theme === 'system' ? 'var(--bg-surface)' : 'transparent',
-                color: theme === 'system' ? 'var(--text-main)' : 'var(--text-secondary)',
-                border: 'none',
-                padding: '4px 6px',
+                height: '30px',
+                padding: '0 8px',
                 borderRadius: '6px',
+                background: theme === 'system' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'system' ? 'var(--text-main)' : 'var(--text-muted)',
+                border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: theme === 'system' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+                boxShadow: theme === 'system' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.15s ease'
               }}
-              title="System Theme"
+              title="System Theme (Auto)"
               aria-label="System Theme"
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
+              <Monitor size={15} strokeWidth={2.2} />
             </button>
           </div>
 
-          {/* Translate Dropdown (A / 文 Icon) */}
+          {/* Language Dropdown (Height: 36px) */}
           <div className="nav-dropdown-wrapper" ref={langDesktopRef}>
             <button
               onClick={() => { setLangOpen(!langOpen); setSimsOpen(false); setEducatorsOpen(false); setProfileOpen(false); }}
               style={{
+                height: '36px',
+                boxSizing: 'border-box',
                 background: 'var(--bg-surface-elevated)',
                 border: '1px solid var(--border-card)',
                 color: 'var(--text-main)',
-                padding: '5px 9px',
+                padding: '0 10px',
                 borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '5px',
+                gap: '6px',
                 cursor: 'pointer',
-                fontSize: '12px',
+                fontSize: '12.5px',
                 fontWeight: '800'
               }}
               title="Change Language / 切换语言"
               aria-label="Change Language"
             >
-              {/* Translate A / 文 SVG Icon */}
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m5 8 6 6"></path>
-                <path d="m4 14 6-6 2-3"></path>
-                <path d="M2 5h12"></path>
-                <path d="M7 2h1"></path>
-                <path d="m22 22-5-10-5 10"></path>
-                <path d="M14 18h6"></path>
-              </svg>
+              <Globe size={15} strokeWidth={2.2} style={{ color: 'var(--text-secondary)' }} />
               <span>{activeLangObj.code.toUpperCase()}</span>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)', transform: langOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)', transform: langOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
             {langOpen && (
@@ -430,15 +385,17 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Compact RPG Progression Hub */}
+          {/* RPG Progression Pill (Height: 36px) */}
           <div className="nav-dropdown-wrapper" ref={profileRef}>
             <button
               onClick={() => { setProfileOpen(!profileOpen); setSimsOpen(false); setEducatorsOpen(false); setLangOpen(false); }}
               style={{
+                height: '36px',
+                boxSizing: 'border-box',
                 background: 'var(--bg-surface-elevated)',
                 border: `1.5px solid ${isProgressionRoute ? 'var(--accent-amber)' : rank.color}`,
-                padding: '5px 12px',
-                borderRadius: '16px',
+                padding: '0 12px',
+                borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
@@ -453,7 +410,7 @@ export default function Navbar() {
               <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-main)' }}>
                 {profile.xp} {t('xp_label')}
               </span>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)', transform: profileOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)', transform: profileOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>▼</span>
             </button>
 
             {profileOpen && (
@@ -500,41 +457,97 @@ export default function Navbar() {
 
         </div>
 
-        {/* Mobile Header Controls */}
-        <div className="mobile-only-controls">
-          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', padding: '1px' }}>
-            <button onClick={() => setTheme('light')} style={{ background: theme === 'light' ? 'var(--bg-surface)' : 'transparent', color: theme === 'light' ? 'var(--accent-amber)' : 'var(--text-secondary)', border: 'none', padding: '2px 4px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center' }} title="Light">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="5"></circle></svg>
+        {/* Mobile Header Controls (Unified 32px Equal Height & Zero Sound Icon) */}
+        <div className="mobile-only-controls" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          
+          {/* Mobile Theme Switcher (Height: 32px) */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '32px',
+              boxSizing: 'border-box',
+              background: 'var(--bg-surface-elevated)',
+              border: '1px solid var(--border-card)',
+              borderRadius: '6px',
+              padding: '2px',
+              gap: '1px'
+            }}
+          >
+            <button
+              onClick={() => setTheme('light')}
+              style={{
+                height: '26px',
+                padding: '0 5px',
+                borderRadius: '4px',
+                background: theme === 'light' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'light' ? '#D97706' : 'var(--text-muted)',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer'
+              }}
+              title="Light"
+            >
+              <Sun size={13} strokeWidth={2.2} />
             </button>
-            <button onClick={() => setTheme('dark')} style={{ background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent', color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-secondary)', border: 'none', padding: '2px 4px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center' }} title="Dark">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <button
+              onClick={() => setTheme('dark')}
+              style={{
+                height: '26px',
+                padding: '0 5px',
+                borderRadius: '4px',
+                background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-muted)',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer'
+              }}
+              title="Dark"
+            >
+              <Moon size={13} strokeWidth={2.2} />
+            </button>
+            <button
+              onClick={() => setTheme('system')}
+              style={{
+                height: '26px',
+                padding: '0 5px',
+                borderRadius: '4px',
+                background: theme === 'system' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'system' ? 'var(--text-main)' : 'var(--text-muted)',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer'
+              }}
+              title="System"
+            >
+              <Monitor size={13} strokeWidth={2.2} />
             </button>
           </div>
 
-          {/* Mobile Language Selector */}
+          {/* Mobile Language Selector (Height: 32px) */}
           <div className="nav-dropdown-wrapper" ref={langMobileRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
               style={{
+                height: '32px',
+                boxSizing: 'border-box',
                 background: 'var(--bg-surface-elevated)',
                 border: '1px solid var(--border-card)',
                 color: 'var(--text-main)',
-                padding: '3px 7px',
+                padding: '0 8px',
                 borderRadius: '6px',
                 fontSize: '12px',
                 fontWeight: '800',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '3px',
+                gap: '4px',
                 cursor: 'pointer'
               }}
             >
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m5 8 6 6"></path>
-                <path d="m4 14 6-6 2-3"></path>
-                <path d="M2 5h12"></path>
-                <path d="m22 22-5-10-5 10"></path>
-              </svg>
+              <Globe size={13} strokeWidth={2.2} style={{ color: 'var(--text-secondary)' }} />
               <span>{activeLangObj.code.toUpperCase()}</span>
             </button>
 
@@ -572,42 +585,23 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Audio Mute/Unmute Button */}
-          <button
-            onClick={() => {
-              playClick();
-              toggleAudioMute();
-            }}
-            style={{
-              background: 'var(--bg-surface-elevated)',
-              border: '1px solid var(--border-card)',
-              color: audioMuted ? 'var(--text-muted)' : 'var(--accent-emerald-light)',
-              padding: '6px 7px',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
-            title={audioMuted ? t('audio_toggle_off') : t('audio_toggle_on')}
-            aria-label={audioMuted ? t('audio_toggle_off') : t('audio_toggle_on')}
-          >
-            {audioMuted ? (
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-            ) : (
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              </svg>
-            )}
-          </button>
-
+          {/* Mobile Profile XP (Height: 32px) */}
           <Link href="/profile" style={{ textDecoration: 'none' }}>
-            <div style={{ background: 'var(--bg-surface-elevated)', border: `1px solid ${rank.color}`, padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '800', color: 'var(--text-main)' }}>
+            <div
+              style={{
+                height: '32px',
+                boxSizing: 'border-box',
+                display: 'flex',
+                alignItems: 'center',
+                background: 'var(--bg-surface-elevated)',
+                border: `1px solid ${rank.color}`,
+                padding: '0 8px',
+                borderRadius: '6px',
+                fontSize: '12px',
+                fontWeight: '800',
+                color: 'var(--text-main)'
+              }}
+            >
               {profile.xp} XP
             </div>
           </Link>
