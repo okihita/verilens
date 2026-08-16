@@ -59,6 +59,8 @@ test('Taxonomy: All 24 registered fallacies have complete metadata', () => {
   }
 });
 
+const { isAudioMuted, setAudioMuted, toggleAudioMute, playCorrect, playStreak, playIncorrect, playStart, playComplete, playClick } = require('../lib/audio.js');
+
 test('Scenarios & Heuristics: Quiz items have complete pedagogical metadata', () => {
   assert.ok(scenariosData.scenarios.length >= 8);
   for (const s of scenariosData.scenarios) {
@@ -68,4 +70,18 @@ test('Scenarios & Heuristics: Quiz items have complete pedagogical metadata', ()
     assert.ok(s.sift_recommendation);
     assert.strictEqual(s.options.length, 4);
   }
+});
+
+test('Audio Engine: Native Web Audio synthesizer exports callable sound handlers without SSR errors', () => {
+  assert.doesNotThrow(() => {
+    isAudioMuted();
+    setAudioMuted(false);
+    toggleAudioMute();
+    playClick();
+    playCorrect();
+    playStreak(3);
+    playIncorrect();
+    playStart();
+    playComplete();
+  });
 });

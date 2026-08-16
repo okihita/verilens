@@ -133,6 +133,24 @@ export const TRANSLATIONS = {
     rank_proficient: 'Proficient Fact-Checker',
     rank_developing: 'Developing Analyst',
 
+    // Certificate Modal
+    cert_badge: 'UNESCO GLOBAL MIL YOUTH HACKATHON 2026',
+    cert_title: 'Certificate of Cognitive Immunity',
+    cert_subtitle: 'Official Media & Information Literacy Certification • SIFT Framework',
+    cert_certifies_that: 'This certifies that',
+    cert_body: 'Has successfully completed the assessment, demonstrating competence in detecting rhetorical fallacies, cognitive biases, emotional manipulation, and financial lures.',
+    cert_score_label: 'Score',
+    cert_accuracy_label: 'Accuracy',
+    cert_issued_label: 'Issued',
+    cert_verified_by: 'Verified by VeriLens Engine',
+    cert_copy_btn: 'Copy Share Summary',
+    cert_copied_btn: 'Copied to Clipboard!',
+    cert_print_btn: 'Print / Save PDF',
+    close_btn: 'Close',
+    cert_share_text: 'I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with {accuracy}% accuracy and {score} XP! Test your critical thinking: https://verilens.okihita.dev #UNESCO #MediaLiteracy #VeriLens2026',
+    audio_toggle_on: 'Mute Sound Effects',
+    audio_toggle_off: 'Enable Sound Effects',
+
     // Footer
     footer_desc: 'An open-access media & information literacy ecosystem combining gamified cognitive conditioning with real-time browser protection. Built for the UNESCO Global MIL Youth Hackathon 2026.',
     footer_train_title: 'Training Games',
@@ -263,6 +281,24 @@ export const TRANSLATIONS = {
     rank_master: 'Pakar Pemikir Kritis',
     rank_proficient: 'Pemeriksa Fakta Mahir',
     rank_developing: 'Analis Berkembang',
+
+    // Certificate Modal
+    cert_badge: 'HACKATHON PEMUDA MIL GLOBAL UNESCO 2026',
+    cert_title: 'Sertifikat Kekebalan Kognitif',
+    cert_subtitle: 'Sertifikasi Literasi Media & Informasi Resmi • Kerangka SIFT',
+    cert_certifies_that: 'Dengan ini menerangkan bahwa',
+    cert_body: 'Telah berhasil menyelesaikan evaluasi, membuktikan kompetensi kritis dalam mendeteksi sesat pikir retorika, bias kognitif, manipulasi emosional, dan jebakan finansial digital.',
+    cert_score_label: 'Skor Poin',
+    cert_accuracy_label: 'Akurasi',
+    cert_issued_label: 'Diterbitkan',
+    cert_verified_by: 'Terverifikasi oleh VeriLens Engine',
+    cert_copy_btn: 'Salin Ringkasan Bagikan',
+    cert_copied_btn: 'Tersalin ke Papan Klip!',
+    cert_print_btn: 'Cetak / Simpan PDF',
+    close_btn: 'Tutup',
+    cert_share_text: 'Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi {accuracy}% dan {score} XP! Uji kemampuan literasi mediamu: https://verilens.okihita.dev #UNESCO #LiterasiMedia #VeriLens2026',
+    audio_toggle_on: 'Bisukan Efek Suara',
+    audio_toggle_off: 'Aktifkan Efek Suara',
 
     // Footer
     footer_desc: 'Ekosistem literasi media dan informasi akses terbuka yang memadukan pengondisian kognitif berbasis permainan dengan perlindungan peramban web langsung. Dibuat untuk UNESCO Global MIL Youth Hackathon 2026.',
@@ -395,6 +431,24 @@ export const TRANSLATIONS = {
     rank_proficient: 'Verificador Competente',
     rank_developing: 'Analista en Desarrollo',
 
+    // Certificate Modal
+    cert_badge: 'HACKATHON JUVENIL GLOBAL UNESCO MIL 2026',
+    cert_title: 'Certificado de Inmunidad Cognitiva',
+    cert_subtitle: 'Certificación Oficial de Alfabetización Mediática e Informacional • Marco SIFT',
+    cert_certifies_that: 'Se certifica que',
+    cert_body: 'Ha completado exitosamente la evaluación, demostrando competencia crítica para detectar falacias retóricas, sesgos cognitivos, manipulación emocional y trampas financieras digitales.',
+    cert_score_label: 'Puntuación',
+    cert_accuracy_label: 'Precisión',
+    cert_issued_label: 'Emitido',
+    cert_verified_by: 'Verificado por VeriLens Engine',
+    cert_copy_btn: 'Copiar Resumen para Compartir',
+    cert_copied_btn: '¡Copiado al Portapapeles!',
+    cert_print_btn: 'Imprimir / Guardar PDF',
+    close_btn: 'Cerrar',
+    cert_share_text: '¡Acabo de obtener mi Certificado de Inmunidad Cognitiva UNESCO en VeriLens con {accuracy}% de precisión y {score} XP! Pon a prueba tu pensamiento crítico: https://verilens.okihita.dev #UNESCO #AlfabetizacionMediatica #VeriLens2026',
+    audio_toggle_on: 'Silenciar Efectos de Sonido',
+    audio_toggle_off: 'Activar Efectos de Sonido',
+
     // Footer
     footer_desc: 'Ecosistema de alfabetización mediática e informacional que combina entrenamiento cognitivo gamificado con protección en tiempo real para el navegador. Desarrollado para el UNESCO Global MIL Youth Hackathon 2026.',
     footer_train_title: 'Juegos de Entrenamiento',
@@ -526,6 +580,24 @@ export const TRANSLATIONS = {
     rank_proficient: 'Vérificateur Confirmé',
     rank_developing: 'Analyste en Progression',
 
+    // Certificate Modal
+    cert_badge: 'HACKATHON MONDIAL JEUNESSE UNESCO EMI 2026',
+    cert_title: 'Certificat d\'Immunité Cognitive',
+    cert_subtitle: 'Certification Officielle en Éducation aux Médias et à l\'Information • Méthode SIFT',
+    cert_certifies_that: 'Ce certificat atteste que',
+    cert_body: 'A complété avec succès l\'évaluation, démontrant sa compétence à démasquer les sophismes rhétoriques, biais cognitifs, manipulations émotionnelles et arnaques financières.',
+    cert_score_label: 'Score',
+    cert_accuracy_label: 'Précision',
+    cert_issued_label: 'Délivré le',
+    cert_verified_by: 'Vérifié par VeriLens Engine',
+    cert_copy_btn: 'Copier le Résumé de Partage',
+    cert_copied_btn: 'Copié dans le Presse-papier !',
+    cert_print_btn: 'Imprimer / Sauvegarder PDF',
+    close_btn: 'Fermer',
+    cert_share_text: 'Je viens d\'obtenir mon Certificat d\'Immunité Cognitive UNESCO sur VeriLens avec {accuracy}% de précision et {score} XP ! Teste ton esprit critique : https://verilens.okihita.dev #UNESCO #EMI #VeriLens2026',
+    audio_toggle_on: 'Couper les Effets Sonores',
+    audio_toggle_off: 'Activer les Effets Sonores',
+
     // Footer
     footer_desc: 'Écosystème éducatif d’Éducation aux Médias et à l’Information (EMI) combinant entraînement ludique et protection du navigateur en temps réel. Conçu pour le Hackathon Mondial UNESCO MIL Youth 2026.',
     footer_train_title: 'Jeux d’Entraînement',
@@ -656,6 +728,24 @@ export const TRANSLATIONS = {
     rank_master: '批判性思维大师',
     rank_proficient: '熟练事实核查员',
     rank_developing: '进阶分析员',
+
+    // Certificate Modal
+    cert_badge: '2026 联合国教科文组织全球 MIL 青年黑客松',
+    cert_title: '认知免疫官方认证证书',
+    cert_subtitle: '官方媒体与信息素养认证 • 斯坦福 SIFT 侧向核查框架',
+    cert_certifies_that: '特此证明',
+    cert_body: '已圆满完成评估，展现出识别逻辑谬误、认知偏见、情绪操控及网络金融诈骗的卓越批判性思维素养。',
+    cert_score_label: '总得分',
+    cert_accuracy_label: '准确率',
+    cert_issued_label: '签发日期',
+    cert_verified_by: '由 VeriLens 引擎官方核验',
+    cert_copy_btn: '复制分享文案',
+    cert_copied_btn: '已复制到剪贴板！',
+    cert_print_btn: '打印 / 保存为 PDF',
+    close_btn: '关闭',
+    cert_share_text: '我刚刚在 VeriLens 获得了联合国教科文组织认知免疫证书，准确率达 {accuracy}%，斩获 {score} XP！快来测试你的批判性思维：https://verilens.okihita.dev #UNESCO #媒体素养 #VeriLens2026',
+    audio_toggle_on: '静音音效',
+    audio_toggle_off: '开启音效',
 
     // Footer
     footer_desc: '面向全球青年的开源媒介与信息素养学习平台，融合游戏化思维训练与浏览器实时护盾技术。专为 2026 联合国教科文组织全球 MIL 青年黑客松打造。',

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { scenarios } from '@verilens/shared';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
 import { useTranslation } from '../../../lib/i18n';
+import { playStart, playCorrect, playStreak, playIncorrect, playComplete, playClick } from '../../../lib/audio';
 import CertificateModal from '../../../components/CertificateModal';
 
 export default function ArenaPage() {
@@ -28,6 +29,7 @@ export default function ArenaPage() {
   }, []);
 
   const handleStartGame = () => {
+    playStart();
     const shuffled = [...scenarios].sort(() => 0.5 - Math.random()).slice(0, 5);
     setShuffledQuestions(shuffled);
     setCurrentRound(0);
@@ -58,19 +60,25 @@ export default function ArenaPage() {
       addPlayerXP(roundScore);
 
       if (newStreak >= 3) {
+        playStreak(newStreak);
         unlockBadge('streak_master');
+      } else {
+        playCorrect();
       }
     } else {
       setStreak(0);
+      playIncorrect();
     }
   };
 
   const handleNextRound = () => {
     if (currentRound + 1 < shuffledQuestions.length) {
+      playClick();
       setCurrentRound((prev) => prev + 1);
       setSelectedOption(null);
       setShowFeedback(false);
     } else {
+      playComplete();
       setGameFinished(true);
       unlockBadge('first_shield');
     }
