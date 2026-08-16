@@ -1,6 +1,6 @@
 {
   "name": "@verilens/web",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "VeriLens UNESCO Gamified Media Literacy Web Application",
   "type": "module",
   "private": true,
