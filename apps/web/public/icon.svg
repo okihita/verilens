@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Shield -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)" stroke="#1E293B" stroke-width="2"/>
+  
+  <!-- Outer Cognitive Focus Ring -->
+  <circle cx="64" cy="64" r="42" fill="none" stroke="url(#shieldGrad)" stroke-width="4" stroke-dasharray="6 4" opacity="0.8"/>
+  
+  <!-- Central Focus Lens -->
+  <circle cx="64" cy="64" r="26" fill="#0B1120" stroke="url(#lensGrad)" stroke-width="4"/>
+  
+  <!-- Stylized VeriLens V Monogram -->
+  <path d="M52 54 L64 76 L76 54" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Lateral Focus Spark -->
+  <circle cx="78" cy="50" r="4" fill="#FBBF24"/>
+</svg>

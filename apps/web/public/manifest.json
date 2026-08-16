@@ -1,0 +1,17 @@
+{
+  "name": "VeriLens — UNESCO Media Literacy AI Shield",
+  "short_name": "VeriLens",
+  "description": "Gamified Media Literacy, Cognitive Bias Detection & Rhetoric Analysis for UNESCO Global MIL Youth Hackathon 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080C16",
+  "theme_color": "#080C16",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import * as shared from '../../lib/shared/index.js';
+import { useTranslation } from '../../lib/i18n';
 
 const PRESET_SCENARIOS = {
   health: {
@@ -23,13 +24,13 @@ const PRESET_SCENARIOS = {
 };
 
 export default function SandboxPage() {
+  const { lang } = useTranslation();
   const [inputText, setInputText] = useState(PRESET_SCENARIOS.health.text);
   const [inputTitle, setInputTitle] = useState(PRESET_SCENARIOS.health.title);
   const [analysis, setAnalysis] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [aiResult, setAiResult] = useState(null);
 
-  // Run local heuristics whenever text changes
   useEffect(() => {
     if (!inputText || inputText.trim().length === 0) {
       setAnalysis(null);
@@ -75,7 +76,7 @@ export default function SandboxPage() {
       } else {
         setAiResult({ error: data.error || 'Failed to analyze' });
       }
-    } catch (err) {
+    } catch {
       setAiResult({ error: 'Network gateway unavailable' });
     } finally {
       setAiLoading(false);
@@ -86,37 +87,41 @@ export default function SandboxPage() {
     <div className="container" style={{ maxWidth: '1000px', padding: '40px 20px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-blue-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
-          <span>🧪 In-Browser Sandbox Dissector</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
+          <span>{lang === 'id' ? 'Disetor Sandbox Dalam Browser' : 'In-Browser Sandbox Dissector'}</span>
         </div>
         <h1 style={{ fontSize: '32px', fontWeight: '900', color: '#FFFFFF', marginBottom: '8px' }}>
-          Live Article Rhetoric Dissector
+          {lang === 'id' ? 'Disetor Retorika Artikel Langsung' : 'Live Article Rhetoric Dissector'}
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '680px', margin: '0 auto' }}>
-          Paste any article or claim below to see real-time heuristic fallacy tagging and live <strong>Gemini 2.0 Flash-Lite</strong> cognitive reasoning.
+        <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '680px', margin: '0 auto', lineHeight: '1.6' }}>
+          {lang === 'id'
+            ? 'Tempelkan artikel atau klaim di bawah ini untuk melihat penandaan sesat pikir heuristik waktu nyata dan penalaran kognitif Gemini 2.0 Flash-Lite.'
+            : 'Paste any article or claim below to see real-time heuristic fallacy tagging and live Gemini 2.0 Flash-Lite cognitive reasoning.'}
         </p>
       </div>
 
       {/* Preset Pickers */}
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
         <button onClick={() => loadScenario('health')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
-          💊 Miracle Cure Hoax
+          Miracle Cure Hoax
         </button>
         <button onClick={() => loadScenario('crypto')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
-          💰 Crypto 500% Scam
+          Crypto 500% Scam
         </button>
         <button onClick={() => loadScenario('politics')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
-          🏛️ Outrage Headline
+          Outrage Headline
         </button>
         <button onClick={() => loadScenario('wire')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
-          📰 Reuters Neutral Wire
+          Reuters Neutral Wire
         </button>
       </div>
 
       {/* Input Box */}
       <div className="card" style={{ marginBottom: '24px' }}>
         <div style={{ marginBottom: '12px' }}>
-          <label style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Article Headline</label>
+          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+            {lang === 'id' ? 'Judul Berita / Artikel' : 'Article Headline'}
+          </label>
           <input
             type="text"
             value={inputTitle}
@@ -126,7 +131,9 @@ export default function SandboxPage() {
         </div>
 
         <div>
-          <label style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Article Body Excerpt</label>
+          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+            {lang === 'id' ? 'Isi Kutipan Artikel' : 'Article Body Excerpt'}
+          </label>
           <textarea
             rows={5}
             value={inputText}
@@ -135,29 +142,31 @@ export default function SandboxPage() {
           />
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', flexWrap: 'wrap', gap: '10px' }}>
           <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-            {analysis?.words || 0} words analyzed
+            {analysis?.words || 0} {lang === 'id' ? 'kata dianalisis' : 'words analyzed'}
           </span>
           <button
             onClick={handleRunAiScan}
             disabled={aiLoading}
             className="btn btn-amber"
-            style={{ padding: '8px 18px' }}
+            style={{ padding: '8px 18px', fontSize: '13px' }}
           >
-            {aiLoading ? '🤖 Analyzing with Gemini...' : '🤖 Run Gemini AI Deep Scan'}
+            {aiLoading ? (lang === 'id' ? 'Menganalisis dengan Gemini...' : 'Analyzing with Gemini...') : (lang === 'id' ? 'Jalankan Pemindaian AI Gemini' : 'Run Gemini AI Deep Scan')}
           </button>
         </div>
       </div>
 
       {/* Real-time Analysis Dashboard */}
       {analysis && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '24px' }}>
           {/* Sensationalism Gauge */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Sensationalism Index</span>
-              <span style={{ fontSize: '12px', fontWeight: '800', color: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981' }}>
+              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                {lang === 'id' ? 'Indeks Sensasionalisme' : 'Sensationalism Index'}
+              </span>
+              <span style={{ fontSize: '13px', fontWeight: '800', color: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981' }}>
                 {analysis.score}/100
               </span>
             </div>
@@ -167,90 +176,93 @@ export default function SandboxPage() {
               <div style={{ width: `${analysis.score}%`, height: '100%', background: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981', transition: 'width 0.4s ease' }}></div>
             </div>
 
-            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
               {analysis.score >= 60 ? (
-                <span>⚠️ <strong>High Rhetorical Heat:</strong> Detected {analysis.matches.length} manipulation/urgency patterns. Verify claims laterally.</span>
+                <span><strong>High Rhetorical Heat:</strong> Detected {analysis.matches.length} manipulation/urgency patterns. Verify claims laterally.</span>
               ) : analysis.score >= 30 ? (
-                <span>⚖️ <strong>Mixed Nuance:</strong> Contains persuasive phrasing or speculative passive attribution.</span>
+                <span><strong>Mixed Nuance:</strong> Contains persuasive phrasing or speculative passive attribution.</span>
               ) : (
-                <span>✨ <strong>Measured & Factual:</strong> Sober reporting tone with minimal emotional distortion cues.</span>
+                <span><strong>Measured & Factual:</strong> Sober reporting tone with minimal emotional distortion cues.</span>
               )}
             </p>
+
+            {analysis.matches.length > 0 && (
+              <div style={{ marginTop: '12px', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {analysis.matches.map((m, i) => (
+                  <span key={i} style={{ fontSize: '11px', background: 'rgba(245, 158, 11, 0.15)', color: 'var(--accent-amber)', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
+                    {m.name}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* SIFT Lateral Toolkit */}
+          {/* SIFT Lateral Search Links */}
           <div className="card">
-            <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
-              🌐 1-Click SIFT Lateral Actions
+            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+              UNESCO SIFT Lateral Links
             </span>
+            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginBottom: '12px' }}>
+              {lang === 'id' ? 'Lakukan verifikasi silang terhadap klaim ini melalui sumber terpercaya:' : 'Cross-verify this claim across trusted primary consensus archives:'}
+            </p>
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <a href={analysis.lateral.factCheckUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ justifyContent: 'flex-start', fontSize: '12px', padding: '6px 12px' }}>
-                🔍 Search Google Fact Check Explorer
+              <a
+                href={analysis.lateral.googleNews}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+              >
+                <span>Google News Lateral Search</span>
+                <span>➔</span>
               </a>
-              <a href={analysis.lateral.consensusSearchUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ justifyContent: 'flex-start', fontSize: '12px', padding: '6px 12px' }}>
-                📰 Search Reuters/AP Consensus
+              <a
+                href={analysis.lateral.reuters}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+              >
+                <span>Reuters Archive Search</span>
+                <span>➔</span>
+              </a>
+              <a
+                href={analysis.lateral.factCheck}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+              >
+                <span>Google Fact Check Explorer</span>
+                <span>➔</span>
               </a>
             </div>
           </div>
         </div>
       )}
 
-      {/* Gemini AI Live Result Box */}
+      {/* AI Deep Reasoning Result */}
       {aiResult && (
-        <div className="card" style={{ border: '1.5px solid var(--accent-blue)', background: 'rgba(59, 130, 246, 0.06)', marginBottom: '24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-            <span style={{ fontSize: '20px' }}>🤖</span>
-            <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#60A5FA' }}>
-              Gemini 2.0 Flash-Lite Neural Analysis
-            </h3>
-          </div>
+        <div className="card" style={{ background: 'rgba(59, 130, 246, 0.08)', border: '1.5px solid var(--accent-blue)', animation: 'fadeIn 0.3s ease' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#60A5FA', marginBottom: '8px' }}>
+            Gemini 2.0 Flash-Lite Cognitive Analysis
+          </h3>
 
           {aiResult.error ? (
-            <div style={{ color: '#F87171', fontSize: '13px' }}>{aiResult.error}</div>
+            <p style={{ color: '#F87171', fontSize: '13px' }}>{aiResult.error}</p>
           ) : (
             <div>
-              <div style={{ display: 'flex', gap: '16px', marginBottom: '12px', fontSize: '13px' }}>
-                <div><strong>Primary Tone:</strong> {aiResult.primaryTone}</div>
-                <div><strong>AI Outrage Score:</strong> {aiResult.sensationalismScore}/100</div>
-              </div>
-
-              <div style={{ marginBottom: '12px' }}>
-                <strong style={{ fontSize: '12.5px', color: '#FFFFFF', display: 'block', marginBottom: '6px' }}>Identified Rhetorical Devices:</strong>
-                <ul style={{ paddingLeft: '18px', fontSize: '13px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {(aiResult.fallaciesFound || []).map((f, i) => (
-                    <li key={i}>
-                      <strong style={{ color: '#FBBF24' }}>{f.fallacy}:</strong> "{f.quote}" — <em>{f.explanation}</em>
-                      <div style={{ color: '#34D399', fontSize: '12px', marginTop: '2px' }}>💡 <strong>Reflection:</strong> {f.reflection}</div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {aiResult.siftAction && (
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px 14px', borderRadius: '6px', fontSize: '12.5px', color: '#93C5FD' }}>
-                  <strong>🧭 Recommended SIFT Action:</strong> {aiResult.siftAction}
+              <p style={{ fontSize: '14px', color: '#FFFFFF', lineHeight: '1.5', marginBottom: '12px' }}>
+                {aiResult.analysis || aiResult.summary || 'Analysis complete.'}
+              </p>
+              {aiResult.fallacy && (
+                <div style={{ fontSize: '13px', color: 'var(--accent-amber)' }}>
+                  <strong>Identified Device:</strong> {aiResult.fallacy}
                 </div>
               )}
             </div>
           )}
-        </div>
-      )}
-
-      {/* Flagged Devices Breakdown */}
-      {analysis && analysis.matches.length > 0 && (
-        <div className="card">
-          <h3 style={{ fontSize: '15px', fontWeight: '800', color: '#FFFFFF', marginBottom: '12px' }}>
-            🚩 Client-Side Pattern Triggers ({analysis.matches.length} Flagged)
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-            {analysis.matches.map((m, i) => (
-              <div key={i} style={{ background: 'var(--bg-surface-elevated)', padding: '10px 12px', borderRadius: 'var(--radius-sm)', borderLeft: `3px solid ${m.color}` }}>
-                <div style={{ fontSize: '12.5px', fontWeight: '700', color: '#FFFFFF' }}>{m.name}</div>
-                <div style={{ fontSize: '11.5px', fontStyle: 'italic', color: 'var(--accent-amber)', margin: '2px 0' }}>"{m.matchedText}"</div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{m.explanation}</div>
-              </div>
-            ))}
-          </div>
         </div>
       )}
     </div>
