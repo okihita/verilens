@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 
 export function getInitialTheme() {
-  if (typeof window === 'undefined') return 'system';
-  return localStorage.getItem('verilens_theme') || 'system';
+  if (typeof window === 'undefined') return 'light';
+  return localStorage.getItem('verilens_theme') || 'light';
 }
 
 export function applyTheme(theme) {
@@ -21,8 +21,8 @@ export function applyTheme(theme) {
 }
 
 export function useTheme() {
-  const [theme, setThemeState] = useState('system');
-  const [resolvedTheme, setResolvedTheme] = useState('dark');
+  const [theme, setThemeState] = useState('light');
+  const [resolvedTheme, setResolvedTheme] = useState('light');
 
   useEffect(() => {
     const savedTheme = getInitialTheme();
@@ -31,7 +31,7 @@ export function useTheme() {
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemChange = () => {
-      const current = localStorage.getItem('verilens_theme') || 'system';
+      const current = localStorage.getItem('verilens_theme') || 'light';
       if (current === 'system') {
         applyTheme('system');
         setResolvedTheme(mediaQuery.matches ? 'dark' : 'light');

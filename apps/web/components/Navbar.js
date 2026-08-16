@@ -50,13 +50,6 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const cycleTheme = () => {
-    if (theme === 'system') setTheme('light');
-    else if (theme === 'light') setTheme('dark');
-    else setTheme('system');
-  };
-
-  const themeLabel = theme === 'system' ? 'Auto' : theme === 'light' ? 'Light' : 'Dark';
   const progressPercent = Math.min(100, Math.round((profile.xp / rank.nextXP) * 100));
   const isSimRoute = ['/gauntlet', '/arena', '/feed', '/forge', '/duel', '/sandbox', '/extension'].includes(pathname);
   const isEducatorRoute = ['/classroom', '/educator'].includes(pathname);
@@ -221,23 +214,87 @@ export default function Navbar() {
         {/* Right Controls: Compact Hub (Desktop) */}
         <div className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           
-          {/* Minimal Theme Switcher */}
-          <button
-            onClick={cycleTheme}
-            style={{
-              background: 'var(--bg-surface-elevated)',
-              border: '1px solid var(--border-card)',
-              color: 'var(--text-secondary)',
-              padding: '4px 8px',
-              borderRadius: '8px',
-              fontSize: '11px',
-              fontWeight: '700',
-              cursor: 'pointer'
-            }}
-            title="Theme: Auto / Light / Dark"
-          >
-            {themeLabel}
-          </button>
+          {/* Light / Dark / System Segmented Icon Switcher */}
+          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '8px', padding: '2px', gap: '2px' }}>
+            {/* Sun (Light Mode) */}
+            <button
+              onClick={() => setTheme('light')}
+              style={{
+                background: theme === 'light' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'light' ? 'var(--accent-amber)' : 'var(--text-secondary)',
+                border: 'none',
+                padding: '4px 6px',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: theme === 'light' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+              }}
+              title="Light Theme"
+              aria-label="Light Theme"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </button>
+
+            {/* Moon (Dark Mode) */}
+            <button
+              onClick={() => setTheme('dark')}
+              style={{
+                background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-secondary)',
+                border: 'none',
+                padding: '4px 6px',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: theme === 'dark' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+              }}
+              title="Dark Theme"
+              aria-label="Dark Theme"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+
+            {/* System / Screen */}
+            <button
+              onClick={() => setTheme('system')}
+              style={{
+                background: theme === 'system' ? 'var(--bg-surface)' : 'transparent',
+                color: theme === 'system' ? 'var(--text-main)' : 'var(--text-secondary)',
+                border: 'none',
+                padding: '4px 6px',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: theme === 'system' ? '0 1px 2px rgba(0,0,0,0.1)' : 'none'
+              }}
+              title="System Theme"
+              aria-label="System Theme"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </button>
+          </div>
 
           {/* Clean Language Switcher */}
           <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '8px', padding: '1px', overflow: 'hidden' }}>
@@ -306,7 +363,7 @@ export default function Navbar() {
                     <strong style={{ fontSize: '12px', color: rank.color }}>Level {rank.level} {rank.name}</strong>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{profile.xp}/{rank.nextXP} XP</span>
                   </div>
-                  <div style={{ width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '4px' }}>
+                  <div style={{ width: '100%', height: '4px', background: 'rgba(0,0,0,0.1)', borderRadius: '2px', overflow: 'hidden', marginTop: '4px' }}>
                     <div style={{ width: `${progressPercent}%`, height: '100%', background: rank.color }}></div>
                   </div>
                 </div>
@@ -345,12 +402,14 @@ export default function Navbar() {
 
         {/* Mobile Header Controls */}
         <div className="mobile-only-controls">
-          <button
-            onClick={cycleTheme}
-            style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', color: 'var(--text-secondary)', padding: '3px 6px', borderRadius: '6px', fontSize: '10px', fontWeight: '700', cursor: 'pointer' }}
-          >
-            {themeLabel}
-          </button>
+          <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', padding: '1px' }}>
+            <button onClick={() => setTheme('light')} style={{ background: theme === 'light' ? 'var(--bg-surface)' : 'transparent', color: theme === 'light' ? 'var(--accent-amber)' : 'var(--text-secondary)', border: 'none', padding: '2px 4px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center' }} title="Light">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="5"></circle></svg>
+            </button>
+            <button onClick={() => setTheme('dark')} style={{ background: theme === 'dark' ? 'var(--bg-surface)' : 'transparent', color: theme === 'dark' ? 'var(--accent-blue-light)' : 'var(--text-secondary)', border: 'none', padding: '2px 4px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center' }} title="Dark">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+          </div>
 
           <div style={{ display: 'flex', background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', borderRadius: '6px', padding: '1px' }}>
             <button onClick={() => setLanguage('en')} style={{ background: lang === 'en' ? 'var(--accent-blue)' : 'transparent', color: lang === 'en' ? '#FFFFFF' : 'var(--text-secondary)', border: 'none', padding: '2px 5px', borderRadius: '4px', fontSize: '9.5px', fontWeight: '800', cursor: 'pointer' }}>EN</button>
