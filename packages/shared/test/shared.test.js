@@ -40,3 +40,16 @@ test('Shared: Sifter builds lateral links', () => {
   assert.ok(links.factCheckUrl.includes('miracle%20cure%20cancer'));
   assert.ok(links.domainInvestigateUrl.includes('snopes.com'));
 });
+
+test('Shared: Slug resolution accurately maps hyphenated slugs for all 24 archetypes', () => {
+  assert.strictEqual(shared.idToSlug('ad_hominem'), 'ad-hominem');
+  assert.strictEqual(shared.slugToId('ad-hominem'), 'ad_hominem');
+  
+  for (const f of shared.fallacies) {
+    const slug = shared.idToSlug(f.id);
+    assert.ok(!slug.includes('_'), `Slug for ${f.id} must not contain underscores`);
+    const resolved = shared.getFallacyBySlug(slug);
+    assert.ok(resolved, `Must resolve fallacy for slug: ${slug}`);
+    assert.strictEqual(resolved.id, f.id);
+  }
+});

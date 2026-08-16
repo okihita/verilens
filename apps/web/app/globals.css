@@ -79,6 +79,57 @@
               linear-gradient(to bottom, transparent 60%, var(--bg-app) 100%);
 }
 
+/* Fallacy Codex Washed Fresco Card Backgrounds */
+.fallacy-card-fresco-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  opacity: 0.48;
+  filter: contrast(1.10) saturate(1.18) brightness(1.02);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fallacy-card-fresco-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.70) 50%,
+    rgba(248, 250, 252, 0.82) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fallacy-card-flip-wrapper:hover .fallacy-card-fresco-bg {
+  transform: scale(1.06);
+  opacity: 0.62;
+}
+
+[data-theme="dark"] .fallacy-card-fresco-bg {
+  opacity: 0.38;
+  filter: contrast(1.18) saturate(1.25) brightness(0.90);
+}
+
+[data-theme="dark"] .fallacy-card-fresco-scrim {
+  background: linear-gradient(
+    135deg,
+    rgba(13, 18, 36, 0.88) 0%,
+    rgba(13, 18, 36, 0.68) 50%,
+    rgba(9, 13, 26, 0.85) 100%
+  );
+}
+
+[data-theme="dark"] .fallacy-card-flip-wrapper:hover .fallacy-card-fresco-bg {
+  transform: scale(1.06);
+  opacity: 0.50;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
