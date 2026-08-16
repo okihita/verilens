@@ -58,6 +58,7 @@ Use Conventional Commits standard:
 * **Strict No Monospace Rule:** DO NOT use monospace fonts (`font-mono`, `var(--font-mono)`, `JetBrains Mono`, `monospace`) in any user-facing UI copy, headlines, eyebrow kickers, tags, badges, reality stats, or buttons. All typography must strictly use clean, authoritative sans-serif (`var(--font-sans)`, `Plus Jakarta Sans`, `-apple-system`).
 * **Strict Zero Emojis Rule:** Zero emojis in code, UI, labels, and commit messages.
 * **No SaaS Biscuit Pills:** No rounded pill badges with glowing border outlines placed above headlines.
+* **Strict No Glassmorphism Rule:** DO NOT use glassmorphism, backdrop-filter blurs, milky frosted layers, or semi-translucent faux-glass containers in any web UI surfaces, modals, cards, or canvas social share exports. All surfaces must use crisp, solid, high-contrast civic editorial surfaces with clean structural borders.
 
 ---
 
