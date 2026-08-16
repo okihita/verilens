@@ -1,12 +1,12 @@
 'use client';
 
-import { use, useState, useMemo } from 'react';
+import { use, useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug, slugToId } from '@verilens/shared';
 import { useTranslation } from '../../../../lib/i18n';
 
-export default function FallacyDossierPage({ params }) {
+export default function FallacyDetailsPage({ params }) {
   const resolvedParams = use(params);
   const rawSlug = resolvedParams.slug;
   const targetId = slugToId(rawSlug);
@@ -23,6 +23,9 @@ export default function FallacyDossierPage({ params }) {
   const [imageError, setImageError] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [activeCaseStudyTab, setActiveCaseStudyTab] = useState(0);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [instagramFeedback, setInstagramFeedback] = useState(false);
 
   const imageSrc = `/assets/images/fallacies/${rawFallacy.id}.jpg`;
   const svgIllustration = (FALLACY_ILLUSTRATIONS && FALLACY_ILLUSTRATIONS[rawFallacy.id]) || '';
@@ -57,13 +60,54 @@ export default function FallacyDossierPage({ params }) {
     return rawFallacy.case_studies || [];
   }, [rawFallacy]);
 
-  // WhatsApp share text & link
-  const currentUrl = typeof window !== 'undefined'
-    ? window.location.href
-    : `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
-    
-  const shareText = `VeriLens Codex: Learn how to spot and debunk the "${fallacy.name}" fallacy (${fallacy.subtitle}): ${currentUrl}`;
-  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+  // Canonical share URLs
+  const canonicalUrl = `https://verilens.aprilwang.id/codex/${idToSlug(rawFallacy.id)}`;
+  const shareHeadline = `VeriLens: How to spot and debunk the "${fallacy.name}" fallacy (${fallacy.subtitle})`;
+  const shareTextWithUrl = `${shareHeadline} — Explore the full breakdown & SIFT defense: ${canonicalUrl}`;
+
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTextWithUrl)}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareHeadline)}&url=${encodeURIComponent(canonicalUrl)}`;
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(shareHeadline)}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`;
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`;
+
+  const handleCopyLink = async () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(canonicalUrl);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = canonicalUrl;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 3000);
+    } catch {
+      setIsCopied(false);
+    }
+  };
+
+  const handleInstagramShare = async () => {
+    await handleCopyLink();
+    setInstagramFeedback(true);
+    setTimeout(() => setInstagramFeedback(false), 5000);
+  };
+
+  // Close share modal on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsShareModalOpen(false);
+      }
+    };
+    if (isShareModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isShareModalOpen]);
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-app)', paddingBottom: '80px' }}>
@@ -85,26 +129,24 @@ export default function FallacyDossierPage({ params }) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsShareModalOpen(true)}
               className="btn btn-outline"
               style={{
                 padding: '6px 14px',
                 fontSize: '12.5px',
-                textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                borderColor: '#25D366',
-                color: 'var(--text-main)'
+                gap: '8px',
+                borderColor: 'var(--accent-blue-light)',
+                color: 'var(--text-main)',
+                cursor: 'pointer'
               }}
-              title="Share on WhatsApp"
+              title="Share this Card on WhatsApp, Instagram, X, LinkedIn, Telegram"
             >
-              <span style={{ color: '#25D366', fontWeight: '900' }}>●</span>
-              <span>{t('codex_share_whatsapp')}</span>
-            </a>
+              <span style={{ color: 'var(--accent-blue-light)', fontWeight: '900' }}>↗</span>
+              <span>{t('codex_share_btn')}</span>
+            </button>
             <Link
               href="/#codex"
               className="btn btn-outline"
@@ -168,7 +210,7 @@ export default function FallacyDossierPage({ params }) {
             </div>
           </div>
 
-          {/* Right Column: Executive Dossier & Taxonomy Data */}
+          {/* Right Column: Card Breakdown & Taxonomy Data */}
           <div>
             {/* Header Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
@@ -236,6 +278,23 @@ export default function FallacyDossierPage({ params }) {
                 <span>{t('codex_dossier_try_sandbox_btn')}</span>
                 <span>➔</span>
               </Link>
+              <button
+                onClick={() => setIsShareModalOpen(true)}
+                className="btn btn-outline"
+                style={{
+                  padding: '14px 20px',
+                  fontSize: '14px',
+                  fontWeight: '800',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>↗</span>
+                <span>{t('codex_share_btn')}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -460,6 +519,289 @@ export default function FallacyDossierPage({ params }) {
         </section>
 
       </div>
+
+      {/* Interactive Social Share Modal */}
+      {isShareModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '16px'
+          }}
+          onClick={() => setIsShareModalOpen(false)}
+        >
+          <div
+            className="card"
+            style={{
+              width: '100%',
+              maxWidth: '480px',
+              background: 'var(--bg-surface-elevated)',
+              border: '1px solid var(--border-card)',
+              borderRadius: 'var(--radius-lg)',
+              padding: '24px',
+              boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.5)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+              <div>
+                <h3 style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)', margin: 0 }}>
+                  {t('share_modal_title')}
+                </h3>
+                <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', margin: '2px 0 0' }}>
+                  {t('share_modal_desc')}
+                </p>
+              </div>
+              <button
+                onClick={() => setIsShareModalOpen(false)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'var(--text-muted)',
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  padding: '4px 8px'
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Fallacy Mini Card Banner */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '10px 12px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: 'var(--radius-md)',
+                marginBottom: '20px'
+              }}
+            >
+              <img
+                src={imageSrc}
+                alt={fallacy.name}
+                style={{ width: '48px', height: '48px', borderRadius: '8px', objectFit: 'cover' }}
+              />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {fallacy.name}
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--accent-amber)', fontWeight: '600' }}>
+                  {fallacy.subtitle}
+                </div>
+              </div>
+            </div>
+
+            {/* Social Share Channels Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '20px' }}>
+              {/* WhatsApp */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: '#25D366',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  transition: 'opacity 0.15s ease'
+                }}
+              >
+                <span>●</span>
+                <span>WhatsApp</span>
+              </a>
+
+              {/* Instagram (Copy Link for Bio / Stories) */}
+              <button
+                onClick={handleInstagramShare}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: 'linear-gradient(45deg, #F58529, #DD2A7B, #8134AF)',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>📷</span>
+                <span>Instagram</span>
+              </button>
+
+              {/* X / Twitter */}
+              <a
+                href={twitterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: '#0F1419',
+                  border: '1px solid var(--border-card)',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800'
+                }}
+              >
+                <span>𝕏</span>
+                <span>X / Twitter</span>
+              </a>
+
+              {/* Telegram */}
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: '#24A1DE',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800'
+                }}
+              >
+                <span>✈</span>
+                <span>Telegram</span>
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href={linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: '#0A66C2',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800'
+                }}
+              >
+                <span>in</span>
+                <span>LinkedIn</span>
+              </a>
+
+              {/* Facebook */}
+              <a
+                href={facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: '#1877F2',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  fontWeight: '800'
+                }}
+              >
+                <span>f</span>
+                <span>Facebook</span>
+              </a>
+            </div>
+
+            {/* Instagram Link Sticker Tip Feedback */}
+            {instagramFeedback && (
+              <div
+                style={{
+                  padding: '10px 12px',
+                  background: 'rgba(221, 42, 123, 0.15)',
+                  border: '1px solid rgba(221, 42, 123, 0.4)',
+                  borderRadius: '8px',
+                  fontSize: '12.5px',
+                  color: 'var(--text-main)',
+                  marginBottom: '16px',
+                  fontWeight: '600',
+                  lineHeight: '1.4'
+                }}
+              >
+                ✓ {t('share_instagram_tip')}
+              </div>
+            )}
+
+            {/* Direct Canonical Link Copy Field */}
+            <div>
+              <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '6px' }}>
+                {t('share_copy_link')}
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  type="text"
+                  readOnly
+                  value={canonicalUrl}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid var(--border-card)',
+                    background: 'var(--bg-surface)',
+                    color: 'var(--text-main)',
+                    fontSize: '12.5px',
+                    outline: 'none'
+                  }}
+                  onClick={(e) => e.currentTarget.select()}
+                />
+                <button
+                  onClick={handleCopyLink}
+                  className="btn btn-primary"
+                  style={{ padding: '8px 14px', fontSize: '12.5px', fontWeight: '800', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                >
+                  {isCopied ? t('share_link_copied') : t('share_copy_link')}
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
