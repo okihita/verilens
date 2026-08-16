@@ -49,7 +49,15 @@ Use Conventional Commits standard:
 * **Framework:** Next.js 16 (Turbopack) with React 19.
 * **Workspace Resolution:** Native `workspace:*` references across `apps/*` and `packages/*`.
 * **Testing:** Node.js native test runner (`node --test`).
-* **Design Aesthetic:** High-contrast civic editorial, zero emojis in codebase UI/labels, WCAG 2.1 AA accessibility.
+* **Design Aesthetic:** High-contrast civic editorial, zero emojis in codebase UI/labels, zero monospace fonts in UI copy/badges/kickers/stats/buttons, WCAG 2.1 AA accessibility.
+
+---
+
+## 4. Typography & Visual Directives
+
+* **Strict No Monospace Rule:** DO NOT use monospace fonts (`font-mono`, `var(--font-mono)`, `JetBrains Mono`, `monospace`) in any user-facing UI copy, headlines, eyebrow kickers, tags, badges, reality stats, or buttons. All typography must strictly use clean, authoritative sans-serif (`var(--font-sans)`, `Plus Jakarta Sans`, `-apple-system`).
+* **Strict Zero Emojis Rule:** Zero emojis in code, UI, labels, and commit messages.
+* **No SaaS Biscuit Pills:** No rounded pill badges with glowing border outlines placed above headlines.
 
 ---
 

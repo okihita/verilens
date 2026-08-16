@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { fallacies, FALLACY_ILLUSTRATIONS } from '@verilens/shared';
 import { recordCardFlipped } from '../../lib/gamification';
 import { useTranslation } from '../../lib/i18n';
+import HeroParallaxBackground from '../../components/HeroParallaxBackground';
 
 export default function HomePage() {
   const { t, lang, getLocalizedFallacy } = useTranslation();
@@ -24,7 +25,7 @@ export default function HomePage() {
   };
 
   const localizedFallacies = useMemo(() => {
-    return fallacies.map((item) => getLocalizedFallacy(item));
+    return fallacies.map((f) => getLocalizedFallacy(f));
   }, [lang, getLocalizedFallacy]);
 
   const filteredFallacies = useMemo(() => {
@@ -45,11 +46,31 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Consumer-Minded Emotional Hero Section (Loss-Aversion Framing) */}
-      <section style={{ padding: '52px 0 40px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
-        <div className="container" style={{ maxWidth: '880px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '5px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
-            <span>{t('hackathon_badge')}</span>
+      {/* Grand Full-Bleed Sistine Fresco Hero Section with Parallax */}
+      <section
+        style={{
+          position: 'relative',
+          padding: '104px 0 88px',
+          minHeight: '620px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          background: 'var(--bg-app)',
+          borderBottom: '1px solid var(--border-subtle)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Full-Bleed Colored Sistine Chapel Fresco Background with Scroll Parallax */}
+        <HeroParallaxBackground />
+
+        <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+            <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
+            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              {t('hackathon_badge')}
+            </span>
+            <span style={{ width: '18px', height: '1.5px', background: 'var(--accent-red)', opacity: 0.6 }} />
           </div>
 
           <h1 style={{ fontSize: 'clamp(30px, 5.5vw, 46px)', fontWeight: '900', letterSpacing: '-0.035em', lineHeight: '1.18', marginBottom: '16px', color: 'var(--text-main)' }}>
@@ -77,7 +98,7 @@ export default function HomePage() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', textAlign: 'center' }}>
             <div style={{ padding: '8px 12px' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-red)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-red)', letterSpacing: '-0.02em' }}>
                 {t('stat_faster_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -86,7 +107,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-amber)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-amber)', letterSpacing: '-0.02em' }}>
                 {t('stat_window_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -95,7 +116,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-emerald)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '17px', fontWeight: '900', color: 'var(--accent-emerald)', letterSpacing: '-0.02em' }}>
                 {t('stat_local_title')}
               </div>
               <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
@@ -293,10 +314,10 @@ export default function HomePage() {
                               />
                             ) : (
                               <div style={{ textAlign: 'center' }}>
-                                <span style={{ fontSize: '15px', fontWeight: '900', fontFamily: 'var(--font-mono)', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
+                                <span style={{ fontSize: '15px', fontWeight: '900', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
                                   {fallacyName ? fallacyName.substring(0, 2).toUpperCase() : 'VL'}
                                 </span>
-                                <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                                <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)' }}>
                                   #{String(fallacies.findIndex(f => f.id === item.id) + 1).padStart(2, '0')}
                                 </span>
                               </div>

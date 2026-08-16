@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { scenarios } from '@verilens/shared';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
 import { useTranslation } from '../../../lib/i18n';
+import { playStart, playCorrect, playIncorrect, playComplete } from '../../../lib/audio';
 
 export default function DuelPage() {
   const { t, lang, getLocalizedScenario } = useTranslation();
@@ -34,22 +35,29 @@ export default function DuelPage() {
         setP2Hp(nextHp);
         setRoundFeedback(`Player 1 struck Player 2! (${currentScenario.correct_fallacy_name})`);
         if (nextHp === 0) {
+          playComplete();
           setWinner('Player 1');
           addPlayerXP(250);
           unlockBadge('first_shield');
+        } else {
+          playCorrect();
         }
       } else {
         const nextHp = Math.max(0, p1Hp - 25);
         setP1Hp(nextHp);
         setRoundFeedback(`Player 2 struck Player 1! (${currentScenario.correct_fallacy_name})`);
         if (nextHp === 0) {
+          playComplete();
           setWinner('Player 2');
           addPlayerXP(250);
           unlockBadge('first_shield');
+        } else {
+          playCorrect();
         }
       }
     } else {
       setRoundFeedback(`Wrong guess by Player ${player}!`);
+      playIncorrect();
     }
 
     setTimeout(() => {
@@ -59,6 +67,7 @@ export default function DuelPage() {
   };
 
   const restartDuel = () => {
+    playStart();
     setP1Hp(100);
     setP2Hp(100);
     setWinner(null);

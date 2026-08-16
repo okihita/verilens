@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
 import { useTranslation } from '../../../lib/i18n';
+import { playStart, playCorrect, playStreak, playIncorrect, playComplete } from '../../../lib/audio';
 import CertificateModal from '../../../components/CertificateModal';
 
 const GAUNTLET_ITEMS_EN = [
@@ -163,6 +164,7 @@ export default function GauntletPage() {
   }, [gameState, timeLeft]);
 
   const startGame = () => {
+    playStart();
     setTimeLeft(60);
     setCurrentIndex(0);
     setScore(0);
@@ -175,6 +177,7 @@ export default function GauntletPage() {
   };
 
   const endGame = () => {
+    playComplete();
     setGameState('FINISHED');
   };
 
@@ -193,6 +196,12 @@ export default function GauntletPage() {
       setScore((prev) => prev + points);
       setFeedbackFlash('CORRECT');
 
+      if (newStreak >= 4) {
+        playStreak(newStreak);
+      } else {
+        playCorrect();
+      }
+
       if (newStreak >= 5) {
         unlockBadge('streak_five');
       }
@@ -200,6 +209,7 @@ export default function GauntletPage() {
       setStreak(0);
       setMultiplier(1);
       setFeedbackFlash('WRONG');
+      playIncorrect();
     }
 
     setHistory((prev) => [...prev, { item: currentItem, choice, isCorrect }]);
