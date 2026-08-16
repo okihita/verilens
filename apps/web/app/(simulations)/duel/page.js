@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { scenarios } from '@verilens/shared';
 import { addPlayerXP, unlockBadge } from '../../../lib/gamification';
+import { useTranslation } from '../../../lib/i18n';
 
 export default function DuelPage() {
+  const { t, lang, getLocalizedScenario } = useTranslation();
   const [deck, setDeck] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [p1Hp, setP1Hp] = useState(100);
@@ -22,7 +24,8 @@ export default function DuelPage() {
   const handlePlayerAnswer = (player, selectedOptionId) => {
     if (winner || roundFeedback) return;
 
-    const currentScenario = deck[currentIndex % deck.length];
+    const rawScenario = deck[currentIndex % deck.length];
+    const currentScenario = getLocalizedScenario(rawScenario);
     const isCorrect = selectedOptionId === currentScenario.correct_fallacy_id;
 
     if (isCorrect) {
@@ -68,7 +71,8 @@ export default function DuelPage() {
     return <div className="container" style={{ padding: '60px 20px', textAlign: 'center' }}>Loading duel arena...</div>;
   }
 
-  const scenario = deck[currentIndex % deck.length];
+  const rawScenario = deck[currentIndex % deck.length];
+  const scenario = getLocalizedScenario(rawScenario);
 
   return (
     <div className="container" style={{ maxWidth: '1040px', padding: '30px 16px' }}>

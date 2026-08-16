@@ -3,8 +3,8 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { TRANSLATIONS, getLocalizedFallacy, SUPPORTED_LANGUAGES } = require('../lib/i18n.js');
-const { fallacies } = require('@verilens/shared');
+const { TRANSLATIONS, getLocalizedFallacy, getLocalizedScenario, SUPPORTED_LANGUAGES } = require('../lib/i18n.js');
+const { fallacies, scenarios } = require('@verilens/shared');
 
 function collectSourceFiles(dir) {
   let results = [];
@@ -238,4 +238,27 @@ test('i18n: Navbar component does not contain duplicate ref bindings across desk
     0,
     `Found duplicate ref bindings in Navbar.js: ${duplicates.map(([name, count]) => `${name} (${count}x)`).join(', ')}`
   );
+});
+
+test('i18n: getLocalizedScenario returns valid localized metadata for all 8 scenarios across 5 languages', () => {
+  assert.ok(scenarios && scenarios.length >= 8, 'At least 8 scenarios must be loaded');
+
+  for (const langObj of SUPPORTED_LANGUAGES) {
+    const langCode = langObj.code;
+    for (const rawScenario of scenarios) {
+      const localized = getLocalizedScenario(rawScenario, langCode);
+
+      assert.ok(localized.headline && localized.headline.length > 5, `Scenario ${rawScenario.id} must have headline in ${langCode}`);
+      assert.ok(localized.platform && localized.platform.length > 2, `Scenario ${rawScenario.id} must have platform in ${langCode}`);
+      assert.ok(localized.context && localized.context.length > 5, `Scenario ${rawScenario.id} must have context in ${langCode}`);
+      assert.ok(localized.explanation && localized.explanation.length > 10, `Scenario ${rawScenario.id} must have explanation in ${langCode}`);
+      assert.ok(localized.sift_recommendation && localized.sift_recommendation.length > 5, `Scenario ${rawScenario.id} must have sift_recommendation in ${langCode}`);
+      assert.ok(localized.correct_fallacy_name && localized.correct_fallacy_name.length > 2, `Scenario ${rawScenario.id} must have correct_fallacy_name in ${langCode}`);
+
+      assert.strictEqual(localized.options.length, 4, `Scenario ${rawScenario.id} must have 4 options in ${langCode}`);
+      for (const opt of localized.options) {
+        assert.ok(opt.name && opt.name.length > 2, `Option ${opt.id} in scenario ${rawScenario.id} must have a localized name in ${langCode}`);
+      }
+    }
+  }
 });

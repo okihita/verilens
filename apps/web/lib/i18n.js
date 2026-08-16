@@ -99,6 +99,40 @@ export const TRANSLATIONS = {
     btn_factual: 'FACTUAL REPORT',
     btn_scam: 'SCAM / PHISHING',
 
+    // Arena Simulation
+    arena_badge: 'UNESCO Cognitive Gym',
+    arena_title: 'The Bias Spotter Arena',
+    arena_desc: 'Put your critical thinking reflexes to the test! You will face 5 real-world viral scenarios (scams, outrage headlines, deepfake transcripts). Spot the underlying fallacy before the clock runs out.',
+    arena_rules_title: 'Arena Rules:',
+    arena_rule_1: '5 Micro-Rounds: One viral post or claim per round.',
+    arena_rule_2: 'Streak Multipliers: Correct answers in a row boost your XP (1x, 2x, 3x).',
+    arena_rule_3: 'Pedagogical Feedback: Learn the UNESCO SIFT move for every scenario.',
+    arena_start_btn: 'Enter the Arena',
+    arena_round_label: 'Round',
+    arena_of_label: 'of',
+    arena_round_title: 'Spot the Weaponized Bias',
+    arena_streak: 'Streak',
+    arena_medium: 'Medium:',
+    arena_context: 'Context:',
+    arena_correct_spot: 'CORRECT SPOT',
+    arena_manipulation_missed: 'MANIPULATION MISSED',
+    arena_sift_label: 'UNESCO SIFT Lateral Move:',
+    arena_next_btn: 'Next Scenario',
+    arena_eval_btn: 'View Final Evaluation',
+    arena_finished_badge: 'ARENA FINISHED',
+    arena_finished_title: 'Arena Challenge Complete!',
+    arena_finished_desc: 'UNESCO Media & Information Literacy Assessment',
+    arena_grade_label: 'Assigned Grade',
+    arena_score_label: 'Total Score',
+    arena_max_streak_label: 'Max Streak',
+    arena_completed_label: 'Completed',
+    arena_cert_btn: 'Claim UNESCO Certificate',
+    arena_replay_btn: 'Play Another Round',
+    arena_test_live_btn: 'Test Live Articles',
+    rank_master: 'Master Critical Thinker',
+    rank_proficient: 'Proficient Fact-Checker',
+    rank_developing: 'Developing Analyst',
+
     // Footer
     footer_desc: 'An open-access media & information literacy ecosystem combining gamified cognitive conditioning with real-time browser protection. Built for the UNESCO Global MIL Youth Hackathon 2026.',
     footer_train_title: 'Training Games',
@@ -195,6 +229,40 @@ export const TRANSLATIONS = {
     btn_fallacy: 'SESAT PIKIR / BIAS',
     btn_factual: 'LAPORAN FAKTUAL',
     btn_scam: 'PENIPUAN / JEBAKAN',
+
+    // Arena Simulation
+    arena_badge: 'Sasana Kognitif UNESCO',
+    arena_title: 'Arena Deteksi Bias',
+    arena_desc: 'Uji refleks berpikir kritismu! Kamu akan menghadapi 5 skenario viral nyata (penipuan, judul umpan amarah, transkrip deepfake). Temukan sesat pikir yang tersembunyi.',
+    arena_rules_title: 'Aturan Arena:',
+    arena_rule_1: '5 Ronde Mikro: Satu unggahan atau klaim viral per ronde.',
+    arena_rule_2: 'Pengali Beruntun: Jawaban benar beruntun melipatgandakan XP-mu (1x, 2x, 3x).',
+    arena_rule_3: 'Umpan Balik Edukatif: Pelajari langkah investigasi lateral UNESCO SIFT di setiap skenario.',
+    arena_start_btn: 'Masuk ke Arena',
+    arena_round_label: 'Ronde',
+    arena_of_label: 'dari',
+    arena_round_title: 'Kenali Bias Manipulatif',
+    arena_streak: 'Kombo',
+    arena_medium: 'Media:',
+    arena_context: 'Konteks:',
+    arena_correct_spot: 'DETEKSI TEPAT',
+    arena_manipulation_missed: 'MANIPULASI TERLEWAT',
+    arena_sift_label: 'Langkah Investigasi Lateral UNESCO SIFT:',
+    arena_next_btn: 'Skenario Berikutnya',
+    arena_eval_btn: 'Lihat Evaluasi Akhir',
+    arena_finished_badge: 'ARENA SELESAI',
+    arena_finished_title: 'Tantangan Arena Tuntas!',
+    arena_finished_desc: 'Penilaian Literasi Media & Informasi UNESCO',
+    arena_grade_label: 'Predikat Analisis',
+    arena_score_label: 'Total Skor',
+    arena_max_streak_label: 'Kombo Maksimal',
+    arena_completed_label: 'Selesai',
+    arena_cert_btn: 'Klaim Sertifikat UNESCO',
+    arena_replay_btn: 'Mainkan Ronde Baru',
+    arena_test_live_btn: 'Uji Artikel Langsung',
+    rank_master: 'Pakar Pemikir Kritis',
+    rank_proficient: 'Pemeriksa Fakta Mahir',
+    rank_developing: 'Analis Berkembang',
 
     // Footer
     footer_desc: 'Ekosistem literasi media dan informasi akses terbuka yang memadukan pengondisian kognitif berbasis permainan dengan perlindungan peramban web langsung. Dibuat untuk UNESCO Global MIL Youth Hackathon 2026.',
@@ -293,6 +361,40 @@ export const TRANSLATIONS = {
     btn_factual: 'REPORTE FACTUAL',
     btn_scam: 'ESTAFA / PHISHING',
 
+    // Arena Simulation
+    arena_badge: 'Gimnasio Cognitivo UNESCO',
+    arena_title: 'Arena de Detección de Sesgos',
+    arena_desc: '¡Pon a prueba tus reflejos de pensamiento crítico! Enfrentarás 5 escenarios virales reales (estafas, titulares de indignación, transcripciones deepfake). Detecta la falacia antes de que termine el tiempo.',
+    arena_rules_title: 'Reglas de la Arena:',
+    arena_rule_1: '5 Microrondas: Una publicación o afirmación viral por ronda.',
+    arena_rule_2: 'Multiplicadores de Racha: Las respuestas correctas consecutivas aumentan tus XP (1x, 2x, 3x).',
+    arena_rule_3: 'Retroalimentación Pedagógica: Aprende el movimiento lateral UNESCO SIFT para cada caso.',
+    arena_start_btn: 'Entrar a la Arena',
+    arena_round_label: 'Ronda',
+    arena_of_label: 'de',
+    arena_round_title: 'Detecta el Sesgo Manipulador',
+    arena_streak: 'Racha',
+    arena_medium: 'Medio:',
+    arena_context: 'Contexto:',
+    arena_correct_spot: 'DETECCIÓN CORRECTA',
+    arena_manipulation_missed: 'MANIPULACIÓN NO DETECTADA',
+    arena_sift_label: 'Movimiento Lateral UNESCO SIFT:',
+    arena_next_btn: 'Siguiente Escenario',
+    arena_eval_btn: 'Ver Evaluación Final',
+    arena_finished_badge: 'ARENA FINALIZADA',
+    arena_finished_title: '¡Desafío de Arena Completado!',
+    arena_finished_desc: 'Evaluación de Alfabetización Mediática e Informacional de la UNESCO',
+    arena_grade_label: 'Calificación Asignada',
+    arena_score_label: 'Puntuación Total',
+    arena_max_streak_label: 'Racha Máxima',
+    arena_completed_label: 'Completado',
+    arena_cert_btn: 'Reclamar Certificado UNESCO',
+    arena_replay_btn: 'Jugar Otra Ronda',
+    arena_test_live_btn: 'Probar Artículos Reales',
+    rank_master: 'Pensador Crítico Maestro',
+    rank_proficient: 'Verificador Competente',
+    rank_developing: 'Analista en Desarrollo',
+
     // Footer
     footer_desc: 'Ecosistema de alfabetización mediática e informacional que combina entrenamiento cognitivo gamificado con protección en tiempo real para el navegador. Desarrollado para el UNESCO Global MIL Youth Hackathon 2026.',
     footer_train_title: 'Juegos de Entrenamiento',
@@ -390,6 +492,40 @@ export const TRANSLATIONS = {
     btn_factual: 'RAPPORT FACTUEL',
     btn_scam: 'ARNAQUE / PHISHING',
 
+    // Arena Simulation
+    arena_badge: 'Gym Cognitive de l\'UNESCO',
+    arena_title: 'Arène de Détection des Biais',
+    arena_desc: 'Mets tes réflexes d\'esprit critique à l\'épreuve ! Tu feras face à 5 scénarios viraux réels (arnaques, titres sensationnalistes, faux contenus IA). Démasque le sophisme sous-jacent.',
+    arena_rules_title: 'Règles de l\'Arène :',
+    arena_rule_1: '5 Micro-Manches : Un post ou une affirmation virale par manche.',
+    arena_rule_2: 'Multiplicateurs de Série : Les bonnes réponses consécutives augmentent tes XP (1x, 2x, 3x).',
+    arena_rule_3: 'Pédagogie Active : Apprends le réflexe latéral UNESCO SIFT pour chaque situation.',
+    arena_start_btn: 'Entrer dans l\'Arène',
+    arena_round_label: 'Manche',
+    arena_of_label: 'sur',
+    arena_round_title: 'Repère le Biais Manipulateur',
+    arena_streak: 'Série',
+    arena_medium: 'Support :',
+    arena_context: 'Contexte :',
+    arena_correct_spot: 'DÉTECTION EXACTE',
+    arena_manipulation_missed: 'MANIPULATION MANQUÉE',
+    arena_sift_label: 'Réflexe Latéral UNESCO SIFT :',
+    arena_next_btn: 'Scénario Suivant',
+    arena_eval_btn: 'Voir le Bilan Final',
+    arena_finished_badge: 'ARÈNE TERMINÉE',
+    arena_finished_title: 'Défi de l\'Arène Terminé !',
+    arena_finished_desc: 'Évaluation de l\'Éducation aux Médias et à l\'Information de l\'UNESCO',
+    arena_grade_label: 'Mention Obtenue',
+    arena_score_label: 'Score Total',
+    arena_max_streak_label: 'Série Maximale',
+    arena_completed_label: 'Complété',
+    arena_cert_btn: 'Obtenir le Certificat UNESCO',
+    arena_replay_btn: 'Rejouer une Manche',
+    arena_test_live_btn: 'Tester des Articles Réels',
+    rank_master: 'Maître de l\'Esprit Critique',
+    rank_proficient: 'Vérificateur Confirmé',
+    rank_developing: 'Analyste en Progression',
+
     // Footer
     footer_desc: 'Écosystème éducatif d’Éducation aux Médias et à l’Information (EMI) combinant entraînement ludique et protection du navigateur en temps réel. Conçu pour le Hackathon Mondial UNESCO MIL Youth 2026.',
     footer_train_title: 'Jeux d’Entraînement',
@@ -486,6 +622,40 @@ export const TRANSLATIONS = {
     btn_fallacy: '逻辑谬误 / 偏见',
     btn_factual: '真实客观报道',
     btn_scam: '虚假诈骗 / 钓鱼',
+
+    // Arena Simulation
+    arena_badge: '联合国教科文组织思维训练馆',
+    arena_title: '偏见识别竞技场',
+    arena_desc: '测试你的批判性思维反射！你将面临 5 个真实的网络病毒式传播案例（诈骗陷阱、情绪煽动标题、深度伪造文字）。在倒计时结束前识破潜藏的逻辑谬误。',
+    arena_rules_title: '竞技场规则：',
+    arena_rule_1: '5 个微回合：每轮分析一条真实热传言论或欺诈诱饵。',
+    arena_rule_2: '连胜经验加成：连续答对可叠加经验翻倍奖励（1x、2x、3x）。',
+    arena_rule_3: '实战启发：掌握针对每个场景的 UNESCO SIFT 横向核查法。',
+    arena_start_btn: '进入竞技场',
+    arena_round_label: '第',
+    arena_of_label: '轮，共',
+    arena_round_title: '识别武器化偏见',
+    arena_streak: '连胜',
+    arena_medium: '传播媒介：',
+    arena_context: '背景语境：',
+    arena_correct_spot: '准确识别',
+    arena_manipulation_missed: '未识别出操纵',
+    arena_sift_label: '教科文组织 SIFT 横向核查步骤：',
+    arena_next_btn: '下一场景',
+    arena_eval_btn: '查看最终评估',
+    arena_finished_badge: '挑战完成',
+    arena_finished_title: '竞技场挑战通关！',
+    arena_finished_desc: '联合国教科文组织媒体与信息素养评估',
+    arena_grade_label: '评定等级',
+    arena_score_label: '总得分',
+    arena_max_streak_label: '最高连胜',
+    arena_completed_label: '完成进度',
+    arena_cert_btn: '领取联合国教科文组织证书',
+    arena_replay_btn: '再战一轮',
+    arena_test_live_btn: '核查真实文章',
+    rank_master: '批判性思维大师',
+    rank_proficient: '熟练事实核查员',
+    rank_developing: '进阶分析员',
 
     // Footer
     footer_desc: '面向全球青年的开源媒介与信息素养学习平台，融合游戏化思维训练与浏览器实时护盾技术。专为 2026 联合国教科文组织全球 MIL 青年黑客松打造。',
@@ -1181,6 +1351,275 @@ export const CHINESE_FALLACIES = {
   }
 };
 
+export const INDONESIAN_SCENARIOS = {
+  q1: {
+    headline: '🚨 DARURAT: Bantuan pemutihan pinjaman pendidikan kamu telah disetujui! Klaim dalam 15 menit sebelum kuota pemerintah ditutup selamanya.',
+    platform: 'Peringatan SMS / Terusan Telegram',
+    context: 'Seorang mahasiswa menerima pesan singkat mendadak yang memuat tautan Bitly yang dipersingkat.',
+    explanation: 'Penipu menciptakan batas waktu palsu (15 menit) untuk memicu kepanikan dan mencegah penerima memeriksa portal resmi kementerian secara mandiri.',
+    sift_recommendation: 'Berhenti! Jangan pernah mengklik tautan SMS yang mencurigakan. Buka portal resmi pemerintah langsung di tab baru.'
+  },
+  q2: {
+    headline: '“Pilihannya hanya dua: kamu mendukung penuh RUU pengawasan digital ini, atau kamu membiarkan teroris masuk ke bandara kita dengan leluasa!”',
+    platform: 'Wawancara Berita TV / Klip Viral Medsos',
+    context: 'Seorang politisi membela rancangan undang-undang retensi data dalam wawancara siaran langsung yang memanas.',
+    explanation: 'Pembicara menghapus puluhan alternatif perlindungan privasi bernuansa dan memaksakan ultimatum biner yang manipulatif.',
+    sift_recommendation: 'Cari Liputan Lebih Baik: Baca analisis hukum independen dari lembaga kebebasan sipil nirlaba.'
+  },
+  q3: {
+    headline: '“Para ilmuwan terkemuka diam-diam sepakat radiasi 5G merusak gelombang otak manusia. Media arus utama menolak memberitakan konspirasi ini!”',
+    platform: 'Video TikTok / Pesan Berantai WhatsApp',
+    context: 'Sebuah video dengan musik latar menegangkan yang telah ditonton lebih dari 2,4 juta kali.',
+    explanation: 'Menggunakan ketiadaan liputan media arus utama sebagai \'bukti\' konspirasi, sambil menggunakan kata mengelak (\'ilmuwan terkemuka\') tanpa menyebut nama satu institusi pun.',
+    sift_recommendation: 'Lacak Klaim: Periksa laporan konsensus radiasi telekomunikasi resmi dari WHO dan IEEE.'
+  },
+  q4: {
+    headline: '“Jangan repot-repot membaca riset ekonomi Dr. Sarah Lin tentang inflasi—dia mengendarai mobil sport mewah dan jelas seorang elitis yang sombong!”',
+    platform: 'Utas Diskusi Medsos',
+    context: 'Seorang komentator mengabaikan 60 halaman jurnal ekonomi peer-reviewed dengan menyerang kendaraan pribadi sang penulis.',
+    explanation: 'Menyerang gaya hidup pribadi peneliti alih-alih memeriksa metodologi statistik atau data empiris dalam makalah ilmiah tersebut.',
+    sift_recommendation: 'Investigasi Sumber: Baca ulasan sesama ekonom independen mengenai metodologinya, bukan hinaan pribadinya.'
+  },
+  q5: {
+    headline: '“Kota kita tertutup salju setebal 25 cm tadi malam! Perubahan iklim global resmi terbukti sebagai hoaks buatan birokrat!”',
+    platform: 'Unggahan Viral Media Sosial',
+    context: 'Foto halaman rumah yang tertutup salju tebal diunggah saat badai musim dingin lokal.',
+    explanation: 'Mengacaukan cuaca ekstrem lokal jangka pendek dengan tren iklim global multi-dekade, sengaja memilih satu hari beku sambil mengabaikan data kenaikan suhu 50 tahun.',
+    sift_recommendation: 'Cari Liputan Lebih Baik: Konsultasikan peta anomali iklim agregat resmi dari BMKG, NASA, dan NOAA.'
+  },
+  q6: {
+    headline: '“Megabintang sepak bola dunia Cristiano mengonsumsi teh detoks herbal ini setiap hari. Dia punya 600 juta pengikut, jadi teh ini pasti menyembuhkan penyakit kronis!”',
+    platform: 'Reels Sponsor Instagram',
+    context: 'Seorang atlet dengan ketenaran olahraga raksasa mempromosikan suplemen makanan tanpa izin BPOM.',
+    explanation: 'Mengasumsikan bakat atletik dan kharisma selebriti setara dengan keahlian medis dan farmakologis klinis.',
+    sift_recommendation: 'Investigasi Sumber: Verifikasi apakah suplemen tersebut memiliki izin edar dan uji keamanan klinis dari BPOM atau FDA.'
+  },
+  q7: {
+    headline: '“Jika kita tidak melarang buku ini sekarang juga, peradaban kita akan runtuh ke dalam anarki total, darah akan tertumpah, dan masa depan generasi muda hancur selamanya!”',
+    platform: 'Rapat Dengar Pendapat Publik',
+    context: 'Seorang pembicara yang emosional memprotes materi kurikulum perpustakaan sekolah.',
+    explanation: 'Menggunakan bahasa kiamat yang hiperbolis untuk memicu kepanikan akut alih-alih mendiskusikan kesesuaian usia materi secara terukur.',
+    sift_recommendation: 'Berhenti: Kenali alarmisme emosional dan mintalah tinjauan kurikulum pedagogis yang seimbang.'
+  },
+  q8: {
+    headline: '“Lebih dari 10 juta investor muda telah menyetorkan uang ke Token Quantum-Yield bulan ini. Jangan sampai kamu ketinggalan cuan besar!”',
+    platform: 'Server Diskusi Kripto / Iklan Medsos',
+    context: 'Banner sponsor yang mendesak pengguna untuk segera bergabung ke dalam liquidity pool aset kripto tak berizin.',
+    explanation: 'Memanfaatkan angka besar dan FOMO (takut ketinggalan) untuk meyakinkan korban bahwa skema tersebut aman semata-mata karena jutaan orang diklaim ikut bergabung.',
+    sift_recommendation: 'Investigasi Sumber: Cari data pendaftaran izin resmi di OJK atau Bappebti sebelum menginvestasikan dana.'
+  }
+};
+
+export const SPANISH_SCENARIOS = {
+  q1: {
+    headline: '🚨 URGENTE: ¡Tu solicitud de condonación de préstamos estudiantiles ha sido aprobada! Reclama en 15 minutos antes de que cierre el plazo federal.',
+    platform: 'Alerta SMS / Reenvío de Telegram',
+    context: 'Un estudiante recibe un mensaje de texto inesperado con un enlace acortado de Bitly.',
+    explanation: 'Los estafadores imponen plazos artificiales estrictos (15 minutos) para inducir pánico y evitar que la víctima verifique en portales oficiales.',
+    sift_recommendation: '¡Detente! Nunca hagas clic en enlaces SMS no solicitados. Abre el portal oficial directamente en una nueva pestaña.'
+  },
+  q2: {
+    headline: '“O apoyas plenamente nuestro proyecto de vigilancia digital, ¡o quieres que los terroristas entren libremente en nuestros aeropuertos!”',
+    platform: 'Entrevista de Televisión / Clip Viral en Redes',
+    context: 'Un político defiende una controvertida ley de registro de datos durante una entrevista televisiva.',
+    explanation: 'El orador elimina alternativas matizadas de seguridad y privacidad, forzando un falso dilema binario.',
+    sift_recommendation: 'Busca Mejor Cobertura: Consulta análisis jurídicos independientes de organizaciones de derechos civiles.'
+  },
+  q3: {
+    headline: '“Los principales científicos coinciden en secreto en que las frecuencias 5G alteran las ondas cerebrales. ¡Los medios tradicionales ocultan este encubrimiento!”',
+    platform: 'Video de TikTok / Cadena de WhatsApp',
+    context: 'Un video con música dramática que acumula más de 2,4 millones de reproducciones.',
+    explanation: 'Utiliza la falta de cobertura en medios como supuesta \'prueba\' de conspiración, apoyándose en términos ambiguos sin citar instituciones reales.',
+    sift_recommendation: 'Rastrea la Afirmación: Verifica los consensos científicos de la OMS y el IEEE sobre radiaciones no ionizantes.'
+  },
+  q4: {
+    headline: '“No te molestes en leer el estudio sobre inflación de la Dra. Sarah Lin: ¡conduce un coche deportivo de lujo y es una elitista desconectada de la realidad!”',
+    platform: 'Foro Político en Redes',
+    context: 'Un usuario descarta un artículo económico de 60 páginas atacando el vehículo del autor.',
+    explanation: 'Ataca el estilo de vida del investigador en lugar de evaluar la metodología o los datos presentados en el estudio.',
+    sift_recommendation: 'Investiga la Fuente: Lee las revisiones por pares de otros economistas sobre su metodología.'
+  },
+  q5: {
+    headline: '“¡Nuestra ciudad amaneció con 25 cm de nieve! ¡El cambio climático es oficialmente una farsa inventada por burócratas!”',
+    platform: 'Publicación Viral en Redes',
+    context: 'Foto de una calle nevada publicada durante una tormenta de invierno local.',
+    explanation: 'Confunde el clima meteorológico local a corto plazo con las tendencias climáticas globales a largo plazo, seleccionando un día frío e ignorando décadas de datos.',
+    sift_recommendation: 'Busca Mejor Cobertura: Consulta los mapas de anomalías climáticas agregadas de la NASA y la NOAA.'
+  },
+  q6: {
+    headline: '“La superestrella del fútbol Cristiano recomienda este té détox. Tiene 600 millones de seguidores, ¡así que debe curar enfermedades metabólicas!”',
+    platform: 'Reel Patrocinado en Instagram',
+    context: 'Un atleta de fama mundial promociona un suplemento dietético no regulado.',
+    explanation: 'Supone erróneamente que el talento deportivo y la fama en redes equivalen a conocimiento bioquímico y médico.',
+    sift_recommendation: 'Investiga la Fuente: Verifica si el producto cuenta con aprobación sanitaria y ensayos clínicos oficiales.'
+  },
+  q7: {
+    headline: '“¡Si no prohibimos este libro de inmediato, nuestra civilización colapsará en la anarquía total y la sociedad quedará arruinada para siempre!”',
+    platform: 'Audiencia Pública Escolar',
+    context: 'Un orador apasionado protesta contra un libro de la biblioteca escolar.',
+    explanation: 'Utiliza un lenguaje apocalíptico para provocar pánico en lugar de analizar con serenidad la idoneidad pedagógica.',
+    sift_recommendation: 'Detente: Identifica el alarmismo emocional y solicita evaluaciones pedagógicas imparciales.'
+  },
+  q8: {
+    headline: '“Más de 10 millones de jóvenes inversores ya han depositado dinero en Quantum-Yield Token este mes. ¡No te quedes fuera!”',
+    platform: 'Servidor de Trading / Anuncio de Redes',
+    context: 'Un banner patrocinado que insta a unirse a un fondo de inversión no regulado.',
+    explanation: 'Explota el miedo a perderse algo (FOMO) y grandes cifras para convencer a la víctima de que el proyecto es legítimo.',
+    sift_recommendation: 'Investiga la Fuente: Consulta los registros de los reguladores financieros oficiales.'
+  }
+};
+
+export const FRENCH_SCENARIOS = {
+  q1: {
+    headline: '🚨 URGENT : Votre bourse d\'annulation de prêt étudiant a été approuvée ! Réclamez sous 15 minutes avant la clôture définitive.',
+    platform: 'Alerte SMS / Transfert Telegram',
+    context: 'Un étudiant reçoit un SMS inattendu contenant un lien raccourci Bitly.',
+    explanation: 'Les escrocs imposent un faux compte à rebours (15 minutes) pour provoquer la panique et empêcher toute vérification sur les sites officiels.',
+    sift_recommendation: 'Stop ! Ne clique jamais sur des liens SMS imprévus. Ouvre directement le portail gouvernemental officiel.'
+  },
+  q2: {
+    headline: '“Soit vous soutenez notre projet de loi de surveillance numérique, soit vous laissez les terroristes entrer librement dans nos aéroports !”',
+    platform: 'Interview Télévisée / Extrait Viral sur X',
+    context: 'Un responsable politique défend un projet de loi controversé lors d\'un débat télévisé houleux.',
+    explanation: 'L\'orateur occulte toutes les solutions intermédiaires respectueuses de la vie privée pour imposer un faux dilemme anxiogène.',
+    sift_recommendation: 'Trouve une Meilleure Couverture : Consulte les analyses juridiques d\'organisations indépendantes de libertés publiques.'
+  },
+  q3: {
+    headline: '“Les plus grands scientifiques s\'accordent en secret : la 5G altère les ondes cérébrales. Les médias grand public refusent de révéler ce complot !”',
+    platform: 'Vidéo TikTok / Chaîne WhatsApp',
+    context: 'Une vidéo avec une bande-son dramatique cumulant plus de 2,4 millions de vues.',
+    explanation: 'Présente l\'absence de couverture médiatique comme la \'preuve\' d\'un complot, en utilisant des formules floues sans nommer aucun institut.',
+    sift_recommendation: 'Remonte à la Source : Vérifie les rapports de consensus scientifique de l\'OMS et de l\'IEEE.'
+  },
+  q4: {
+    headline: '“Ne perdez pas de temps à lire l\'étude sur l\'inflation du Dr Sarah Lin : elle roule en voiture de sport de luxe et n\'a aucune idée de la réalité !”',
+    platform: 'Fil de Discussion Politique',
+    context: 'Un internaute rejette une étude économique de 60 pages évaluée par des pairs en critiquant la voiture de l\'autrice.',
+    explanation: 'Attaque le train de vie personnel du chercheur au lieu d\'analyser la méthodologie statistique et les données empiriques.',
+    sift_recommendation: 'Évalue la Source : Lis les revues critiques rédigées par d\'autres économistes, et non les attaques personnelles.'
+  },
+  q5: {
+    headline: '“Notre ville a reçu 25 cm de neige cette nuit ! Le dérèglement climatique mondial est officiellement une imposture de bureaucrates !”',
+    platform: 'Publication Virale sur les Réseaux',
+    context: 'Photo d\'une allée enneigée prise lors d\'une tempête hivernale locale.',
+    explanation: 'Confond la météo locale ponctuelle avec les tendances climatiques globales sur plusieurs décennies, en isolant un jour de gel contre 50 ans de données thermiques.',
+    sift_recommendation: 'Trouve une Meilleure Couverture : Consulte les cartes d\'anomalies thermiques mondiales de la NASA et de Météo-France.'
+  },
+  q6: {
+    headline: '“La superstar du football Cristiano soutient cette tisane détox. Avec ses 600 millions d\'abonnés, c\'est la preuve qu\'elle guérit les maladies !”',
+    platform: 'Reel Sponsorisé sur Instagram',
+    context: 'Un sportif mondialement célèbre fait la promotion d\'un complément alimentaire non homologué.',
+    explanation: 'Associe à tort la notoriété sportive et le charisme d\'une célébrité à une expertise pharmacologique et médicale.',
+    sift_recommendation: 'Évalue la Source : Vérifie si le produit dispose d\'une autorisation de mise sur le marché délivrée par les autorités de santé.'
+  },
+  q7: {
+    headline: '“Si nous n\'interdisons pas ce livre immédiatement, notre civilisation s\'effondrera dans l\'anarchie et notre jeunesse sera perdue à jamais !”',
+    platform: 'Audition Publique Scolaire',
+    context: 'Un intervenant virulent réclame le retrait d\'un ouvrage de la bibliothèque.',
+    explanation: 'Mobilise un vocabulaire apocalyptique pour susciter une peur panique plutôt que d\'évaluer sereinement la pertinence pédagogique.',
+    sift_recommendation: 'Stop : Repère l\'alarmisme émotionnel et demande des avis pédagogiques équilibrés.'
+  },
+  q8: {
+    headline: '“Plus de 10 millions de jeunes investisseurs ont déjà rejoint le token Quantum-Yield ce mois-ci. Ne reste pas à la traîne !”',
+    platform: 'Serveur Discord de Trading / Publicité Web',
+    context: 'Une bannière publicitaire incitant à déposer des fonds dans un projet crypto non régulé.',
+    explanation: 'Exploite l\'effet de meute et la peur de rater une opportunité (FOMO) pour faire croire à la légitimité du projet.',
+    sift_recommendation: 'Évalue la Source : Vérifie les registres officiels des autorités des marchés financiers.'
+  }
+};
+
+export const CHINESE_SCENARIOS = {
+  q1: {
+    headline: '🚨 紧急通知：你的助学贷款全额减免申请已获批准！请在15分钟内点击领取，逾期国家通道将永久关闭。',
+    platform: '短信警报 / Telegram 转发消息',
+    context: '一名学生突然收到一条包含可疑短网址链接的陌生短信。',
+    explanation: '不法分子设置极短的虚假倒计时（15分钟），利用恐慌情绪阻止受害者独立前往官方政务网站核实。',
+    sift_recommendation: '停下！切勿点击未经核实的短信短链接。请直接在浏览器新标签页中访问官方教育门户网站。'
+  },
+  q2: {
+    headline: '“要么你百分之百支持这项数字全面监控法案，要么你就是想放任恐怖分子随意潜入我们的机场！”',
+    platform: '电视新闻专访 / 社交平台热传短视频',
+    context: '一名政客在直播访谈中激烈辩护一项极具争议的个人数据留存法案。',
+    explanation: '发言者蓄意抹杀兼顾隐私与国家安全的技术折中方案，将其歪曲为非黑即白的极端道德绑架。',
+    sift_recommendation: '寻找更优质信源：查阅非营利独立法律研究机构与数字公民权利组织的技术白皮书。'
+  },
+  q3: {
+    headline: '“多位顶级科学家私下一致证实5G电磁波会永久改变人类大脑脑电波，主流媒体正全力封杀这一惊天内幕！”',
+    platform: '短视频平台爆款视频 / 聊天群聊转发链',
+    context: '一段配有悬疑惊悚背景音乐、播放量超240万次的热门短视频。',
+    explanation: '将主流媒体未予报道歪曲为存在幕后黑手的“确凿铁证”，通篇使用“顶级科学家”等含糊其辞的推诿词，却未列出任何学术机构。',
+    sift_recommendation: '溯源查证：在世界卫生组织（WHO）和电气电子工程师学会（IEEE）官方数据库中检索电磁辐射安全标准共识报告。'
+  },
+  q4: {
+    headline: '“别费劲读萨拉·林博士关于通胀的经济学报告了——她天天开着豪华跑车，明摆着是个脱离群众的不良精英！”',
+    platform: '论坛热帖 / 社交平台评论区',
+    context: '一名评论者通过攻击作者的名下车辆，全盘否定一份长达60页的同行评审权威经济学论文。',
+    explanation: '纯粹针对学者的个人生活方式进行人身抹黑与人格贬损，完全规避对其论文模型与实证数据的学术探讨。',
+    sift_recommendation: '核实信源：查阅同行经济学家针对该论文计量模型的同行评审意见，而非聚焦于评论区的人身攻击。'
+  },
+  q5: {
+    headline: '“我们城市昨晚积雪厚达25厘米！这正式证明全球变暖根本就是官僚们编造出来的惊天骗局！”',
+    platform: '社交平台爆款图文动态',
+    context: '在一次极端暴风雪期间拍摄的自家车道被大雪封堵的照片。',
+    explanation: '将短期的局部单点天气现象与跨越数十年的全球气候宏观趋势混为一谈，刻意单挑极寒个案而无视半个世纪以来的全球地表均温攀升数据。',
+    sift_recommendation: '寻找更优质信源：查阅中国气象局、NASA及NOAA发布的全球地表温度距平宏观趋势图。'
+  },
+  q6: {
+    headline: '“全球顶级足球巨星C罗亲自代言并每天饮用这款草本排毒茶。他拥有6亿粉丝，这款茶绝对能根治各种代谢慢性病！”',
+    platform: '社交平台赞助推广短视频',
+    context: '拥有全球影响力的顶尖体育明星在广告中推广一款未经临床验证的保健冲剂。',
+    explanation: '将体育竞技领域的杰出成就与公众影响力，盲目等同于生化药理学与临床医学的专业权威。',
+    sift_recommendation: '核查信源：在国家药品监督管理部门或国际药监机构数据库中查询该保健品是否具备临床安全批件。'
+  },
+  q7: {
+    headline: '“如果我们不立刻全面封禁这本书，我们的文明将彻底陷入血腥动乱，整个社会的未来将被永久毁灭！”',
+    platform: '教育委员会公开听证会现场',
+    context: '一名发言者情绪激动地抗议校图书馆采购的一本课外拓展读物。',
+    explanation: '使用毁灭性、末日审判式的极端恐吓言辞诱发群体性恐慌，刻意回避对读物分级与学术适龄性的理性研讨。',
+    sift_recommendation: '停下反思：辨识情绪化的末日预言恐吓，要求调取专业教育专家委员会的客观分级评估报告。'
+  },
+  q8: {
+    headline: '“本月已有超过1000万年轻投资者火速注资‘量子收益币’。机不可失，千万别被时代列车抛在身后！”',
+    platform: '投资交流群 / 社交平台弹窗推广',
+    context: '一条催促用户立刻向无牌照加密资产资金池转账的赞助推广横幅。',
+    explanation: '利用虚构的庞大参与人数与“错失恐惧症”（FOMO），诱导受害者误以为“大家都在参与就必定安全正规”。',
+    sift_recommendation: '核查信源：在国家金融证券监管机构公开名录中核实该平台是否具备合法金融投资牌照。'
+  }
+};
+
+export function getLocalizedScenario(scenario, lang = 'en') {
+  if (!scenario) return {};
+  const id = scenario.id;
+  let localized = scenario;
+
+  if (lang === 'id' && INDONESIAN_SCENARIOS[id]) {
+    localized = { ...scenario, ...INDONESIAN_SCENARIOS[id] };
+  } else if (lang === 'es' && SPANISH_SCENARIOS[id]) {
+    localized = { ...scenario, ...SPANISH_SCENARIOS[id] };
+  } else if (lang === 'fr' && FRENCH_SCENARIOS[id]) {
+    localized = { ...scenario, ...FRENCH_SCENARIOS[id] };
+  } else if (lang === 'zh' && CHINESE_SCENARIOS[id]) {
+    localized = { ...scenario, ...CHINESE_SCENARIOS[id] };
+  }
+
+  const correctFallacy = getLocalizedFallacy({ id: scenario.correct_fallacy_id }, lang);
+  const correctName = correctFallacy.name || localized.correct_fallacy_name || scenario.correct_fallacy_name;
+
+  const localizedOptions = (scenario.options || []).map((opt) => {
+    const optFallacy = getLocalizedFallacy({ id: opt.id }, lang);
+    return {
+      ...opt,
+      name: optFallacy.name || opt.name
+    };
+  });
+
+  return {
+    ...localized,
+    correct_fallacy_name: correctName,
+    options: localizedOptions
+  };
+}
+
 export function getLocalizedFallacy(item, lang = 'en') {
   if (!item) return {};
   const normalizedId = item.id ? item.id.replace(/[-_]/g, '_') : '';
@@ -1240,6 +1679,14 @@ export function useTranslation() {
   };
 
   const getLocalized = (item) => getLocalizedFallacy(item, lang);
+  const getLocalizedScen = (item) => getLocalizedScenario(item, lang);
 
-  return { t, lang, setLanguage, languages: SUPPORTED_LANGUAGES, getLocalizedFallacy: getLocalized };
+  return {
+    t,
+    lang,
+    setLanguage,
+    languages: SUPPORTED_LANGUAGES,
+    getLocalizedFallacy: getLocalized,
+    getLocalizedScenario: getLocalizedScen
+  };
 }
