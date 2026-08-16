@@ -38,12 +38,24 @@ test('Gamification: 8 distinct achievement badges are registered', () => {
   }
 });
 
-test('Illustrations: All 12 UNESCO fallacies have bespoke SVG illustrations', () => {
+test('Illustrations: Core 12 UNESCO fallacies have bespoke SVG illustrations', () => {
+  const core12 = ['ad_hominem', 'false_dilemma', 'ad_metum', 'confirmation_bias', 'weasel_words', 'scam_urgency', 'strawman', 'bandwagon', 'sunk_cost', 'halo_effect', 'cherry_picking', 'conspiracy_framing'];
+  for (const id of core12) {
+    const svg = FALLACY_ILLUSTRATIONS[id];
+    assert.ok(svg, `Missing SVG illustration for fallacy: ${id}`);
+    assert.ok(svg.includes('<svg'), `Illustration must be valid SVG markup for: ${id}`);
+    assert.ok(svg.includes('</svg>'), `Illustration must close SVG tag for: ${id}`);
+  }
+});
+
+test('Taxonomy: All 24 registered fallacies have complete metadata', () => {
+  assert.strictEqual(fallaciesData.fallacies.length, 24);
   for (const f of fallaciesData.fallacies) {
-    const svg = FALLACY_ILLUSTRATIONS[f.id];
-    assert.ok(svg, `Missing SVG illustration for fallacy: ${f.id}`);
-    assert.ok(svg.includes('<svg'), `Illustration must be valid SVG markup for: ${f.id}`);
-    assert.ok(svg.includes('</svg>'), `Illustration must close SVG tag for: ${f.id}`);
+    assert.ok(f.id, 'Must have ID');
+    assert.ok(f.name, 'Must have name');
+    assert.ok(f.category, 'Must have category');
+    assert.ok(f.viral_example, 'Must have viral example');
+    assert.ok(f.reflection_prompt, 'Must have reflection prompt');
   }
 });
 

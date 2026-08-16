@@ -7,8 +7,8 @@ const assert = require('node:assert');
 
 const shared = require('../src/index.js');
 
-test('Shared: Fallacies taxonomy has 12 standardized archetypes', () => {
-  assert.strictEqual(shared.fallacies.length, 12);
+test('Shared: Fallacies taxonomy has 24 standardized archetypes', () => {
+  assert.strictEqual(shared.fallacies.length, 24);
   for (const f of shared.fallacies) {
     assert.ok(f.id, 'Must have ID');
     assert.ok(f.name, 'Must have name');

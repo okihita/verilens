@@ -12,14 +12,15 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [flippedCardId, setFlippedCardId] = useState(null);
 
-  const categories = ['All', 'Logic', 'Emotional', 'Attribution', 'Cognitive', 'Scam'];
+  const categories = ['All', 'Logic', 'Emotional', 'Attribution', 'Cognitive', 'Scam', 'Dialectical'];
   const categoryLabels = {
     All: t('cat_all'),
     Logic: t('cat_logic'),
     Emotional: t('cat_emotional'),
     Attribution: t('cat_attribution'),
     Cognitive: t('cat_cognitive'),
-    Scam: t('cat_scam')
+    Scam: t('cat_scam'),
+    Dialectical: t('cat_dialectical') || 'Dialectical'
   };
 
   const filteredFallacies = (fallacies || []).map((item) => getLocalizedFallacy(item, lang)).filter((item) => {
@@ -269,9 +270,35 @@ export default function HomePage() {
                       <div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                           <div
-                            style={{ width: '74px', height: '74px', borderRadius: '12px', background: 'var(--bg-surface-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}
-                            dangerouslySetInnerHTML={{ __html: svgIllustration }}
-                          />
+                            style={{
+                              width: '74px',
+                              height: '74px',
+                              borderRadius: '12px',
+                              background: 'var(--bg-surface-elevated)',
+                              border: `1.5px solid ${item.color ? item.color + '40' : 'var(--border-card)'}`,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              padding: '4px',
+                              overflow: 'hidden'
+                            }}
+                          >
+                            {svgIllustration ? (
+                              <div
+                                style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                dangerouslySetInnerHTML={{ __html: svgIllustration }}
+                              />
+                            ) : (
+                              <div style={{ textAlign: 'center' }}>
+                                <span style={{ fontSize: '15px', fontWeight: '900', fontFamily: 'var(--font-mono)', color: item.color, letterSpacing: '-0.02em', display: 'block' }}>
+                                  {fallacyName ? fallacyName.substring(0, 2).toUpperCase() : 'VL'}
+                                </span>
+                                <span style={{ fontSize: '8.5px', fontWeight: '800', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                                  #{String(fallacies.findIndex(f => f.id === item.id) + 1).padStart(2, '0')}
+                                </span>
+                              </div>
+                            )}
+                          </div>
                           <span style={{ fontSize: '10.5px', fontWeight: '800', padding: '3px 8px', borderRadius: '6px', background: 'rgba(255,255,255,0.06)', color: item.color, textTransform: 'uppercase' }}>
                             {item.category}
                           </span>
