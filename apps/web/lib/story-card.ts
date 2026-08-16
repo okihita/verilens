@@ -1,7 +1,7 @@
 /**
- * Story & Social Card Generator for VeriLens
- * Renders high-resolution 1080x1920 (Instagram Story / WhatsApp Status)
- * and 1080x1080 (Square Feed) images directly in browser canvas for viral sharing.
+ * VeriLens Solid Civic Editorial Social & Story Card Engine
+ * Generates museum-grade, high-contrast editorial posters directly on HTML5 Canvas.
+ * Strict No Glassmorphism: Uses solid, high-contrast, crisp architectural surfaces.
  */
 
 export interface StoryCardOptions {
@@ -12,7 +12,7 @@ export interface StoryCardOptions {
   color?: string;
   description: string;
   psychology: string;
-  format?: 'story' | 'square';
+  format?: 'story' | 'feed' | 'portrait';
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -75,10 +75,63 @@ function drawRoundedRect(
   ctx.closePath();
 }
 
+function drawCornerBrackets(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  length: number,
+  color: string,
+  lineWidth: number
+) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+
+  // Top-Left
+  ctx.beginPath();
+  ctx.moveTo(x, y + length);
+  ctx.lineTo(x, y);
+  ctx.lineTo(x + length, y);
+  ctx.stroke();
+
+  // Top-Right
+  ctx.beginPath();
+  ctx.moveTo(x + width - length, y);
+  ctx.lineTo(x + width, y);
+  ctx.lineTo(x + width, y + length);
+  ctx.stroke();
+
+  // Bottom-Right
+  ctx.beginPath();
+  ctx.moveTo(x + width, y + height - length);
+  ctx.lineTo(x + width, y + height);
+  ctx.lineTo(x + width - length, y + height);
+  ctx.stroke();
+
+  // Bottom-Left
+  ctx.beginPath();
+  ctx.moveTo(x + length, y + height);
+  ctx.lineTo(x, y + height);
+  ctx.lineTo(x, y + height - length);
+  ctx.stroke();
+}
+
 export async function generateStoryCardBlob(options: StoryCardOptions): Promise<Blob> {
-  const isStory = options.format !== 'square';
+  // Ensure web fonts are ready before canvas text rendering
+  if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+    try {
+      await document.fonts.ready;
+    } catch {
+      // Continue if font promise fails
+    }
+  }
+
+  const format = options.format || 'story';
   const width = 1080;
-  const height = isStory ? 1920 : 1080;
+  let height = 1920; // default 9:16 story
+  if (format === 'feed') height = 1080; // 1:1 square
+  if (format === 'portrait') height = 1350; // 4:5 portrait
 
   const canvas = document.createElement('canvas');
   canvas.width = width;
@@ -90,154 +143,157 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
 
   const themeColor = options.color || '#3B82F6';
 
-  // 1. Background Fill (Deep Luxury Editorial Dark #0B0F19)
-  ctx.fillStyle = '#0B0F19';
+  // 1. Solid Canvas Base (Crisp Obsidian Matte #0A0D14)
+  ctx.fillStyle = '#0A0D14';
   ctx.fillRect(0, 0, width, height);
 
-  // 2. Radial Ambient Color Glow at the top
-  const radialGlow = ctx.createRadialGradient(
-    width / 2,
-    isStory ? 480 : 360,
-    50,
-    width / 2,
-    isStory ? 480 : 360,
-    width * 0.75
-  );
-  radialGlow.addColorStop(0, hexToRgba(themeColor, 0.28));
-  radialGlow.addColorStop(1, 'rgba(11, 15, 25, 0)');
-  ctx.fillStyle = radialGlow;
-  ctx.fillRect(0, 0, width, height);
-
-  // 3. Subtle Outer Inner Border Frame
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+  // 2. Architectural Structural Border
+  const pad = 36;
+  ctx.strokeStyle = '#1E293B';
   ctx.lineWidth = 2;
-  drawRoundedRect(ctx, 36, 36, width - 72, height - 72, 32);
-  ctx.stroke();
+  ctx.strokeRect(pad, pad, width - pad * 2, height - pad * 2);
 
-  // 4. Header Eyebrow
-  ctx.font = '800 22px system-ui, -apple-system, sans-serif';
+  // 3. Gold Corner Brackets for Museum Archival Touch
+  drawCornerBrackets(ctx, pad + 8, pad + 8, width - (pad + 8) * 2, height - (pad + 8) * 2, 28, '#D97706', 3.5);
+
+  // 4. Solid Header Eyebrow Ribbon
+  const headerY = format === 'story' ? 95 : format === 'portrait' ? 85 : 75;
+  ctx.font = '800 20px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#94A3B8';
   ctx.textAlign = 'center';
-  ctx.letterSpacing = '0.12em';
-  const topY = isStory ? 100 : 70;
-  ctx.fillText('VERILENS • COGNITIVE DEFENSE CODEX', width / 2, topY);
+  ctx.letterSpacing = '0.14em';
+  ctx.fillText('VERILENS • CIVIC COGNITIVE DEFENSE', width / 2, headerY);
 
-  // 5. Category Pill
-  const pillY = isStory ? 140 : 100;
+  // 5. Solid Category Pill
+  const pillY = headerY + 30;
   const categoryText = (options.category || 'LOGICAL FALLACY').toUpperCase();
-  ctx.font = '800 20px system-ui, -apple-system, sans-serif';
-  ctx.letterSpacing = '0.06em';
-  const pillWidth = ctx.measureText(categoryText).width + 36;
-  const pillHeight = 36;
-  const pillX = (width - pillWidth) / 2;
+  ctx.font = '800 18px system-ui, -apple-system, sans-serif';
+  ctx.letterSpacing = '0.08em';
+  const textWidth = ctx.measureText(categoryText).width;
+  const pillW = textWidth + 36;
+  const pillH = 34;
+  const pillX = (width - pillW) / 2;
 
-  ctx.fillStyle = hexToRgba(themeColor, 0.18);
-  drawRoundedRect(ctx, pillX, pillY, pillWidth, pillHeight, 18);
+  // Solid fill and solid border
+  ctx.fillStyle = '#111827';
+  drawRoundedRect(ctx, pillX, pillY, pillW, pillH, 8);
   ctx.fill();
-  ctx.strokeStyle = hexToRgba(themeColor, 0.5);
+  ctx.strokeStyle = '#334155';
   ctx.lineWidth = 1.5;
-  drawRoundedRect(ctx, pillX, pillY, pillWidth, pillHeight, 18);
+  drawRoundedRect(ctx, pillX, pillY, pillW, pillH, 8);
   ctx.stroke();
 
   ctx.fillStyle = themeColor;
   ctx.textAlign = 'center';
-  ctx.fillText(categoryText, width / 2, pillY + 25);
+  ctx.fillText(categoryText, width / 2, pillY + 23);
 
-  // 6. Renaissance Fresco Artwork Image
-  const artSize = isStory ? 640 : 420;
+  // 6. Museum Framed Artwork Exhibition
+  let artSize = 600;
+  if (format === 'feed') artSize = 420;
+  if (format === 'portrait') artSize = 500;
+
   const artX = (width - artSize) / 2;
-  const artY = isStory ? 210 : 155;
+  const artY = pillY + pillH + (format === 'story' ? 36 : format === 'portrait' ? 24 : 16);
 
   try {
     const img = await loadImage(`/assets/images/fallacies/${options.fallacyId}.jpg`);
     ctx.save();
-    drawRoundedRect(ctx, artX, artY, artSize, artSize, 28);
+    drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
     ctx.clip();
     ctx.drawImage(img, artX, artY, artSize, artSize);
     ctx.restore();
 
-    // Artwork Border & Glow
-    ctx.strokeStyle = hexToRgba(themeColor, 0.65);
-    ctx.lineWidth = 4;
-    drawRoundedRect(ctx, artX, artY, artSize, artSize, 28);
+    // Solid Double Frame
+    ctx.strokeStyle = '#D97706';
+    ctx.lineWidth = 3;
+    drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#1E293B';
+    ctx.lineWidth = 1.5;
+    drawRoundedRect(ctx, artX - 4, artY - 4, artSize + 8, artSize + 8, 20);
     ctx.stroke();
   } catch {
-    // Fallback if image fails to load
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
-    drawRoundedRect(ctx, artX, artY, artSize, artSize, 28);
+    ctx.fillStyle = '#111827';
+    drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
     ctx.fill();
-    ctx.font = '900 80px system-ui, -apple-system, sans-serif';
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 2;
+    drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
+    ctx.stroke();
+
+    ctx.font = '900 72px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = themeColor;
     ctx.textAlign = 'center';
-    ctx.fillText(options.name.substring(0, 2).toUpperCase(), width / 2, artY + artSize / 2 + 30);
+    ctx.fillText(options.name.substring(0, 2).toUpperCase(), width / 2, artY + artSize / 2 + 25);
   }
 
   // 7. Title & Subtitle
-  const titleY = isStory ? artY + artSize + 70 : artY + artSize + 55;
-  ctx.font = '900 52px system-ui, -apple-system, sans-serif';
+  const titleY = artY + artSize + (format === 'story' ? 62 : format === 'portrait' ? 48 : 42);
+  ctx.font = '900 50px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
   ctx.letterSpacing = '-0.02em';
   ctx.fillText(options.name, width / 2, titleY);
 
-  const subtitleY = titleY + 44;
-  ctx.font = '700 28px system-ui, -apple-system, sans-serif';
+  const subtitleY = titleY + 38;
+  ctx.font = '700 26px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#F59E0B';
   ctx.fillText(options.subtitle, width / 2, subtitleY);
 
-  // 8. Core Deconstruction Card / 3-Sentence Cognitive Breakdown
-  if (isStory) {
-    const cardY = subtitleY + 45;
-    const cardMargin = 80;
+  // 8. Solid Deconstruction Card
+  if (format === 'story' || format === 'portrait') {
+    const cardY = subtitleY + 36;
+    const cardMargin = 72;
     const cardWidth = width - cardMargin * 2;
-    const cardPadding = 36;
-    const cardHeight = 360;
+    const cardPadding = 32;
+    const cardHeight = format === 'story' ? 360 : 260;
 
-    // Card background
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
-    drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 20);
+    // Solid container
+    ctx.fillStyle = '#111827';
+    drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 14);
     ctx.fill();
 
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.strokeStyle = '#334155';
     ctx.lineWidth = 1.5;
-    drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 20);
+    drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 14);
     ctx.stroke();
 
-    // Accent left stripe
+    // Solid Left Accent Bar
     ctx.fillStyle = themeColor;
     drawRoundedRect(ctx, cardMargin, cardY, 6, cardHeight, 3);
     ctx.fill();
 
-    // Card Title: "Why Your Brain Falls for This"
-    ctx.font = '800 24px system-ui, -apple-system, sans-serif';
+    // Card Header
+    ctx.font = '800 20px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#FFFFFF';
     ctx.textAlign = 'left';
-    ctx.fillText('Why Your Brain Falls for This', cardMargin + cardPadding, cardY + cardPadding + 10);
+    ctx.letterSpacing = '0.02em';
+    ctx.fillText('WHY YOUR BRAIN FALLS FOR THIS', cardMargin + cardPadding, cardY + cardPadding + 6);
 
-    // Card Body Text (Psychology 3-sentence explanation)
-    ctx.font = '500 22px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = '#CBD5E1';
-    ctx.letterSpacing = '0.01em';
+    // Card Body
+    ctx.font = '500 20px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = '#E2E8F0';
     wrapText(
       ctx,
       options.psychology || options.description,
       cardMargin + cardPadding,
-      cardY + cardPadding + 52,
+      cardY + cardPadding + 42,
       cardWidth - cardPadding * 2,
-      36,
+      32,
       'left'
     );
   } else {
-    // Square mode short description
-    const descY = subtitleY + 42;
-    ctx.font = '500 21px system-ui, -apple-system, sans-serif';
+    // 1:1 Feed Post Short Definition
+    const descY = subtitleY + 36;
+    ctx.font = '500 20px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#CBD5E1';
-    wrapText(ctx, options.description, width / 2, descY, width - 180, 32, 'center');
+    wrapText(ctx, options.description, width / 2, descY, width - 160, 30, 'center');
   }
 
-  // 9. Footer Watermark
-  const footerY = isStory ? height - 90 : height - 55;
-  ctx.font = '700 19px system-ui, -apple-system, sans-serif';
+  // 9. Solid Footer Watermark Bar
+  const footerY = height - (format === 'story' ? 85 : 55);
+  ctx.font = '700 18px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#94A3B8';
   ctx.textAlign = 'center';
   ctx.letterSpacing = '0.04em';
@@ -254,23 +310,13 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
   });
 }
 
-function hexToRgba(hex: string, alpha: number): string {
-  let c = hex.replace('#', '');
-  if (c.length === 3) {
-    c = c[0] + c[0] + c[1] + c[1] + c[2] + c[2];
-  }
-  const r = parseInt(c.substring(0, 2), 16) || 59;
-  const g = parseInt(c.substring(2, 4), 16) || 130;
-  const b = parseInt(c.substring(4, 6), 16) || 246;
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
 /**
  * Triggers native Instagram Story / Social Image Share or downloads file
  */
 export async function shareStoryImage(options: StoryCardOptions): Promise<'shared' | 'downloaded' | 'copied'> {
   const blob = await generateStoryCardBlob(options);
-  const fileName = `${options.fallacyId}-verilens-story.png`;
+  const formatSuffix = options.format || 'story';
+  const fileName = `${options.fallacyId}-verilens-${formatSuffix}.png`;
   const file = new File([blob], fileName, { type: 'image/png' });
 
   // 1. Mobile Web Share API Level 2 (Direct to Instagram Stories / WhatsApp / Camera Roll)
@@ -286,11 +332,10 @@ export async function shareStoryImage(options: StoryCardOptions): Promise<'share
       if (err?.name === 'AbortError') {
         return 'shared';
       }
-      // Fall through to download if share fails
     }
   }
 
-  // 2. Fallback: Trigger direct file download
+  // 2. Fallback: Trigger direct high-resolution PNG file download
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

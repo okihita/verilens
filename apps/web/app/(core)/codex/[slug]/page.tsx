@@ -27,6 +27,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [instagramFeedback, setInstagramFeedback] = useState(false);
+  const [selectedStoryFormat, setSelectedStoryFormat] = useState<'story' | 'feed' | 'portrait'>('story');
   const [isGeneratingStory, setIsGeneratingStory] = useState(false);
   const [storyFeedback, setStoryFeedback] = useState('');
 
@@ -77,7 +78,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
     setIsShareModalOpen(true);
   };
 
-  const handleShareStory = async (format: 'story' | 'square' = 'story') => {
+  const handleShareStory = async (format: 'story' | 'feed' | 'portrait' = selectedStoryFormat) => {
     setIsGeneratingStory(true);
     setStoryFeedback('');
     try {
@@ -92,12 +93,13 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
         format
       });
       if (result === 'downloaded') {
-        setStoryFeedback(format === 'story' ? 'Story image downloaded (1080x1920 PNG)!' : 'Social card downloaded (1080x1080 PNG)!');
+        const label = format === 'story' ? 'Story (9:16 PNG)' : format === 'portrait' ? 'Portrait (4:5 PNG)' : 'Square (1:1 PNG)';
+        setStoryFeedback(`${label} downloaded!`);
         setTimeout(() => setStoryFeedback(''), 4500);
       }
     } catch (e) {
       console.error('Failed to generate story image:', e);
-      setStoryFeedback('Could not generate image on this device.');
+      setStoryFeedback('Could not render image on this device.');
       setTimeout(() => setStoryFeedback(''), 4500);
     } finally {
       setIsGeneratingStory(false);
@@ -286,7 +288,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             </div>
           </div>
 
-          {/* Right Column: Card Breakdown & Taxonomy Data */}
+          {/* Right Column: Card Breakdown & Informational Overview */}
           <div>
             {/* Header Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
@@ -321,43 +323,26 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
 
-            {/* Primary Actions (Launch Sandbox & Instant Story Share) */}
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Link
-                href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
+            {/* Single Informational Hero CTA: Share as Story or Link */}
+            <div>
+              <button
+                onClick={handleOpenShare}
                 className="btn btn-primary"
                 style={{
-                  flex: '1 1 200px',
+                  width: '100%',
                   padding: '14px 20px',
                   fontSize: '14px',
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  textDecoration: 'none'
+                  gap: '10px',
+                  cursor: 'pointer'
                 }}
+                title="Share this Card as Image, WhatsApp, Instagram, X"
               >
-                <span>{t('codex_dossier_try_sandbox_btn')}</span>
-                <span>➔</span>
-              </Link>
-              <button
-                onClick={() => handleShareStory('story')}
-                disabled={isGeneratingStory}
-                className="btn btn-outline"
-                style={{
-                  padding: '14px 18px',
-                  fontSize: '13.5px',
-                  fontWeight: '800',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  cursor: isGeneratingStory ? 'wait' : 'pointer'
-                }}
-                title="Create 1080x1920 Story Image"
-              >
-                <span>📸</span>
-                <span>{isGeneratingStory ? t('share_generating') : 'Story Image'}</span>
+                <span>↗</span>
+                <span>{t('codex_share_btn')}</span>
               </button>
             </div>
           </div>
@@ -537,8 +522,52 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           </div>
         )}
 
-        {/* Section 3: Adjacent Archetype Navigation Bar */}
-        <section style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
+        {/* Section 3: Bottom Interactive Practice & SIFT Sandbox Verification */}
+        <section style={{ marginTop: '28px' }}>
+          <div
+            className="card"
+            style={{
+              padding: '24px 28px',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border-card)',
+              borderRadius: 'var(--radius-lg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '20px'
+            }}
+          >
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 6px 0' }}>
+                Practice Verification in SIFT Sandbox
+              </h3>
+              <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, maxWidth: '620px', lineHeight: '1.5' }}>
+                Paste real-world news articles, social posts, or quotes to detect if they use {fallacy.name} or other rhetorical traps.
+              </p>
+            </div>
+            <Link
+              href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
+              className="btn btn-primary"
+              style={{
+                padding: '12px 20px',
+                fontSize: '13.5px',
+                fontWeight: '800',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <span>{t('codex_dossier_try_sandbox_btn')}</span>
+              <span>➔</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Section 4: Adjacent Archetype Navigation Bar */}
+        <section style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             <Link
               href={`/codex/${prevSlug}`}
@@ -600,14 +629,13 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
       </div>
 
-      {/* Interactive Social Share Modal */}
+      {/* Interactive Social Share Modal (Solid Civic Editorial, Zero Glassmorphism) */}
       {isShareModalOpen && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(6px)',
+            background: 'rgba(0, 0, 0, 0.85)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -625,7 +653,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-lg)',
               padding: '24px',
-              boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.7)',
               position: 'relative'
             }}
             onClick={(e) => e.stopPropagation()}
@@ -657,7 +685,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </button>
             </div>
 
-            {/* Fallacy Mini Card Banner */}
+            {/* Fallacy Mini Banner */}
             <div
               style={{
                 display: 'flex',
@@ -685,55 +713,75 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
 
-            {/* Viral Image Sharing Actions (Instagram Story & Square Feed) */}
-            <div style={{ padding: '14px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
-              <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
-                Viral Story & Social Card (PNG)
+            {/* Solid Editorial Image Sharing Section */}
+            <div style={{ padding: '14px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Solid Editorial Poster Export (PNG)
+                </span>
+                <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600' }}>
+                  Museum-Grade
+                </span>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                <button
-                  onClick={() => handleShareStory('story')}
-                  disabled={isGeneratingStory}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    padding: '10px 12px',
-                    borderRadius: '8px',
-                    background: 'linear-gradient(45deg, #F58529, #DD2A7B, #8134AF)',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    fontSize: '12.5px',
-                    fontWeight: '800',
-                    cursor: isGeneratingStory ? 'wait' : 'pointer'
-                  }}
-                >
-                  <span>📸</span>
-                  <span>{isGeneratingStory ? t('share_generating') : 'Story (9:16)'}</span>
-                </button>
-                <button
-                  onClick={() => handleShareStory('square')}
-                  disabled={isGeneratingStory}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    padding: '10px 12px',
-                    borderRadius: '8px',
-                    background: 'var(--bg-surface-elevated)',
-                    color: 'var(--text-main)',
-                    border: '1px solid var(--border-card)',
-                    fontSize: '12.5px',
-                    fontWeight: '800',
-                    cursor: isGeneratingStory ? 'wait' : 'pointer'
-                  }}
-                >
-                  <span>🖼️</span>
-                  <span>{isGeneratingStory ? t('share_generating') : 'Square (1:1)'}</span>
-                </button>
+
+              {/* Format Presets Selector */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
+                {(['story', 'portrait', 'feed'] as const).map((fmt) => {
+                  const isSel = selectedStoryFormat === fmt;
+                  const label = fmt === 'story' ? 'Story (9:16)' : fmt === 'portrait' ? 'Portrait (4:5)' : 'Square (1:1)';
+                  return (
+                    <button
+                      key={fmt}
+                      onClick={() => setSelectedStoryFormat(fmt)}
+                      style={{
+                        padding: '6px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11.5px',
+                        fontWeight: '700',
+                        border: '1px solid',
+                        cursor: 'pointer',
+                        borderColor: isSel ? 'var(--accent-blue-light)' : 'var(--border-card)',
+                        background: isSel ? 'var(--accent-blue)' : 'var(--bg-surface-elevated)',
+                        color: isSel ? '#FFFFFF' : 'var(--text-secondary)',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
+
+              {/* Primary Action Button */}
+              <button
+                onClick={() => handleShareStory(selectedStoryFormat)}
+                disabled={isGeneratingStory}
+                className="btn btn-primary"
+                style={{
+                  width: '100%',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  cursor: isGeneratingStory ? 'wait' : 'pointer'
+                }}
+              >
+                <span>📸</span>
+                <span>
+                  {isGeneratingStory
+                    ? t('share_generating')
+                    : selectedStoryFormat === 'story'
+                    ? t('share_as_story_btn')
+                    : selectedStoryFormat === 'portrait'
+                    ? 'Download Portrait Poster (4:5 PNG)'
+                    : t('share_as_square_btn')}
+                </span>
+              </button>
+
               {storyFeedback && (
                 <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--accent-emerald-light)', fontWeight: '700', textAlign: 'center' }}>
                   ✓ {storyFeedback}

@@ -51,7 +51,7 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0, 0, 0, 0.88)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', overflowY: 'auto' }}>
       <div style={{ background: 'var(--bg-surface)', border: '2px solid var(--accent-amber)', borderRadius: '16px', maxWidth: '780px', width: '100%', padding: '24px 16px', position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)', maxHeight: '90vh', overflowY: 'auto' }}>
         
         {/* Close Button */}
