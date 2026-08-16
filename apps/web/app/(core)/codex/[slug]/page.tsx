@@ -131,7 +131,50 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            {/* Top Prev / Next Quick Nav Controls */}
+            <div style={{ display: 'inline-flex', alignItems: 'center', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)', background: 'var(--bg-surface-elevated)', overflow: 'hidden' }}>
+              <Link
+                href={`/codex/${prevSlug}`}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  color: 'var(--text-secondary)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  borderRight: '1px solid var(--border-card)',
+                  transition: 'background 0.15s ease'
+                }}
+                title={`Previous: ${prevFallacy.name}`}
+                aria-label={`Previous card: ${prevFallacy.name}`}
+              >
+                <span>←</span>
+                <span style={{ fontSize: '12px' }}>Prev</span>
+              </Link>
+              <Link
+                href={`/codex/${nextSlug}`}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  color: 'var(--text-secondary)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  transition: 'background 0.15s ease'
+                }}
+                title={`Next: ${nextFallacy.name}`}
+                aria-label={`Next card: ${nextFallacy.name}`}
+              >
+                <span style={{ fontSize: '12px' }}>Next</span>
+                <span>→</span>
+              </Link>
+            </div>
+
             <button
               onClick={handleOpenShare}
               className="btn btn-outline"
@@ -428,23 +471,29 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
         {/* Section 3: Adjacent Archetype Navigation Bar */}
         <section style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             <Link
               href={`/codex/${prevSlug}`}
+              className="card"
               style={{
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
-                color: 'var(--text-secondary)'
+                gap: '14px',
+                padding: '16px 20px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-card)',
+                borderRadius: 'var(--radius-md)',
+                transition: 'all 0.15s ease'
               }}
+              title={`Previous: ${prevFallacy.name}`}
             >
-              <span style={{ fontSize: '20px' }}>←</span>
+              <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>←</span>
               <div>
-                <div style={{ fontSize: '11.5px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   {t('codex_dossier_prev')}
                 </div>
-                <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
                   {prevFallacy.name}
                 </div>
               </div>
@@ -452,24 +501,31 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
             <Link
               href={`/codex/${nextSlug}`}
+              className="card"
               style={{
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
+                justifyContent: 'flex-end',
+                gap: '14px',
+                padding: '16px 20px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-card)',
+                borderRadius: 'var(--radius-md)',
                 textAlign: 'right',
-                color: 'var(--text-secondary)'
+                transition: 'all 0.15s ease'
               }}
+              title={`Next: ${nextFallacy.name}`}
             >
               <div>
-                <div style={{ fontSize: '11.5px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
                   {t('codex_dossier_next')}
                 </div>
-                <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)' }}>
                   {nextFallacy.name}
                 </div>
               </div>
-              <span style={{ fontSize: '20px' }}>→</span>
+              <span style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-blue-light)' }}>→</span>
             </Link>
           </div>
         </section>
