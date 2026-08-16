@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { fallacies, FALLACY_ILLUSTRATIONS } from '@verilens/shared';
 import { recordCardFlipped } from '../../lib/gamification.js';
-import { useTranslation, INDONESIAN_FALLACIES } from '../../lib/i18n.js';
+import { useTranslation, getLocalizedFallacy } from '../../lib/i18n.js';
 
 export default function HomePage() {
   const { t, lang } = useTranslation();
@@ -22,11 +22,10 @@ export default function HomePage() {
     Scam: t('cat_scam')
   };
 
-  const filteredFallacies = (fallacies || []).filter((item) => {
-    const idData = INDONESIAN_FALLACIES[item.id] || {};
-    const name = lang === 'id' && idData.name ? idData.name : item.name;
-    const desc = lang === 'id' && idData.description ? idData.description : item.description;
-    const sub = lang === 'id' && idData.subtitle ? idData.subtitle : item.subtitle;
+  const filteredFallacies = (fallacies || []).map((item) => getLocalizedFallacy(item, lang)).filter((item) => {
+    const name = item.name || '';
+    const desc = item.description || '';
+    const sub = item.subtitle || '';
 
     const matchesCat = selectedCategory === 'All' || item.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -224,12 +223,11 @@ export default function HomePage() {
               const isFlipped = flippedCardId === item.id;
               const svgIllustration = (FALLACY_ILLUSTRATIONS && FALLACY_ILLUSTRATIONS[item.id]) || '';
               
-              const idData = INDONESIAN_FALLACIES[item.id] || {};
-              const fallacyName = lang === 'id' && idData.name ? idData.name : item.name;
-              const fallacySubtitle = lang === 'id' && idData.subtitle ? idData.subtitle : item.subtitle;
-              const fallacyDescription = lang === 'id' && idData.description ? idData.description : item.description;
-              const fallacyViralExample = lang === 'id' && idData.viral_example ? idData.viral_example : item.viral_example;
-              const fallacyPrompt = lang === 'id' && idData.reflection_prompt ? idData.reflection_prompt : item.reflection_prompt;
+              const fallacyName = item.name;
+              const fallacySubtitle = item.subtitle;
+              const fallacyDescription = item.description;
+              const fallacyViralExample = item.viral_example;
+              const fallacyPrompt = item.reflection_prompt;
 
               return (
                 <div
