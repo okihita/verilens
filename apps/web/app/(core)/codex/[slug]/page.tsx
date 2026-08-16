@@ -273,15 +273,19 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
         </div>
 
         {/* Section 1: Cognitive Mechanism & Psychology */}
-        <section style={{ marginTop: '48px' }}>
-          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)', borderLeft: `4px solid ${fallacy.color || 'var(--accent-purple)'}` }}>
-            <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.08em' }}>
-              Psychological Anatomy
-            </span>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '12px' }}>
+        <section style={{ marginTop: '40px' }}>
+          <div
+            className="card"
+            style={{
+              padding: '24px 28px',
+              background: 'var(--bg-surface)',
+              borderLeft: `4px solid ${fallacy.color || 'var(--accent-purple)'}`
+            }}
+          >
+            <h2 style={{ fontSize: '18.5px', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 10px 0' }}>
               {t('codex_dossier_psychology_title')}
             </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
+            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.65', margin: 0 }}>
               {fallacy.psychology}
             </p>
           </div>
