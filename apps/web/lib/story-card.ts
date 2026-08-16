@@ -1,7 +1,8 @@
 /**
  * VeriLens Solid Civic Editorial Social & Story Card Engine
  * Generates museum-grade, high-contrast editorial posters directly on HTML5 Canvas.
- * Strict No Glassmorphism: Uses solid, high-contrast, crisp architectural surfaces.
+ * Default: High-contrast Civic Light Mode using Plus Jakarta Sans typography.
+ * Strict No Glassmorphism: Crisp, solid, tactile editorial surfaces.
  */
 
 export interface StoryCardOptions {
@@ -13,7 +14,10 @@ export interface StoryCardOptions {
   description: string;
   psychology: string;
   format?: 'story' | 'feed' | 'portrait';
+  theme?: 'light' | 'dark';
 }
+
+const FONT_FAMILY = '"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -118,12 +122,18 @@ function drawCornerBrackets(
 }
 
 export async function generateStoryCardBlob(options: StoryCardOptions): Promise<Blob> {
-  // Ensure web fonts are ready before canvas text rendering
-  if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+  // Pre-flight check & load Plus Jakarta Sans weights before rendering
+  if (typeof document !== 'undefined' && document.fonts) {
     try {
+      await Promise.all([
+        document.fonts.load(`800 20px ${FONT_FAMILY}`),
+        document.fonts.load(`900 52px ${FONT_FAMILY}`),
+        document.fonts.load(`700 26px ${FONT_FAMILY}`),
+        document.fonts.load(`500 21px ${FONT_FAMILY}`)
+      ]);
       await document.fonts.ready;
     } catch {
-      // Continue if font promise fails
+      // Continue with system sans-serif fallback if font load fails
     }
   }
 
@@ -141,25 +151,38 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
     throw new Error('Canvas 2D context not supported');
   }
 
-  const themeColor = options.color || '#3B82F6';
+  // Light Mode Color Tokens (Default)
+  const isDark = options.theme === 'dark';
+  const bgBase = isDark ? '#0A0D14' : '#F8FAFC';
+  const borderOuter = isDark ? '#1E293B' : '#CBD5E1';
+  const goldAccent = '#D97706';
+  const headerMuted = isDark ? '#94A3B8' : '#64748B';
+  const titleColor = isDark ? '#FFFFFF' : '#0F172A';
+  const subtitleColor = isDark ? '#F59E0B' : '#D97706';
+  const cardBg = isDark ? '#111827' : '#FFFFFF';
+  const cardBorder = isDark ? '#334155' : '#E2E8F0';
+  const cardTextColor = isDark ? '#E2E8F0' : '#334155';
+  const pillBg = isDark ? '#111827' : '#F1F5F9';
+  const pillBorder = isDark ? '#334155' : '#CBD5E1';
+  const themeColor = options.color || (isDark ? '#3B82F6' : '#2563EB');
 
-  // 1. Solid Canvas Base (Crisp Obsidian Matte #0A0D14)
-  ctx.fillStyle = '#0A0D14';
+  // 1. Solid Canvas Base Fill
+  ctx.fillStyle = bgBase;
   ctx.fillRect(0, 0, width, height);
 
   // 2. Architectural Structural Border
   const pad = 36;
-  ctx.strokeStyle = '#1E293B';
+  ctx.strokeStyle = borderOuter;
   ctx.lineWidth = 2;
   ctx.strokeRect(pad, pad, width - pad * 2, height - pad * 2);
 
   // 3. Gold Corner Brackets for Museum Archival Touch
-  drawCornerBrackets(ctx, pad + 8, pad + 8, width - (pad + 8) * 2, height - (pad + 8) * 2, 28, '#D97706', 3.5);
+  drawCornerBrackets(ctx, pad + 8, pad + 8, width - (pad + 8) * 2, height - (pad + 8) * 2, 28, goldAccent, 3.5);
 
   // 4. Solid Header Eyebrow Ribbon
   const headerY = format === 'story' ? 95 : format === 'portrait' ? 85 : 75;
-  ctx.font = '800 20px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#94A3B8';
+  ctx.font = `800 20px ${FONT_FAMILY}`;
+  ctx.fillStyle = headerMuted;
   ctx.textAlign = 'center';
   ctx.letterSpacing = '0.14em';
   ctx.fillText('VERILENS • CIVIC COGNITIVE DEFENSE', width / 2, headerY);
@@ -167,18 +190,17 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
   // 5. Solid Category Pill
   const pillY = headerY + 30;
   const categoryText = (options.category || 'LOGICAL FALLACY').toUpperCase();
-  ctx.font = '800 18px system-ui, -apple-system, sans-serif';
+  ctx.font = `800 18px ${FONT_FAMILY}`;
   ctx.letterSpacing = '0.08em';
   const textWidth = ctx.measureText(categoryText).width;
   const pillW = textWidth + 36;
   const pillH = 34;
   const pillX = (width - pillW) / 2;
 
-  // Solid fill and solid border
-  ctx.fillStyle = '#111827';
+  ctx.fillStyle = pillBg;
   drawRoundedRect(ctx, pillX, pillY, pillW, pillH, 8);
   ctx.fill();
-  ctx.strokeStyle = '#334155';
+  ctx.strokeStyle = pillBorder;
   ctx.lineWidth = 1.5;
   drawRoundedRect(ctx, pillX, pillY, pillW, pillH, 8);
   ctx.stroke();
@@ -204,25 +226,25 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
     ctx.restore();
 
     // Solid Double Frame
-    ctx.strokeStyle = '#D97706';
-    ctx.lineWidth = 3;
+    ctx.strokeStyle = goldAccent;
+    ctx.lineWidth = 3.5;
     drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
     ctx.stroke();
 
-    ctx.strokeStyle = '#1E293B';
+    ctx.strokeStyle = borderOuter;
     ctx.lineWidth = 1.5;
     drawRoundedRect(ctx, artX - 4, artY - 4, artSize + 8, artSize + 8, 20);
     ctx.stroke();
   } catch {
-    ctx.fillStyle = '#111827';
+    ctx.fillStyle = cardBg;
     drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
     ctx.fill();
-    ctx.strokeStyle = '#334155';
+    ctx.strokeStyle = cardBorder;
     ctx.lineWidth = 2;
     drawRoundedRect(ctx, artX, artY, artSize, artSize, 16);
     ctx.stroke();
 
-    ctx.font = '900 72px system-ui, -apple-system, sans-serif';
+    ctx.font = `900 72px ${FONT_FAMILY}`;
     ctx.fillStyle = themeColor;
     ctx.textAlign = 'center';
     ctx.fillText(options.name.substring(0, 2).toUpperCase(), width / 2, artY + artSize / 2 + 25);
@@ -230,15 +252,15 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
 
   // 7. Title & Subtitle
   const titleY = artY + artSize + (format === 'story' ? 62 : format === 'portrait' ? 48 : 42);
-  ctx.font = '900 50px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#FFFFFF';
+  ctx.font = `900 50px ${FONT_FAMILY}`;
+  ctx.fillStyle = titleColor;
   ctx.textAlign = 'center';
   ctx.letterSpacing = '-0.02em';
   ctx.fillText(options.name, width / 2, titleY);
 
   const subtitleY = titleY + 38;
-  ctx.font = '700 26px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#F59E0B';
+  ctx.font = `700 26px ${FONT_FAMILY}`;
+  ctx.fillStyle = subtitleColor;
   ctx.fillText(options.subtitle, width / 2, subtitleY);
 
   // 8. Solid Deconstruction Card
@@ -249,12 +271,12 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
     const cardPadding = 32;
     const cardHeight = format === 'story' ? 360 : 260;
 
-    // Solid container
-    ctx.fillStyle = '#111827';
+    // Solid container with subtle shadow
+    ctx.fillStyle = cardBg;
     drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 14);
     ctx.fill();
 
-    ctx.strokeStyle = '#334155';
+    ctx.strokeStyle = cardBorder;
     ctx.lineWidth = 1.5;
     drawRoundedRect(ctx, cardMargin, cardY, cardWidth, cardHeight, 14);
     ctx.stroke();
@@ -265,36 +287,36 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
     ctx.fill();
 
     // Card Header
-    ctx.font = '800 20px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = '#FFFFFF';
+    ctx.font = `800 20px ${FONT_FAMILY}`;
+    ctx.fillStyle = titleColor;
     ctx.textAlign = 'left';
     ctx.letterSpacing = '0.02em';
     ctx.fillText('WHY YOUR BRAIN FALLS FOR THIS', cardMargin + cardPadding, cardY + cardPadding + 6);
 
     // Card Body
-    ctx.font = '500 20px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = '#E2E8F0';
+    ctx.font = `500 21px ${FONT_FAMILY}`;
+    ctx.fillStyle = cardTextColor;
     wrapText(
       ctx,
       options.psychology || options.description,
       cardMargin + cardPadding,
       cardY + cardPadding + 42,
       cardWidth - cardPadding * 2,
-      32,
+      33,
       'left'
     );
   } else {
     // 1:1 Feed Post Short Definition
     const descY = subtitleY + 36;
-    ctx.font = '500 20px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = '#CBD5E1';
+    ctx.font = `500 20px ${FONT_FAMILY}`;
+    ctx.fillStyle = cardTextColor;
     wrapText(ctx, options.description, width / 2, descY, width - 160, 30, 'center');
   }
 
   // 9. Solid Footer Watermark Bar
   const footerY = height - (format === 'story' ? 85 : 55);
-  ctx.font = '700 18px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#94A3B8';
+  ctx.font = `700 18px ${FONT_FAMILY}`;
+  ctx.fillStyle = headerMuted;
   ctx.textAlign = 'center';
   ctx.letterSpacing = '0.04em';
   ctx.fillText('UNESCO MIL 2026 Reference • Spot fallacies at verilens.aprilwang.id', width / 2, footerY);
@@ -314,7 +336,9 @@ export async function generateStoryCardBlob(options: StoryCardOptions): Promise<
  * Triggers native Instagram Story / Social Image Share or downloads file
  */
 export async function shareStoryImage(options: StoryCardOptions): Promise<'shared' | 'downloaded' | 'copied'> {
-  const blob = await generateStoryCardBlob(options);
+  // Default to light theme if not specified
+  const theme = options.theme || 'light';
+  const blob = await generateStoryCardBlob({ ...options, theme });
   const formatSuffix = options.format || 'story';
   const fileName = `${options.fallacyId}-verilens-${formatSuffix}.png`;
   const file = new File([blob], fileName, { type: 'image/png' });
