@@ -128,10 +128,10 @@ export const TRANSLATIONS = {
     level_prefix: 'Tkt.',
 
     // Home Page Hero (Consumer Loss-Aversion Framing)
-    hackathon_badge: 'Lindungi Perhatian & Ketenangan Pikiran Anda',
-    hero_title: 'Beranda Anda dirancang untuk membuat Anda marah, cemas, dan mudah dimanipulasi.',
-    hero_desc: 'Algoritma mengeksploitasi titik buta psikologis demi pendapatan iklan. Dalam 60 detik sehari, latih refleks kognitif Anda untuk mengenali jebakan sebelum merugikan ketenangan pikiran Anda.',
-    hero_cta_primary: 'Uji Pertahanan Anda (Percobaan 60 Detik)',
+    hackathon_badge: 'Lindungi Perhatian & Ketenangan Pikiranmu',
+    hero_title: 'Beranda kamu dirancang untuk membuatmu marah, cemas, dan mudah dimanipulasi.',
+    hero_desc: 'Algoritma mengeksploitasi titik buta psikologis demi pendapatan iklan. Dalam 60 detik sehari, latih refleks kognitifmu untuk mengenali jebakan sebelum merugikan ketenangan pikiranmu.',
+    hero_cta_primary: 'Uji Pertahananmu (Percobaan 60 Detik)',
     hero_cta_secondary: 'Lihat Cara Kerja Jebakan ▾',
     hero_cta_arena: 'Arena Deteksi',
     hero_cta_gauntlet: 'Tantangan 60 Detik',
@@ -140,16 +140,16 @@ export const TRANSLATIONS = {
     stat_faster_title: '70% Lebih Cepat',
     stat_faster_desc: 'Kemarahan palsu menyebar 6x lebih cepat dibanding laporan fakta',
     stat_window_title: '<5 Detik',
-    stat_window_desc: 'Waktu yang dibutuhkan algoritma untuk membajak emosi Anda',
+    stat_window_desc: 'Waktu yang dibutuhkan algoritma untuk membajak emosimu',
     stat_local_title: '100% Privat',
-    stat_local_desc: 'Perlindungan real-time diproses aman langsung di browser Anda',
+    stat_local_desc: 'Perlindungan real-time diproses aman langsung di browsermu',
     step1_badge: 'LANGKAH 01',
     step1_title: 'Bongkar Umpan Manipulasi',
-    step1_desc: 'Pelajari 24 pemicu psikologis yang digunakan pembuat hoaks dan penipu untuk melewati filter rasional Anda.',
+    step1_desc: 'Pelajari 24 pemicu psikologis yang digunakan pembuat hoaks dan penipu untuk melewati filter rasionalmu.',
     step1_action: 'Periksa 24 Taktik ▾',
     step2_badge: 'LANGKAH 02',
-    step2_title: 'Uji Radar Anda di Bawah Tekanan',
-    step2_desc: 'Bisakah Anda mengenali klaim palsu dalam 5 detik di bawah tekanan waktu? Cari tahu sebelum beranda Anda mengecoh Anda.',
+    step2_title: 'Uji Radarmu di Bawah Tekanan',
+    step2_desc: 'Bisakah kamu mengenali klaim palsu dalam 5 detik di bawah tekanan waktu? Cari tahu sebelum beranda mengecohmu.',
     step2_action: 'Mulai Uji Cepat 60 Detik',
     step3_badge: 'LANGKAH 03',
     step3_title: 'Lindungi Penjelajahan Web Langsung',
@@ -180,11 +180,11 @@ export const TRANSLATIONS = {
     // Gauntlet
     gauntlet_badge: 'Mode Bertahan Cepat 60 Detik',
     gauntlet_title: 'Tantangan Bias Harian',
-    gauntlet_desc: 'Uji refleks kognitif Anda. Anda memiliki 60 detik untuk menyortir judul berita menjadi Sesat Pikir, Berita Faktual, atau Penipuan. Kumpulkan kombo untuk poin maksimal.',
+    gauntlet_desc: 'Uji refleks kognitifmu. Kamu memiliki 60 detik untuk menyortir judul berita menjadi Sesat Pikir, Berita Faktual, atau Penipuan. Kumpulkan kombo untuk poin maksimal.',
     gauntlet_rules_title: 'Aturan Permainan:',
     gauntlet_rule_1: 'Kecepatan 60 Detik: Sortir klaim sebelum waktu habis.',
     gauntlet_rule_2: 'Poin Kombo: Pengali 2x, 3x, dan 4x untuk jawaban benar beruntun.',
-    gauntlet_rule_3: 'Sertifikat Resmi: Skor tinggi membuka Sertifikat UNESCO Anda.',
+    gauntlet_rule_3: 'Sertifikat Resmi: Skor tinggi membuka Sertifikat UNESCO-mu.',
     gauntlet_start_btn: 'Mulai Tantangan 60 Detik',
     gauntlet_time_up: 'Waktu Tantangan Habis',
     gauntlet_perf_sub: 'Hasil Refleks Kognitif 60 Detik',
@@ -503,13 +503,13 @@ export const INDONESIAN_FALLACIES = {
     subtitle: 'Menyerang Pribadi & Pengalihan Isu',
     description: 'Menyerang karakter, kepribadian, atau latar belakang lawan alih-alih membahas substansi argumen objektif mereka.',
     viral_example: '"Jangan percaya data iklim Dr. Aris—dia pernah dibayar perusahaan riset, jadi dia pasti boneka korup!"',
-    reflection_prompt: 'Jika Anda mengabaikan hinaan pribadinya, data atau bukti nyata apa yang sebenarnya tersisa dari klaim tersebut?'
+    reflection_prompt: 'Jika kamu mengabaikan hinaan pribadinya, data atau bukti nyata apa yang sebenarnya tersisa dari klaim tersebut?'
   },
   false_dilemma: {
     name: 'Dilema Palsu',
     subtitle: 'Dikotomi Hitam-Putih yang Dipaksakan',
     description: 'Menyederhanakan masalah kompleks menjadi hanya dua pilihan ekstrem, sambil menghilangkan alternatif jalan tengah.',
-    viral_example: '"Pilihannya hanya dua: dukung RUU pengawasan ini 100%, atau Anda membiarkan teroris menyerang sekolah kita!"',
+    viral_example: '"Pilihannya hanya dua: dukung RUU pengawasan ini 100%, atau kamu membiarkan teroris menyerang sekolah kita!"',
     reflection_prompt: 'Pilihan ketiga atau solusi kompromi apa yang sengaja disembunyikan oleh ultimatum ini?'
   },
   ad_metum: {
@@ -524,7 +524,7 @@ export const INDONESIAN_FALLACIES = {
     subtitle: 'Gelembung Informasi Pribadi',
     description: 'Hanya mencari, mempercayai, dan mengingat informasi yang mendukung keyakinan awal kita sambil menolak data yang berlawanan.',
     viral_example: '"Saya mengabaikan 20 jurnal medis resmi dan hanya membaca 1 blog yang sependapat dengan teori saya!"',
-    reflection_prompt: 'Apakah Anda bersedia mengubah pandangan jika disodorkan data kuat yang membuktikan sebaliknya?'
+    reflection_prompt: 'Apakah kamu bersedia mengubah pandangan jika disodorkan data kuat yang membuktikan sebaliknya?'
   },
   weasel_words: {
     name: 'Kata Mengelak (Weasel Words)',
@@ -537,7 +537,7 @@ export const INDONESIAN_FALLACIES = {
     name: 'Rekayasa Urgensi Palsu',
     subtitle: 'Umpan Penipuan Panik Digital',
     description: 'Menciptakan rasa panik dengan batas waktu palsu agar korban segera mengklik tautan phishing tanpa berpikir panjang.',
-    viral_example: '"PERINGATAN: Rekening bank Anda dibekukan! Klik tautan ini dalam 5 menit untuk verifikasi OTP atau dana Anda hilang!"',
+    viral_example: '"PERINGATAN: Rekening bank kamu dibekukan! Klik tautan ini dalam 5 menit untuk verifikasi OTP atau dana kamu hilang!"',
     reflection_prompt: 'Lembaga resmi mana yang pernah meminta verifikasi data darurat melalui pesan acak dan tautan tidak resmi?'
   },
   strawman: {
@@ -559,7 +559,7 @@ export const INDONESIAN_FALLACIES = {
     subtitle: 'Terjebak Kerugian Masa Lalu',
     description: 'Terus melanjutkan proyek atau keputusan yang gagal hanya karena sudah terlanjur menginvestasikan banyak uang atau waktu.',
     viral_example: '"Kita sudah menghabiskan 50 miliar untuk aplikasi bermasalah ini, jadi kita harus tambah 20 miliar lagi daripada rugi!"',
-    reflection_prompt: 'Jika Anda memulai dari nol hari ini tanpa beban masa lalu, apakah Anda tetap akan menginvestasikan uang ini?'
+    reflection_prompt: 'Jika kamu memulai dari nol hari ini tanpa beban masa lalu, apakah kamu tetap akan menginvestasikan uang ini?'
   },
   halo_effect: {
     name: 'Efek Halo',
@@ -579,7 +579,7 @@ export const INDONESIAN_FALLACIES = {
     name: 'Framing Konspirasi',
     subtitle: 'Mitos Pembungkaman Kebenaran',
     description: 'Mengklaim bahwa ketiadaan bukti justru merupakan bukti mutlak adanya konspirasi besar yang menutup-nutupinya.',
-    viral_example: '"Media arus utama tidak akan memberitakan obat rahasia ini karena industri farmasi membayar triliunan agar Anda tetap sakit!"',
+    viral_example: '"Media arus utama tidak akan memberitakan obat rahasia ini karena industri farmasi membayar triliunan agar kamu tetap sakit!"',
     reflection_prompt: 'Apakah hipotesis ini dirancang sedemikian rupa agar tidak pernah bisa dibantah oleh bukti apa pun?'
   },
   slippery_slope: {
@@ -614,7 +614,7 @@ export const INDONESIAN_FALLACIES = {
     name: 'Bujukan Alami (Appeal to Nature)',
     subtitle: 'Kekeliruan Purity Kesehatan',
     description: 'Beranggapan bahwa segala sesuatu yang berlabel "alami" pasti aman dan manjur, sedangkan yang sintetis/laboratorium pasti beracun.',
-    viral_example: '"Buang obat resep dokter Anda! Akar hutan liar ini 100% alami, bebas efek samping dan menyembuhkan penyakit jantung tuntas!"',
+    viral_example: '"Buang obat resep dokter kamu! Akar hutan liar ini 100% alami, bebas efek samping dan menyembuhkan penyakit jantung tuntas!"',
     reflection_prompt: 'Apakah bahan alami (seperti racun ular atau arsenik) selalu aman, dan apakah obat hasil uji klinis laboratorium selalu berbahaya?'
   },
   no_true_scotsman: {
@@ -649,7 +649,7 @@ export const INDONESIAN_FALLACIES = {
     name: 'Penalaran Melingkar',
     subtitle: 'Argumen yang Mengasumsikan Dirinya Benar',
     description: 'Membangun argumen yang kesimpulannya sudah dijadikan premis dasar, sehingga berputar dalam lingkaran tanpa bukti independen.',
-    viral_example: '"Anda bisa mempercayai setiap bocoran dari akun anonim ini karena mereka hanya menyebarkan kebenaran, dan kita tahu itu benar karena akun ini yang mempostingnya!"',
+    viral_example: '"Kamu bisa mempercayai setiap bocoran dari akun anonim ini karena mereka hanya menyebarkan kebenaran, dan kita tahu itu benar karena akun ini yang mempostingnya!"',
     reflection_prompt: 'Apakah argumen ini menyajikan bukti eksternal dari pihak ketiga yang independen, atau hanya mengulang-ulang pernyataannya sendiri?'
   },
   in_group_bias: {
@@ -663,7 +663,7 @@ export const INDONESIAN_FALLACIES = {
     name: 'Dividen Pembohong (AI Cynicism)',
     subtitle: 'Dalih AI untuk Menghindari Tanggung Jawab',
     description: 'Memanfaatkan ketakutan publik terhadap deepfake untuk membantah rekaman suara atau video nyata sebagai "rekayasa AI".',
-    viral_example: '"Rekaman suara saya yang membahas suap itu 100% rekayasa AI deepfake buatan bot musuh! Jangan percaya telinga Anda!"',
+    viral_example: '"Rekaman suara saya yang membahas suap itu 100% rekayasa AI deepfake buatan bot musuh! Jangan percaya telingamu!"',
     reflection_prompt: 'Apakah klaim deepfake tersebut didukung oleh bukti forensik digital, atau hanya dalih cepat untuk menutupi kesalahan yang terbongkar?'
   }
 };

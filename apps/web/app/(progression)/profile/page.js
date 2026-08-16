@@ -6,7 +6,7 @@ import { getPlayerProfile, getRankFromXP, RANKS, BADGES } from '../../../lib/gam
 import { useTranslation } from '../../../lib/i18n';
 
 const BADGES_ID = {
-  first_shield: { name: 'Perisai Pertama', desc: 'Menyelesaikan tantangan analisis skenario pertama Anda.' },
+  first_shield: { name: 'Perisai Pertama', desc: 'Menyelesaikan tantangan analisis skenario pertamamu.' },
   streak_five: { name: 'Fokus Tak Tergoyahkan', desc: 'Mencapai 5 jawaban benar berturut-turut di Arena atau Gauntlet.' },
   codex_scholar: { name: 'Cendekiawan Kodeks', desc: 'Membuka dan mempelajari seluruh 12 arketipe sesat pikir.' },
   speed_sifter: { name: 'Penyaring Kilat', desc: 'Meraih akurasi 80%+ dalam Tantangan 60 Detik.' },

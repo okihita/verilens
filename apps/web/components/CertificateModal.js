@@ -13,7 +13,7 @@ export default function CertificateModal({ score, accuracy, mode, onClose }) {
 
   const handleCopyShare = () => {
     const text = lang === 'id'
-      ? `Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi ${accuracy}% dan ${score} XP! Uji kemampuan literasi media Anda: https://verilens.okihita.dev #UNESCO #LiterasiMedia #VeriLens2026`
+      ? `Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi ${accuracy}% dan ${score} XP! Uji kemampuan literasi mediamu: https://verilens.okihita.dev #UNESCO #LiterasiMedia #VeriLens2026`
       : `I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with ${accuracy}% accuracy and ${score} XP! Test yourself: https://verilens.okihita.dev #UNESCO #MediaLiteracy #VeriLens2026`;
     navigator.clipboard.writeText(text);
     setCopied(true);

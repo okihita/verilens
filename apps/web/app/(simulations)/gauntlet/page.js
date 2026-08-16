@@ -72,13 +72,13 @@ const GAUNTLET_ITEMS_EN = [
 const GAUNTLET_ITEMS_ID = [
   {
     id: 'g1',
-    text: '“PERINGATAN KEAMANAN MENDESAK: Dompet kripto Anda telah disusupi. Verifikasi seed phrase Anda sekarang untuk mengamankan aset.”',
+    text: '“PERINGATAN KEAMANAN MENDESAK: Dompet kripto kamu telah disusupi. Verifikasi seed phrase kamu sekarang untuk mengamankan aset.”',
     correctType: 'SCAM',
     explanation: 'Rekayasa sosial phishing klasik yang memanfaatkan kepanikan tiruan untuk mencuri kunci pribadi.'
   },
   {
     id: 'g2',
-    text: '“Pilihannya hanya dua: dukung rancangan undang-undang retensi data kami, atau Anda membiarkan penjahat bebas berkeliaran!”',
+    text: '“Pilihannya hanya dua: dukung rancangan undang-undang retensi data kami, atau kamu membiarkan penjahat bebas berkeliaran!”',
     correctType: 'FALLACY',
     explanation: 'Dilema palsu: menghilangkan opsi kompromi bernuansa menjadi ultimatum biner yang dipaksakan.'
   },
@@ -120,7 +120,7 @@ const GAUNTLET_ITEMS_ID = [
   },
   {
     id: 'g9',
-    text: '“Selamat! Nomor ponsel Anda terpilih memenangkan Undian Berhadiah Rp 500 Juta. Klik tautan untuk mencairkan.”',
+    text: '“Selamat! Nomor ponsel kamu terpilih memenangkan Undian Berhadiah Rp 500 Juta. Klik tautan untuk mencairkan.”',
     correctType: 'SCAM',
     explanation: 'Jebakan undian palsu yang meminta pembayaran biaya di muka atau data perbankan.'
   },
