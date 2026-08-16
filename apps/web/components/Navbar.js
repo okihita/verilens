@@ -357,7 +357,7 @@ export default function Navbar() {
             </button>
 
             {profileOpen && (
-              <div className="nav-dropdown-menu" style={{ right: 0, width: '250px' }}>
+              <div className="nav-dropdown-menu dropdown-right" style={{ left: 'auto', right: 0, width: '250px' }}>
                 <div style={{ padding: '8px 12px 6px', borderBottom: '1px solid var(--border-subtle)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong style={{ fontSize: '12px', color: rank.color }}>Level {rank.level} {rank.name}</strong>
