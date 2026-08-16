@@ -42,29 +42,63 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Streamlined 2-Action Hero Section */}
-      <section style={{ padding: '48px 0 36px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
+      {/* Consumer-Minded Emotional Hero Section (Loss-Aversion Framing) */}
+      <section style={{ padding: '52px 0 40px', textAlign: 'center', background: 'radial-gradient(ellipse at top, var(--bg-surface-elevated) 0%, var(--bg-app) 70%)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container" style={{ maxWidth: '880px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '14px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 14px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '20px', fontSize: '11px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '16px' }}>
             <span>{t('hackathon_badge')}</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(28px, 5.5vw, 44px)', fontWeight: '900', letterSpacing: '-0.8px', lineHeight: '1.2', marginBottom: '14px', color: 'var(--text-main)' }}>
+          <h1 style={{ fontSize: 'clamp(30px, 5.5vw, 46px)', fontWeight: '900', letterSpacing: '-0.035em', lineHeight: '1.18', marginBottom: '16px', color: 'var(--text-main)' }}>
             {t('hero_title')}
           </h1>
 
-          <p style={{ fontSize: 'clamp(14px, 3.5vw, 17px)', color: 'var(--text-secondary)', lineHeight: '1.55', marginBottom: '28px', maxWidth: '720px', margin: '0 auto 28px' }}>
+          <p style={{ fontSize: 'clamp(14.5px, 3.5vw, 17px)', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '28px', maxWidth: '720px', margin: '0 auto 28px', letterSpacing: '-0.01em' }}>
             {t('hero_desc')}
           </p>
 
-          {/* 2 Clear Hero Actions (Zero Competition) */}
+          {/* 2 High-Contrast Action CTAs */}
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '12px 24px', fontSize: '15px', fontWeight: '800' }}>
+            <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '12px 24px', fontSize: '14.5px', fontWeight: '800' }}>
               {t('hero_cta_primary')}
             </Link>
             <a href="#codex" className="btn btn-outline" style={{ padding: '12px 20px', fontSize: '14.5px' }}>
               {t('hero_cta_secondary')}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Slim Consumer Reality Strip (What's at Stake) */}
+      <section style={{ background: 'var(--bg-surface-elevated)', borderBottom: '1px solid var(--border-subtle)', padding: '16px 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', textAlign: 'center' }}>
+            <div style={{ padding: '8px 12px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-red)', letterSpacing: '-0.02em' }}>
+                {t('stat_faster_title')}
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
+                {t('stat_faster_desc')}
+              </div>
+            </div>
+
+            <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-amber)', letterSpacing: '-0.02em' }}>
+                {t('stat_window_title')}
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
+                {t('stat_window_desc')}
+              </div>
+            </div>
+
+            <div style={{ padding: '8px 12px', borderLeft: '1px solid var(--border-subtle)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '17px', fontWeight: '800', color: 'var(--accent-emerald)', letterSpacing: '-0.02em' }}>
+                {t('stat_local_title')}
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: '1.4' }}>
+                {t('stat_local_desc')}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -77,10 +111,10 @@ export default function HomePage() {
             {/* Step 1 */}
             <a href="#codex" className="card" style={{ padding: '20px', textDecoration: 'none', borderLeft: '3px solid var(--accent-amber)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <span style={{ fontSize: '10px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                <span className="mono-tag" style={{ color: 'var(--accent-amber)' }}>
                   {t('step1_badge')}
                 </span>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '2px', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '6px' }}>
                   {t('step1_title')}
                 </h3>
                 <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
@@ -95,41 +129,40 @@ export default function HomePage() {
             {/* Step 2 */}
             <Link href="/gauntlet" className="card" style={{ padding: '20px', textDecoration: 'none', borderLeft: '3px solid var(--accent-red)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <span style={{ fontSize: '10px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                <span className="mono-tag" style={{ color: 'var(--accent-red)' }}>
                   {t('step2_badge')}
                 </span>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '2px', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '6px' }}>
                   {t('step2_title')}
                 </h3>
                 <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
                   {t('step2_desc')}
                 </p>
               </div>
-              <div style={{ marginTop: '14px', fontSize: '12px', fontWeight: '700', color: '#F87171', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ marginTop: '14px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-red)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span>{t('step2_action')}</span>
                 <span>➔</span>
               </div>
             </Link>
 
             {/* Step 3 */}
-            <Link href="/sandbox" className="card" style={{ padding: '20px', textDecoration: 'none', borderLeft: '3px solid var(--accent-blue-light)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Link href="/sandbox" className="card" style={{ padding: '20px', textDecoration: 'none', borderLeft: '3px solid var(--accent-blue)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <span style={{ fontSize: '10px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                <span className="mono-tag" style={{ color: 'var(--accent-blue)' }}>
                   {t('step3_badge')}
                 </span>
-                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '2px', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '6px' }}>
                   {t('step3_title')}
                 </h3>
                 <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
                   {t('step3_desc')}
                 </p>
               </div>
-              <div style={{ marginTop: '14px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-blue-light)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ marginTop: '14px', fontSize: '12px', fontWeight: '700', color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span>{t('step3_action')}</span>
                 <span>➔</span>
               </div>
             </Link>
-
           </div>
         </div>
       </section>
