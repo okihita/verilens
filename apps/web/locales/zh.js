@@ -1,7 +1,5 @@
 export default {
   "translations": {
-    "brand_sub": "联合国教科文组织 MIL 2026",
-    "nav_games": "训练游戏",
     "nav_codex": "图鉴",
     "nav_sandbox": "沙盒实验室",
     "nav_classroom": "教师课堂",
@@ -21,10 +19,6 @@ export default {
     "hero_desc": "平台算法利用人性弱点收割广告收益。每天只需 60 秒，训练你的批判性思维反射，在虚假陷阱偷走你的理智与财产前识破套路。",
     "hero_cta_primary": "测试你的认知防线 (60秒)",
     "hero_cta_secondary": "查看套路运作方式 ▾",
-    "hero_cta_arena": "进入竞技场",
-    "hero_cta_gauntlet": "60秒每日速辨",
-    "hero_cta_skills": "技能树",
-    "hero_cta_extension": "获取浏览器插件",
     "stat_faster_title": "传播快 70%",
     "stat_faster_desc": "情绪化虚假信息比事实报道传播速度快 6 倍",
     "stat_window_title": "<5 秒",
@@ -63,12 +57,7 @@ export default {
     "card_sandbox_btn": "沙盒实测",
     "card_view_dossier": "查看完整卡片 ➔",
     "codex_dossier_breadcrumb": "法典",
-    "codex_dossier_archetype_label": "原型",
-    "codex_dossier_allegorical_title": "寓言象征与结构剖析",
-    "codex_dossier_allegorical_desc": "文艺复兴大师如何将这种操纵原型编码为象征艺术。",
     "codex_dossier_psychology_title": "大脑为何会落入此陷阱",
-    "codex_dossier_media_title": "病毒式案例研究与媒体剖析",
-    "codex_dossier_sift_title": "SIFT 侧向阅读防御协议",
     "codex_dossier_try_sandbox_btn": "启动 SIFT 沙盒分析器",
     "codex_dossier_prev": "上一个原型",
     "codex_dossier_next": "下一个原型",
@@ -81,10 +70,8 @@ export default {
     "codex_framework_label": "开放式认知防御知识框架",
     "codex_practice_sandbox_title": "在 SIFT 侧向沙盒中实战核查",
     "codex_practice_sandbox_desc": "粘贴真实新闻报道、社交媒体动态或争议言论，实时检测其是否包含该谬误或其他修辞操控话术。",
-    "codex_claim_label": "欺骗性主张",
     "codex_deconstruction_label": "操纵手法剖析",
     "codex_correction_label": "SIFT 侧向验证纠正",
-    "codex_share_whatsapp": "在 WhatsApp 上分享",
     "codex_share_btn": "分享此卡片",
     "share_modal_title": "分享此卡片",
     "share_modal_desc": "与您的朋友和社群分享此谬误解析，共同构建媒介防护力。",
@@ -157,8 +144,6 @@ export default {
     "cert_print_btn": "打印 / 保存为 PDF",
     "close_btn": "关闭",
     "cert_share_text": "我刚刚在 VeriLens 获得了联合国教科文组织认知免疫证书，准确率达 {accuracy}%，斩获 {score} XP！快来测试你的批判性思维：https://verilens.okihita.dev #UNESCO #媒体素养 #VeriLens2026",
-    "audio_toggle_on": "静音音效",
-    "audio_toggle_off": "开启音效",
     "footer_desc": "面向全球青年的开源媒介与信息素养学习平台，融合游戏化思维训练与浏览器实时护盾技术。专为 2026 联合国教科文组织全球 MIL 青年黑客松打造。",
     "footer_train_title": "思维训练",
     "footer_prog_title": "段位与进阶",
@@ -166,7 +151,9 @@ export default {
     "footer_copy": "2026 VeriLens 项目 • 专为联合国教科文组织全球 MIL 黑客松开发",
     "footer_privacy_note": "开源软件 • 严格遵循本地隐私优先保护",
     "nav_prev": "上一页",
-    "nav_next": "下一页"
+    "nav_next": "下一页",
+    "nav_educator": "教育者指南",
+    "nav_privacy": "隐私与安全"
   },
   "fallacies": {
     "ad_hominem": {

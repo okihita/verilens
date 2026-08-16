@@ -1,7 +1,5 @@
 export default {
   "translations": {
-    "brand_sub": "UNESCO MIL 2026",
-    "nav_games": "Juegos de Entrenamiento",
     "nav_codex": "Códice",
     "nav_sandbox": "Laboratorio",
     "nav_classroom": "Aula Virtual",
@@ -21,10 +19,6 @@ export default {
     "hero_desc": "Los algoritmos explotan tus sesgos psicológicos para monetizar tu atención. En 60 segundos al día, entrena tus reflejos para detectar manipulaciones antes de que afecten tu paz mental.",
     "hero_cta_primary": "Prueba Tus Defensas (60s)",
     "hero_cta_secondary": "Ver Cómo Funcionan ▾",
-    "hero_cta_arena": "Arena de Detección",
-    "hero_cta_gauntlet": "Desafío Diario 60s",
-    "hero_cta_skills": "Habilidades",
-    "hero_cta_extension": "Extensión Chrome",
     "stat_faster_title": "70% Más Rápido",
     "stat_faster_desc": "La indignación falsa se propaga 6 veces más rápido que la verdad",
     "stat_window_title": "<5 Segundos",
@@ -63,12 +57,7 @@ export default {
     "card_sandbox_btn": "Probar en Laboratorio",
     "card_view_dossier": "Ver Tarjeta Completa ➔",
     "codex_dossier_breadcrumb": "Códice",
-    "codex_dossier_archetype_label": "Arquetipo",
-    "codex_dossier_allegorical_title": "Simbolismo y Anatomía Alegórica",
-    "codex_dossier_allegorical_desc": "Cómo los maestros del Renacimiento codificaron este arquetipo de manipulación en arte simbólico.",
     "codex_dossier_psychology_title": "Por qué el cerebro cae en esta trampa",
-    "codex_dossier_media_title": "Estudio de Caso Viral y Análisis de Medios",
-    "codex_dossier_sift_title": "Protocolo de Defensa Lateral SIFT",
     "codex_dossier_try_sandbox_btn": "Iniciar Analizador Sandbox SIFT",
     "codex_dossier_prev": "Arquetipo Anterior",
     "codex_dossier_next": "Arquetipo Siguiente",
@@ -81,10 +70,8 @@ export default {
     "codex_framework_label": "Marco Abierto de Defensa Cognitiva",
     "codex_practice_sandbox_title": "Practique la Verificación en SIFT Sandbox",
     "codex_practice_sandbox_desc": "Pegue artículos de noticias, publicaciones sociales o citas reales para detectar si contienen esta falacia u otras trampas retóricas.",
-    "codex_claim_label": "Afirmación Engañosa",
     "codex_deconstruction_label": "Deconstrucción Manipulativa",
     "codex_correction_label": "Corrección Lateral SIFT",
-    "codex_share_whatsapp": "Compartir en WhatsApp",
     "codex_share_btn": "Compartir esta Tarjeta",
     "share_modal_title": "Compartir esta Tarjeta",
     "share_modal_desc": "Comparte este desglose de falacias con tus amigos y comunidad para construir una defensa mediática colectiva.",
@@ -157,8 +144,6 @@ export default {
     "cert_print_btn": "Imprimir / Guardar PDF",
     "close_btn": "Cerrar",
     "cert_share_text": "¡Acabo de obtener mi Certificado de Inmunidad Cognitiva UNESCO en VeriLens con {accuracy}% de precisión y {score} XP! Pon a prueba tu pensamiento crítico: https://verilens.okihita.dev #UNESCO #AlfabetizacionMediatica #VeriLens2026",
-    "audio_toggle_on": "Silenciar Efectos de Sonido",
-    "audio_toggle_off": "Activar Efectos de Sonido",
     "footer_desc": "Ecosistema de alfabetización mediática e informacional que combina entrenamiento cognitivo gamificado con protección en tiempo real para el navegador. Desarrollado para el UNESCO Global MIL Youth Hackathon 2026.",
     "footer_train_title": "Juegos de Entrenamiento",
     "footer_prog_title": "Progreso y Niveles",
@@ -166,7 +151,9 @@ export default {
     "footer_copy": "2026 Proyecto VeriLens • Creado para el UNESCO Global MIL Youth Hackathon",
     "footer_privacy_note": "Código Abierto • Procesamiento Local y Privado",
     "nav_prev": "Anterior",
-    "nav_next": "Siguiente"
+    "nav_next": "Siguiente",
+    "nav_educator": "Guía del Educador",
+    "nav_privacy": "Privacidad y Seguridad"
   },
   "fallacies": {
     "ad_hominem": {

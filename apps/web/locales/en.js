@@ -1,7 +1,5 @@
 export default {
   "translations": {
-    "brand_sub": "UNESCO MIL 2026",
-    "nav_games": "Training Games",
     "nav_codex": "Codex",
     "nav_sandbox": "Sandbox",
     "nav_classroom": "Classroom",
@@ -21,10 +19,6 @@ export default {
     "hero_desc": "Algorithms weaponize psychological blindspots for ad revenue. In 60 seconds a day, train your cognitive reflexes to spot manipulation traps before they cost you your peace of mind.",
     "hero_cta_primary": "Test Your Defenses (60s Trial)",
     "hero_cta_secondary": "See How Traps Work ▾",
-    "hero_cta_arena": "Play Spotter Arena",
-    "hero_cta_gauntlet": "60s Daily Gauntlet",
-    "hero_cta_skills": "Skill Tree",
-    "hero_cta_extension": "Get Chrome Extension",
     "stat_faster_title": "70% Faster",
     "stat_faster_desc": "Fake outrage spreads 6x faster than factual reporting",
     "stat_window_title": "<5 Seconds",
@@ -63,12 +57,7 @@ export default {
     "card_sandbox_btn": "Sandbox",
     "card_view_dossier": "View Full Card ➔",
     "codex_dossier_breadcrumb": "Codex",
-    "codex_dossier_archetype_label": "Archetype",
-    "codex_dossier_allegorical_title": "Allegorical Symbolism & Anatomy",
-    "codex_dossier_allegorical_desc": "How Renaissance masters codified this manipulation archetype into symbolic art.",
     "codex_dossier_psychology_title": "Why Your Brain Falls for This",
-    "codex_dossier_media_title": "Viral Case Study & Media Breakdown",
-    "codex_dossier_sift_title": "SIFT Lateral Defense Protocol",
     "codex_dossier_try_sandbox_btn": "Launch SIFT Sandbox Analyzer",
     "codex_dossier_prev": "Previous Archetype",
     "codex_dossier_next": "Next Archetype",
@@ -81,10 +70,8 @@ export default {
     "codex_framework_label": "Open Cognitive Defense Framework",
     "codex_practice_sandbox_title": "Practice Verification in SIFT Sandbox",
     "codex_practice_sandbox_desc": "Paste real-world news articles, social posts, or quotes to detect if they use this fallacy or other rhetorical traps.",
-    "codex_claim_label": "Deceptive Claim",
     "codex_deconstruction_label": "Manipulative Deconstruction",
     "codex_correction_label": "SIFT Lateral Correction",
-    "codex_share_whatsapp": "Share on WhatsApp",
     "codex_share_btn": "Share this Card",
     "share_modal_title": "Share this Card",
     "share_modal_desc": "Share this fallacy breakdown with your friends and community to build collective media defense.",
@@ -157,8 +144,6 @@ export default {
     "cert_print_btn": "Print / Save PDF",
     "close_btn": "Close",
     "cert_share_text": "I just earned my UNESCO Media Literacy Cognitive Immunity Certificate on VeriLens with {accuracy}% accuracy and {score} XP! Test your critical thinking: https://verilens.okihita.dev #UNESCO #MediaLiteracy #VeriLens2026",
-    "audio_toggle_on": "Mute Sound Effects",
-    "audio_toggle_off": "Enable Sound Effects",
     "footer_desc": "An open-access media & information literacy ecosystem combining gamified cognitive conditioning with real-time browser protection. Built for the UNESCO Global MIL Youth Hackathon 2026.",
     "footer_train_title": "Training Games",
     "footer_prog_title": "Progression & Ranks",
@@ -166,6 +151,8 @@ export default {
     "footer_copy": "2026 VeriLens Project • Developed for UNESCO Global MIL Youth Hackathon",
     "footer_privacy_note": "Open Source • Privacy-First Local Processing",
     "nav_prev": "Prev",
-    "nav_next": "Next"
+    "nav_next": "Next",
+    "nav_educator": "Educator Guide",
+    "nav_privacy": "Privacy & Security"
   }
 };

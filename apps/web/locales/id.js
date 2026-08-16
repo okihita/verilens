@@ -1,7 +1,5 @@
 export default {
   "translations": {
-    "brand_sub": "UNESCO MIL 2026",
-    "nav_games": "Permainan Latihan",
     "nav_codex": "Kodeks",
     "nav_sandbox": "Sandbox",
     "nav_classroom": "Kelas Guru",
@@ -21,10 +19,6 @@ export default {
     "hero_desc": "Algoritma mengeksploitasi titik buta psikologis demi pendapatan iklan. Dalam 60 detik sehari, latih refleks kognitifmu untuk mengenali jebakan sebelum merugikan ketenangan pikiranmu.",
     "hero_cta_primary": "Uji Pertahananmu (Percobaan 60 Detik)",
     "hero_cta_secondary": "Lihat Cara Kerja Jebakan ▾",
-    "hero_cta_arena": "Arena Deteksi",
-    "hero_cta_gauntlet": "Tantangan 60 Detik",
-    "hero_cta_skills": "Pohon Keterampilan",
-    "hero_cta_extension": "Ekstensi Chrome",
     "stat_faster_title": "70% Lebih Cepat",
     "stat_faster_desc": "Kemarahan palsu menyebar 6x lebih cepat dibanding laporan fakta",
     "stat_window_title": "<5 Detik",
@@ -63,12 +57,7 @@ export default {
     "card_sandbox_btn": "Uji di Sandbox",
     "card_view_dossier": "Lihat Kartu Lengkap ➔",
     "codex_dossier_breadcrumb": "Kodeks",
-    "codex_dossier_archetype_label": "Arketipe",
-    "codex_dossier_allegorical_title": "Simbolisme & Anatomi Alegoris",
-    "codex_dossier_allegorical_desc": "Bagaimana maestro Renaisans mengkodifikasi arketipe manipulasi ini menjadi seni simbolis.",
     "codex_dossier_psychology_title": "Mengapa Otak Terjebak Pola Ini",
-    "codex_dossier_media_title": "Studi Kasus Viral & Analisis Media",
-    "codex_dossier_sift_title": "Protokol Pertahanan Lateral SIFT",
     "codex_dossier_try_sandbox_btn": "Buka Penganalisis Sandbox SIFT",
     "codex_dossier_prev": "Arketipe Sebelumnya",
     "codex_dossier_next": "Arketipe Berikutnya",
@@ -81,10 +70,8 @@ export default {
     "codex_framework_label": "Kerangka Pertahanan Kognitif Terbuka",
     "codex_practice_sandbox_title": "Latihan Verifikasi di SIFT Sandbox",
     "codex_practice_sandbox_desc": "Tempel artikel berita, unggahan media sosial, atau kutipan nyata untuk mendeteksi apakah mengandung sesat pikir ini atau jebakan retorika lainnya.",
-    "codex_claim_label": "Klaim Menyesatkan",
     "codex_deconstruction_label": "Dekonstruksi Manipulasi",
     "codex_correction_label": "Koreksi Lateral SIFT",
-    "codex_share_whatsapp": "Bagikan di WhatsApp",
     "codex_share_btn": "Bagikan Kartu Ini",
     "share_modal_title": "Bagikan Kartu Ini",
     "share_modal_desc": "Bagikan analisis sesat pikir ini kepada teman dan komunitas untuk membangun pertahanan media kolektif.",
@@ -157,8 +144,6 @@ export default {
     "cert_print_btn": "Cetak / Simpan PDF",
     "close_btn": "Tutup",
     "cert_share_text": "Saya baru saja meraih Sertifikat Kekebalan Kognitif UNESCO di VeriLens dengan akurasi {accuracy}% dan {score} XP! Uji kemampuan literasi mediamu: https://verilens.okihita.dev #UNESCO #LiterasiMedia #VeriLens2026",
-    "audio_toggle_on": "Bisukan Efek Suara",
-    "audio_toggle_off": "Aktifkan Efek Suara",
     "footer_desc": "Ekosistem literasi media dan informasi akses terbuka yang memadukan pengondisian kognitif berbasis permainan dengan perlindungan peramban web langsung. Dibuat untuk UNESCO Global MIL Youth Hackathon 2026.",
     "footer_train_title": "Permainan Latihan",
     "footer_prog_title": "Perkembangan & Peringkat",
@@ -166,7 +151,9 @@ export default {
     "footer_copy": "2026 Proyek VeriLens • Dikembangkan untuk UNESCO Global MIL Youth Hackathon",
     "footer_privacy_note": "Sumber Terbuka • Pemrosesan Lokal Ramah Privasi",
     "nav_prev": "Sebelumnya",
-    "nav_next": "Berikutnya"
+    "nav_next": "Berikutnya",
+    "nav_educator": "Panduan Pendidik",
+    "nav_privacy": "Privasi & Keamanan"
   },
   "fallacies": {
     "ad_hominem": {

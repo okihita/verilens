@@ -1,7 +1,5 @@
 export default {
   "translations": {
-    "brand_sub": "UNESCO MIL 2026",
-    "nav_games": "Entraînement Cognitif",
     "nav_codex": "Codex",
     "nav_sandbox": "Laboratoire",
     "nav_classroom": "Espace Enseignant",
@@ -21,10 +19,6 @@ export default {
     "hero_desc": "Les algorithmes exploitent vos vulnérabilités cognitives pour générer des clics. En 60 secondes par jour, musclez vos réflexes pour déjouer les manipulations avant qu’elles ne volent votre temps.",
     "hero_cta_primary": "Tester Mes Réflexes (60s)",
     "hero_cta_secondary": "Comprendre les Pièges ▾",
-    "hero_cta_arena": "Arène de Détection",
-    "hero_cta_gauntlet": "Défi Quotidien 60s",
-    "hero_cta_skills": "Compétences",
-    "hero_cta_extension": "Extension Chrome",
     "stat_faster_title": "70% Plus Rapide",
     "stat_faster_desc": "Les fausses indignations se propagent 6x plus vite que les faits",
     "stat_window_title": "<5 Secondes",
@@ -63,12 +57,7 @@ export default {
     "card_sandbox_btn": "Tester en Laboratoire",
     "card_view_dossier": "Voir la Carte Complète ➔",
     "codex_dossier_breadcrumb": "Codex",
-    "codex_dossier_archetype_label": "Archétype",
-    "codex_dossier_allegorical_title": "Symbolisme et Anatomie Allégorique",
-    "codex_dossier_allegorical_desc": "Comment les maîtres de la Renaissance ont codifié cet archétype de manipulation en art symbolique.",
     "codex_dossier_psychology_title": "Pourquoi le cerveau tombe dans ce piège",
-    "codex_dossier_media_title": "Étude de Cas Viral et Analyse des Médias",
-    "codex_dossier_sift_title": "Protocole de Défense Latérale SIFT",
     "codex_dossier_try_sandbox_btn": "Lancer l'Analyseur SIFT Sandbox",
     "codex_dossier_prev": "Archétype Précédent",
     "codex_dossier_next": "Archétype Suivant",
@@ -81,10 +70,8 @@ export default {
     "codex_framework_label": "Cadre Ouvert de Défense Cognitive",
     "codex_practice_sandbox_title": "Entraînez-vous à la Vérification dans le Bac à Sable SIFT",
     "codex_practice_sandbox_desc": "Collez des articles de presse, des publications sociales ou des citations réelles pour détecter s'ils utilisent ce sophisme ou d'autres pièges rhétoriques.",
-    "codex_claim_label": "Affirmation Trompeuse",
     "codex_deconstruction_label": "Déconstruction Manipulatrice",
     "codex_correction_label": "Correction Latérale SIFT",
-    "codex_share_whatsapp": "Partager sur WhatsApp",
     "codex_share_btn": "Partager cette Carte",
     "share_modal_title": "Partager cette Carte",
     "share_modal_desc": "Partagez cette analyse de sophisme avec vos amis et votre communauté pour renforcer l’esprit critique collectif.",
@@ -157,8 +144,6 @@ export default {
     "cert_print_btn": "Imprimer / Sauvegarder PDF",
     "close_btn": "Fermer",
     "cert_share_text": "Je viens d'obtenir mon Certificat d'Immunité Cognitive UNESCO sur VeriLens avec {accuracy}% de précision et {score} XP ! Teste ton esprit critique : https://verilens.okihita.dev #UNESCO #EMI #VeriLens2026",
-    "audio_toggle_on": "Couper les Effets Sonores",
-    "audio_toggle_off": "Activer les Effets Sonores",
     "footer_desc": "Écosystème éducatif d’Éducation aux Médias et à l’Information (EMI) combinant entraînement ludique et protection du navigateur en temps réel. Conçu pour le Hackathon Mondial UNESCO MIL Youth 2026.",
     "footer_train_title": "Jeux d’Entraînement",
     "footer_prog_title": "Progression & Rangs",
@@ -166,7 +151,9 @@ export default {
     "footer_copy": "Projet VeriLens 2026 • Développé pour le Hackathon Mondial UNESCO MIL",
     "footer_privacy_note": "Open Source • Traitement Local Respectueux de la Vie Privée",
     "nav_prev": "Précédent",
-    "nav_next": "Suivant"
+    "nav_next": "Suivant",
+    "nav_educator": "Guide des Éducateurs",
+    "nav_privacy": "Confidentialité et Sécurité"
   },
   "fallacies": {
     "ad_hominem": {
