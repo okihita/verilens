@@ -715,12 +715,9 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
             {/* Solid Editorial Image Sharing Section */}
             <div style={{ padding: '14px', background: 'var(--bg-surface)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <div style={{ marginBottom: '8px' }}>
                 <span style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  Solid Editorial Poster Export (PNG)
-                </span>
-                <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600' }}>
-                  Museum-Grade
+                  Editorial Poster Export (PNG)
                 </span>
               </div>
 

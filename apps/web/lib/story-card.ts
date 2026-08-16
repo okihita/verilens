@@ -1,6 +1,6 @@
 /**
  * VeriLens Solid Civic Editorial Social & Story Card Engine
- * Generates museum-grade, high-contrast editorial posters directly on HTML5 Canvas.
+ * Generates high-contrast editorial posters directly on HTML5 Canvas.
  * Default: High-contrast Civic Light Mode using Plus Jakarta Sans typography.
  * Strict No Glassmorphism: Crisp, solid, tactile editorial surfaces.
  */
