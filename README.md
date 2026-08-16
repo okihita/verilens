@@ -1,6 +1,7 @@
 # VeriLens — AI Cognitive Shield for Media & Information Literacy
 
 [![UNESCO MIL Hackathon 2026](https://img.shields.io/badge/UNESCO-Global%20MIL%20Hackathon%202026-F59E0B?style=for-the-badge)](https://www.unesco.org/en/global-mil-week)
+[![Release v1.1.0](https://img.shields.io/badge/Release-v1.1.0-2563EB?style=for-the-badge&logo=github)](https://github.com/okihita/verilens/releases/tag/v1.1.0)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16%20Turbopack-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
 [![React 19](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
 [![pnpm Workspace](https://img.shields.io/badge/pnpm-Workspace-F69220?style=for-the-badge&logo=pnpm)](https://pnpm.io)
@@ -68,6 +69,7 @@ verilens/
 │   ├── 03_VeriLens_High_Level_Architecture_and_Code_Design.md
 │   └── 04_VeriLens_Web_App_and_Gamified_Platform_PRD.md
 │
+├── AGENTS.md                      # Strict Git Flow & Development Directives
 ├── pnpm-workspace.yaml            # pnpm workspace definition
 └── turbo.json                     # Turborepo task pipeline
 ```
@@ -95,53 +97,44 @@ A 1-click workshop tool for teachers to configure class duration (15m, 45m, 90m)
 ### 5. Multilingual Support (English & Indonesian)
 Instant zero-reload language switching (`EN` | `ID`) translating all cards, game prompts, rules, and official completion certificates.
 
-### 6. Theme Engine
-Automatic detection of operating system dark/light preferences by default, with manual override controls (`Auto` / `Light` / `Dark`).
+### 6. Executive Theme Engine & Typography
+* **Default Theme:** Clean, high-contrast Light mode with Sun, Moon, and System geometric vector toggles.
+* **Typography:** `Plus Jakarta Sans` for tight, authoritative headlines and `JetBrains Mono` for tabular numerals and badges.
+* **Official Branding:** Geometric optical shield emblem and crisp transparent favicons.
 
 ---
 
-## Local Development & Testing
+## Getting Started Locally
 
 ### Prerequisites
-* Node.js >= 18.0.0
-* pnpm >= 9.0.0
+* **Node.js:** `>= 18.18.0` (or Node 20+)
+* **pnpm:** `>= 9.0.0` (`npm install -g pnpm`)
 
-### Installation
+### Installation & Execution
+
 ```bash
 # Clone the repository
 git clone https://github.com/okihita/verilens.git
 cd verilens
 
-# Install all workspace dependencies
+# Install all monorepo dependencies
 pnpm install
-```
 
-### Running the Web Platform
-```bash
+# Start Next.js development server
 pnpm dev
-# Opens http://localhost:3000
-```
 
-### Running Automated Tests
-```bash
+# Run all 17 automated tests
 pnpm test
-# Executes all 17 unit tests across shared, extension, and web packages
-```
 
-### Building for Production
-```bash
+# Build production bundle
 pnpm build
-# Runs Turborepo parallel compilation with Next.js Turbopack
 ```
-
-### Loading the Chrome Extension in Developer Mode
-1. Open Google Chrome and go to `chrome://extensions`
-2. Enable **Developer mode** in the top right.
-3. Click **Load unpacked** and select the `apps/extension` directory.
-4. Open `apps/extension/demo/mock_article.html` to test text selection analysis.
 
 ---
 
-## License
+## Development & Git Flow
 
-Developed under the MIT License for the UNESCO Global Media & Information Literacy (MIL) Youth Hackathon 2026.
+Contributors and AI developers must adhere to the Git Flow directives defined in [`AGENTS.md`](./AGENTS.md):
+* **`main`**: Production releases only with semver release tags (`v1.1.0`).
+* **`develop`**: Integration branch for ongoing feature iterations.
+* **`feature/<name>`**: Isolated feature development branched off `develop`.

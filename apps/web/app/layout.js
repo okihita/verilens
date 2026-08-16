@@ -20,6 +20,11 @@ const monoFont = JetBrains_Mono({
 export const metadata = {
   title: 'VeriLens — UNESCO Gamified Media Literacy & Cognitive Companion',
   description: 'Master critical thinking, identify cognitive biases, and dissect misinformation in real-time. Built for the UNESCO Global MIL Youth Hackathon 2026.',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png'
+  },
   openGraph: {
     title: 'VeriLens — The AI Cognitive Shield for Media Literacy',
     description: '12 Interactive Fallacy Cards, Gamified Bias Spotter Arena, Skill Tree, and Real-Time Article Dissector.',
