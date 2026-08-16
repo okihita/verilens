@@ -345,93 +345,113 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             </p>
           </div>
 
-          {/* Case Study Tab Selectors */}
+          {/* Case Study Domain Switcher (Wrapped, zero scrollbar) */}
           {caseStudies.length > 0 && (
             <div>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', overflowX: 'auto', paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}>
-                {caseStudies.map((cs, idx) => (
-                  <button
-                    key={cs.id || idx}
-                    onClick={() => setActiveCaseStudyTab(idx)}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '8px',
-                      fontSize: '13px',
-                      fontWeight: '800',
-                      border: '1px solid',
-                      cursor: 'pointer',
-                      whiteSpace: 'nowrap',
-                      transition: 'all 0.15s ease',
-                      borderColor: activeCaseStudyTab === idx ? 'var(--accent-blue-light)' : 'var(--border-card)',
-                      background: activeCaseStudyTab === idx ? 'var(--accent-blue)' : 'var(--bg-surface)',
-                      color: activeCaseStudyTab === idx ? '#FFFFFF' : 'var(--text-secondary)'
-                    }}
-                  >
-                    Case {idx + 1}: {cs.domain}
-                  </button>
-                ))}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' }}>
+                {caseStudies.map((cs, idx) => {
+                  const isActive = activeCaseStudyTab === idx;
+                  return (
+                    <button
+                      key={cs.id || idx}
+                      onClick={() => setActiveCaseStudyTab(idx)}
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '20px',
+                        fontSize: '13px',
+                        fontWeight: '700',
+                        border: '1px solid',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                        borderColor: isActive ? 'var(--accent-blue-light)' : 'var(--border-card)',
+                        background: isActive ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                        color: isActive ? '#FFFFFF' : 'var(--text-secondary)'
+                      }}
+                    >
+                      {cs.domain}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Active Case Study Card */}
+              {/* Active Case Study Editorial Card */}
               {caseStudies[activeCaseStudyTab] && (
                 <div
                   className="card"
                   style={{
-                    padding: '28px',
-                    background: 'var(--bg-surface-elevated)',
+                    padding: '28px 32px',
+                    background: 'var(--bg-surface)',
                     border: '1px solid var(--border-card)',
-                    borderLeft: `4px solid ${fallacy.color || 'var(--accent-blue)'}`
+                    borderRadius: 'var(--radius-lg)'
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
+                  {/* Case Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
                     <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       {caseStudies[activeCaseStudyTab].domain}
                     </span>
-                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '700' }}>
-                      Case Study {activeCaseStudyTab + 1} of {caseStudies.length}
+                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '600' }}>
+                      Field Case {activeCaseStudyTab + 1} of {caseStudies.length}
                     </span>
                   </div>
 
-                  <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '16px' }}>
+                  {/* Title */}
+                  <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 18px 0' }}>
                     {caseStudies[activeCaseStudyTab].title}
                   </h3>
 
-                  {/* Deceptive Claim Box */}
-                  <div
+                  {/* Authentic Quote Box */}
+                  <blockquote
                     style={{
-                      background: 'rgba(0, 0, 0, 0.25)',
-                      borderLeft: '4px solid var(--accent-red)',
+                      margin: '0 0 20px 0',
                       padding: '16px 20px',
-                      borderRadius: '8px',
-                      marginBottom: '16px'
+                      borderLeft: '4px solid var(--accent-red)',
+                      background: 'rgba(239, 68, 68, 0.06)',
+                      borderRadius: '0 8px 8px 0',
+                      fontSize: '15.5px',
+                      fontStyle: 'italic',
+                      color: 'var(--text-main)',
+                      lineHeight: '1.55'
                     }}
                   >
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_claim_label')}
-                    </div>
-                    <p style={{ fontSize: '15px', fontStyle: 'italic', color: 'var(--text-main)', lineHeight: '1.5', margin: 0 }}>
-                      {caseStudies[activeCaseStudyTab].claim}
-                    </p>
-                  </div>
+                    {caseStudies[activeCaseStudyTab].claim}
+                  </blockquote>
 
-                  {/* Manipulative Deconstruction */}
-                  <div style={{ background: 'var(--bg-surface)', padding: '16px 20px', borderRadius: '8px', border: '1px solid var(--border-subtle)', marginBottom: '14px' }}>
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_deconstruction_label')}
+                  {/* Two-column Deconstruction & Verification Grid */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                    {/* The Manipulation */}
+                    <div
+                      style={{
+                        padding: '16px 18px',
+                        background: 'var(--bg-surface-elevated)',
+                        border: '1px solid var(--border-subtle)',
+                        borderRadius: 'var(--radius-md)'
+                      }}
+                    >
+                      <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '6px', letterSpacing: '0.04em' }}>
+                        {t('codex_deconstruction_label')}
+                      </div>
+                      <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                        {caseStudies[activeCaseStudyTab].deconstruction}
+                      </p>
                     </div>
-                    <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.55', margin: 0 }}>
-                      {caseStudies[activeCaseStudyTab].deconstruction}
-                    </p>
-                  </div>
 
-                  {/* SIFT Lateral Correction */}
-                  <div style={{ background: 'var(--bg-surface)', padding: '16px 20px', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-                    <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      {t('codex_correction_label')}
+                    {/* How to Verify (SIFT Defense) */}
+                    <div
+                      style={{
+                        padding: '16px 18px',
+                        background: 'rgba(16, 185, 129, 0.05)',
+                        border: '1px solid rgba(16, 185, 129, 0.25)',
+                        borderRadius: 'var(--radius-md)'
+                      }}
+                    >
+                      <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent-emerald-light)', textTransform: 'uppercase', marginBottom: '6px', letterSpacing: '0.04em' }}>
+                        {t('codex_correction_label')}
+                      </div>
+                      <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0, fontWeight: '500' }}>
+                        {caseStudies[activeCaseStudyTab].correction}
+                      </p>
                     </div>
-                    <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.55', margin: 0, fontWeight: '600' }}>
-                      {caseStudies[activeCaseStudyTab].correction}
-                    </p>
                   </div>
                 </div>
               )}
