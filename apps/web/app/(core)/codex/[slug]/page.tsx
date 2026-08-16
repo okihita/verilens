@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fallacies, FALLACY_ILLUSTRATIONS, idToSlug, slugToId } from '@verilens/shared';
 import { useTranslation } from '../../../../lib/i18n';
+import { shareStoryImage } from '../../../../lib/story-card';
 
 export default function FallacyDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
@@ -26,6 +27,8 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [instagramFeedback, setInstagramFeedback] = useState(false);
+  const [isGeneratingStory, setIsGeneratingStory] = useState(false);
+  const [storyFeedback, setStoryFeedback] = useState('');
 
   const imageSrc = `/assets/images/fallacies/${rawFallacy.id}.jpg`;
   const svgIllustration = (FALLACY_ILLUSTRATIONS && FALLACY_ILLUSTRATIONS[rawFallacy.id]) || '';
@@ -72,6 +75,33 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
       }
     }
     setIsShareModalOpen(true);
+  };
+
+  const handleShareStory = async (format: 'story' | 'square' = 'story') => {
+    setIsGeneratingStory(true);
+    setStoryFeedback('');
+    try {
+      const result = await shareStoryImage({
+        fallacyId: rawFallacy.id,
+        name: fallacy.name,
+        subtitle: fallacy.subtitle,
+        category: fallacy.category,
+        color: rawFallacy.color,
+        description: fallacy.description,
+        psychology: fallacy.psychology,
+        format
+      });
+      if (result === 'downloaded') {
+        setStoryFeedback(format === 'story' ? 'Story image downloaded (1080x1920 PNG)!' : 'Social card downloaded (1080x1080 PNG)!');
+        setTimeout(() => setStoryFeedback(''), 4500);
+      }
+    } catch (e) {
+      console.error('Failed to generate story image:', e);
+      setStoryFeedback('Could not generate image on this device.');
+      setTimeout(() => setStoryFeedback(''), 4500);
+    } finally {
+      setIsGeneratingStory(false);
+    }
   };
 
   const handleCopyLink = async () => {
@@ -188,7 +218,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 color: 'var(--text-main)',
                 cursor: 'pointer'
               }}
-              title="Share this Card on WhatsApp, Instagram, X, LinkedIn, Telegram"
+              title="Share this Card as Image, WhatsApp, Instagram, X"
             >
               <span style={{ color: 'var(--accent-blue-light)', fontWeight: '900' }}>↗</span>
               <span>{t('codex_share_btn')}</span>
@@ -291,26 +321,44 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
 
-            {/* Primary Action Button (Single, full-width, clean) */}
-            <div>
+            {/* Primary Actions (Launch Sandbox & Instant Story Share) */}
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <Link
                 href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
                 className="btn btn-primary"
                 style={{
-                  width: '100%',
-                  padding: '14px 24px',
-                  fontSize: '14.5px',
+                  flex: '1 1 200px',
+                  padding: '14px 20px',
+                  fontSize: '14px',
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '10px',
+                  gap: '8px',
                   textDecoration: 'none'
                 }}
               >
                 <span>{t('codex_dossier_try_sandbox_btn')}</span>
                 <span>➔</span>
               </Link>
+              <button
+                onClick={() => handleShareStory('story')}
+                disabled={isGeneratingStory}
+                className="btn btn-outline"
+                style={{
+                  padding: '14px 18px',
+                  fontSize: '13.5px',
+                  fontWeight: '800',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  cursor: isGeneratingStory ? 'wait' : 'pointer'
+                }}
+                title="Create 1080x1920 Story Image"
+              >
+                <span>📸</span>
+                <span>{isGeneratingStory ? t('share_generating') : 'Story Image'}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -572,7 +620,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
             className="card"
             style={{
               width: '100%',
-              maxWidth: '480px',
+              maxWidth: '520px',
               background: 'var(--bg-surface-elevated)',
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-lg)',
@@ -619,7 +667,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-md)',
-                marginBottom: '20px'
+                marginBottom: '16px'
               }}
             >
               <img
@@ -637,8 +685,64 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
 
+            {/* Viral Image Sharing Actions (Instagram Story & Square Feed) */}
+            <div style={{ padding: '14px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
+              <div style={{ fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
+                Viral Story & Social Card (PNG)
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                <button
+                  onClick={() => handleShareStory('story')}
+                  disabled={isGeneratingStory}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    background: 'linear-gradient(45deg, #F58529, #DD2A7B, #8134AF)',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    fontSize: '12.5px',
+                    fontWeight: '800',
+                    cursor: isGeneratingStory ? 'wait' : 'pointer'
+                  }}
+                >
+                  <span>📸</span>
+                  <span>{isGeneratingStory ? t('share_generating') : 'Story (9:16)'}</span>
+                </button>
+                <button
+                  onClick={() => handleShareStory('square')}
+                  disabled={isGeneratingStory}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    background: 'var(--bg-surface-elevated)',
+                    color: 'var(--text-main)',
+                    border: '1px solid var(--border-card)',
+                    fontSize: '12.5px',
+                    fontWeight: '800',
+                    cursor: isGeneratingStory ? 'wait' : 'pointer'
+                  }}
+                >
+                  <span>🖼️</span>
+                  <span>{isGeneratingStory ? t('share_generating') : 'Square (1:1)'}</span>
+                </button>
+              </div>
+              {storyFeedback && (
+                <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--accent-emerald-light)', fontWeight: '700', textAlign: 'center' }}>
+                  ✓ {storyFeedback}
+                </div>
+              )}
+            </div>
+
             {/* Social Share Channels Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '16px' }}>
               {/* WhatsApp */}
               <a
                 href={whatsappUrl}
