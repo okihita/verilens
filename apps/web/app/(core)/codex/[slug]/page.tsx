@@ -216,7 +216,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           {/* Right Column: Card Breakdown & Taxonomy Data */}
           <div>
             {/* Header Eyebrow */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <span
                 style={{
                   fontSize: '12px',
@@ -230,9 +230,6 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
                 }}
               >
                 {fallacy.category}
-              </span>
-              <span style={{ fontSize: '13px', fontWeight: '800', color: 'var(--text-muted)' }}>
-                {t('codex_dossier_archetype_label')} #{String(fallacyIndex + 1).padStart(2, '0')} / {fallacies.length}
               </span>
             </div>
 
