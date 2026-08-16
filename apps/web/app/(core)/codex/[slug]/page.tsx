@@ -37,25 +37,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
   const prevSlug = idToSlug(fallacies[prevIndex].id);
   const nextSlug = idToSlug(fallacies[nextIndex].id);
 
-  // Allegorical Anatomy symbols
-  const allegoricalSymbols = useMemo(() => {
-    return rawFallacy.allegorical_symbols || [
-      {
-        title: 'The Central Allegorical Motif',
-        desc: 'A singular Renaissance metaphor codifying this cognitive vulnerability into an enduring visual emblem.'
-      },
-      {
-        title: 'Chiaroscuro Illumination',
-        desc: 'Dramatic contrast of light and shadow illustrating empirical truth piercing through rhetorical deception.'
-      },
-      {
-        title: 'The Stone Plinth of Truth',
-        desc: 'The unyielding foundation of lateral cross-referencing and verification.'
-      }
-    ];
-  }, [rawFallacy]);
-
-  // 5 Case Studies
+  // 5 Real-World Case Studies
   const caseStudies = useMemo(() => {
     return rawFallacy.case_studies || [];
   }, [rawFallacy]);
@@ -82,8 +64,8 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           url: canonicalUrl
         });
         return;
-      } catch (err) {
-        if (err.name !== 'AbortError') {
+      } catch (err: any) {
+        if (err?.name !== 'AbortError') {
           setIsShareModalOpen(true);
         }
         return;
@@ -119,7 +101,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
   // Close share modal on ESC key
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsShareModalOpen(false);
       }
@@ -132,7 +114,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-app)', paddingBottom: '80px' }}>
-      {/* Top Breadcrumb Header Bar */}
+      {/* Top Breadcrumb & Actions Bar */}
       <section style={{ borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', padding: '16px 0' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
@@ -279,99 +261,46 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
               </span>
             </div>
 
-            {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            {/* Primary Action Button (Single, prominent, zero duplicate share) */}
+            <div>
               <Link
                 href={`/sandbox?sample=${encodeURIComponent(fallacy.name)}`}
                 className="btn btn-primary"
                 style={{
-                  flex: '1 1 200px',
-                  padding: '14px 20px',
-                  fontSize: '14px',
+                  width: '100%',
+                  padding: '14px 24px',
+                  fontSize: '14.5px',
                   fontWeight: '800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '10px',
                   textDecoration: 'none'
                 }}
               >
                 <span>{t('codex_dossier_try_sandbox_btn')}</span>
                 <span>➔</span>
               </Link>
-              <button
-                onClick={handleOpenShare}
-                className="btn btn-outline"
-                style={{
-                  padding: '14px 20px',
-                  fontSize: '14px',
-                  fontWeight: '800',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  cursor: 'pointer'
-                }}
-              >
-                <span>↗</span>
-                <span>{t('codex_share_btn')}</span>
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Section 1: Allegorical Symbolism & Anatomy */}
-        <section style={{ marginTop: '56px' }}>
-          <div style={{ marginBottom: '20px' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '4px' }}>
-              {t('codex_dossier_allegorical_title')}
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-              {t('codex_dossier_allegorical_desc')}
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '18px' }}>
-            {allegoricalSymbols.map((sym, idx) => (
-              <div
-                key={idx}
-                className="card"
-                style={{
-                  padding: '20px',
-                  background: 'var(--bg-surface)',
-                  borderTop: `3px solid ${fallacy.color || 'var(--accent-amber)'}`
-                }}
-              >
-                <div style={{ fontSize: '12px', fontWeight: '800', color: fallacy.color || 'var(--accent-amber)', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  Symbol #{idx + 1}
-                </div>
-                <h3 style={{ fontSize: '16.5px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '6px' }}>
-                  {sym.title}
-                </h3>
-                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                  {sym.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 2: Cognitive Mechanism & Psychology */}
+        {/* Section 1: Cognitive Mechanism & Psychology */}
         <section style={{ marginTop: '48px' }}>
-          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)' }}>
+          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)', borderLeft: `4px solid ${fallacy.color || 'var(--accent-purple)'}` }}>
             <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-purple)', letterSpacing: '0.08em' }}>
               Psychological Anatomy
             </span>
             <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '12px' }}>
               {t('codex_dossier_psychology_title')}
             </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
               {fallacy.psychology}
             </p>
           </div>
         </section>
 
-        {/* Section 3: 5 Real-World Case Studies & Field Deconstructions */}
+        {/* Section 2: 5 Real-World Case Studies & Field Deconstructions */}
         <section style={{ marginTop: '48px' }}>
           <div style={{ marginBottom: '20px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '4px' }}>
@@ -476,22 +405,7 @@ export default function FallacyDetailsPage({ params }: { params: Promise<{ slug:
           )}
         </section>
 
-        {/* Section 4: SIFT Lateral Defense Protocol */}
-        <section style={{ marginTop: '48px' }}>
-          <div className="card" style={{ padding: '28px', background: 'var(--bg-surface)', borderLeft: '4px solid var(--accent-blue)' }}>
-            <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--accent-blue)', letterSpacing: '0.08em' }}>
-              Stanford SHEG Framework
-            </span>
-            <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginTop: '4px', marginBottom: '12px' }}>
-              {t('codex_dossier_sift_title')}
-            </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text-main)', lineHeight: '1.6', fontWeight: '600' }}>
-              {fallacy.sift_strategy}
-            </p>
-          </div>
-        </section>
-
-        {/* Section 5: Adjacent Navigation Bar */}
+        {/* Section 3: Adjacent Archetype Navigation Bar */}
         <section style={{ marginTop: '56px', paddingTop: '28px', borderTop: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
             <Link
