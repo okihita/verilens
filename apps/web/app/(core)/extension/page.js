@@ -41,7 +41,7 @@ export default function ExtensionPage() {
           <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
             Zero-Lag Parser
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
             Non-destructive pure text node parser. Never breaks DOM attributes or web page event listeners.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function ExtensionPage() {
           <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
             Right-Click SIFT Verify
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
             Highlight any sentence on Twitter, Reddit, or news articles to trigger an instant in-page slide-out dissection.
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function ExtensionPage() {
           <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-main)', marginBottom: '6px' }}>
             Gemini 2.0 Flash-Lite
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
             Sub-300ms neural reasoning providing pedagogical reflection questions and tailored SIFT queries.
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function ExtensionPage() {
           30-Second Quickstart Installation (Evaluator Guide)
         </h2>
 
-        <ol style={{ paddingLeft: '22px', color: 'var(--text-main)', fontSize: '14px', lineHeight: '1.9' }}>
+        <ol style={{ paddingLeft: '22px', color: 'var(--text-main)', fontSize: '14.5px', lineHeight: '1.9' }}>
           <li>
             <strong>Download & Unzip:</strong> Download the <a href={downloadUrl} style={{ color: 'var(--accent-amber)', fontWeight: '700' }}>verilens-extension-v1.2.0.zip</a> release.
           </li>
@@ -98,13 +98,13 @@ export default function ExtensionPage() {
         <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
           UNESCO Hackathon 2-Minute Pitch Video
         </h3>
-        <p style={{ fontSize: '14px', color: 'var(--text-secondary)', maxWidth: '540px', margin: '0 auto 20px' }}>
+        <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', maxWidth: '540px', margin: '0 auto 20px' }}>
           Watch the full walkthrough of the VeriLens dual-ecosystem, live classroom demonstrations, and in-browser AI verification in action.
         </p>
 
         <div style={{ width: '100%', maxWidth: '640px', height: '320px', background: 'var(--bg-surface-elevated)', border: '2px dashed var(--border-card)', borderRadius: 'var(--radius-md)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
-          <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-main)' }}>[ 2-Minute Video Pitch Embed Container ]</span>
-          <span style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>Ready for YouTube / Vimeo submission link</span>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: 'var(--text-main)' }}>[ 2-Minute Video Pitch Embed Container ]</span>
+          <span style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>Ready for YouTube / Vimeo submission link</span>
         </div>
       </div>
     </div>

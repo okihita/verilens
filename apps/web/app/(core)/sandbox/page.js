@@ -87,7 +87,7 @@ export default function SandboxPage() {
     <div className="container" style={{ maxWidth: '1000px', padding: '40px 20px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-blue-light)', textTransform: 'uppercase', marginBottom: '12px' }}>
           <span>{lang === 'id' ? 'Disetor Sandbox Dalam Browser' : 'In-Browser Sandbox Dissector'}</span>
         </div>
         <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-main)', marginBottom: '8px' }}>
@@ -102,16 +102,16 @@ export default function SandboxPage() {
 
       {/* Preset Pickers */}
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
-        <button onClick={() => loadScenario('health')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
+        <button onClick={() => loadScenario('health')} className="btn btn-outline" style={{ fontSize: '13px', padding: '6px 12px' }}>
           Miracle Cure Hoax
         </button>
-        <button onClick={() => loadScenario('crypto')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
+        <button onClick={() => loadScenario('crypto')} className="btn btn-outline" style={{ fontSize: '13px', padding: '6px 12px' }}>
           Crypto 500% Scam
         </button>
-        <button onClick={() => loadScenario('politics')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
+        <button onClick={() => loadScenario('politics')} className="btn btn-outline" style={{ fontSize: '13px', padding: '6px 12px' }}>
           Outrage Headline
         </button>
-        <button onClick={() => loadScenario('wire')} className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px' }}>
+        <button onClick={() => loadScenario('wire')} className="btn btn-outline" style={{ fontSize: '13px', padding: '6px 12px' }}>
           Reuters Neutral Wire
         </button>
       </div>
@@ -119,7 +119,7 @@ export default function SandboxPage() {
       {/* Input Box */}
       <div className="card" style={{ marginBottom: '24px' }}>
         <div style={{ marginBottom: '12px' }}>
-          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+          <label style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
             {lang === 'id' ? 'Judul Berita / Artikel' : 'Article Headline'}
           </label>
           <input
@@ -131,7 +131,7 @@ export default function SandboxPage() {
         </div>
 
         <div>
-          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+          <label style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
             {lang === 'id' ? 'Isi Kutipan Artikel' : 'Article Body Excerpt'}
           </label>
           <textarea
@@ -143,14 +143,14 @@ export default function SandboxPage() {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', flexWrap: 'wrap', gap: '10px' }}>
-          <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+          <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
             {analysis?.words || 0} {lang === 'id' ? 'kata dianalisis' : 'words analyzed'}
           </span>
           <button
             onClick={handleRunAiScan}
             disabled={aiLoading}
             className="btn btn-amber"
-            style={{ padding: '8px 18px', fontSize: '13px' }}
+            style={{ padding: '8px 18px', fontSize: '14px' }}
           >
             {aiLoading ? (lang === 'id' ? 'Menganalisis dengan Gemini...' : 'Analyzing with Gemini...') : (lang === 'id' ? 'Jalankan Pemindaian AI Gemini' : 'Run Gemini AI Deep Scan')}
           </button>
@@ -163,10 +163,10 @@ export default function SandboxPage() {
           {/* Sensationalism Gauge */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                 {lang === 'id' ? 'Indeks Sensasionalisme' : 'Sensationalism Index'}
               </span>
-              <span style={{ fontSize: '13px', fontWeight: '800', color: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981' }}>
+              <span style={{ fontSize: '14px', fontWeight: '800', color: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981' }}>
                 {analysis.score}/100
               </span>
             </div>
@@ -176,7 +176,7 @@ export default function SandboxPage() {
               <div style={{ width: `${analysis.score}%`, height: '100%', background: analysis.score >= 60 ? '#EF4444' : analysis.score >= 30 ? '#F59E0B' : '#10B981', transition: 'width 0.4s ease' }}></div>
             </div>
 
-            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
               {analysis.score >= 60 ? (
                 <span><strong>High Rhetorical Heat:</strong> Detected {analysis.matches.length} manipulation/urgency patterns. Verify claims laterally.</span>
               ) : analysis.score >= 30 ? (
@@ -189,7 +189,7 @@ export default function SandboxPage() {
             {analysis.matches.length > 0 && (
               <div style={{ marginTop: '12px', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                 {analysis.matches.map((m, i) => (
-                  <span key={i} style={{ fontSize: '11px', background: 'rgba(245, 158, 11, 0.15)', color: 'var(--accent-amber)', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
+                  <span key={i} style={{ fontSize: '12px', background: 'rgba(245, 158, 11, 0.15)', color: 'var(--accent-amber)', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
                     {m.name}
                   </span>
                 ))}
@@ -199,10 +199,10 @@ export default function SandboxPage() {
 
           {/* SIFT Lateral Search Links */}
           <div className="card">
-            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
               UNESCO SIFT Lateral Links
             </span>
-            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginBottom: '12px' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '12px' }}>
               {lang === 'id' ? 'Lakukan verifikasi silang terhadap klaim ini melalui sumber terpercaya:' : 'Cross-verify this claim across trusted primary consensus archives:'}
             </p>
 
@@ -212,7 +212,7 @@ export default function SandboxPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
-                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+                style={{ justifyContent: 'space-between', fontSize: '13px', padding: '8px 12px' }}
               >
                 <span>Google News Lateral Search</span>
                 <span>➔</span>
@@ -222,7 +222,7 @@ export default function SandboxPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
-                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+                style={{ justifyContent: 'space-between', fontSize: '13px', padding: '8px 12px' }}
               >
                 <span>Reuters Archive Search</span>
                 <span>➔</span>
@@ -232,7 +232,7 @@ export default function SandboxPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
-                style={{ justifyContent: 'space-between', fontSize: '12px', padding: '6px 12px' }}
+                style={{ justifyContent: 'space-between', fontSize: '13px', padding: '8px 12px' }}
               >
                 <span>Google Fact Check Explorer</span>
                 <span>➔</span>

@@ -72,13 +72,13 @@ const GAUNTLET_ITEMS_EN = [
 const GAUNTLET_ITEMS_ID = [
   {
     id: 'g1',
-    text: '“PERINGATAN KEAMANAN MENDESAK: Dompet kripto Anda telah disusupi. Verifikasi seed phrase Anda sekarang untuk mengamankan aset.”',
+    text: '“PERINGATAN KEAMANAN MENDESAK: Dompet kripto kamu telah disusupi. Verifikasi seed phrase kamu sekarang untuk mengamankan aset.”',
     correctType: 'SCAM',
     explanation: 'Rekayasa sosial phishing klasik yang memanfaatkan kepanikan tiruan untuk mencuri kunci pribadi.'
   },
   {
     id: 'g2',
-    text: '“Pilihannya hanya dua: dukung rancangan undang-undang retensi data kami, atau Anda membiarkan penjahat bebas berkeliaran!”',
+    text: '“Pilihannya hanya dua: dukung rancangan undang-undang retensi data kami, atau kamu membiarkan penjahat bebas berkeliaran!”',
     correctType: 'FALLACY',
     explanation: 'Dilema palsu: menghilangkan opsi kompromi bernuansa menjadi ultimatum biner yang dipaksakan.'
   },
@@ -120,7 +120,7 @@ const GAUNTLET_ITEMS_ID = [
   },
   {
     id: 'g9',
-    text: '“Selamat! Nomor ponsel Anda terpilih memenangkan Undian Berhadiah Rp 500 Juta. Klik tautan untuk mencairkan.”',
+    text: '“Selamat! Nomor ponsel kamu terpilih memenangkan Undian Berhadiah Rp 500 Juta. Klik tautan untuk mencairkan.”',
     correctType: 'SCAM',
     explanation: 'Jebakan undian palsu yang meminta pembayaran biaya di muka atau data perbankan.'
   },
@@ -230,7 +230,7 @@ export default function GauntletPage() {
   if (gameState === 'IDLE') {
     return (
       <div className="container" style={{ maxWidth: '780px', padding: '40px 16px', textAlign: 'center' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(220, 38, 38, 0.15)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '20px', fontSize: '11.5px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '14px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', background: 'rgba(220, 38, 38, 0.15)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '20px', fontSize: '12px', fontWeight: '800', color: '#F87171', textTransform: 'uppercase', marginBottom: '14px' }}>
           <span>{t('gauntlet_badge')}</span>
         </div>
 
@@ -238,13 +238,13 @@ export default function GauntletPage() {
           {t('gauntlet_title')}
         </h1>
 
-        <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: '1.55', marginBottom: '24px' }}>
+        <p style={{ fontSize: '15.5px', color: 'var(--text-secondary)', lineHeight: '1.55', marginBottom: '24px' }}>
           {t('gauntlet_desc')}
         </p>
 
         <div className="card" style={{ maxWidth: '480px', margin: '0 auto 24px', textAlign: 'left' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>{t('gauntlet_rules_title')}</h3>
-          <ul style={{ paddingLeft: '18px', color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.7' }}>
+          <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>{t('gauntlet_rules_title')}</h3>
+          <ul style={{ paddingLeft: '18px', color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: '1.7' }}>
             <li>{t('gauntlet_rule_1')}</li>
             <li>{t('gauntlet_rule_2')}</li>
             <li>{t('gauntlet_rule_3')}</li>
@@ -268,7 +268,7 @@ export default function GauntletPage() {
         <div className="card" style={{ padding: '24px' }}>
           <div style={{ fontSize: '24px', fontWeight: '900', color: '#F59E0B', marginBottom: '6px' }}>60s</div>
           <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '900', color: 'var(--text-main)', marginBottom: '4px' }}>{t('gauntlet_time_up')}</h2>
-          <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
+          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
             {t('gauntlet_perf_sub')}
           </div>
 
@@ -276,27 +276,27 @@ export default function GauntletPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
               <div>
                 <div style={{ fontSize: '22px', fontWeight: '900', color: 'var(--text-main)' }}>{score}</div>
-                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>XP</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>XP</div>
               </div>
               <div>
                 <div style={{ fontSize: '22px', fontWeight: '900', color: accuracy >= 80 ? '#10B981' : '#F59E0B' }}>{accuracy}%</div>
-                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>{t('gauntlet_accuracy')} ({correct}/{total})</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>{t('gauntlet_accuracy')} ({correct}/{total})</div>
               </div>
               <div>
                 <div style={{ fontSize: '22px', fontWeight: '900', color: 'var(--accent-amber)' }}>{total}</div>
-                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>{t('gauntlet_sorted')}</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>{t('gauntlet_sorted')}</div>
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => setShowCertificate(true)} className="btn btn-amber" style={{ padding: '10px 18px', fontSize: '13.5px' }}>
+            <button onClick={() => setShowCertificate(true)} className="btn btn-amber" style={{ padding: '10px 18px', fontSize: '14px' }}>
               {t('gauntlet_claim_cert')}
             </button>
-            <button onClick={startGame} className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '13.5px' }}>
+            <button onClick={startGame} className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '14px' }}>
               {t('gauntlet_replay')}
             </button>
-            <Link href="/profile" className="btn btn-outline" style={{ padding: '10px 18px', fontSize: '13.5px' }}>
+            <Link href="/profile" className="btn btn-outline" style={{ padding: '10px 18px', fontSize: '14px' }}>
               {t('nav_trophy')}
             </Link>
           </div>
@@ -323,7 +323,7 @@ export default function GauntletPage() {
             {timeLeft}s
           </div>
           {multiplier > 1 && (
-            <div style={{ background: 'rgba(245, 158, 11, 0.2)', border: '1px solid var(--accent-amber)', padding: '5px 10px', borderRadius: '18px', fontSize: '12px', fontWeight: '900', color: 'var(--accent-amber)' }}>
+            <div style={{ background: 'rgba(245, 158, 11, 0.2)', border: '1px solid var(--accent-amber)', padding: '5px 10px', borderRadius: '18px', fontSize: '12.5px', fontWeight: '900', color: 'var(--accent-amber)' }}>
               {multiplier}x COMBO
             </div>
           )}
@@ -350,10 +350,10 @@ export default function GauntletPage() {
           background: feedbackFlash === 'CORRECT' ? 'rgba(16, 185, 129, 0.1)' : feedbackFlash === 'WRONG' ? 'rgba(239, 68, 68, 0.1)' : 'var(--bg-surface)'
         }}
       >
-        <span style={{ fontSize: '10.5px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '6px' }}>
+        <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '6px' }}>
           {lang === 'id' ? `Klaim #${currentIndex + 1}` : `Claim #${currentIndex + 1}`}
         </span>
-        <blockquote style={{ fontSize: 'clamp(15px, 4vw, 19px)', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.45', margin: '0 auto', maxWidth: '620px' }}>
+        <blockquote style={{ fontSize: 'clamp(15.5px, 4vw, 19.5px)', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.45', margin: '0 auto', maxWidth: '620px' }}>
           {currentItem.text}
         </blockquote>
       </div>
@@ -363,7 +363,7 @@ export default function GauntletPage() {
         <button
           onClick={() => handleAnswer('FALLACY')}
           className="btn"
-          style={{ padding: '14px 10px', background: '#D97706', borderColor: '#F59E0B', color: '#FFFFFF', fontSize: '13.5px', fontWeight: '900' }}
+          style={{ padding: '14px 10px', background: '#D97706', borderColor: '#F59E0B', color: '#FFFFFF', fontSize: '14px', fontWeight: '900' }}
         >
           {t('btn_fallacy')}
         </button>
@@ -371,7 +371,7 @@ export default function GauntletPage() {
         <button
           onClick={() => handleAnswer('FACTUAL')}
           className="btn btn-primary"
-          style={{ padding: '14px 10px', background: '#059669', borderColor: '#10B981', color: '#FFFFFF', fontSize: '13.5px', fontWeight: '900' }}
+          style={{ padding: '14px 10px', background: '#059669', borderColor: '#10B981', color: '#FFFFFF', fontSize: '14px', fontWeight: '900' }}
         >
           {t('btn_factual')}
         </button>
@@ -379,7 +379,7 @@ export default function GauntletPage() {
         <button
           onClick={() => handleAnswer('SCAM')}
           className="btn"
-          style={{ padding: '14px 10px', background: '#DC2626', borderColor: '#EF4444', color: '#FFFFFF', fontSize: '13.5px', fontWeight: '900' }}
+          style={{ padding: '14px 10px', background: '#DC2626', borderColor: '#EF4444', color: '#FFFFFF', fontSize: '14px', fontWeight: '900' }}
         >
           {t('btn_scam')}
         </button>

@@ -85,7 +85,7 @@ export default function FeedSimPage() {
       {/* Top Header & Feed Hygiene Score */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '14px' }}>
         <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '800', color: 'var(--accent-amber)', textTransform: 'uppercase' }}>
             Algorithmic Feed Simulator
           </div>
           <h1 style={{ fontSize: '26px', fontWeight: '900', color: 'var(--text-main)', marginTop: '2px' }}>
@@ -94,7 +94,7 @@ export default function FeedSimPage() {
         </div>
 
         <div style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--border-card)', padding: '8px 16px', borderRadius: '12px', textAlign: 'center' }}>
-          <div style={{ fontSize: '10.5px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '800' }}>Critical Hygiene</div>
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '800' }}>Critical Hygiene</div>
           <div style={{ fontSize: '20px', fontWeight: '900', color: hygieneScore >= 80 ? '#10B981' : '#F59E0B' }}>
             {hygieneScore}%
           </div>
@@ -116,23 +116,23 @@ export default function FeedSimPage() {
                   </div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <strong style={{ fontSize: '14px', color: 'var(--text-main)' }}>{post.author}</strong>
+                      <strong style={{ fontSize: '14.5px', color: 'var(--text-main)' }}>{post.author}</strong>
                       {post.verified && <span style={{ color: '#38BDF8', fontSize: '12px' }}>✓</span>}
                     </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-muted)' }}>{post.handle} • {post.timestamp}</div>
+                    <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{post.handle} • {post.timestamp}</div>
                   </div>
                 </div>
 
-                <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Simulation</span>
+                <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Simulation</span>
               </div>
 
               {/* Post Content */}
-              <p style={{ fontSize: '15px', color: 'var(--text-main)', lineHeight: '1.5', marginBottom: '16px' }}>
+              <p style={{ fontSize: '15.5px', color: 'var(--text-main)', lineHeight: '1.55', marginBottom: '16px' }}>
                 {post.text}
               </p>
 
               {/* Engagement Stats */}
-              <div style={{ display: 'flex', gap: '20px', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '12px' }}>
+              <div style={{ display: 'flex', gap: '20px', fontSize: '13px', color: 'var(--text-muted)', marginBottom: '16px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '12px' }}>
                 <span>Likes: {post.likes}</span>
                 <span>Reposts: {post.shares}</span>
                 <span>Comments</span>
@@ -144,14 +144,14 @@ export default function FeedSimPage() {
                   <button
                     onClick={() => handleAction(post.id, 'FLAG')}
                     className="btn"
-                    style={{ padding: '10px', background: 'rgba(239, 68, 68, 0.15)', borderColor: '#EF4444', color: '#F87171', fontSize: '13px' }}
+                    style={{ padding: '10px', background: 'rgba(239, 68, 68, 0.15)', borderColor: '#EF4444', color: '#F87171', fontSize: '13.5px' }}
                   >
                     Flag Manipulation
                   </button>
                   <button
                     onClick={() => handleAction(post.id, 'PASS')}
                     className="btn"
-                    style={{ padding: '10px', background: 'rgba(16, 185, 129, 0.15)', borderColor: '#10B981', color: '#34D399', fontSize: '13px' }}
+                    style={{ padding: '10px', background: 'rgba(16, 185, 129, 0.15)', borderColor: '#10B981', color: '#34D399', fontSize: '13.5px' }}
                   >
                     Credible / Pass
                   </button>
@@ -160,14 +160,14 @@ export default function FeedSimPage() {
                 /* Simulated Community Note / SIFT Verdict */
                 <div style={{ background: state.isCorrect ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)', border: `1.5px solid ${state.isCorrect ? '#10B981' : '#EF4444'}`, borderRadius: '8px', padding: '14px', animation: 'fadeIn 0.3s ease' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                    <strong style={{ fontSize: '13.5px', color: state.isCorrect ? '#34D399' : '#F87171' }}>
+                    <strong style={{ fontSize: '14px', color: state.isCorrect ? '#34D399' : '#F87171' }}>
                       {state.isCorrect ? 'Accurate Triage! (+100 XP)' : 'Caution: Misjudged Post'}
                     </strong>
                   </div>
-                  <p style={{ fontSize: '13px', color: 'var(--text-main)', marginTop: '4px', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-main)', marginTop: '4px', lineHeight: '1.45' }}>
                     <strong>Verdict:</strong> {post.siftVerdict}
                   </p>
-                  <div style={{ fontSize: '11.5px', color: 'var(--accent-amber)', marginTop: '6px' }}>
+                  <div style={{ fontSize: '12.5px', color: 'var(--accent-amber)', marginTop: '6px' }}>
                     <strong>Rhetoric Device:</strong> {post.fallacy} (Sensationalism Score: {state.sensationalism}/100)
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function FeedSimPage() {
       </div>
 
       <div style={{ marginTop: '28px', textAlign: 'center' }}>
-        <Link href="/sandbox" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '14px' }}>
+        <Link href="/sandbox" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '14.5px' }}>
           Open Full SIFT Sandbox Dissector
         </Link>
       </div>

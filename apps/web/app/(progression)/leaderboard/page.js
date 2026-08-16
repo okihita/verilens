@@ -47,17 +47,17 @@ export default function LeaderboardPage() {
             YOU
           </div>
           <div>
-            <div style={{ fontSize: '14px', fontWeight: '800', color: 'var(--text-main)' }}>Your Active Profile</div>
-            <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Level {rank.level} {rank.name}</div>
+            <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--text-main)' }}>Your Active Profile</div>
+            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Level {rank.level} {rank.name}</div>
           </div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontSize: '18px', fontWeight: '900', color: 'var(--accent-amber)' }}>{profile.xp} XP</div>
-            <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Current Score</div>
+            <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Current Score</div>
           </div>
-          <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '6px 14px', fontSize: '12px' }}>
+          <Link href="/gauntlet" className="btn btn-amber" style={{ padding: '7px 16px', fontSize: '13px' }}>
             Climb Ladder
           </Link>
         </div>
@@ -65,7 +65,7 @@ export default function LeaderboardPage() {
 
       {/* Leaderboard Table */}
       <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 120px 110px', padding: '12px 18px', background: 'var(--bg-surface-elevated)', borderBottom: '1px solid var(--border-subtle)', fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 120px 110px', padding: '12px 18px', background: 'var(--bg-surface-elevated)', borderBottom: '1px solid var(--border-subtle)', fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
           <span>Rank</span>
           <span>Student / Country</span>
           <span style={{ textAlign: 'center' }}>Division</span>
@@ -85,22 +85,22 @@ export default function LeaderboardPage() {
                 background: user.rank <= 3 ? 'rgba(245, 158, 11, 0.03)' : 'transparent'
               }}
             >
-              <span style={{ fontSize: '14px', fontWeight: '900', color: user.rank === 1 ? '#F59E0B' : user.rank === 2 ? '#94A3B8' : user.rank === 3 ? '#B45309' : 'var(--text-muted)' }}>
+              <span style={{ fontSize: '14.5px', fontWeight: '900', color: user.rank === 1 ? '#F59E0B' : user.rank === 2 ? '#94A3B8' : user.rank === 3 ? '#B45309' : 'var(--text-muted)' }}>
                 #{user.rank}
               </span>
 
               <div>
-                <div style={{ fontSize: '13.5px', fontWeight: '800', color: 'var(--text-main)' }}>{user.name}</div>
-                <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>{user.country} • <span style={{ color: 'var(--accent-emerald-light)' }}>{user.badge}</span></div>
+                <div style={{ fontSize: '14px', fontWeight: '800', color: 'var(--text-main)' }}>{user.name}</div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>{user.country} • <span style={{ color: 'var(--accent-emerald-light)' }}>{user.badge}</span></div>
               </div>
 
               <div style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '10.5px', fontWeight: '800', padding: '3px 8px', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--accent-blue-light)' }}>
+                <span style={{ fontSize: '12px', fontWeight: '800', padding: '3px 8px', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--accent-blue-light)' }}>
                   {user.league}
                 </span>
               </div>
 
-              <span style={{ textAlign: 'right', fontSize: '14px', fontWeight: '900', color: 'var(--text-main)' }}>
+              <span style={{ textAlign: 'right', fontSize: '14.5px', fontWeight: '900', color: 'var(--text-main)' }}>
                 {user.xp} XP
               </span>
             </div>
